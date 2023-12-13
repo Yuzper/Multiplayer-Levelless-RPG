@@ -26,6 +26,13 @@ public class PlayerCamera : MonoBehaviour
     private float cameraZPosition; // VALUE USED FOR CAMERA COLLISIONS
     private float targetCameraZPosition; // VALUE USED FOR CAMERA COLLISIONS
 
+    [Header("Zoom Values")]
+    public float zoomSpeed = 5f;
+    public float minZoom = 20f;
+    public float maxZoom = 60f;
+    public float zoomSmoothness = 5f;
+    private float targetZoom;
+
     private void Awake()
     {
         if (instance == null)
@@ -42,6 +49,7 @@ public class PlayerCamera : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         cameraZPosition = cameraObject.transform.localPosition.z;
+        targetZoom = Camera.main.fieldOfView;
     }
 
     public void HandleAllCameraActions()
@@ -51,6 +59,7 @@ public class PlayerCamera : MonoBehaviour
             HandleFollowTarget();
             HandleRotations();
             HandleCollisions();
+            HandlePlayerZoom();
         }
     }
 
@@ -58,6 +67,20 @@ public class PlayerCamera : MonoBehaviour
     {
         Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity, cameraSmoothSpeed * Time.deltaTime);
         transform.position = targetCameraPosition;
+    }
+
+    private void HandlePlayerZoom()
+    {
+        float scrollWheel = -Input.GetAxis("Mouse ScrollWheel"); // A minus in front since the standard input is reverse of what is expected from a zoom.
+
+        // Adjust the target zoom based on scroll input
+        targetZoom += scrollWheel * zoomSpeed;
+
+        // Clamp the target zoom to the specified range
+        targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+
+        // Smoothly interpolate to the target zoom
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetZoom, Time.deltaTime * zoomSmoothness);
     }
 
     private void HandleRotations()

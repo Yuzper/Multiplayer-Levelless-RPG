@@ -972,10 +972,11 @@ GameObject:
   - component: {fileID: -7552384589292500154}
   - component: {fileID: -6838890959375998241}
   - component: {fileID: 3102385522071529017}
-  - component: {fileID: 4681113189932714061}
   - component: {fileID: -4850607042919652327}
   - component: {fileID: 1820767909}
   - component: {fileID: 5531915241888746379}
+  - component: {fileID: -1136134484293859745}
+  - component: {fileID: 4681113189932714061}
   - component: {fileID: 6631685241724113260}
   m_Layer: 6
   m_Name: Player
@@ -1077,7 +1078,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  groundCheckSphereRadius: 0.3
+  groundCheckSphereRadius: 0.28
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -10
   fallStartYVelocity: -5
@@ -1088,26 +1089,8 @@ MonoBehaviour:
   runningSpeed: 5
   rotationSpeed: 15
   jumpHeight: 2
-  jumpForwardSpeed: 6
+  jumpForwardSpeed: 4
   freeFallSpeed: 2
---- !u!143 &4681113189932714061
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919811160946927010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.8
-  m_Radius: 0.25
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!114 &-4850607042919652327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,6 +1209,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d631059db3ed64d8fa15f9204a9253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1136134484293859745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9d1e6ca8f9e1e45a84c2e9793d785f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToTest: {fileID: 11400000, guid: 8ddc41cc75efc3144a1dba25cd7d4dab, type: 2}
+  processEffect: 0
+--- !u!143 &4681113189932714061
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.25
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!82 &6631685241724113260
 AudioSource:
   m_ObjectHideFlags: 0
