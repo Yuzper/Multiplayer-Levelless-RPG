@@ -14,7 +14,9 @@ public class PlayerEffectsManager : CharacterEffectsManager
         {
             processEffect = false;
 
-            InstantCharacterEffect effect = Instantiate(effectToTest);
+            TakeManaDamageEffect effect = Instantiate(effectToTest) as TakeManaDamageEffect;
+            effect.manaDamage = 30;
+
             ProcessInstantEffect(effect);
         }
 

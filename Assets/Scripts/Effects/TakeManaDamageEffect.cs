@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Character Effects/Instant Effects/Take Stamina Damage")]
-public class TakeStaminaDamageEffect : InstantCharacterEffect
+[CreateAssetMenu(menuName ="Character Effects/Instant Effects/Take Mana Damage")]
+public class TakeManaDamageEffect : InstantCharacterEffect
 {
 
-    public float staminaDamage;
+    public float manaDamage;
 
     public override void ProcessEffect(CharacterManager character)
     {
@@ -17,7 +17,8 @@ public class TakeStaminaDamageEffect : InstantCharacterEffect
     {
         if (character.IsOwner)
         {
-            //character.characterNetworkManager.currentStamina.Value -= staminaDamage;
+            Debug.Log("CHARACTER IS TAKING: " + manaDamage + " MANA DAMAGE");
+            character.characterNetworkManager.currentMana.Value -= manaDamage;
         }
     }
 

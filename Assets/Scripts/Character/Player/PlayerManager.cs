@@ -8,7 +8,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerNetworkManager playerNetworkManager;
-    //[HideInInspector] public PlayerStatsManager playerStatsManager; // NOT IMPLEMENTED YET
+    [HideInInspector] public PlayerStatsManager playerStatsManager;
 
     protected override void Awake()
     {
@@ -18,6 +18,7 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerNetworkManager = GetComponent<PlayerNetworkManager>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     protected override void Update()
@@ -28,6 +29,9 @@ public class PlayerManager : CharacterManager
 
         // HANDLE ALL CHARACTER MOVEMENT
         playerLocomotionManager.HandleAllMovement();
+
+        // REGEN MANA
+        playerStatsManager.RegenerateMana();
     }
 
     protected override void LateUpdate()
@@ -49,6 +53,13 @@ public class PlayerManager : CharacterManager
             PlayerCamera.instance.player = this;
             PlayerInputManager.instance.player = this;
             WorldSaveGameManager.instance.player = this;
+
+            playerNetworkManager.currentMana.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewManaValue;
+            playerNetworkManager.currentMana.OnValueChanged += playerStatsManager.ResetManaRegenTimer;
+            
+            playerNetworkManager.maxMana.Value = playerStatsManager.CalculateManaBasedOnIntelligence(playerNetworkManager.intelligence.Value);
+            playerNetworkManager.currentMana.Value = playerStatsManager.CalculateManaBasedOnIntelligence(playerNetworkManager.intelligence.Value);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(playerNetworkManager.maxMana.Value);
         }
     }
 

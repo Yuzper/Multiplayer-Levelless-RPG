@@ -975,6 +975,7 @@ GameObject:
   - component: {fileID: -4850607042919652327}
   - component: {fileID: 1820767909}
   - component: {fileID: 5531915241888746379}
+  - component: {fileID: 5537857349065083524}
   - component: {fileID: -1136134484293859745}
   - component: {fileID: 4681113189932714061}
   - component: {fileID: 6631685241724113260}
@@ -1062,6 +1063,7 @@ MonoBehaviour:
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
+  playerStatsManager: {fileID: 0}
 --- !u!114 &3102385522071529017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,6 +1118,12 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
+  intelligence:
+    m_InternalValue: 20
+  currentMana:
+    m_InternalValue: 0
+  maxMana:
+    m_InternalValue: 1
   characterName:
     m_InternalValue:
       utf8LengthInBytes: 9
@@ -1209,6 +1217,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d631059db3ed64d8fa15f9204a9253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5537857349065083524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e1efd56b51773438078fbe606479de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaRegenerationAmount: 1
+  manaRegenerationDelay: 1
 --- !u!114 &-1136134484293859745
 MonoBehaviour:
   m_ObjectHideFlags: 0

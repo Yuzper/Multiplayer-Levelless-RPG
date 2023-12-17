@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0201a7e4121bd0f4797cc1b4683e46f4, type: 3}
-  m_Name: Take Stamina Damage Effect
+  m_Name: Take Mana Damage Effect
   m_EditorClassIdentifier: 
   instantEffectID: 0
   staminaDamage: 0
