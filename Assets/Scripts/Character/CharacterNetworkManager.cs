@@ -20,14 +20,41 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<float> moveAmount = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Stats")]
-    public NetworkVariable<int> intelligence = new NetworkVariable<int>(20, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<float> currentMana = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<int> maxMana = new NetworkVariable<int>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    // Constitution determines how much health a character has.
+    public NetworkVariable<int> constitution = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    // Intelligence determines how much mana a character has.
+    public NetworkVariable<int> intelligence = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    // Fortitude is strength of the mind, think of how easy it is for them to break concentration on a spell or channeling ability.
+    public NetworkVariable<int> fortitude = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+
+    [Header("Resources")]
+    public NetworkVariable<float> currentMana = new NetworkVariable<float>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> maxMana = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> currentHealth = new NetworkVariable<float>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> maxHealth = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
 
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
+    }
+
+    public void CheckHP(float oldValue, float newValue)
+    {
+        if (currentHealth.Value <= 0)
+        {
+            StartCoroutine(character.ProcessDeathEvent());
+        }
+
+        if (character.IsOwner)
+        {
+            // Prevents overhealing
+            if (currentHealth.Value > maxHealth.Value)
+            {
+                currentHealth.Value = maxHealth.Value;
+            }
+        }
     }
 
     // A SERVER RPC IS A FUNCTION CALLED FROM A CLIENT, TO THE SERVER (IN OUR CASE HOST)

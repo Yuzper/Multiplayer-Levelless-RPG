@@ -169,6 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4624494166136004103}
+  - component: {fileID: 3166675123643625276}
   m_Layer: 6
   m_Name: B-hand.L
   m_TagString: Untagged
@@ -195,6 +196,20 @@ Transform:
   m_Father: {fileID: 7643420189563264043}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3166675123643625276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925810467323411366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389bc3e96f6b7424c9ee400413b3a28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlot: 1
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &1024451515233273167
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +987,8 @@ GameObject:
   - component: {fileID: -7552384589292500154}
   - component: {fileID: -6838890959375998241}
   - component: {fileID: 3102385522071529017}
+  - component: {fileID: 3362887032212460857}
+  - component: {fileID: 512546009604817133}
   - component: {fileID: -4850607042919652327}
   - component: {fileID: 1820767909}
   - component: {fileID: 5531915241888746379}
@@ -1051,15 +1068,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c2ecd69a80d13449b9f887adbe191b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead:
+    m_InternalValue: 0
   characterController: {fileID: 0}
   animator: {fileID: 0}
   characterNetworkManager: {fileID: 0}
+  characterEffectsManager: {fileID: 0}
+  characterAnimatorManager: {fileID: 0}
   isPerformingAction: 0
   isJumping: 0
   isGrounded: 1
   applyRootMotion: 1
   canRotate: 1
   canMove: 1
+  respawnCharacter: 0
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
@@ -1093,6 +1115,32 @@ MonoBehaviour:
   jumpHeight: 2
   jumpForwardSpeed: 4
   freeFallSpeed: 2
+--- !u!114 &3362887032212460857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a3f7e4419c6ae544a1e967eaf77a045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRightHandWeapon: {fileID: 0}
+  currentLeftHandWeapon: {fileID: 0}
+--- !u!114 &512546009604817133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fba6d7be7885841aa87a6e0b81fc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-4850607042919652327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,11 +1166,19 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
+  constitution:
+    m_InternalValue: 1
   intelligence:
     m_InternalValue: 20
+  fortitude:
+    m_InternalValue: 1
   currentMana:
-    m_InternalValue: 0
+    m_InternalValue: 0.5
   maxMana:
+    m_InternalValue: 1
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
     m_InternalValue: 1
   characterName:
     m_InternalValue:
@@ -2082,6 +2138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1750444285995858896}
+  - component: {fileID: 3879069118142444992}
   m_Layer: 6
   m_Name: B-hand.R
   m_TagString: Untagged
@@ -2108,6 +2165,20 @@ Transform:
   m_Father: {fileID: 8670560000379794880}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3879069118142444992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370621158194865634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389bc3e96f6b7424c9ee400413b3a28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlot: 0
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &7522785631679166407
 GameObject:
   m_ObjectHideFlags: 0

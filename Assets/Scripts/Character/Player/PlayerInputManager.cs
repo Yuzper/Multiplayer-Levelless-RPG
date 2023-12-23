@@ -54,7 +54,7 @@ public class PlayerInputManager : MonoBehaviour
             instance.enabled = true;
         }
         //  OTHERWISE WE MUST BE AT THE MAIN MENU, DISABLE OUR PLAYERS CONTROLS
-        // THIS IS SO OUR PLAYER CANT MOVE AROUND IF WE ENTER THINGS LIKE A CHRACTER CREATION MENU ETC...
+        // THIS IS SO OUR PLAYER CANT MOVE AROUND IF WE ENTER THINGS LIKE A CHARACTER CREATION MENU ETC...
         else
         {
             instance.enabled = false;

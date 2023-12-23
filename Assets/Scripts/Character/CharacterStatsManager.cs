@@ -17,6 +17,21 @@ public class CharacterStatsManager : MonoBehaviour
         character = GetComponent<CharacterManager>();
     }
 
+    protected virtual void Start()
+    {
+
+    }
+
+    public int CalculateHealthBasedOnConstitution(int constitution)
+    {
+        float health;
+
+        // CREATE EQUATION FOR MANA CALCULATION
+        health = constitution * 15;
+
+        return Mathf.RoundToInt(health);
+    }
+    
     public int CalculateManaBasedOnIntelligence(int intelligence)
     {
         float mana;

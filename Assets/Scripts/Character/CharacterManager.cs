@@ -5,9 +5,15 @@ using Unity.Netcode;
 
 public class CharacterManager : NetworkBehaviour
 {
+
+    [Header("Status")]
+    public NetworkVariable<bool> isDead = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     [HideInInspector] public CharacterController characterController;
     [HideInInspector] public Animator animator;
+
     [HideInInspector] public CharacterNetworkManager characterNetworkManager;
+    [HideInInspector] public CharacterEffectsManager characterEffectsManager;
+    [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
 
     [Header("Flags")]
     public bool isPerformingAction = false;
@@ -24,7 +30,11 @@ public class CharacterManager : NetworkBehaviour
 
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+
         characterNetworkManager = GetComponent<CharacterNetworkManager>();
+        characterEffectsManager = GetComponent<CharacterEffectsManager>();
+        characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
+        
     }
 
     protected virtual void Update()
@@ -58,4 +68,34 @@ public class CharacterManager : NetworkBehaviour
 
     }
 
+    public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+    {
+        if (IsOwner)
+        {
+            characterNetworkManager.currentHealth.Value = 0;
+            isDead.Value = true;
+
+            // Reset any flags here that need to be reset
+
+            if (!manuallySelectDeathAnimation)
+            {
+                characterAnimatorManager.PlayerTargetActionAnimation("Dead_01", true);
+            }
+        }
+        // Play death SFX
+
+        yield return new WaitForSeconds(5);
+
+        // Award players with loot
+        // Disable Character model
+
+        // Disable control over player movement
+        
+
+    }
+
+    public virtual void ReviveCharacter()
+    {
+
+    }
 }
