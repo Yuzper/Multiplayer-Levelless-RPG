@@ -23,6 +23,7 @@ public class PlayerInputManager : MonoBehaviour
     [Header("PLAYER ACTION INPUT")]
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool jumpInput = false;
+    [SerializeField] bool danceInput = false;
 
     private void Awake()
     {
@@ -49,11 +50,12 @@ public class PlayerInputManager : MonoBehaviour
     private void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
     {
         // IF WE ARE LOADING INTO OUR WORLD SCENE, ENABLE OUR PLAYER CONTROLS
-        if (newScene.buildIndex == WorldSaveGameManager.instance.GetWorldSceneIndex())
+        //if (newScene.buildIndex == WorldSaveGameManager.instance.GetWorldSceneIndex())
+        if (newScene.buildIndex != 0)
         {
             instance.enabled = true;
         }
-        //  OTHERWISE WE MUST BE AT THE MAIN MENU, DISABLE OUR PLAYERS CONTROLS
+        // OTHERWISE WE MUST BE AT THE MAIN MENU, DISABLE OUR PLAYERS CONTROLS
         // THIS IS SO OUR PLAYER CANT MOVE AROUND IF WE ENTER THINGS LIKE A CHARACTER CREATION MENU ETC...
         else
         {
@@ -71,6 +73,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+            playerControls.PlayerActions.Dance.performed += i => danceInput = true;
         }
 
         playerControls.Enable();
@@ -99,21 +102,9 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Update()
     {
-
-        if (ShouldDisableScript())
-        {
-            enabled = false;
-            return;
-        }
-
         HandleAllInputs();
     }
 
-    // SCRIPT TO ONLY DISABLE PLAYER MOVEMENT IN THE MAIN MENU SCENE
-    private bool ShouldDisableScript()
-    {
-        return SceneManager.GetActiveScene().buildIndex == 0; // Index 0 is the main menu
-    }
 
     private void HandleAllInputs()
     {
@@ -121,6 +112,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleCameraMovementInput();
         HandleDodgeInput();
         HandleJumpInput();
+        HandleDanceInput();
     }
 
     // MOVEMENT SECTION
@@ -174,6 +166,15 @@ public class PlayerInputManager : MonoBehaviour
             player.playerLocomotionManager.AttemptToPerformJump();
 
         }
+    }
 
+    private void HandleDanceInput()
+    {
+        if (danceInput)
+        {
+            danceInput = false;
+            player.playerLocomotionManager.AttemptToPerformDance();
+
+        }
     }
 }

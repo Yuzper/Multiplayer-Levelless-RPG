@@ -156,9 +156,23 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     }
 
+    // Dance
+    public void AttemptToPerformDance()
+    {
+        if (player.isPerformingAction) return;
 
-    // JUMP
-    public void AttemptToPerformJump()
+        if (player.isJumping) return;
+
+        if (!player.isGrounded) return;
+
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", false);
+
+        player.isDancing = true;
+
+    }
+
+        // JUMP
+        public void AttemptToPerformJump()
     {
         if (player.isPerformingAction) return;
 
