@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -677,6 +677,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324610433941882075, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 1786308328808098221, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
         type: 3}
@@ -5511,6 +5516,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fbd00b801c4a9e4d80ed9301f9947ab, type: 3}
+--- !u!1001 &1398863068505879373
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1398863069540432788, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_Name
+      value: WorldItemDatabase
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398863069540432790, guid: 8eb4f09c375e9ec4188a9902f39b0be5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8eb4f09c375e9ec4188a9902f39b0be5, type: 3}
 --- !u!1001 &2099786764274046050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5527,7 +5601,32 @@ PrefabInstance:
         type: 3}
       propertyPath: rollSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 958408b32ccf3714ea02821877b0870c, type: 3}
+      objectReference: {fileID: 8300000, guid: 49fd127f5f85aa047bc9005ac2fd6331, type: 3}
+    - target: {fileID: 2099786763070414037, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 942c7aa7e91dc2042913b84d53f8df0a, type: 3}
+    - target: {fileID: 2099786763070414037, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: DrawSwordSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 5106aa09b9d5a374e86d3c643beb374c, type: 3}
+    - target: {fileID: 2099786763070414037, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: GrabSwordSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 5106aa09b9d5a374e86d3c643beb374c, type: 3}
+    - target: {fileID: 2099786763070414037, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: SheathSwordSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 09f89d6f9c83c0e4588d9111a0a56ffc, type: 3}
+    - target: {fileID: 2099786763070414037, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: ShieveSwordSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 09f89d6f9c83c0e4588d9111a0a56ffc, type: 3}
     - target: {fileID: 2099786763070414037, guid: 64d0ec940444adb47bda10a8f66700f8,
         type: 3}
       propertyPath: BackgroundMusic

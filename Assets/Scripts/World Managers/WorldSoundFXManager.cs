@@ -8,9 +8,16 @@ public class WorldSoundFXManager : MonoBehaviour
 
     [Header("Action Sounds")]
     public AudioClip rollSFX;
+    public AudioClip deathSFX;
 
+    [Header("Weapon Sounds")]
+    public AudioClip DrawSwordSFX;
+    public AudioClip SheathSwordSFX;
+
+    [Header("Background Sounds")]
     public AudioClip BackgroundMusic;
 
+    
     private void Awake()
     {
         if (instance == null)

@@ -22,5 +22,18 @@ public class CharacterSoundFXManager : MonoBehaviour
         audioSource.PlayOneShot(WorldSoundFXManager.instance.rollSFX);
     }
 
+    public void PlayDeathSFX()
+    {
+        audioSource.PlayOneShot(WorldSoundFXManager.instance.deathSFX);
+    }
 
+    public void PlayDrawSwordSFX()
+    {
+        audioSource.PlayOneShot(WorldSoundFXManager.instance.DrawSwordSFX);
+    }
+
+    public void PlaySheathSwordSFX()
+    {
+        audioSource.PlayOneShot(WorldSoundFXManager.instance.SheathSwordSFX);
+    }
 }
