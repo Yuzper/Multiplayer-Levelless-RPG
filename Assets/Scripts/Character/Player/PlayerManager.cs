@@ -8,10 +8,12 @@ public class PlayerManager : CharacterManager
     [Header("DEBUG MENU")]
     [SerializeField] bool respawnCharacter = false;
     [SerializeField] bool switchRightWeapon = false;
+    [SerializeField] bool switchLeftWeapon = false;
 
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerNetworkManager playerNetworkManager;
+    [HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
     [HideInInspector] public PlayerStatsManager playerStatsManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
@@ -24,6 +26,7 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerNetworkManager = GetComponent<PlayerNetworkManager>();
+        playerSoundFXManager = GetComponent<PlayerSoundFXManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
@@ -79,6 +82,13 @@ public class PlayerManager : CharacterManager
         // EQUIPMENT
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+
+        //  UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
+        // WE DON'T RUN THIS IF WE ARE THE SERVER, BECAUSE SINCE THEY ARE THE HOST, THEY ARE ALREADY LOADED IN AND DON'T NEED TO RELOAD THEIR DATA
+        if (IsOwner && !IsServer)
+        {
+            LoadGameDataFromCurrentCharacterData(ref WorldSaveGameManager.instance.currentCharacterData);
+        }
     }
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
@@ -90,8 +100,7 @@ public class PlayerManager : CharacterManager
 
         return base.ProcessDeathEvent(manuallySelectDeathAnimation);
     }
-
-
+    
     public override void ReviveCharacter()
     {
         base.ReviveCharacter();
@@ -174,6 +183,12 @@ public class PlayerManager : CharacterManager
         {
             switchRightWeapon = false;
             playerEquipmentManager.SwitchRightWeapon();
+        }
+
+        if (switchLeftWeapon)
+        {
+            switchLeftWeapon = false;
+            playerEquipmentManager.SwitchLeftWeapon();
         }
     }
 

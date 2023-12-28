@@ -24,6 +24,4 @@ public class WeaponModelInstantiationSlot : MonoBehaviour
         weaponModel.transform.localRotation = Quaternion.identity;
         weaponModel.transform.localScale = Vector3.one;
     }
-
-
 }

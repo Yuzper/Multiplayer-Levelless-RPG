@@ -45,6 +45,11 @@ public class PlayerInputManager : MonoBehaviour
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
         instance.enabled = false;
+
+        if (playerControls != null)
+        {
+            playerControls.Disable();
+        }
     }
 
     private void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
@@ -54,12 +59,22 @@ public class PlayerInputManager : MonoBehaviour
         if (newScene.buildIndex != 0)
         {
             instance.enabled = true;
+
+            if (playerControls != null)
+            {
+                playerControls.Enable();
+            }
         }
         // OTHERWISE WE MUST BE AT THE MAIN MENU, DISABLE OUR PLAYERS CONTROLS
         // THIS IS SO OUR PLAYER CANT MOVE AROUND IF WE ENTER THINGS LIKE A CHARACTER CREATION MENU ETC...
         else
         {
             instance.enabled = false;
+
+            if (playerControls != null)
+            {
+                playerControls.Disable();
+            }
         }
     }
 

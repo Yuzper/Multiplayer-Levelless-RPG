@@ -32,3 +32,11 @@ public enum WeaponModelSlot
     // Left Hips
 }
 
+public enum WeaponType
+{
+    Unarmed,
+    Sword,
+    Dagger,
+    Bow,
+    Staff
+}

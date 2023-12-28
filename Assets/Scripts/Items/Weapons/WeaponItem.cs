@@ -7,6 +7,9 @@ public class WeaponItems : Item
     [Header("Weapon Model")]
     public GameObject weaponModel;
 
+    [Header("Weapon Type")]
+    public WeaponType weaponType;
+
     [Header("Weapon Requirements")]
     public int strengthREQ = 0;
     public int dexREQ = 0;
@@ -21,8 +24,6 @@ public class WeaponItems : Item
 
     [Header("Weapon Base Poise Damage")]
     public float poiseDamage = 10;
-
-
 
 
 }

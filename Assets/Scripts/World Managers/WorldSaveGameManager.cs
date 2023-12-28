@@ -248,8 +248,8 @@ public class WorldSaveGameManager : MonoBehaviour
         // SAVES THE NEWLY CREATED CHARACTERS STATS, AND ITEMS (WHEN CREATION SCREEN IS ADDED)
 
         // Temp code
-        player.playerNetworkManager.constitution.Value = 2;
-        player.playerNetworkManager.intelligence.Value = 3;
+        player.playerNetworkManager.constitution.Value = 10;
+        player.playerNetworkManager.intelligence.Value = 10;
 
         SaveGame();
         StartCoroutine(LoadWorldScene());

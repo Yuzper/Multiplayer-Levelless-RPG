@@ -92,7 +92,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleJumpingMovement()
     {
-        if (player.isJumping)
+        if (player.playerNetworkManager.isJumping.Value)
         {
             player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
         }
@@ -161,7 +161,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         if (player.isPerformingAction) return;
 
-        if (player.isJumping) return;
+        if (player.playerNetworkManager.isJumping.Value) return;
 
         if (!player.isGrounded) return;
 
@@ -176,13 +176,13 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         if (player.isPerformingAction) return;
 
-        if (player.isJumping) return;
+        if (player.playerNetworkManager.isJumping.Value) return;
 
         if (!player.isGrounded) return;
 
         player.playerAnimatorManager.PlayerTargetActionAnimation("BasicMotions@Jump01 - Start", false);
 
-        player.isJumping = true;
+        player.playerNetworkManager.isJumping.Value = true;
 
         jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
         jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;

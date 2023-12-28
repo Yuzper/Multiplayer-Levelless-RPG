@@ -18,6 +18,7 @@ MonoBehaviour:
   itemID: 0
   weaponModel: {fileID: 5740575227788992252, guid: bc0734bad4e2d4544b89139ff0944dd7,
     type: 3}
+  drawWeaponSound: {fileID: 8300000, guid: 09f89d6f9c83c0e4588d9111a0a56ffc, type: 3}
   strengthREQ: 0
   dexREQ: 0
   intREQ: 0
