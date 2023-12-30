@@ -124,9 +124,36 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "RightMouseAttack",
+                    "type": "Button",
+                    "id": "2b708589-1fcc-42ce-a43c-f071c6bf5cd5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dance",
                     "type": "Button",
                     "id": "1e294a45-de77-4b92-aebe-d543030b8d11",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber1",
+                    "type": "Button",
+                    "id": "555bef9f-e6c3-443d-967a-a5a617bec8a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber2",
+                    "type": "Button",
+                    "id": "b6f3b68a-8c0e-44bd-b607-46702ec43808",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -164,6 +191,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dance",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27e7e308-2369-4e40-8116-cfe58eaf437a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightMouseAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bd858d9-5d51-4ece-a65e-4f0e1dcf29b8",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77fbd7be-76d1-4500-a08c-9844eb3d6f95",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

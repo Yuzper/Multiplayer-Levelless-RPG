@@ -25,5 +25,14 @@ public class WeaponItems : Item
     [Header("Weapon Base Poise Damage")]
     public float poiseDamage = 10;
 
+    [Header("Attack Modifiers")]
+    public float light_Attack_01_Modifier = 1.1f;
 
+    [Header("Stamina Costs")]
+    public int baseStaminaCost = 20;
+    public float lightAttackStaminaCostMultiplier = 0.9f; // Adjusts the cost to perform this attack from the base cost
+
+    [Header("Actions")]
+    public WeaponItemAction oneHandRightMouseAttack;
+    
 }

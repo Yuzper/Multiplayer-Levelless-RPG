@@ -1197,6 +1197,7 @@ GameObject:
   - component: {fileID: 4919811160954312666}
   - component: {fileID: -7552384589292500154}
   - component: {fileID: -6838890959375998241}
+  - component: {fileID: 4119943543529186907}
   - component: {fileID: 3102385522071529017}
   - component: {fileID: 3362887032212460857}
   - component: {fileID: 512546009604817133}
@@ -1288,15 +1289,15 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
+  characterCombatManager: {fileID: 0}
   isPerformingAction: 0
-  isJumping: 0
   isDancing: 0
   isGrounded: 1
   applyRootMotion: 1
   canRotate: 1
   canMove: 1
   respawnCharacter: 0
-  switchRightWeapon: 0
+  switchRightWeapon: 1
   switchLeftWeapon: 0
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
@@ -1305,6 +1306,22 @@ MonoBehaviour:
   playerStatsManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
+  playerCombatManager: {fileID: 0}
+  playerKeyboardInputToButtonManager: {fileID: 0}
+--- !u!114 &4119943543529186907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239ab494697fc3b4eb7b323b6effa72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAttackType: 0
+  currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &3102385522071529017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,7 +1374,7 @@ MonoBehaviour:
   rightHandWeaponIndex: 0
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
-  - {fileID: 11400000, guid: 0b018f0518d852844b8320e24e4fbc85, type: 2}
+  - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   leftHandWeaponIndex: 0
 --- !u!114 &512546009604817133
@@ -1403,19 +1420,27 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
+  isJumping:
+    m_InternalValue: 0
   constitution:
     m_InternalValue: 1
   intelligence:
-    m_InternalValue: 20
+    m_InternalValue: 1
+  endurance:
+    m_InternalValue: 1
   fortitude:
     m_InternalValue: 1
+  currentHealth:
+    m_InternalValue: 1
+  maxHealth:
+    m_InternalValue: 1
   currentMana:
-    m_InternalValue: 0.5
+    m_InternalValue: 1
   maxMana:
     m_InternalValue: 1
-  currentHealth:
-    m_InternalValue: 0
-  maxHealth:
+  currentStamina:
+    m_InternalValue: 1
+  maxStamina:
     m_InternalValue: 1
   characterName:
     m_InternalValue:
@@ -1486,9 +1511,15 @@ MonoBehaviour:
         byte0059: 0
         byte0060: 0
         byte0061: 0
+  currentWeaponBeingUsed:
+    m_InternalValue: 0
   currentRightHandWeaponID:
     m_InternalValue: 0
   currentLeftHandWeaponID:
+    m_InternalValue: 0
+  isUsingRightHand:
+    m_InternalValue: 0
+  isUsingLeftHand:
     m_InternalValue: 0
 --- !u!114 &1820767909
 MonoBehaviour:
@@ -1528,6 +1559,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaRegenerationAmount: 1
   manaRegenerationDelay: 1
+  staminaRegenerationAmount: 3
+  staminaRegenerationDelay: 0.5
 --- !u!114 &-1136134484293859745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,8 +1573,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9d1e6ca8f9e1e45a84c2e9793d785f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectToTest: {fileID: 11400000, guid: 8ddc41cc75efc3144a1dba25cd7d4dab, type: 2}
-  processEffect: 0
+  effectToTestHealth: {fileID: 11400000, guid: dc3453f9d72388448b08d2b6e8e2fca5, type: 2}
+  effectToTestMana: {fileID: 11400000, guid: 8ddc41cc75efc3144a1dba25cd7d4dab, type: 2}
+  effectToTestStamina: {fileID: 11400000, guid: 112641f5dc2ce4645b2877a4948c6ece,
+    type: 2}
+  HealthProcessEffect: 0
+  ManaProcessEffect: 0
+  StaminaProcessEffect: 0
 --- !u!143 &4681113189932714061
 CharacterController:
   m_ObjectHideFlags: 0

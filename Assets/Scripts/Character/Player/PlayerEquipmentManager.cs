@@ -256,4 +256,35 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             playSoundCheck += 1;
         }
     }
+
+    // DAMAGE COLLIDERS
+    public void OpenDamageCollider()
+    {
+        // OPEN RIGHT WEAPON DAMAGE COLLIDER
+        if (player.playerNetworkManager.isUsingRightHand.Value)
+        {
+            rightWeaponManager.meleeDamageCollider.EnableDamageCollider();
+        }
+        // OPEN LEFT WEAPON DAMAGE COLLIDER
+        else if (player.playerNetworkManager.isUsingLeftHand.Value)
+        {
+            leftWeaponManager.meleeDamageCollider.EnableDamageCollider();
+        }
+    }
+
+    public void CloseDamageCollider()
+    {
+        // CLOSE RIGHT WEAPON DAMAGE COLLIDER
+        if (player.playerNetworkManager.isUsingRightHand.Value)
+        {
+            rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
+        }
+        // CLOSE LEFT WEAPON DAMAGE COLLIDER
+        else if (player.playerNetworkManager.isUsingLeftHand.Value)
+        {
+            leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
+        }
+    }
+
+
 }

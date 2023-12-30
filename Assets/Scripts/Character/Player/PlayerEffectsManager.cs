@@ -5,21 +5,45 @@ using UnityEngine;
 public class PlayerEffectsManager : CharacterEffectsManager
 {
     [Header("Debug Delete Later")]
-    [SerializeField] InstantCharacterEffect effectToTest;
-    [SerializeField] bool processEffect = false;
+    [SerializeField] InstantCharacterEffect effectToTestHealth;
+    [SerializeField] InstantCharacterEffect effectToTestMana;
+    [SerializeField] InstantCharacterEffect effectToTestStamina;
+
+    [SerializeField] bool HealthProcessEffect = false;
+    [SerializeField] bool ManaProcessEffect = false;
+    [SerializeField] bool StaminaProcessEffect = false;
 
     private void Update()
     {
-        if (processEffect)
+        if (HealthProcessEffect)
         {
-            processEffect = false;
+            HealthProcessEffect = false;
 
-            TakeManaDamageEffect effect = Instantiate(effectToTest) as TakeManaDamageEffect;
-            effect.manaDamage = 30;
+            TakeDamageEffect effectHealth = Instantiate(effectToTestHealth) as TakeDamageEffect;
+            effectHealth.physicalDamage = 30;
 
-            ProcessInstantEffect(effect);
+            ProcessInstantEffect(effectHealth);
         }
 
+        if (ManaProcessEffect)
+        {
+            ManaProcessEffect = false;
+
+            TakeManaDamageEffect effectMana = Instantiate(effectToTestMana) as TakeManaDamageEffect;
+            effectMana.manaDamage = 30;
+
+            ProcessInstantEffect(effectMana);
+        }
+        
+        if (StaminaProcessEffect)
+        {
+            StaminaProcessEffect = false;
+
+            TakeStaminaDamageEffect effectMana = Instantiate(effectToTestStamina) as TakeStaminaDamageEffect;
+            effectMana.staminaDamage = 30;
+
+            ProcessInstantEffect(effectMana);
+        }
     }
 
 

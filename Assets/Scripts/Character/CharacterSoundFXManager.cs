@@ -36,4 +36,10 @@ public class CharacterSoundFXManager : MonoBehaviour
     {
         audioSource.PlayOneShot(WorldSoundFXManager.instance.SheathSwordSFX);
     }
+
+    public void PlaySwordSwipeSFX()
+    {
+        audioSource.PlayOneShot(WorldSoundFXManager.instance.SwordSwipeSFX);
+    }
+    
 }

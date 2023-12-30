@@ -16,8 +16,8 @@ public class PlayerUIPopUpManager : MonoBehaviour
         youDiedPopUpGameObject.SetActive(true);
         youDiedPopUpBackgroundText.characterSpacing = 0;
         StartCoroutine(StretchPopUpTextOverTime(youDiedPopUpBackgroundText, 8, 20f));
-        StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 5));
-        StartCoroutine(WaitThenFadeOutPopUpOverTimer(youDiedPopUpCanvasGroup, 2, 5));
+        StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 3));
+        StartCoroutine(WaitThenFadeOutPopUpOverTimer(youDiedPopUpCanvasGroup, 2, 4));
     }
 
     private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)

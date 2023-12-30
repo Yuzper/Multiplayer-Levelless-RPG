@@ -13,6 +13,7 @@ public class WorldSoundFXManager : MonoBehaviour
     [Header("Weapon Sounds")]
     public AudioClip DrawSwordSFX;
     public AudioClip SheathSwordSFX;
+    public AudioClip SwordSwipeSFX;
 
     [Header("Background Sounds")]
     public AudioClip BackgroundMusic;

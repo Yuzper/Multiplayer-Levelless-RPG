@@ -40,3 +40,8 @@ public enum WeaponType
     Bow,
     Staff
 }
+
+public enum AttackType
+{
+    LightAttack01
+}

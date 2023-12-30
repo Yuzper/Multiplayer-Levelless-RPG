@@ -146,9 +146,36 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""RightMouseAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b708589-1fcc-42ce-a43c-f071c6bf5cd5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dance"",
                     ""type"": ""Button"",
                     ""id"": ""1e294a45-de77-4b92-aebe-d543030b8d11"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber1"",
+                    ""type"": ""Button"",
+                    ""id"": ""555bef9f-e6c3-443d-967a-a5a617bec8a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6f3b68a-8c0e-44bd-b607-46702ec43808"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -186,6 +213,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27e7e308-2369-4e40-8116-cfe58eaf437a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightMouseAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6bd858d9-5d51-4ece-a65e-4f0e1dcf29b8"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77fbd7be-76d1-4500-a08c-9844eb3d6f95"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -232,7 +292,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerActions_RightMouseAttack = m_PlayerActions.FindAction("RightMouseAttack", throwIfNotFound: true);
         m_PlayerActions_Dance = m_PlayerActions.FindAction("Dance", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber1 = m_PlayerActions.FindAction("ActionNumber1", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber2 = m_PlayerActions.FindAction("ActionNumber2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -363,14 +426,20 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_Jump;
+    private readonly InputAction m_PlayerActions_RightMouseAttack;
     private readonly InputAction m_PlayerActions_Dance;
+    private readonly InputAction m_PlayerActions_ActionNumber1;
+    private readonly InputAction m_PlayerActions_ActionNumber2;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
+        public InputAction @RightMouseAttack => m_Wrapper.m_PlayerActions_RightMouseAttack;
         public InputAction @Dance => m_Wrapper.m_PlayerActions_Dance;
+        public InputAction @ActionNumber1 => m_Wrapper.m_PlayerActions_ActionNumber1;
+        public InputAction @ActionNumber2 => m_Wrapper.m_PlayerActions_ActionNumber2;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -386,9 +455,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
+                @RightMouseAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
+                @RightMouseAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
+                @RightMouseAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
                 @Dance.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
+                @ActionNumber1.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber1;
+                @ActionNumber1.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber1;
+                @ActionNumber1.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber1;
+                @ActionNumber2.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
+                @ActionNumber2.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
+                @ActionNumber2.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -399,9 +477,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @RightMouseAttack.started += instance.OnRightMouseAttack;
+                @RightMouseAttack.performed += instance.OnRightMouseAttack;
+                @RightMouseAttack.canceled += instance.OnRightMouseAttack;
                 @Dance.started += instance.OnDance;
                 @Dance.performed += instance.OnDance;
                 @Dance.canceled += instance.OnDance;
+                @ActionNumber1.started += instance.OnActionNumber1;
+                @ActionNumber1.performed += instance.OnActionNumber1;
+                @ActionNumber1.canceled += instance.OnActionNumber1;
+                @ActionNumber2.started += instance.OnActionNumber2;
+                @ActionNumber2.performed += instance.OnActionNumber2;
+                @ActionNumber2.canceled += instance.OnActionNumber2;
             }
         }
     }
@@ -451,7 +538,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnRightMouseAttack(InputAction.CallbackContext context);
         void OnDance(InputAction.CallbackContext context);
+        void OnActionNumber1(InputAction.CallbackContext context);
+        void OnActionNumber2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

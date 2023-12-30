@@ -28,3 +28,5 @@ MonoBehaviour:
   holyDamage: 0
   lightningDamage: 0
   poiseDamage: 25
+  oneHandRightMouseAttack: {fileID: 11400000, guid: ad81920433aa2a1478f5c2b00b6421a8,
+    type: 2}

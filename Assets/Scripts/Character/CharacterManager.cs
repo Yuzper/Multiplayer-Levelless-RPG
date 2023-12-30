@@ -15,6 +15,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
     [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
+    [HideInInspector] public CharacterCombatManager characterCombatManager;
 
     [Header("Flags")]
     public bool isPerformingAction = false;
@@ -36,6 +37,7 @@ public class CharacterManager : NetworkBehaviour
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
+        characterCombatManager = GetComponent<CharacterCombatManager>();
     }
 
     protected virtual void Start()

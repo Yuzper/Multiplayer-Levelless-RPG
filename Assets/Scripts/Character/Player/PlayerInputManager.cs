@@ -24,6 +24,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool jumpInput = false;
     [SerializeField] bool danceInput = false;
+    [SerializeField] bool rightMouseAttack = false;
 
     private void Awake()
     {
@@ -89,6 +90,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.Dance.performed += i => danceInput = true;
+            playerControls.PlayerActions.RightMouseAttack.performed += i => rightMouseAttack = true;
         }
 
         playerControls.Enable();
@@ -128,6 +130,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleDodgeInput();
         HandleJumpInput();
         HandleDanceInput();
+        HandleRightMouseAttackInput();
     }
 
     // MOVEMENT SECTION
@@ -190,6 +193,25 @@ public class PlayerInputManager : MonoBehaviour
             danceInput = false;
             player.playerLocomotionManager.AttemptToPerformDance();
 
+        }
+    }
+
+    private void HandleRightMouseAttackInput()
+    {
+        //if (rightMouseAttack == true)
+        //{
+        //    rightMouseAttack = false;
+        //}
+
+        if (rightMouseAttack)
+        {
+            rightMouseAttack = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.playerNetworkManager.SetCharacterActionHand(true);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oneHandRightMouseAttack, player.playerInventoryManager.currentRightHandWeapon);
         }
     }
 }

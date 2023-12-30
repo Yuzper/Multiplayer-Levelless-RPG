@@ -17,6 +17,8 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerStatsManager playerStatsManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+    [HideInInspector] public PlayerCombatManager playerCombatManager;
+    [HideInInspector] public PlayerKeyboardInputToButtonManager playerKeyboardInputToButtonManager;
 
     protected override void Awake()
     {
@@ -30,6 +32,8 @@ public class PlayerManager : CharacterManager
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
+        playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerKeyboardInputToButtonManager = GetComponent<PlayerKeyboardInputToButtonManager>();
     }
 
     protected override void Update()
@@ -43,6 +47,8 @@ public class PlayerManager : CharacterManager
 
         // REGEN MANA
         playerStatsManager.RegenerateMana();
+        // REGEN STAMINA
+        playerStatsManager.RegenerateStamina();
 
         DebugMenu();
     }
@@ -75,6 +81,8 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
             playerNetworkManager.currentMana.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewManaValue;
             playerNetworkManager.currentMana.OnValueChanged += playerStatsManager.ResetManaRegenTimer;
+            playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
         }
         // STATS
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
@@ -82,6 +90,7 @@ public class PlayerManager : CharacterManager
         // EQUIPMENT
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         //  UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
         // WE DON'T RUN THIS IF WE ARE THE SERVER, BECAUSE SINCE THEY ARE THE HOST, THEY ARE ALREADY LOADED IN AND DON'T NEED TO RELOAD THEIR DATA
@@ -109,6 +118,8 @@ public class PlayerManager : CharacterManager
         {
             playerNetworkManager.currentHealth.Value = playerNetworkManager.maxHealth.Value;
             playerNetworkManager.currentMana.Value = playerNetworkManager.maxMana.Value;
+            playerNetworkManager.currentStamina.Value = playerNetworkManager.maxStamina.Value;
+
             // Play rebirth effects
             playerAnimatorManager.PlayerTargetActionAnimation("Empty", false);
 
@@ -131,9 +142,11 @@ public class PlayerManager : CharacterManager
 
         currentCharacterData.currentHealth = playerNetworkManager.currentHealth.Value;
         currentCharacterData.currentMana = playerNetworkManager.currentMana.Value;
+        currentCharacterData.currentStamina = playerNetworkManager.currentStamina.Value;
 
         currentCharacterData.intelligence = playerNetworkManager.intelligence.Value;
         currentCharacterData.constitution = playerNetworkManager.constitution.Value;
+        currentCharacterData.endurance = playerNetworkManager.endurance.Value;
         currentCharacterData.fortitude = playerNetworkManager.fortitude.Value;
     }
 
@@ -145,13 +158,17 @@ public class PlayerManager : CharacterManager
 
         playerNetworkManager.intelligence.Value = currentCharacterData.intelligence;
         playerNetworkManager.constitution.Value = currentCharacterData.constitution;
+        playerNetworkManager.endurance.Value = currentCharacterData.endurance;
         playerNetworkManager.fortitude.Value = currentCharacterData.fortitude;
 
         playerNetworkManager.maxHealth.Value = playerStatsManager.CalculateHealthBasedOnConstitution(currentCharacterData.constitution);
         playerNetworkManager.maxMana.Value = playerStatsManager.CalculateManaBasedOnIntelligence(currentCharacterData.intelligence);
+        playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEndurance(currentCharacterData.endurance);
         playerNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
         playerNetworkManager.currentMana.Value = currentCharacterData.currentMana;
+        playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
         PlayerUIManager.instance.playerUIHudManager.SetMaxManaValue(playerNetworkManager.maxMana.Value);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
 
     }
 

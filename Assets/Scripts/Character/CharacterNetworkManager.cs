@@ -27,16 +27,19 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<int> constitution = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Intelligence determines how much mana a character has.
     public NetworkVariable<int> intelligence = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    // Endurance determines how much stamina a character has.
+    public NetworkVariable<int> endurance = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Fortitude is strength of the mind, think of how easy it is for them to break concentration on a spell or channeling ability.
     public NetworkVariable<int> fortitude = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
 
     [Header("Resources")]
-    public NetworkVariable<float> currentMana = new NetworkVariable<float>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<int> maxMana = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> currentHealth = new NetworkVariable<float>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> maxHealth = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
+    public NetworkVariable<float> currentMana = new NetworkVariable<float>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> maxMana = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> currentStamina = new NetworkVariable<float>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> maxStamina = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     protected virtual void Awake()
     {
@@ -86,5 +89,103 @@ public class CharacterNetworkManager : NetworkBehaviour
         character.animator.CrossFade(animationID, 0.2f);
     }
 
+
+                                              ///////////////////////
+                                             // ATTACK Animations //
+                                             ///////////////////////
+    [ServerRpc]
+    public void NotifyTheServerOfAttackActionAnimationServerRpc(ulong clientID, string animationID, bool applyRootMotion)
+    {
+        if (IsServer)
+        {
+            PlayAttackActionAnimationForAllClientsClientRpc(clientID, animationID, applyRootMotion);
+        }
+    }
+
+    [ClientRpc]
+    public void PlayAttackActionAnimationForAllClientsClientRpc(ulong clientID, string animationID, bool applyRootMotion)
+    {
+        // WE MAKE SURE TO NOT RUN THE FUNCTION ON THE CHARACTER WHO SENT IT (SO WE  DON'T PLAY IT TWICE)
+        if (clientID != NetworkManager.Singleton.LocalClientId)
+        {
+            PerformAttackActionAnimationFromServer(animationID, applyRootMotion);
+        }
+    }
+
+    private void PerformAttackActionAnimationFromServer(string animationID, bool applyRootMotion)
+    {
+        character.applyRootMotion = applyRootMotion;
+        character.animator.CrossFade(animationID, 0.2f);
+    }
+
+
+                                            ///////////////////////
+                                            ////    DAMAGE    ////
+                                            ///////////////////////
+    [ServerRpc(RequireOwnership = false)]
+    public void NotifyTheServerOfCharacterDamageServerRpc(
+        ulong damagedCharacterID,
+        ulong characterCausingDamageID,
+        float physicalDamage,
+        float magicDamage,
+        float fireDamage,
+        float holyDamage,
+        float poiseDamage,
+        float angleHitFrom,
+        float contactPointX,
+        float contactPointY,
+        float contactPointZ)
+    {
+        if (IsServer)
+        {
+            NotifyTheServerOfCharacterDamageClientRpc(damagedCharacterID, characterCausingDamageID, physicalDamage, magicDamage, fireDamage, holyDamage, poiseDamage, angleHitFrom, contactPointX, contactPointY, contactPointZ);
+        }
+    }
+
+    [ClientRpc]
+    public void NotifyTheServerOfCharacterDamageClientRpc(
+        ulong damagedCharacterID,
+        ulong characterCausingDamageID,
+        float physicalDamage,
+        float magicDamage,
+        float fireDamage,
+        float holyDamage,
+        float poiseDamage,
+        float angleHitFrom,
+        float contactPointX,
+        float contactPointY,
+        float contactPointZ)
+    {
+        ProcessCharacterDamageFromServer(damagedCharacterID, characterCausingDamageID, physicalDamage, magicDamage, fireDamage, holyDamage, poiseDamage, angleHitFrom, contactPointX, contactPointY, contactPointZ);
+    }
+
+    public void ProcessCharacterDamageFromServer(
+        ulong damagedCharacterID,
+        ulong characterCausingDamageID,
+        float physicalDamage,
+        float magicDamage,
+        float fireDamage,
+        float holyDamage,
+        float poiseDamage,
+        float angleHitFrom,
+        float contactPointX,
+        float contactPointY,
+        float contactPointZ)
+    {
+        CharacterManager damagedCharacter = NetworkManager.Singleton.SpawnManager.SpawnedObjects[damagedCharacterID].gameObject.GetComponent<CharacterManager>();
+        CharacterManager characterCausingDamage = NetworkManager.Singleton.SpawnManager.SpawnedObjects[characterCausingDamageID].gameObject.GetComponent<CharacterManager>();
+        TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+
+        damageEffect.physicalDamage = physicalDamage;
+        damageEffect.magicDamage = magicDamage;
+        damageEffect.fireDamage = fireDamage;
+        damageEffect.holyDamage = holyDamage;
+        damageEffect.poiseDamage = poiseDamage;
+        damageEffect.angleHitFrom = angleHitFrom;
+        damageEffect.contactPoint = new Vector3(contactPointX, contactPointY, contactPointZ);
+        damageEffect.characterCausingDamage = characterCausingDamage;
+
+        damagedCharacter.characterEffectsManager.ProcessInstantEffect(damageEffect);
+    }
 
 }

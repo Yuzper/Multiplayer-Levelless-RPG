@@ -10,10 +10,10 @@ public class TakeManaDamageEffect : InstantCharacterEffect
 
     public override void ProcessEffect(CharacterManager character)
     {
-        CalculateStaminaDamage(character);
+        CalculateManaDamage(character);
     }
 
-    public void CalculateStaminaDamage(CharacterManager character)
+    public void CalculateManaDamage(CharacterManager character)
     {
         if (character.IsOwner)
         {

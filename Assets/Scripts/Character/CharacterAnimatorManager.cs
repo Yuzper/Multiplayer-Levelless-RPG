@@ -41,5 +41,25 @@ public class CharacterAnimatorManager : MonoBehaviour
     
     }
 
+    public virtual void PlayerTargetAttackActionAnimation(
+        AttackType attackType,
+        string targetAnimation,
+        bool isPerformingAction,
+        bool applyRootMotion = false,
+        bool canRotate = true,
+        bool canMove = true)
+    {
+        // KEEP TRACK OF LAST ATTACK PERFORMED (FOR COMBOS)
+        // KEEP TRACK OF CURRENT ATTACK TYPE (LIGHT, HEAVY, ETC)
+        character.characterCombatManager.currentAttackType = attackType;
+        character.animator.applyRootMotion = applyRootMotion;
+        character.animator.CrossFade(targetAnimation, 0.2f);
+        character.isPerformingAction = isPerformingAction;
+        character.canRotate = canRotate;
+        character.canMove = canMove;
 
+        // TELL SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
+        character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+
+    }
 }

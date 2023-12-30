@@ -23,10 +23,12 @@ public class CharacterSaveData
     [Header("Resources")]
     public float currentHealth;
     public float currentMana;
+    public float currentStamina;
 
     [Header("Stats")]
     public int constitution;
     public int intelligence;
+    public int endurance;
     public int fortitude;
 
 }

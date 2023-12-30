@@ -13,7 +13,6 @@ public class WorldSaveGameManager : MonoBehaviour
     [SerializeField] bool saveGame;
     [SerializeField] bool loadGame;
 
-
     [Header("World Scene Index")]
     [SerializeField] int worldSceneIndex = 1;
 
@@ -242,19 +241,19 @@ public class WorldSaveGameManager : MonoBehaviour
         TitleScreenManager.instance.DisplayNoFreeCharacterSlotsPopUp();
     }
 
-
     private void NewGame()
     {
         // SAVES THE NEWLY CREATED CHARACTERS STATS, AND ITEMS (WHEN CREATION SCREEN IS ADDED)
 
         // Temp code
-        player.playerNetworkManager.constitution.Value = 10;
-        player.playerNetworkManager.intelligence.Value = 10;
+        player.playerNetworkManager.constitution.Value = 25;
+        player.playerNetworkManager.intelligence.Value = 25;
+        player.playerNetworkManager.endurance.Value = 25;
+        player.playerNetworkManager.fortitude.Value = 25;
 
         SaveGame();
         StartCoroutine(LoadWorldScene());
     }
-
 
     public void LoadGame()
     {
