@@ -7,6 +7,8 @@ public class PlayerUIManager : MonoBehaviour
 {
     public static PlayerUIManager instance;
 
+    public PlayerManager player;
+
     [Header("NETWORK JOIN")]
     [SerializeField] bool startGameAsClient;
 

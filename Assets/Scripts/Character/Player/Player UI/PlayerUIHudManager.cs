@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerUIHudManager : MonoBehaviour
 {
+
+
     [Header("Resource Bars")]
     [SerializeField] UI_StatBar healthBar;
     [SerializeField] UI_StatBar manaBar;

@@ -13,8 +13,9 @@ public class PlayerKeyboardInputToButtonManager : MonoBehaviour
 
     protected void Awake()
     {
-        player = GetComponent<PlayerManager>();
+        
     }
+
 
     public void DanceButton()
     {

@@ -196,6 +196,12 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    public void HandleDanceInputButton()
+    {
+        danceInput = true;
+        HandleDanceInput();
+    }
+
     private void HandleRightMouseAttackInput()
     {
         //if (rightMouseAttack == true)

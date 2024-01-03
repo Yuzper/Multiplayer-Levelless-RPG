@@ -73,6 +73,7 @@ public class PlayerManager : CharacterManager
         {
             PlayerCamera.instance.player = this;
             PlayerInputManager.instance.player = this;
+            PlayerUIManager.instance.player = this;
             WorldSaveGameManager.instance.player = this;
 
             // UPDATES THE TOTAL AMOUNT OF HEALTH OR MANA WHEN THE STAT LINKED TO EITHER CHANGES
