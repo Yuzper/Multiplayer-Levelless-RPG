@@ -45,6 +45,7 @@ public class PlayerCombatManager : CharacterCombatManager
         }
 
         Debug.Log("STAMINA DRAINED " + staminaDeducted);
+        //if (player.playerNetworkManager.currentStamina < staminaDeducted) return;
         player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
     }
 }

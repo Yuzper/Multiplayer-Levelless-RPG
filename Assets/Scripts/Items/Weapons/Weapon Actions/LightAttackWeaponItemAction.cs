@@ -12,7 +12,6 @@ public class LightAttackWeaponItemAction : WeaponItemAction
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
         
         if (!playerPerformingAction.IsOwner) return;
-
         if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         if (!playerPerformingAction.isGrounded) return;
         if (playerPerformingAction.isPerformingAction) return;

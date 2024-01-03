@@ -82,6 +82,8 @@ public class CharacterManager : NetworkBehaviour
         {
             characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
+            canMove = false;
+            canRotate = false;
 
             // Reset any flags here that need to be reset
 
@@ -104,7 +106,11 @@ public class CharacterManager : NetworkBehaviour
 
     public virtual void ReviveCharacter()
     {
+        isDead.Value = false;
 
+        // Reenable control over player movement
+        canRotate = true;
+        canMove = true;
     }
 
     protected virtual void IgnoreMyOwnColliders()

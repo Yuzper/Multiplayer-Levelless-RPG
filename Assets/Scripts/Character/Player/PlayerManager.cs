@@ -78,6 +78,7 @@ public class PlayerManager : CharacterManager
             // UPDATES THE TOTAL AMOUNT OF HEALTH OR MANA WHEN THE STAT LINKED TO EITHER CHANGES
             playerNetworkManager.constitution.OnValueChanged += playerNetworkManager.SetNewMaxHealthValue;
             playerNetworkManager.intelligence.OnValueChanged += playerNetworkManager.SetNewMaxManaValue;
+            playerNetworkManager.endurance.OnValueChanged += playerNetworkManager.SetNewMaxStaminaValue;
 
             // UPDATES UI STAT BARS WHEN A STAT CHANGES (HEALTH OR MANA ETC)
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
@@ -94,7 +95,7 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
-        //  UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
+        // UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
         // WE DON'T RUN THIS IF WE ARE THE SERVER, BECAUSE SINCE THEY ARE THE HOST, THEY ARE ALREADY LOADED IN AND DON'T NEED TO RELOAD THEIR DATA
         if (IsOwner && !IsServer)
         {
@@ -143,9 +144,6 @@ public class PlayerManager : CharacterManager
             // Play rebirth effects
             playerAnimatorManager.PlayerTargetActionAnimation("Empty", false);
 
-            // Reenable control over player movement
-            canRotate = true;
-            canMove = true;
         }
     }
 

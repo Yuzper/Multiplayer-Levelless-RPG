@@ -36,7 +36,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     protected override void Update()
     {
         base.Update();
-        if (player.IsOwner)
+        if (player.IsOwner == true)
         {
             player.characterNetworkManager.verticalMovement.Value = verticalMovement;
             player.characterNetworkManager.horizontalMovement.Value = horizontalMovement;
@@ -54,6 +54,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     public void HandleAllMovement()
     {
+        if (player.isDead.Value) return;
         HandleGroundMovement();
         HandleRotation();
         HandleJumpingMovement();
@@ -171,8 +172,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     }
 
-        // JUMP
-        public void AttemptToPerformJump()
+    // JUMP
+    public void AttemptToPerformJump()
     {
         if (player.isPerformingAction) return;
 
