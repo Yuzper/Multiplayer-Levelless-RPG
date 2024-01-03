@@ -166,6 +166,25 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 4361680106265634241}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &265007037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7526547767403235488, guid: 29c38e6cfa2d0a24fa08e0310ac2afbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 7526547767213671100}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &265007041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265007037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447384544f883204b8354210fc0c9a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
 --- !u!1001 &370663658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5794,8 +5813,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4361680107773944320, guid: 71da8bb341fca3244a251603f5e3f557,
         type: 3}
+      propertyPath: maximumPivot
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361680107773944320, guid: 71da8bb341fca3244a251603f5e3f557,
+        type: 3}
       propertyPath: minimumPivot
-      value: -40
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 4361680107773944320, guid: 71da8bb341fca3244a251603f5e3f557,
         type: 3}
@@ -6527,6 +6551,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7804909565420597596, guid: f3aa6ec75a076934e98472d217a3c2a5,
+        type: 3}
+      propertyPath: bloodSplatterVFX
+      value: 
+      objectReference: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d,
+        type: 3}
     - target: {fileID: 7804909565420597596, guid: f3aa6ec75a076934e98472d217a3c2a5,
         type: 3}
       propertyPath: takeDamageEffect

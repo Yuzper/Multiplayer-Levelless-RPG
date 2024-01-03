@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public class PlayerManager : CharacterManager
 {
@@ -65,6 +66,7 @@ public class PlayerManager : CharacterManager
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
 
         // IF THIS IS THE PLAYER OBJECT OWNED BY THIS CLIENT
         if (IsOwner)
@@ -97,6 +99,24 @@ public class PlayerManager : CharacterManager
         if (IsOwner && !IsServer)
         {
             LoadGameDataFromCurrentCharacterData(ref WorldSaveGameManager.instance.currentCharacterData);
+        }
+    }
+
+    private void OnClientConnectedCallback(ulong clientID)
+    {
+        WorldGameSessionManager.instance.AddPlayerToActivePlayersList(this);
+
+        // IF WE ARE THE SERVER, WE ARE THE HOST, SO WE DONT NEED TO LOAD PLAYERS TO SYNC THEM
+        // YOU ONLY NEED TO LOAD OTHER PLAYERS GEAR TO SYNC IT IF YOU JOIN A GAME THATS ALREADY BEEN ACTIVE WITHOUT YOU BEING PRESENT
+        if (!IsServer && IsOwner)
+        {
+            foreach (var player in WorldGameSessionManager.instance.players)
+            {
+                if (player != this)
+                {
+                    player.LoadOtherPlayersCharacterWhenJoiningServer();
+                }
+            }
         }
     }
 
@@ -186,6 +206,15 @@ public class PlayerManager : CharacterManager
         }
     }
 
+    // USED IF YOU JOIN AN ACTIVE SESSION, THEN YOU LOAD THE CURRENT EQUIPMENT FOR THE OTHER PLAYERS ON YOUR END
+    public void LoadOtherPlayersCharacterWhenJoiningServer()
+    {
+        // SYNC WEAPONS
+        playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
+        playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+
+        // ARMOR
+    }
 
     // DEBUG DELETE LATER
     private void DebugMenu()

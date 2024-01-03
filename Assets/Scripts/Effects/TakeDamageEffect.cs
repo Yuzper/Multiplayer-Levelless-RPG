@@ -48,7 +48,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         CalculateDamage(character);
         // Check which direction damage came from
         // Check for build ups (poison, bleeds)
-        // Play damage VFX (Blood)
+        PlayDamageVFX(character);
         // IF character is AI check for new target if character causing damage is present
     }
 
@@ -71,6 +71,9 @@ public class TakeDamageEffect : InstantCharacterEffect
         character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
     }
 
-
+    private void PlayDamageVFX(CharacterManager character)
+    {
+        character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
+    }
 }
 
