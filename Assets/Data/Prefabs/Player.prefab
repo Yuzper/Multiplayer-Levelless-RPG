@@ -1307,7 +1307,6 @@ MonoBehaviour:
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
-  playerKeyboardInputToButtonManager: {fileID: 0}
 --- !u!114 &4119943543529186907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,7 +1337,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  groundCheckSphereRadius: 0.28
+  groundCheckSphereRadius: 0.2
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -10
   fallStartYVelocity: -5
@@ -1593,7 +1592,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.8
-  m_Radius: 0.25
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

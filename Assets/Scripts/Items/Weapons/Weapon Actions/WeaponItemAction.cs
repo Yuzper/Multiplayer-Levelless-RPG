@@ -13,8 +13,6 @@ public class WeaponItemAction : ScriptableObject
         {
             playerPerformingAction.playerNetworkManager.currentWeaponBeingUsed.Value = weaponPerformingAction.itemID;
         }
-
-        Debug.Log("THE ACTION HAS FIRED!");
     }
 
 }

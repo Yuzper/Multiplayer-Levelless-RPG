@@ -143,9 +143,10 @@ public class PlayerInputManager : MonoBehaviour
         HandleDanceInput();
         HandleRevivalInput();
         HandleActionInputs();
-        // 
-        HandleRightMouseAttackInput();
-        HandleLeftMouseAttackInput();
+        //
+        HandleMouseAttackInput();
+        //HandleRightMouseAttackInput();
+        //HandleLeftMouseAttackInput();
     }
 
     // MOVEMENT SECTION
@@ -263,6 +264,34 @@ public class PlayerInputManager : MonoBehaviour
 
 
     //// Attack Inputs ////
+    private void HandleMouseAttackInput()
+    {
+        // RIGHT HAND
+        if (rightMouseAttackInput)
+        {
+            rightMouseAttackInput = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.playerNetworkManager.SetCharacterActionHand(true);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oneHandRightMouseAttack, player.playerInventoryManager.currentRightHandWeapon);
+        }
+
+        // LEFT HAND
+        if (leftMouseAttackInput)
+        {
+            leftMouseAttackInput = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.playerNetworkManager.SetCharacterActionHand(false);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oneHandLeftMouseAttack, player.playerInventoryManager.currentLeftHandWeapon);
+        }
+    }
+
+
     private void HandleRightMouseAttackInput()
     {
         if (leftMouseAttackInput == true)
