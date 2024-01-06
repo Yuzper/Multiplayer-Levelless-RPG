@@ -155,9 +155,27 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LeftMouseAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d1fcb02-11c1-4437-96bf-d5f201c469c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dance"",
                     ""type"": ""Button"",
                     ""id"": ""1e294a45-de77-4b92-aebe-d543030b8d11"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Revival"",
+                    ""type"": ""Button"",
+                    ""id"": ""23020cc7-1d10-411d-bea8-9de0d50efcdf"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -248,6 +266,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""ActionNumber2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28c46ba4-80e0-4842-b2ea-10d4dda88200"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftMouseAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f18818fa-881b-435b-ae61-6f1f2f042c3b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Revival"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -293,7 +333,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_RightMouseAttack = m_PlayerActions.FindAction("RightMouseAttack", throwIfNotFound: true);
+        m_PlayerActions_LeftMouseAttack = m_PlayerActions.FindAction("LeftMouseAttack", throwIfNotFound: true);
         m_PlayerActions_Dance = m_PlayerActions.FindAction("Dance", throwIfNotFound: true);
+        m_PlayerActions_Revival = m_PlayerActions.FindAction("Revival", throwIfNotFound: true);
         m_PlayerActions_ActionNumber1 = m_PlayerActions.FindAction("ActionNumber1", throwIfNotFound: true);
         m_PlayerActions_ActionNumber2 = m_PlayerActions.FindAction("ActionNumber2", throwIfNotFound: true);
         // UI
@@ -427,7 +469,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_RightMouseAttack;
+    private readonly InputAction m_PlayerActions_LeftMouseAttack;
     private readonly InputAction m_PlayerActions_Dance;
+    private readonly InputAction m_PlayerActions_Revival;
     private readonly InputAction m_PlayerActions_ActionNumber1;
     private readonly InputAction m_PlayerActions_ActionNumber2;
     public struct PlayerActionsActions
@@ -437,7 +481,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @RightMouseAttack => m_Wrapper.m_PlayerActions_RightMouseAttack;
+        public InputAction @LeftMouseAttack => m_Wrapper.m_PlayerActions_LeftMouseAttack;
         public InputAction @Dance => m_Wrapper.m_PlayerActions_Dance;
+        public InputAction @Revival => m_Wrapper.m_PlayerActions_Revival;
         public InputAction @ActionNumber1 => m_Wrapper.m_PlayerActions_ActionNumber1;
         public InputAction @ActionNumber2 => m_Wrapper.m_PlayerActions_ActionNumber2;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
@@ -458,9 +504,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @RightMouseAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
                 @RightMouseAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
                 @RightMouseAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
+                @LeftMouseAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseAttack;
+                @LeftMouseAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseAttack;
+                @LeftMouseAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseAttack;
                 @Dance.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
+                @Revival.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRevival;
+                @Revival.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRevival;
+                @Revival.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRevival;
                 @ActionNumber1.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber1;
                 @ActionNumber1.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber1;
                 @ActionNumber1.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber1;
@@ -480,9 +532,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @RightMouseAttack.started += instance.OnRightMouseAttack;
                 @RightMouseAttack.performed += instance.OnRightMouseAttack;
                 @RightMouseAttack.canceled += instance.OnRightMouseAttack;
+                @LeftMouseAttack.started += instance.OnLeftMouseAttack;
+                @LeftMouseAttack.performed += instance.OnLeftMouseAttack;
+                @LeftMouseAttack.canceled += instance.OnLeftMouseAttack;
                 @Dance.started += instance.OnDance;
                 @Dance.performed += instance.OnDance;
                 @Dance.canceled += instance.OnDance;
+                @Revival.started += instance.OnRevival;
+                @Revival.performed += instance.OnRevival;
+                @Revival.canceled += instance.OnRevival;
                 @ActionNumber1.started += instance.OnActionNumber1;
                 @ActionNumber1.performed += instance.OnActionNumber1;
                 @ActionNumber1.canceled += instance.OnActionNumber1;
@@ -539,7 +597,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRightMouseAttack(InputAction.CallbackContext context);
+        void OnLeftMouseAttack(InputAction.CallbackContext context);
         void OnDance(InputAction.CallbackContext context);
+        void OnRevival(InputAction.CallbackContext context);
         void OnActionNumber1(InputAction.CallbackContext context);
         void OnActionNumber2(InputAction.CallbackContext context);
     }

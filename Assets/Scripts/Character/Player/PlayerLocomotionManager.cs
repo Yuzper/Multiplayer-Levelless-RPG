@@ -210,5 +210,12 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     }
 
+    // REVIVAL
+    public void AttemptToRevive()
+    {
+        if (!player.isDead.Value) return;
 
+        player.ReviveCharacter(); // Actual revival
+
+    }
 }

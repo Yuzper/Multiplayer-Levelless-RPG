@@ -23,9 +23,14 @@ public class PlayerCombatManager : CharacterCombatManager
             // PERFORM THE ACTION
             weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
 
-            // NOTIFY THE SERVER WE HAVE PERFORMED THE ACTION, SO WE PERFORM IT FROM THERE PERSPECTIVE ALSO
+            // NOTIFY THE SERVER WE HAVE PERFORMED THE ACTION, SO WE PERFORM IT FROM THEIR PERSPECTIVE ALSO
             player.playerNetworkManager.NotifyTheServerOfWeaponActionServerRpc(NetworkManager.Singleton.LocalClientId, weaponAction.actionID, weaponPerformingAction.itemID);
         }
+    }
+
+    public float CalculateStaminaForAttack()
+    {
+        return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
     }
 
     public virtual void DrainStaminaBasedAttack()
@@ -38,7 +43,7 @@ public class PlayerCombatManager : CharacterCombatManager
         switch (currentAttackType)
         {
             case AttackType.LightAttack01:
-                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+                staminaDeducted = CalculateStaminaForAttack();
                 break;
             default:
                 break;

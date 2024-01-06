@@ -133,9 +133,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LeftMouseAttack",
+                    "type": "Button",
+                    "id": "1d1fcb02-11c1-4437-96bf-d5f201c469c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dance",
                     "type": "Button",
                     "id": "1e294a45-de77-4b92-aebe-d543030b8d11",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Revival",
+                    "type": "Button",
+                    "id": "23020cc7-1d10-411d-bea8-9de0d50efcdf",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -224,6 +242,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ActionNumber2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28c46ba4-80e0-4842-b2ea-10d4dda88200",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftMouseAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f18818fa-881b-435b-ae61-6f1f2f042c3b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Revival",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

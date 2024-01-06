@@ -28,8 +28,8 @@ public class PlayerNetworkManager : CharacterNetworkManager
     {
         if (rightHandedAction)
         {
-            isUsingLeftHand.Value = false;
             isUsingRightHand.Value = true;
+            isUsingLeftHand.Value = false;
         }
         else
         {

@@ -34,5 +34,6 @@ public class WeaponItems : Item
 
     [Header("Actions")]
     public WeaponItemAction oneHandRightMouseAttack;
+    public WeaponItemAction oneHandLeftMouseAttack;
     
 }

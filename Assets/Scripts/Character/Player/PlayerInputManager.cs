@@ -24,7 +24,11 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool jumpInput = false;
     [SerializeField] bool danceInput = false;
-    [SerializeField] bool rightMouseAttack = false;
+    [SerializeField] bool revivalInput = false;
+    [SerializeField] bool rightMouseAttackInput = false;
+    [SerializeField] bool leftMouseAttackInput = false;
+    [SerializeField] bool actionNumber1Input = false;
+    [SerializeField] bool actionNumber2Input = false;
 
     private void Awake()
     {
@@ -89,8 +93,14 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+            // Other Actions begin
             playerControls.PlayerActions.Dance.performed += i => danceInput = true;
-            playerControls.PlayerActions.RightMouseAttack.performed += i => rightMouseAttack = true;
+            playerControls.PlayerActions.Revival.performed += i => revivalInput = true;
+            playerControls.PlayerActions.ActionNumber1.performed += i => actionNumber1Input = true;
+            playerControls.PlayerActions.ActionNumber2.performed += i => actionNumber2Input = true;
+            // Other Actions end
+            playerControls.PlayerActions.RightMouseAttack.performed += i => rightMouseAttackInput = true;
+            playerControls.PlayerActions.LeftMouseAttack.performed += i => leftMouseAttackInput = true;
         }
 
         playerControls.Enable();
@@ -129,8 +139,13 @@ public class PlayerInputManager : MonoBehaviour
         HandleCameraMovementInput();
         HandleDodgeInput();
         HandleJumpInput();
+        // Actions
         HandleDanceInput();
+        HandleRevivalInput();
+        HandleActionInputs();
+        // 
         HandleRightMouseAttackInput();
+        HandleLeftMouseAttackInput();
     }
 
     // MOVEMENT SECTION
@@ -196,28 +211,93 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    private void HandleRevivalInput()
+    {
+        if (revivalInput)
+        {
+            revivalInput = false;
+            player.playerLocomotionManager.AttemptToRevive();
+
+        }
+    }
+
+    private void HandleActionInputs()
+    {
+        if (actionNumber1Input)
+        {
+            actionNumber1Input = false;
+            player.playerEquipmentManager.SwitchLeftWeapon();
+        }
+
+        if (actionNumber2Input)
+        {
+            actionNumber2Input = false;
+            player.playerEquipmentManager.SwitchRightWeapon();
+        }
+    }
+
+    //// Button Inputs ////
     public void HandleDanceInputButton()
     {
         danceInput = true;
         HandleDanceInput();
     }
 
+    public void HandleReviveInputButton()
+    {
+        revivalInput = true;
+        HandleRevivalInput();
+    }
+
+    public void HandleAction1InputButton()
+    {
+        actionNumber1Input = true;
+        HandleActionInputs();
+    }
+
+    public void HandleAction2InputButton()
+    {
+        actionNumber2Input = true;
+        HandleActionInputs();
+    }
+
+
+    //// Attack Inputs ////
     private void HandleRightMouseAttackInput()
     {
-        //if (rightMouseAttack == true)
-        //{
-        //    rightMouseAttack = false;
-        //}
-
-        if (rightMouseAttack)
+        if (leftMouseAttackInput == true)
         {
-            rightMouseAttack = false;
+            leftMouseAttackInput = false;
+        }
+
+        if (rightMouseAttackInput)
+        {
+            rightMouseAttackInput = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.playerNetworkManager.SetCharacterActionHand(false);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oneHandRightMouseAttack, player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
+    private void HandleLeftMouseAttackInput()
+    {
+        if (rightMouseAttackInput == true)
+        {
+            rightMouseAttackInput = false;
+        }
+
+        if (leftMouseAttackInput)
+        {
+            leftMouseAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
 
             player.playerNetworkManager.SetCharacterActionHand(true);
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
-            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oneHandRightMouseAttack, player.playerInventoryManager.currentRightHandWeapon);
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oneHandLeftMouseAttack, player.playerInventoryManager.currentLeftHandWeapon);
         }
     }
 }

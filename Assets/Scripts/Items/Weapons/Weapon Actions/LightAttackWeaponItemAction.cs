@@ -6,16 +6,18 @@ using UnityEngine;
 public class LightAttackWeaponItemAction : WeaponItemAction
 {
     [SerializeField] string right_light_Attack_01 = "Right_Light_Attack_01";
+    [SerializeField] string left_light_Attack_01 = "Left_Light_Attack_01";
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
         
         if (!playerPerformingAction.IsOwner) return;
-        if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         if (!playerPerformingAction.isGrounded) return;
         if (playerPerformingAction.isPerformingAction) return;
-
+        // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
+        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack())) return;
+        //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         PerformLightAttack(playerPerformingAction, weaponPerformingAction);
     }
 
@@ -29,7 +31,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
         }
         if (playerPerformingAction.playerNetworkManager.isUsingLeftHand.Value)
         {
-
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, left_light_Attack_01, true);
         }
     }
 }

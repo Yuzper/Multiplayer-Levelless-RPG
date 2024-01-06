@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -707,6 +707,41 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3552328398234280098, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3926753795289024396}
+    - target: {fileID: 3552328398234280098, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleAction1InputButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552328398234280098, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552328398234280098, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339578358005732857, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3926753795289024396}
+    - target: {fileID: 4339578358005732857, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleReviveInputButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339578358005732857, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4973144651415427350, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -906,6 +941,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170271777366588935, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3926753795289024396}
+    - target: {fileID: 8170271777366588935, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleAction2InputButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170271777366588935, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170271777366588935, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8297210585287377482, guid: 09d5f0cc8f8ae9f478e72b3ea2294c56,
         type: 3}
