@@ -49,6 +49,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         // Check which direction damage came from
         // Check for build ups (poison, bleeds)
         PlayDamageVFX(character);
+        PlayDamageSFX(character);
         // IF character is AI check for new target if character causing damage is present
     }
 
@@ -75,5 +76,37 @@ public class TakeDamageEffect : InstantCharacterEffect
     {
         character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
     }
+
+    private void PlayDamageSFX(CharacterManager character)
+    {
+        AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
+
+        character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
+    }
+
+    private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
+    {
+        if (angleHitFrom >= 145 && angleHitFrom <= 180)
+        {
+            // Play front animation
+        }
+        else if (angleHitFrom <=-145 && angleHitFrom >= -180)
+        {
+            // Play front animation
+        }
+        else if (angleHitFrom >= -45 && angleHitFrom <= 45)
+        {
+            // Play back animation
+        }
+        else if (angleHitFrom >= -144 && angleHitFrom <= -45)
+        {
+            // Play left animation
+        }
+        else if (angleHitFrom >= 45 && angleHitFrom <= 144)
+        {
+            //Play right animation
+        }
+    }
+
 }
 

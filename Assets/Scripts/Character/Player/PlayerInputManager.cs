@@ -208,7 +208,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             danceInput = false;
             player.playerLocomotionManager.AttemptToPerformDance();
-
         }
     }
 

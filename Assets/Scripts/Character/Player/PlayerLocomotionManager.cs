@@ -120,8 +120,9 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         Vector3 targetRotationDirection = Vector3.zero;
         targetRotationDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
         targetRotationDirection = targetRotationDirection + PlayerCamera.instance.cameraObject.transform.right * horizontalMovement;
-        targetRotationDirection.Normalize();
         targetRotationDirection.y = 0;
+        targetRotationDirection.Normalize();
+        
 
         if (targetRotationDirection == Vector3.zero)
         {
