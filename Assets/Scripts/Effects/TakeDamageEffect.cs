@@ -46,7 +46,7 @@ public class TakeDamageEffect : InstantCharacterEffect
 
         // Check for "Invulnerability"
         CalculateDamage(character);
-        // Check which direction damage came from
+        PlayDirectionalBasedDamageAnimation(character);
         // Check for build ups (poison, bleeds)
         PlayDamageVFX(character);
         PlayDamageSFX(character);
@@ -86,25 +86,43 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
     {
+        if (!character.IsOwner) return;
+        
+        if (character.isDead.Value) return;
+
+        // TODO CALCULATE IF POISE IS BROKEN
+        poiseIsBroken = true;
+
         if (angleHitFrom >= 145 && angleHitFrom <= 180)
         {
             // Play front animation
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
         }
         else if (angleHitFrom <=-145 && angleHitFrom >= -180)
         {
             // Play front animation
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
         }
         else if (angleHitFrom >= -45 && angleHitFrom <= 45)
         {
             // Play back animation
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
         }
         else if (angleHitFrom >= -144 && angleHitFrom <= -45)
         {
             // Play left animation
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.left_Medium_Damage);
         }
         else if (angleHitFrom >= 45 && angleHitFrom <= 144)
         {
             //Play right animation
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.right_Medium_Damage);
+        }
+
+        if (poiseIsBroken)
+        {
+            character.characterAnimatorManager.lastAnimationPlayed = damageAnimation;
+            character.characterAnimatorManager.PlayerTargetActionAnimation(damageAnimation, true);
         }
     }
 

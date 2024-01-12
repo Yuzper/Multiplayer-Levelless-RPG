@@ -7,14 +7,114 @@ public class CharacterAnimatorManager : MonoBehaviour
 {
     CharacterManager character;
 
+
+    [Header("Damage Animations")]
+    public string lastAnimationPlayed;
+    [SerializeField] string hit_Forward_Animation_Medium_01 = "hit_Forward_Animation_Medium_01";
+    [SerializeField] string hit_Forward_Animation_Medium_02 = "hit_Forward_Animation_Medium_02";
+    
+    [SerializeField] string hit_Right_Animation_Medium_01 = "hit_Right_Animation_Medium_01";
+    [SerializeField] string hit_Right_Animation_Medium_02 = "hit_Right_Animation_Medium_02";
+    
+    [SerializeField] string hit_Left_Animation_Medium_01 = "hit_Left_Animation_Medium_01";
+    [SerializeField] string hit_Left_Animation_Medium_02 = "hit_Left_Animation_Medium_02";
+
+    public List<string> forward_Medium_Damage = new List<string>();
+    public List<string> right_Medium_Damage = new List<string>();
+    public List<string> left_Medium_Damage = new List<string>();
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
     }
-    public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue)
+
+    protected virtual void Start()
     {
-        character.animator.SetFloat("Horizontal", horizontalValue, 0.1f, Time.deltaTime);
-        character.animator.SetFloat("Vertical", verticalValue, 0.1f, Time.deltaTime);
+        forward_Medium_Damage.Add(hit_Forward_Animation_Medium_01);
+        forward_Medium_Damage.Add(hit_Forward_Animation_Medium_02);
+
+        left_Medium_Damage.Add(hit_Left_Animation_Medium_01);
+        left_Medium_Damage.Add(hit_Left_Animation_Medium_02);
+
+        right_Medium_Damage.Add(hit_Right_Animation_Medium_01);
+        right_Medium_Damage.Add(hit_Right_Animation_Medium_02);
+    }
+
+    public string GetRandomAnimationFromList(List<string> animationList)
+    {
+        List<string> finalList = new List<string>();
+
+        foreach (var item in animationList)
+        {
+            finalList.Add(item);
+        }
+
+        // CHECK IF WE HAVE ALREADY PLAYED THE SELECTED ANIMATION
+        finalList.Remove(lastAnimationPlayed);
+        for (int i = finalList.Count -1; i> -1; i--)
+        {
+            if (finalList[i] == null)
+            {
+                finalList.RemoveAt(i);
+            }
+        }
+        int randomValue = Random.Range(0, finalList.Count);
+
+        return finalList[randomValue];
+    }
+
+    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement)
+    {
+        float snappedHorizontal = horizontalMovement;
+        float snappedVertical = verticalMovement;
+
+        // Snap Horizontal
+        if (horizontalMovement > 0 && horizontalMovement <= 0.5f)
+        {
+            snappedHorizontal = 0.5f;
+        }
+        else if (horizontalMovement > 0.5f && horizontalMovement <= 1)
+        {
+            snappedHorizontal = 1;
+        }
+        else if (horizontalMovement < 0 && horizontalMovement >= -0.5f)
+        {
+            snappedHorizontal = -0.5f;
+        }
+        else if (horizontalMovement < -0.5f && horizontalMovement >= -1)
+        {
+            snappedHorizontal = 1;
+        }
+        else
+        {
+            snappedHorizontal = 0;
+        }
+
+
+        // Snap Vertical
+        if (verticalMovement > 0 && verticalMovement <= 0.5f)
+        {
+            snappedVertical = 0.5f;
+        }
+        else if (verticalMovement > 0.5f && verticalMovement <= 1)
+        {
+            snappedVertical = 1;
+        }
+        else if (verticalMovement < 0 && verticalMovement >= -0.5f)
+        {
+            snappedVertical = -0.5f;
+        }
+        else if (verticalMovement < -0.5f && verticalMovement >= -1)
+        {
+            snappedVertical = 1;
+        }
+        else
+        {
+            snappedVertical = 0;
+        }
+        
+        character.animator.SetFloat("Horizontal", snappedHorizontal, 0.1f, Time.deltaTime);
+        character.animator.SetFloat("Vertical", snappedVertical, 0.1f, Time.deltaTime);
     }
 
     public virtual void PlayerTargetActionAnimation(

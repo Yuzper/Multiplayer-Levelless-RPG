@@ -16,6 +16,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
     [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
     [HideInInspector] public CharacterCombatManager characterCombatManager;
+    [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
 
     [Header("Flags")]
     public bool isPerformingAction = false;
@@ -38,6 +39,7 @@ public class CharacterManager : NetworkBehaviour
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
         characterCombatManager = GetComponent<CharacterCombatManager>();
+        characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
     }
 
     protected virtual void Start()
@@ -90,6 +92,7 @@ public class CharacterManager : NetworkBehaviour
             if (!manuallySelectDeathAnimation)
             {
                 characterAnimatorManager.PlayerTargetActionAnimation("Dead_01", true);
+                Debug.Log("Arh de dead");
             }
         }
         // Play death SFX

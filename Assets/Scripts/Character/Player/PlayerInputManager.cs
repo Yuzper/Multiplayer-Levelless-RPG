@@ -14,6 +14,12 @@ public class PlayerInputManager : MonoBehaviour
     public float cameraVerticalInput;
     public float cameraHorizontalInput;
 
+    [Header("LOCK ON INPUT")]
+    [SerializeField] bool lockOnInput;
+    [SerializeField] bool lockOnRightInput;
+    [SerializeField] bool lockOnLeftInput;
+    private Coroutine lockOnCoroutine;
+
     [Header("PLAYER MOVEMENT INPUT")]
     [SerializeField] Vector2 movementInput;
     public float verticalInput;
@@ -93,11 +99,18 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+
+            // Lock on input
+            playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
+            playerControls.PlayerActions.SeekRightLockOnTarget.performed += i => lockOnRightInput = true;
+            playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOnLeftInput = true;
+
             // Other Actions begin
             playerControls.PlayerActions.Dance.performed += i => danceInput = true;
             playerControls.PlayerActions.Revival.performed += i => revivalInput = true;
             playerControls.PlayerActions.ActionNumber1.performed += i => actionNumber1Input = true;
             playerControls.PlayerActions.ActionNumber2.performed += i => actionNumber2Input = true;
+
             // Other Actions end
             playerControls.PlayerActions.RightMouseAttack.performed += i => rightMouseAttackInput = true;
             playerControls.PlayerActions.LeftMouseAttack.performed += i => leftMouseAttackInput = true;
@@ -135,6 +148,8 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleAllInputs()
     {
+        HandleLockOnInput();
+        HandleLockOnSwitchTargetInput();
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
         HandleDodgeInput();
@@ -147,6 +162,87 @@ public class PlayerInputManager : MonoBehaviour
         HandleMouseAttackInput();
         //HandleRightMouseAttackInput();
         //HandleLeftMouseAttackInput();
+    }
+
+    // LOCK ON
+    private void HandleLockOnInput()
+    {
+        // CHECK FOR DEAD TARGET
+        if (player.playerNetworkManager.isLockedOn.Value)
+        {
+            if (player.playerCombatManager.currentTarget == null) return;
+            
+            if (player.playerCombatManager.currentTarget.isDead.Value)
+            {
+                player.playerNetworkManager.isLockedOn.Value = false;
+            }
+            // ATTEMPT TO FIND NEW TARGET
+
+            // THIS ASSURES US THAT THE COROUTINE NEVER RUNS MULTIPLE TIMES OVERLAPPING ITSELF
+            if (lockOnCoroutine != null)
+            {
+                StopCoroutine(lockOnCoroutine);
+            }
+            lockOnCoroutine = StartCoroutine(PlayerCamera.instance.WaitThenFindNewTarget());
+        }
+
+
+        if (lockOnInput && player.playerNetworkManager.isLockedOn.Value)
+        {
+            lockOnInput = false;
+            PlayerCamera.instance.ClearLockOnTargets();
+            player.playerNetworkManager.isLockedOn.Value = false;
+            // DISABLE LOCK ON    
+            return;
+        }
+
+        if (lockOnInput && !player.playerNetworkManager.isLockedOn.Value)
+        {
+            lockOnInput = false;
+            // IF WE ARE AIMING USING RANGED WEAPONS RETURN (DO NOT ALLOW LOCK ON WHILST AIMING)
+
+            PlayerCamera.instance.HandleLocatingLockOnTarget();
+
+            if (PlayerCamera.instance.nearestLockOnTarget != null)
+            {
+                // SET THE TARGET AS OUR CURRENT TARGET
+                player.playerCombatManager.SetTarget(PlayerCamera.instance.nearestLockOnTarget);
+                player.playerNetworkManager.isLockedOn.Value = true;
+            }
+        }
+    }
+
+    private void HandleLockOnSwitchTargetInput()
+    {
+        if (lockOnLeftInput)
+        {
+            lockOnLeftInput = false;
+
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                PlayerCamera.instance.HandleLocatingLockOnTarget();
+                
+                if (PlayerCamera.instance.leftLockOnTarget != null)
+                {
+                    player.playerCombatManager.SetTarget(PlayerCamera.instance.leftLockOnTarget);
+                }
+            }
+        }
+
+        if (lockOnRightInput)
+        {
+            lockOnRightInput = false;
+
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                PlayerCamera.instance.HandleLocatingLockOnTarget();
+
+                if (PlayerCamera.instance.rightLockOnTarget != null)
+                {
+                    player.playerCombatManager.SetTarget(PlayerCamera.instance.rightLockOnTarget);
+                }
+            }
+        }
     }
 
     // MOVEMENT SECTION
@@ -168,6 +264,18 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         if (player == null) return;
+
+        // IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
+
+        if (!player.playerNetworkManager.isLockedOn.Value || player.playerLocomotionManager.isRolling)
+        {
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+        }
+        else
+        {
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput);
+        }
+
 
         player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
     }
@@ -236,7 +344,7 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    //// Button Inputs ////
+    //// UI Button Inputs ////
     public void HandleDanceInputButton()
     {
         danceInput = true;

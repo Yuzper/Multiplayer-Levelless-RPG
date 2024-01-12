@@ -198,6 +198,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lock On"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc845a24-5537-4a58-a287-9cd437e91b87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Seek Left Lock On Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f3191d5-d384-4cac-b914-bd41593d27cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Seek Right Lock On Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f12a3ac-338c-48fa-a22e-2c1345d2c73d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -288,6 +315,83 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Revival"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6c17767-313e-402f-86eb-e14289442bc6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock On"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""742ce3f8-baa0-46f0-8e27-e31da2cbffb9"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Seek Right Lock On Target"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""728290b4-542e-406f-8f02-29afe8e7a040"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Seek Right Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""96d6c6ff-baa7-48de-8dd5-81e8778f77ed"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Seek Right Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""a2ccec83-6069-4cda-8c4b-818fda38b51c"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Seek Left Lock On Target"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""f74e0b85-3974-4ab8-bf23-4500062876d6"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Seek Left Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""d47bd29c-7b66-4aae-a4d8-75cf616febef"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Seek Left Lock On Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -338,6 +442,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Revival = m_PlayerActions.FindAction("Revival", throwIfNotFound: true);
         m_PlayerActions_ActionNumber1 = m_PlayerActions.FindAction("ActionNumber1", throwIfNotFound: true);
         m_PlayerActions_ActionNumber2 = m_PlayerActions.FindAction("ActionNumber2", throwIfNotFound: true);
+        m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
+        m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
+        m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -474,6 +581,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Revival;
     private readonly InputAction m_PlayerActions_ActionNumber1;
     private readonly InputAction m_PlayerActions_ActionNumber2;
+    private readonly InputAction m_PlayerActions_LockOn;
+    private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
+    private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -486,6 +596,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Revival => m_Wrapper.m_PlayerActions_Revival;
         public InputAction @ActionNumber1 => m_Wrapper.m_PlayerActions_ActionNumber1;
         public InputAction @ActionNumber2 => m_Wrapper.m_PlayerActions_ActionNumber2;
+        public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
+        public InputAction @SeekLeftLockOnTarget => m_Wrapper.m_PlayerActions_SeekLeftLockOnTarget;
+        public InputAction @SeekRightLockOnTarget => m_Wrapper.m_PlayerActions_SeekRightLockOnTarget;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -519,6 +632,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber2.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
                 @ActionNumber2.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
                 @ActionNumber2.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
+                @LockOn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
+                @LockOn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
+                @LockOn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
+                @SeekLeftLockOnTarget.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekLeftLockOnTarget;
+                @SeekLeftLockOnTarget.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekLeftLockOnTarget;
+                @SeekLeftLockOnTarget.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekLeftLockOnTarget;
+                @SeekRightLockOnTarget.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekRightLockOnTarget;
+                @SeekRightLockOnTarget.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekRightLockOnTarget;
+                @SeekRightLockOnTarget.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekRightLockOnTarget;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -547,6 +669,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber2.started += instance.OnActionNumber2;
                 @ActionNumber2.performed += instance.OnActionNumber2;
                 @ActionNumber2.canceled += instance.OnActionNumber2;
+                @LockOn.started += instance.OnLockOn;
+                @LockOn.performed += instance.OnLockOn;
+                @LockOn.canceled += instance.OnLockOn;
+                @SeekLeftLockOnTarget.started += instance.OnSeekLeftLockOnTarget;
+                @SeekLeftLockOnTarget.performed += instance.OnSeekLeftLockOnTarget;
+                @SeekLeftLockOnTarget.canceled += instance.OnSeekLeftLockOnTarget;
+                @SeekRightLockOnTarget.started += instance.OnSeekRightLockOnTarget;
+                @SeekRightLockOnTarget.performed += instance.OnSeekRightLockOnTarget;
+                @SeekRightLockOnTarget.canceled += instance.OnSeekRightLockOnTarget;
             }
         }
     }
@@ -602,6 +733,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRevival(InputAction.CallbackContext context);
         void OnActionNumber1(InputAction.CallbackContext context);
         void OnActionNumber2(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
+        void OnSeekLeftLockOnTarget(InputAction.CallbackContext context);
+        void OnSeekRightLockOnTarget(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

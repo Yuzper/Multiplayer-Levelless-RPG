@@ -209,6 +209,16 @@ MonoBehaviour:
     m_Bits: 1
   leftAndRightLookAngle: 0
   upAndDownLookAngle: 0
+  lockOnRadius: 20
+  minimumViewableAngle: -50
+  maximumViewableAngle: 50
+  lockOnTargetFollowSpeed: 0.4
+  setCameraHeightSpeed: 1
+  unlockedCameraHeight: 1.8
+  lockedCameraHeight: 3
+  nearestLockOnTarget: {fileID: 0}
+  leftLockOnTarget: {fileID: 0}
+  rightLockOnTarget: {fileID: 0}
   zoomSpeed: 20
   minZoom: 20
   maxZoom: 100
