@@ -16,7 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: d4ee9721a1f9e6c42b5c4efd637e2a88, type: 3}
   itemDescription: A sword straighter than Sebastian.
   itemID: 1
-  weaponModel: {fileID: 4012902242499354818, guid: 8bae0c8ae4f57b44bb12b864aebe1bad,
+  weaponModel: {fileID: 5260893045848636323, guid: 019d0b79ba290364ea82b54d3c93807d,
     type: 3}
   weaponType: 1
   strengthREQ: 1

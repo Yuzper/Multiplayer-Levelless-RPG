@@ -16,7 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 5f10477c7f2aac6469aa26abad029b5c, type: 3}
   itemDescription: A broader than usual sword
   itemID: 2
-  weaponModel: {fileID: 4260941917608476116, guid: dded5576de615e54a97b148357c9a718,
+  weaponModel: {fileID: 5390722294476993604, guid: 9b4f89d4ac1377349b366e2da7ad67a3,
     type: 3}
   weaponType: 1
   strengthREQ: 1
