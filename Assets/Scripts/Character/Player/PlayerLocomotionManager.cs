@@ -194,7 +194,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
             player.transform.rotation = playerRotation;
             // PERFORM A ROLL ANIMATION
-            player.playerAnimatorManager.PlayerTargetActionAnimation("Roll_forward", true, false);
+            player.playerAnimatorManager.PlayerTargetActionAnimation("Roll_forward", true, true);
             player.playerLocomotionManager.isRolling = true;
         }
         else
@@ -228,7 +228,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
         if (!player.isGrounded) return;
 
-        player.playerAnimatorManager.PlayerTargetActionAnimation("BasicMotions@Jump01 - Start", false);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("BasicMotions@Jump01 - Start", false, true, true, true);
 
         player.playerNetworkManager.isJumping.Value = true;
 

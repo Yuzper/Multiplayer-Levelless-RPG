@@ -120,11 +120,11 @@ public class CharacterAnimatorManager : MonoBehaviour
     public virtual void PlayerTargetActionAnimation(
         string targetAnimation,
         bool isPerformingAction,
-        bool applyRootMotion = false,
-        bool canRotate = true,
-        bool canMove = true)
+        bool applyRootMotion = true,
+        bool canRotate = false,
+        bool canMove = false)
     {
-        character.animator.applyRootMotion = applyRootMotion;
+        character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         // CAN BE USED TO STOP CHARACTER FROM ATTEMPTING NEW ACTIONS
         // FOR EXAMPLE, IF YOU GET DAMAGED, AND BEGIN PERFORMING A DAMAGE ANIMATION
