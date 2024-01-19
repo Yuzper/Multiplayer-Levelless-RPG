@@ -77,7 +77,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (!player.IsOwner) return;
 
         // PLAY SWAPPING ANIMATION                               AnimationName ,isPerformingAction, applyRootMotion, canRotate, canMove
-        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, true, true, true);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, false, true, true);
 
         WeaponItems selectedWeapon = null;
         // TOGO https://youtu.be/xrw_yOGp9Jo?si=t52MywHL2l_Lq-Np&t=644
@@ -167,7 +167,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (!player.IsOwner) return;
 
         // PLAY SWAPPING ANIMATION                               AnimationName ,isPerformingAction, applyRootMotion, canRotate, canMove
-        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, true, true, true);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, false, true, true);
 
         WeaponItems selectedWeapon = null;
         // TOGO https://youtu.be/xrw_yOGp9Jo?si=t52MywHL2l_Lq-Np&t=644
