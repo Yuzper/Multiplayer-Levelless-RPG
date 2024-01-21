@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: -6740050300490215741}
   - component: {fileID: 2599565169934923314}
   - component: {fileID: 2599565169934923317}
-  - component: {fileID: 2599565169934923315}
+  - component: {fileID: 4878598199742682414}
   - component: {fileID: 2599565169934923312}
   - component: {fileID: 2599565169934923313}
   - component: {fileID: 2599565169934923326}
@@ -789,9 +789,11 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 8747438468179607427}
+  viewableAngle: 0
+  targetsDirection: {x: 0, y: 0, z: 0}
   detectionRadius: 15
-  minimumDetectionAngle: -35
-  maximumDetectionAngle: 35
+  minimumFOV: -35
+  maximumFOV: 35
 --- !u!114 &-6740050300490215741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,7 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141b24d79bced12429fce7834026ae02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2599565169934923315
+--- !u!114 &4878598199742682414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -846,7 +848,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1322495801545780366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da9efc46db6419845a17441afba89f4d, type: 3}
+  m_Script: {fileID: 11500000, guid: c0d6e9ce6a7fd2b44949156a3f7d89d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lastAnimationPlayed: 

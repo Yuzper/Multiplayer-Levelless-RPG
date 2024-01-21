@@ -42,7 +42,11 @@ public class AICharacterManager : CharacterManager
     {
         base.FixedUpdate();
 
-        ProcessStateMachine();
+        if (IsOwner)
+        {
+            ProcessStateMachine();
+        }
+        
     }
 
     private void ProcessStateMachine()

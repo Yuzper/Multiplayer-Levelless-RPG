@@ -10,8 +10,8 @@ public class AICharacterCombatManager : CharacterCombatManager
 
     [Header("Detection")]
     [SerializeField] float detectionRadius = 15;
-    [SerializeField] float minimumDetectionAngle = -35;
-    [SerializeField] float maximumDetectionAngle = 35;
+    public float minimumFOV = -35;
+    public float maximumFOV = 35;
     public void FindATargetByLineOfSight(AICharacterManager aiCharacter)
     {
         if (currentTarget != null) return;
@@ -36,7 +36,7 @@ public class AICharacterCombatManager : CharacterCombatManager
                 Vector3 targetsDirection = targetCharacter.transform.position - aiCharacter.transform.position;
                 float angleOfPotentialTarget = Vector3.Angle(targetsDirection, aiCharacter.transform.forward);
 
-                if (angleOfPotentialTarget > minimumDetectionAngle && angleOfPotentialTarget < maximumDetectionAngle) 
+                if (angleOfPotentialTarget > minimumFOV && angleOfPotentialTarget < maximumFOV) 
                 {
                     // check if enironment blocks view
                     if (Physics.Linecast(

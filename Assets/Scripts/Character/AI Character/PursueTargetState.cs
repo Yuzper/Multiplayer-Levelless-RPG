@@ -21,6 +21,14 @@ public class PursueTargetState : AIState
             aiCharacter.navmeshAgent.enabled = true;
         }
 
+        // if our target is outside of character FOV, then pivot to face them
+        // TODO MAKE OPTION TO TURN OFFF
+        if(aiCharacter.aICharacterCombatManager.viewableAngle < aiCharacter.aICharacterCombatManager.minimumFOV 
+            || aiCharacter.aICharacterCombatManager.viewableAngle > aiCharacter.aICharacterCombatManager.maximumFOV)
+        {
+            aiCharacter.aICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+        }
+
         aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
 
