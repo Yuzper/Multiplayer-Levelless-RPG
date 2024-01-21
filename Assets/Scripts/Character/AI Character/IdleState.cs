@@ -17,7 +17,7 @@ public class IdleState : AIState
         {
             // return this state, to continually search for target
             aiCharacter.aICharacterCombatManager.FindATargetByLineOfSight(aiCharacter);
-            Debug.Log("WE DONT HAVE TARGET");
+            //Debug.Log("WE DONT HAVE TARGET");
             return this;
         }
 

@@ -213,7 +213,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
         if (!player.isGrounded) return;
 
-        player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", false);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", true);
 
         player.isDancing = true;
 

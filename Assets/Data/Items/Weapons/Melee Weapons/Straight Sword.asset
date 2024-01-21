@@ -35,3 +35,7 @@ MonoBehaviour:
     type: 2}
   oneHandLeftMouseAttack: {fileID: 11400000, guid: ad81920433aa2a1478f5c2b00b6421a8,
     type: 2}
+  oneHandHeavyRightMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,
+    type: 2}
+  oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,
+    type: 2}

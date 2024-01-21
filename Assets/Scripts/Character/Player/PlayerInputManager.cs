@@ -31,10 +31,16 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool jumpInput = false;
     [SerializeField] bool danceInput = false;
     [SerializeField] bool revivalInput = false;
-    [SerializeField] bool rightMouseAttackInput = false;
-    [SerializeField] bool leftMouseAttackInput = false;
     [SerializeField] bool actionNumber1Input = false;
     [SerializeField] bool actionNumber2Input = false;
+
+    [Header("Mouse Attack Inputs")]
+    [SerializeField] bool rightMouseChargeAttackInput = false;
+    [SerializeField] bool rightMouseAttackInput = false;
+
+    [SerializeField] bool leftMouseChargeAttackInput = false;
+    [SerializeField] bool leftMouseAttackInput = false;
+
 
     private void Awake()
     {
@@ -105,15 +111,20 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.SeekRightLockOnTarget.performed += i => lockOnRightInput = true;
             playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOnLeftInput = true;
 
-            // Other Actions begin
+            // Other Actions
             playerControls.PlayerActions.Dance.performed += i => danceInput = true;
             playerControls.PlayerActions.Revival.performed += i => revivalInput = true;
             playerControls.PlayerActions.ActionNumber1.performed += i => actionNumber1Input = true;
             playerControls.PlayerActions.ActionNumber2.performed += i => actionNumber2Input = true;
 
-            // Other Actions end
+            // Mouse Attack Actions
             playerControls.PlayerActions.RightMouseAttack.performed += i => rightMouseAttackInput = true;
+            playerControls.PlayerActions.RightMouseChargeAttack.performed += i => rightMouseChargeAttackInput = true;
+            playerControls.PlayerActions.RightMouseChargeAttack.canceled += i => rightMouseChargeAttackInput = false;
+
             playerControls.PlayerActions.LeftMouseAttack.performed += i => leftMouseAttackInput = true;
+            playerControls.PlayerActions.LeftMouseChargeAttack.performed += i => leftMouseChargeAttackInput = true;
+            playerControls.PlayerActions.LeftMouseChargeAttack.canceled += i => leftMouseChargeAttackInput = false;
         }
 
         playerControls.Enable();
@@ -160,6 +171,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleActionInputs();
         //
         HandleMouseAttackInput();
+        HandleMouseChargeAttackInput();
         //HandleRightMouseAttackInput();
         //HandleLeftMouseAttackInput();
     }
@@ -374,7 +386,17 @@ public class PlayerInputManager : MonoBehaviour
     private void HandleMouseAttackInput()
     {
         // RIGHT HAND
-        if (rightMouseAttackInput)
+        if (rightMouseChargeAttackInput)
+        {
+            rightMouseAttackInput = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.playerNetworkManager.SetCharacterActionHand(true);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oneHandHeavyRightMouseAttack, player.playerInventoryManager.currentRightHandWeapon);
+        }
+        else if (rightMouseAttackInput)
         {
             rightMouseAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
@@ -384,9 +406,19 @@ public class PlayerInputManager : MonoBehaviour
 
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oneHandRightMouseAttack, player.playerInventoryManager.currentRightHandWeapon);
         }
-
+        
         // LEFT HAND
-        if (leftMouseAttackInput)
+        if (leftMouseChargeAttackInput)
+        {
+            leftMouseAttackInput = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.playerNetworkManager.SetCharacterActionHand(false);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oneHandHeavyLeftMouseAttack, player.playerInventoryManager.currentLeftHandWeapon);
+        }
+        else if (leftMouseAttackInput)
         {
             leftMouseAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
@@ -398,6 +430,21 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    private void HandleMouseChargeAttackInput()
+    {
+        if (player.isPerformingAction)
+        {
+            if (player.playerNetworkManager.isUsingRightHand.Value)
+            {
+                player.playerNetworkManager.isChargingRightAttack.Value = rightMouseChargeAttackInput;
+            }
+
+            if (player.playerNetworkManager.isUsingLeftHand.Value)
+            {
+                player.playerNetworkManager.isChargingLeftAttack.Value = leftMouseChargeAttackInput;
+            }
+        }
+    }
 
     private void HandleRightMouseAttackInput()
     {

@@ -44,17 +44,20 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public void PlayDrawSwordSFX()
     {
-        audioSource.PlayOneShot(WorldSoundFXManager.instance.DrawSwordSFX);
+        AudioClip drawSwordSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.DrawSwordSFX);
+        PlaySoundFX(drawSwordSFX);
     }
 
     public void PlaySheathSwordSFX()
     {
-        audioSource.PlayOneShot(WorldSoundFXManager.instance.SheathSwordSFX);
+        AudioClip sheathSwordSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.SheathSwordSFX);
+        PlaySoundFX(sheathSwordSFX);
     }
 
     public void PlaySwordSwipeSFX()
     {
-        audioSource.PlayOneShot(WorldSoundFXManager.instance.SwordSwipeSFX);
+        AudioClip swordSwipeSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.SwordSwipeSFX);
+        PlaySoundFX(swordSwipeSFX);
     }
     
 }

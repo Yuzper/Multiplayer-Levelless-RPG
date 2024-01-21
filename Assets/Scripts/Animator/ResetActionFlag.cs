@@ -16,6 +16,7 @@ public class ResetActionFlag : StateMachineBehaviour
 
         // THIS IS CALLED WHEN THE ACTION ENDS, AND STATE RETURNS TO EMPTY.
         character.isPerformingAction = false;
+        character.isDancing = false;
         character.applyRootMotion = false;
         character.canRotate = true;
         character.canMove = true;

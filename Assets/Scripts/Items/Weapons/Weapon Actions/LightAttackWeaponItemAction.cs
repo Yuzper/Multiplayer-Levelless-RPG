@@ -13,8 +13,9 @@ public class LightAttackWeaponItemAction : WeaponItemAction
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
         
         if (!playerPerformingAction.IsOwner) return;
-        if (!playerPerformingAction.isGrounded) return;
         if (playerPerformingAction.isPerformingAction) return;
+        if (!playerPerformingAction.isGrounded) return;
+        if (playerPerformingAction.isDancing) return;
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
         if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack())) return;
         //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
@@ -23,8 +24,6 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 
     private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
-        playerPerformingAction.playerSoundFXManager.PlaySwordSwipeSFX();
-
         if (playerPerformingAction.playerNetworkManager.isUsingRightHand.Value)
         {
             playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, right_light_Attack_01, true);

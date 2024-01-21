@@ -26,6 +26,8 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<bool> isJumping = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     //public NetworkVariable<bool> isSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isLockedOn = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isChargingLeftAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isChargingRightAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Stats")]
     // Constitution determines how much health a character has.
@@ -81,6 +83,13 @@ public class CharacterNetworkManager : NetworkBehaviour
         {
             character.characterCombatManager.currentTarget = null;
         }
+    }
+
+    public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus)
+    {
+        //character.animator.SetBool("isChargingLeftAttack", isChargingLeftAttack.Value);
+        character.animator.SetBool("isChargingRightAttack", isChargingRightAttack.Value);
+        character.animator.SetBool("isChargingLeftAttack", isChargingLeftAttack.Value);
     }
 
     // A SERVER RPC IS A FUNCTION CALLED FROM A CLIENT, TO THE SERVER (IN OUR CASE HOST)

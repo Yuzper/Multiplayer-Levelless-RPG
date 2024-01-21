@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Take Damage Effect
   m_EditorClassIdentifier: 
   instantEffectID: 0
+  FloatingTextPrefab: {fileID: 7592760598670322715, guid: 94f66de55dee8af4794af28817da8ed7,
+    type: 3}
   characterCausingDamage: {fileID: 0}
   physicalDamage: 0
   magicDamage: 0

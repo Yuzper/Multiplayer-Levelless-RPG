@@ -27,13 +27,20 @@ public class WeaponItems : Item
 
     [Header("Attack Modifiers")]
     public float light_Attack_01_Modifier = 1.1f;
+    public float heavy_Attack_01_Modifier = 1.5f;
+    public float charge_Attack_01_Modifier = 2.0f;
 
     [Header("Stamina Costs")]
     public int baseStaminaCost = 20;
     public float lightAttackStaminaCostMultiplier = 0.9f; // Adjusts the cost to perform this attack from the base cost
+    public float heavyAttackStaminaCostMultiplier = 1.2f; // Adjusts the cost to perform this attack from the base cost
 
     [Header("Actions")]
     public WeaponItemAction oneHandRightMouseAttack;
     public WeaponItemAction oneHandLeftMouseAttack;
-    
+
+    public WeaponItemAction oneHandHeavyRightMouseAttack;
+    public WeaponItemAction oneHandHeavyLeftMouseAttack;
+
+
 }
