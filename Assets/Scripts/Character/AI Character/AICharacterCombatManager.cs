@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AICharacterCombatManager : CharacterCombatManager
 {
+    [Header("Target information")]
+    public float viewableAngle;
+    public Vector3 targetsDirection;
+
     [Header("Detection")]
     [SerializeField] float detectionRadius = 15;
     [SerializeField] float minimumDetectionAngle = -35;
@@ -30,9 +34,9 @@ public class AICharacterCombatManager : CharacterCombatManager
             {
                 // target has to be infront of us
                 Vector3 targetsDirection = targetCharacter.transform.position - aiCharacter.transform.position;
-                float viewableAngle = Vector3.Angle(targetsDirection, aiCharacter.transform.forward);
+                float angleOfPotentialTarget = Vector3.Angle(targetsDirection, aiCharacter.transform.forward);
 
-                if (viewableAngle > minimumDetectionAngle && viewableAngle < maximumDetectionAngle) 
+                if (angleOfPotentialTarget > minimumDetectionAngle && angleOfPotentialTarget < maximumDetectionAngle) 
                 {
                     // check if enironment blocks view
                     if (Physics.Linecast(
@@ -45,12 +49,58 @@ public class AICharacterCombatManager : CharacterCombatManager
                     }
                     else
                     {
+                        targetsDirection = targetCharacter.transform.transform.position - transform.position;
+                        viewableAngle = WorldUtilityManager.instance.GetAngleOfTarget(transform, targetsDirection);
                         aiCharacter.characterCombatManager.SetTarget(targetCharacter);
+                        PivotTowardsTarget(aiCharacter);
                     }
                 }
             }
 
 
+        }
+    }
+
+
+    public void PivotTowardsTarget(AICharacterManager aiCharacter)
+    {
+        // play pivot animation depending on viewable angle of target
+        if(aiCharacter.isPerformingAction)
+        {
+            return;
+        }
+
+        if(viewableAngle >= 20 && viewableAngle < 60)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_45",true);
+        }
+        else if(viewableAngle <= -20 && viewableAngle > -60)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_45", true);
+        }
+        else if (viewableAngle >= 60 && viewableAngle < 110)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_90", true);
+        }
+        else if (viewableAngle <= -60 && viewableAngle > -110)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_90", true);
+        }
+        else if (viewableAngle >= 110 && viewableAngle < 145)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_135", true);
+        }
+        else if (viewableAngle <= -110 && viewableAngle > -145)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_135", true);
+        }
+        else if (viewableAngle >= 145 && viewableAngle <= 180)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_180", true);
+        }
+        else if (viewableAngle <= -146 && viewableAngle >= -180)
+        {
+            aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_180", true);
         }
     }
 }

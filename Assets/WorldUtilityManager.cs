@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,4 +59,14 @@ public class WorldUtilityManager : MonoBehaviour
         return false;
     }
 
+    public float GetAngleOfTarget(Transform characterTransform, Vector3 targetsDirection)
+    {
+        targetsDirection.y = 0f;
+        float viewableAngle = Vector3.Angle(characterTransform.forward, targetsDirection);
+        Vector3 cross = Vector3.Cross(characterTransform.forward, targetsDirection);
+
+        if (cross.y < 0f) viewableAngle = -viewableAngle;
+
+        return viewableAngle;
+    }
 }
