@@ -23,7 +23,15 @@ public enum CharacterSlot
 
 }
 
-
+//TODO SETS; might want to extend the amount of charactergroups
+// for example if we want enemies to be able to attack enemies
+// or if players can attack players
+// or if some enemies can attack some enemies... etc.
+public enum CharacterGroup
+{
+    Team01, // is friendly (assumed to be player in general)
+    Team02, // enemy
+}
 public enum WeaponModelSlot
 {
     RightHand,

@@ -18,6 +18,9 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
 
+    [Header("Character group")]
+    public CharacterGroup characterGroup;
+
     [Header("Flags")]
     public bool isPerformingAction = false;
     public bool isDancing = false;
@@ -74,6 +77,11 @@ public class CharacterManager : NetworkBehaviour
     }
 
     protected virtual void LateUpdate()
+    {
+
+    }
+
+    protected virtual void FixedUpdate()
     {
 
     }
