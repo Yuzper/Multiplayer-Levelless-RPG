@@ -659,7 +659,7 @@ Animator:
   m_GameObject: {fileID: 1322495801545780366}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
-  m_Controller: {fileID: 9100000, guid: a8b64808e8fbc9d4d9e43815221407f3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 148dfccc7e070e64db414aa2a2388a1e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -794,6 +794,11 @@ MonoBehaviour:
   detectionRadius: 15
   minimumFOV: -35
   maximumFOV: 35
+  enableTurnAnimations: 1
+  enableTurn_45: 0
+  enableTurn_90: 1
+  enableTurn_135: 0
+  enableTurn_180: 1
 --- !u!114 &-6740050300490215741
 MonoBehaviour:
   m_ObjectHideFlags: 0

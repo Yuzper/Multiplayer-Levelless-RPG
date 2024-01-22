@@ -48,5 +48,4 @@ MonoBehaviour:
   respawnCharacters: 0
   aiCharacters:
   - {fileID: 1322495801545780366, guid: 02abed43d6b8a3c438161d730406dadf, type: 3}
-  - {fileID: 1322495801545780366, guid: 5866eff359c8e7e439dc344a511da3ac, type: 3}
   spawnedCharacters: []
