@@ -23,5 +23,36 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
         }
     }
 
+    // ANIMATION EVENT CALLS
+    // Called in animation, DisableCanDoCombo is called when we return to Empty state, can be called later in animation after EnableCanDoCombo, if we want to limit the window combos can be done.
+    public override void EnableCanDoComboLeft()
+    {
+        if (player.playerNetworkManager.isUsingLeftHand.Value)
+        {
+            player.playerCombatManager.canComboWithWeapon = true;
+        }
+        else
+        {
+
+        }
+    }
+
+    public override void EnableCanDoComboRight()
+    {
+        if (player.playerNetworkManager.isUsingRightHand.Value)
+        {
+            player.playerCombatManager.canComboWithWeapon = true;
+        }
+        else
+        {
+
+        }
+    }
+
+    public override void DisableCanDoCombo()
+    {
+        player.playerCombatManager.canComboWithWeapon = false;
+        //player.playerCombatManager.canComboWithOffHandWeapon = false;
+    }
 
 }

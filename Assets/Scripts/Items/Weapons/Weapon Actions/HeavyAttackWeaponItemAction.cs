@@ -5,15 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Heavy Attack Action")]
 public class HeavyAttackWeaponItemAction : WeaponItemAction
 {
-    [SerializeField] string right_heavy_Attack_01 = "RH_Charged_Attack_Opening";
-    [SerializeField] string left_heavy_Attack_01 = "LH_Charged_Attack_Opening";
+    [SerializeField] string Heavy_Attack_01 = "";
+    [SerializeField] string Heavy_Attack_02 = "";
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
         if (!playerPerformingAction.IsOwner) return;
-        if (playerPerformingAction.isPerformingAction) return;
         if (!playerPerformingAction.isGrounded) return;
         if (playerPerformingAction.isDancing) return;
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
@@ -23,14 +22,26 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
     }
 
     private void PerformHeavyAttack(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
-    {        
-        if (playerPerformingAction.playerNetworkManager.isUsingRightHand.Value)
+    {
+        // IF WE ARE ATTACKING CURRENTLY, AND WE CAN COMBO, PERFORM THE COMBO ATTACK
+        if (playerPerformingAction.playerCombatManager.canComboWithWeapon && playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, right_heavy_Attack_01, true, false, false, false);
+            playerPerformingAction.playerCombatManager.canComboWithWeapon = false;
+
+            if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == Heavy_Attack_01)
+            {
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack02, Heavy_Attack_02, true);
+            }
+            else
+            {
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true);
+            }
         }
-        if (playerPerformingAction.playerNetworkManager.isUsingLeftHand.Value)
+        // OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
+
+        else if (!playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, left_heavy_Attack_01, true, false, false, false);
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true);
         }
     }
 }

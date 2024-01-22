@@ -150,6 +150,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         // KEEP TRACK OF LAST ATTACK PERFORMED (FOR COMBOS)
         // KEEP TRACK OF CURRENT ATTACK TYPE (LIGHT, HEAVY, ETC)
         character.characterCombatManager.currentAttackType = attackType;
+        character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
         character.animator.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
@@ -158,6 +159,22 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         // TELL SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
         character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+
+    }
+
+
+    public virtual void EnableCanDoComboLeft()
+    {
+        
+    }
+
+    public virtual void EnableCanDoComboRight()
+    {
+        
+    }
+
+    public virtual void DisableCanDoCombo()
+    {
 
     }
 }

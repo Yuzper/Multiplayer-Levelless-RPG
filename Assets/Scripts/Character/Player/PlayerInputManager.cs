@@ -69,6 +69,17 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    // GETTER FUNCTIONS
+    public bool Get_RightMouseAttackInput()
+    {
+        return rightMouseAttackInput;
+    }
+    public bool Get_LeftMouseAttackInput()
+    {
+        return leftMouseAttackInput;
+    }
+
+
     private void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
     {
         // IF WE ARE LOADING INTO OUR WORLD SCENE, ENABLE OUR PLAYER CONTROLS

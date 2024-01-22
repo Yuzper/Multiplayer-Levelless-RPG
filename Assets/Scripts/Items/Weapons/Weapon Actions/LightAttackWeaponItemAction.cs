@@ -5,15 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Light Attack Action")]
 public class LightAttackWeaponItemAction : WeaponItemAction
 {
-    [SerializeField] string right_light_Attack_01 = "Right_Light_Attack_01";
-    [SerializeField] string left_light_Attack_01 = "Left_Light_Attack_01";
+    [SerializeField] string light_Attack_01 = "";
+    [SerializeField] string light_Attack_02 = "";
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
-        
+
         if (!playerPerformingAction.IsOwner) return;
-        if (playerPerformingAction.isPerformingAction) return;
         if (!playerPerformingAction.isGrounded) return;
         if (playerPerformingAction.isDancing) return;
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
@@ -24,13 +23,26 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 
     private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
-        if (playerPerformingAction.playerNetworkManager.isUsingRightHand.Value)
+        // IF WE ARE ATTACKING CURRENTLY, AND WE CAN COMBO, PERFORM THE COMBO ATTACK
+        if (playerPerformingAction.playerCombatManager.canComboWithWeapon && playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, right_light_Attack_01, true);
+            playerPerformingAction.playerCombatManager.canComboWithWeapon = false;
+
+            if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
+            {
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack02, light_Attack_02, true);
+            }
+            else
+            {
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true);
+            }
         }
-        if (playerPerformingAction.playerNetworkManager.isUsingLeftHand.Value)
+        // OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
+
+        else if (!playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, left_light_Attack_01, true);
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true);
         }
     }
+    
 }

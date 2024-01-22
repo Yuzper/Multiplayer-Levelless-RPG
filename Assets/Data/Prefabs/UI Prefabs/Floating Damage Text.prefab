@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6737be69590309a4494941aaa1b81cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timetUntilDestroyed: 5
-  RandomizeIntensity: {x: 0.5, y: 0, z: 0}
+  timeUntilDestroyed: 5
+  RandomizeIntensity: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!95 &83853154
 Animator:
   serializedVersion: 5
