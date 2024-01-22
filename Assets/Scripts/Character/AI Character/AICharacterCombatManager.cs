@@ -124,39 +124,5 @@ public class AICharacterCombatManager : CharacterCombatManager
         {
             aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_180", true);
         }
-
-
-        //if(enableTurn_45 && viewableAngle >= 20 && viewableAngle < 60)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_45",true);
-        //}
-        //else if(enableTurn_45 && viewableAngle <= -20 && viewableAngle > -60)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_45", true);
-        //}
-        //else if (enableTurn_90 && viewableAngle >= 60 && viewableAngle < 110)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_90", true);
-        //}
-        //else if (enableTurn_90 && viewableAngle <= -60 && viewableAngle > -110)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_90", true);
-        //}
-        //else if (enableTurn_135 && viewableAngle >= 110 && viewableAngle < 145)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_135", true);
-        //}
-        //else if (enableTurn_135 && viewableAngle <= -110 && viewableAngle > -145)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_135", true);
-        //}
-        //else if (enableTurn_180 && viewableAngle >= 145 && viewableAngle <= 180)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_R_180", true);
-        //}
-        //else if (enableTurn_180 && viewableAngle <= -146 && viewableAngle >= -180)
-        //{
-        //    aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_180", true);
-        //}
     }
 }
