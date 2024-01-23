@@ -55,7 +55,8 @@ public class JumpAttack : WeaponItemAction
             Debug.Log("Path is clear");
             //CALCULATE DISTANCE
             // The path is clear, move towards the target over time
-            CoroutineHelper.instance.StartCoroutine(CalculateDistanceCoroutine(playerPerformingAction, currentTarget));
+            
+            //CoroutineHelper.instance.StartCoroutine(CalculateDistanceCoroutine(playerPerformingAction, currentTarget));
 
 
         }
