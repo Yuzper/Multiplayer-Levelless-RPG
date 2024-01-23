@@ -100,7 +100,6 @@ public class CharacterManager : NetworkBehaviour
             if (!manuallySelectDeathAnimation)
             {
                 characterAnimatorManager.PlayerTargetActionAnimation("Dead_01", true);
-                Debug.Log("Arh de dead");
             }
         }
         // Play death SFX

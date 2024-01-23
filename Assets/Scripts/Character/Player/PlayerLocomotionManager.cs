@@ -26,6 +26,12 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [Header("Dodge")]
     private Vector3 rollDirection;
 
+    // GETTER
+    public float Get_RunningSpeed()
+    {
+        return runningSpeed;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -248,13 +254,17 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
                 jumpDirection *= 0.5f;
             }
         }
-
     }
 
     public void ApplyJumpingVelocity()
     {
         yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
 
+    }
+    public void ApplyJumpingActionVelocity()
+    {
+        //yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
+        yVelocity.y = Mathf.Sqrt((jumpHeight*3) * -2 * gravityForce);
     }
 
     // REVIVAL

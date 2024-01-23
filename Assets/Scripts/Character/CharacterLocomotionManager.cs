@@ -24,6 +24,7 @@ public class CharacterLocomotionManager : MonoBehaviour
         character = GetComponent<CharacterManager>();
     }
 
+
     protected virtual void Update()
     {
         HandleGroundCheck();

@@ -99,7 +99,7 @@ public class PlayerInputManager : MonoBehaviour
         else
         {
             instance.enabled = false;
-
+            
             if (playerControls != null)
             {
                 playerControls.Disable();
