@@ -14,6 +14,7 @@ public class PlayerUIHudManager : MonoBehaviour
     [Header("Action Buttons")]
     [SerializeField] public Button Button_1;
     [SerializeField] public Button Button_2;
+    [SerializeField] public Button Button_3;
     [SerializeField] public Button Button_Z;
     [SerializeField] public Button Button_R;
 

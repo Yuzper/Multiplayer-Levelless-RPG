@@ -196,6 +196,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ActionNumber3",
+                    "type": "Button",
+                    "id": "ea2585c8-9e36-49ec-b5d1-dc8d0fc3af50",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Lock On",
                     "type": "Button",
                     "id": "cc845a24-5537-4a58-a287-9cd437e91b87",
@@ -408,6 +417,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftMouseChargeAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "215d4f15-1bf0-4baf-82bd-ec97dad6272b",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

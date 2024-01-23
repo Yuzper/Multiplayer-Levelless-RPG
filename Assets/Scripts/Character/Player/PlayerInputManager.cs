@@ -33,6 +33,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool revivalInput = false;
     [SerializeField] bool actionNumber1Input = false;
     [SerializeField] bool actionNumber2Input = false;
+    [SerializeField] bool actionNumber3Input = false;
 
     [Header("Mouse Attack Inputs")]
     [SerializeField] bool rightMouseChargeAttackInput = false;
@@ -127,6 +128,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Revival.performed += i => revivalInput = true;
             playerControls.PlayerActions.ActionNumber1.performed += i => actionNumber1Input = true;
             playerControls.PlayerActions.ActionNumber2.performed += i => actionNumber2Input = true;
+            playerControls.PlayerActions.ActionNumber3.performed += i => actionNumber3Input = true;
 
             // Mouse Attack Actions
             playerControls.PlayerActions.RightMouseAttack.performed += i => rightMouseAttackInput = true;
@@ -365,6 +367,11 @@ public class PlayerInputManager : MonoBehaviour
             actionNumber2Input = false;
             player.playerEquipmentManager.SwitchRightWeapon();
         }
+        if (actionNumber3Input && player.playerInventoryManager.currentRightHandWeapon != null)
+        {
+            actionNumber3Input = false;
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.JumpAttack, player.playerInventoryManager.currentRightHandWeapon);
+        }
     }
 
     //// UI Button Inputs ////
@@ -389,6 +396,12 @@ public class PlayerInputManager : MonoBehaviour
     public void HandleAction2InputButton()
     {
         actionNumber2Input = true;
+        HandleActionInputs();
+    }
+
+    public void HandleAction3InputButton()
+    {
+        actionNumber3Input = true;
         HandleActionInputs();
     }
 

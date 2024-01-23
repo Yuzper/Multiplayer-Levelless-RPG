@@ -45,5 +45,7 @@ public class WeaponItems : Item
     public WeaponItemAction oneHandHeavyRightMouseAttack;
     public WeaponItemAction oneHandHeavyLeftMouseAttack;
 
+    public WeaponItemAction JumpAttack;
+
 
 }

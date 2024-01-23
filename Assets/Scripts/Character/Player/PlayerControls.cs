@@ -218,6 +218,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ActionNumber3"",
+                    ""type"": ""Button"",
+                    ""id"": ""ea2585c8-9e36-49ec-b5d1-dc8d0fc3af50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Lock On"",
                     ""type"": ""Button"",
                     ""id"": ""cc845a24-5537-4a58-a287-9cd437e91b87"",
@@ -432,6 +441,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""LeftMouseChargeAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""215d4f15-1bf0-4baf-82bd-ec97dad6272b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -484,6 +504,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Revival = m_PlayerActions.FindAction("Revival", throwIfNotFound: true);
         m_PlayerActions_ActionNumber1 = m_PlayerActions.FindAction("ActionNumber1", throwIfNotFound: true);
         m_PlayerActions_ActionNumber2 = m_PlayerActions.FindAction("ActionNumber2", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber3 = m_PlayerActions.FindAction("ActionNumber3", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
@@ -625,6 +646,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Revival;
     private readonly InputAction m_PlayerActions_ActionNumber1;
     private readonly InputAction m_PlayerActions_ActionNumber2;
+    private readonly InputAction m_PlayerActions_ActionNumber3;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
@@ -642,6 +664,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Revival => m_Wrapper.m_PlayerActions_Revival;
         public InputAction @ActionNumber1 => m_Wrapper.m_PlayerActions_ActionNumber1;
         public InputAction @ActionNumber2 => m_Wrapper.m_PlayerActions_ActionNumber2;
+        public InputAction @ActionNumber3 => m_Wrapper.m_PlayerActions_ActionNumber3;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @SeekLeftLockOnTarget => m_Wrapper.m_PlayerActions_SeekLeftLockOnTarget;
         public InputAction @SeekRightLockOnTarget => m_Wrapper.m_PlayerActions_SeekRightLockOnTarget;
@@ -684,6 +707,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber2.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
                 @ActionNumber2.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
                 @ActionNumber2.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber2;
+                @ActionNumber3.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
+                @ActionNumber3.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
+                @ActionNumber3.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
                 @LockOn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
@@ -727,6 +753,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber2.started += instance.OnActionNumber2;
                 @ActionNumber2.performed += instance.OnActionNumber2;
                 @ActionNumber2.canceled += instance.OnActionNumber2;
+                @ActionNumber3.started += instance.OnActionNumber3;
+                @ActionNumber3.performed += instance.OnActionNumber3;
+                @ActionNumber3.canceled += instance.OnActionNumber3;
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
@@ -793,6 +822,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRevival(InputAction.CallbackContext context);
         void OnActionNumber1(InputAction.CallbackContext context);
         void OnActionNumber2(InputAction.CallbackContext context);
+        void OnActionNumber3(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnSeekLeftLockOnTarget(InputAction.CallbackContext context);
         void OnSeekRightLockOnTarget(InputAction.CallbackContext context);
