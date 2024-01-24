@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0282809196b670144a16381e1d17734c, type: 3}
   m_Name: Jump Attack
   m_EditorClassIdentifier: 
-  actionID: 0
-  jumpAttackAnimation: 2H Jump Attack
+  actionID: 3
+  jumpAttackAnimation: 2H Jump Attack Opening
   raycastLayer:
     serializedVersion: 2
     m_Bits: 1

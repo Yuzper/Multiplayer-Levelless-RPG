@@ -284,6 +284,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         // WRITE THAT INFO ONTO A JSON FILE, SAVED TO THIS MACHINE
         saveFileDataWriter.CreateNewCharacteSaveFile(currentCharacterData);
+    
     }
 
     public void DeleteGame(CharacterSlot characterSlot)

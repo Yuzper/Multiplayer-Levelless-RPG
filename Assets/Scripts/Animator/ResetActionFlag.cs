@@ -22,7 +22,9 @@ public class ResetActionFlag : StateMachineBehaviour
         character.canMove = true;
         character.characterLocomotionManager.isRolling = false;
         character.characterAnimatorManager.DisableCanDoCombo();
-        
+        //character.characterCombatManager.isPerformingJumpAttack = false; // Used in jump attack
+        character.animator.SetBool("JumpAttackInRange", false);
+
         if (character.IsOwner)
         {
             character.characterNetworkManager.isJumping.Value = false;

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Jump Attack")]
 public class JumpAttack : WeaponItemAction
 {
-    [SerializeField] string jumpAttackAnimation = "2H Jump Attack";
+    [SerializeField] string jumpAttackAnimation = "2H Jump Attack Opening";
     public LayerMask raycastLayer;
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
@@ -14,7 +14,7 @@ public class JumpAttack : WeaponItemAction
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
         if (!playerPerformingAction.IsOwner) return;
-        if (!playerPerformingAction.isGrounded) return; // Should not be grounded since we expect the player to jump or be in mid-air when performing the ability
+        if (!playerPerformingAction.isGrounded) return;
         if (playerPerformingAction.isDancing) return;
         if (playerPerformingAction.isPerformingAction) return;
         if (!(playerPerformingAction.playerNetworkManager.isLockedOn.Value)) return;
@@ -27,13 +27,7 @@ public class JumpAttack : WeaponItemAction
 
     private void PerformJumpAttack(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
-        // Jump
-        playerPerformingAction.playerLocomotionManager.AttemptToPerformJump();
-        playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, jumpAttackAnimation, true, false);
-
-        // Get the current target
         Transform currentTarget = playerPerformingAction.playerCombatManager.lockOnTransform;
-
         Ray ray = new Ray(playerPerformingAction.transform.position, currentTarget.position - playerPerformingAction.transform.position);
 
         // Set the maximum distance for the raycast
@@ -55,49 +49,13 @@ public class JumpAttack : WeaponItemAction
             Debug.Log("Path is clear");
             //CALCULATE DISTANCE
             // The path is clear, move towards the target over time
-            
-            //CoroutineHelper.instance.StartCoroutine(CalculateDistanceCoroutine(playerPerformingAction, currentTarget));
 
+            // Jump
+            playerPerformingAction.playerLocomotionManager.AttemptToPerformJump();
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, jumpAttackAnimation, true, false);
+            // Setting variable in playerCombatManager
+            playerPerformingAction.playerCombatManager.isPerformingJumpAttack = true;
 
-        }
-    }
-
-    private IEnumerator CalculateDistanceCoroutine(PlayerManager playerPerformingAction, Transform currentTarget)
-    {
-        while (Vector3.Distance(playerPerformingAction.transform.position, currentTarget.position) > 4f)
-        {
-            playerPerformingAction.transform.position = Vector3.MoveTowards(playerPerformingAction.transform.position, currentTarget.position, playerPerformingAction.playerLocomotionManager.Get_RunningSpeed() * Time.deltaTime);
-            yield return null;
-        }
-    }
-}
-
-public class CoroutineHelper : MonoBehaviour
-{
-    public static CoroutineHelper instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public static CoroutineHelper Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                GameObject go = new GameObject("CoroutineHelper");
-                instance = go.AddComponent<CoroutineHelper>();
-            }
-            return instance;
         }
     }
 }

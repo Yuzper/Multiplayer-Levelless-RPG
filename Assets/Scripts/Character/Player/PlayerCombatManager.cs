@@ -11,6 +11,7 @@ public class PlayerCombatManager : CharacterCombatManager
 
     [Header("Flags")]
     public bool canComboWithWeapon = false;
+    //public bool isPerformingJumpAttack = false; This variable is moved to CharacterCombatManager
 
     override protected void Awake()
     {
@@ -67,4 +68,24 @@ public class PlayerCombatManager : CharacterCombatManager
         }
     }
 
+    public void SetJumpAttackFlag()
+    {
+        player = GetComponent<PlayerManager>();
+        Transform currentTarget = lockOnTransform;
+
+        //Debug.Log("Distance" + Vector3.Distance(player.transform.position, currentTarget.position));
+        if (Vector3.Distance(player.transform.position, currentTarget.position) < 1f)
+        {
+            isPerformingJumpAttack = false;
+            character.animator.SetBool("JumpAttackInRange", true);
+        }
+    }
+
+    public void Update()
+    {
+        if (isPerformingJumpAttack)
+        {
+            SetJumpAttackFlag();
+        }
+    }
 }
