@@ -7,6 +7,14 @@ public class Enums : MonoBehaviour
     
 }
 
+                                                ////////////////////////
+                                                /// NOTE ON ENUMS!!! ///
+                                                ////////////////////////
+
+// If we add in the middle of enum, we most likely have to check all references to that enum that its the correct field
+// since adding in the middle of enum will serialize the fields differently now.
+// Think of enum as it references indexes in the enum. So if we add a new index 2 all higher indexes will also go one up.
+
 public enum CharacterSlot
 {
     CharacterSlot_01,
@@ -57,5 +65,6 @@ public enum AttackType
     HeavyAttack01,
     HeavyAttack02,
     ChargedAttack01,
-    ChargedAttack02
+    ChargedAttack02,
+    JumpAttack
 }

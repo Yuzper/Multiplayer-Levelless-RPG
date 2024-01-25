@@ -27,12 +27,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     private Vector3 rollDirection;
     private Vector3 backStepDirection;
 
-    // GETTER
-    public float Get_RunningSpeed()
-    {
-        return runningSpeed;
-    }
-
     protected override void Awake()
     {
         base.Awake();
@@ -225,7 +219,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (player.playerNetworkManager.isJumping.Value) return;
         if (!player.isGrounded) return;
 
-        player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", true);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", false);
 
         player.isDancing = true;
 

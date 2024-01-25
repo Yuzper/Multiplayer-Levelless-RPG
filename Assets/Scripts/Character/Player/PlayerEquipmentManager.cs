@@ -66,7 +66,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             rightHandSlot.LoadWeapon(rightHandWeaponModel);
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
             rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
-            rightWeaponManager.SetWeaponDamge(player, player.playerInventoryManager.currentRightHandWeapon);
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
             // Play draw weapon sound
             DecideDrawWeaponSound(player.playerInventoryManager.currentRightHandWeapon);
         }
@@ -156,7 +156,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             leftHandSlot.LoadWeapon(leftHandWeaponModel);
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
             leftWeaponManager = leftHandWeaponModel.GetComponent<WeaponManager>();
-            leftWeaponManager.SetWeaponDamge(player, player.playerInventoryManager.currentLeftHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
             // Play draw weapon sound
             DecideDrawWeaponSound(player.playerInventoryManager.currentLeftHandWeapon);
         }

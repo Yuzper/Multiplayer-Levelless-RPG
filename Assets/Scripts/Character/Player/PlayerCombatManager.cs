@@ -9,6 +9,12 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public WeaponItems currentWeaponBeingUsed;
 
+    // Jump Attack variables
+    public GameObject StonePrefab;
+    public GameObject LandingDustVFX;
+    public int numberOfPrefabs = 4;
+    public float spawnRadius = 0f;
+
     [Header("Flags")]
     public bool canComboWithWeapon = false;
     //public bool isPerformingJumpAttack = false; This variable is moved to CharacterCombatManager
@@ -32,9 +38,34 @@ public class PlayerCombatManager : CharacterCombatManager
         }
     }
 
-    public float CalculateStaminaForAttack()
+    public float CalculateStaminaForAttack(AttackType currentAttackType)
     {
-        return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+        switch (currentAttackType)
+        {
+            case AttackType.LightAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+
+            case AttackType.LightAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+
+            case AttackType.HeavyAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.HeavyAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.ChargedAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.ChargedAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.JumpAttack:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.jumpAttackStaminaCostMultiplier;
+
+            default:
+                return 100000f; // Random hard coded value that should not be possible to reach
+        }
     }
 
     public virtual void DrainStaminaBasedAttack()
@@ -47,7 +78,16 @@ public class PlayerCombatManager : CharacterCombatManager
         switch (currentAttackType)
         {
             case AttackType.LightAttack01:
-                staminaDeducted = CalculateStaminaForAttack();
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.HeavyAttack01:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.ChargedAttack01:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.JumpAttack:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
             default:
                 break;
@@ -68,19 +108,37 @@ public class PlayerCombatManager : CharacterCombatManager
         }
     }
 
+    // Jump Attack functions
     public void SetJumpAttackFlag()
     {
         player = GetComponent<PlayerManager>();
         Transform currentTarget = lockOnTransform;
 
         //Debug.Log("Distance" + Vector3.Distance(player.transform.position, currentTarget.position));
-        if (Vector3.Distance(player.transform.position, currentTarget.position) < 1f)
+        if (Vector3.Distance(player.transform.position, currentTarget.position) < 1.3f)
         {
             isPerformingJumpAttack = false;
             character.animator.SetBool("JumpAttackInRange", true);
+            Debug.Log("CLOSEE!!!");
         }
     }
 
+    public void SpawnSmallStones()
+    {
+        Instantiate(LandingDustVFX, player.transform.position, Quaternion.Euler(90f, 0f, 0f));
+        for (int i = 0; i < numberOfPrefabs; i++)
+        {
+            // Calculate a random position within the spawn radius
+            Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
+            Vector3 spawnPosition = player.transform.position + new Vector3(randomCircle.x, 0f, randomCircle.y);
+            Instantiate(StonePrefab, spawnPosition, Quaternion.identity);
+        }
+    }
+
+    public void PrintAnimation()
+    {
+        Debug.Log("CHARGED ATTACK 2!!!");
+    }
     public void Update()
     {
         if (isPerformingJumpAttack)

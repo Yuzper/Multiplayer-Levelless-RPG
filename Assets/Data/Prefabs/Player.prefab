@@ -1291,6 +1291,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterGroup: 0
   isPerformingAction: 0
   isDancing: 0
   isGrounded: 1
@@ -1320,10 +1321,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239ab494697fc3b4eb7b323b6effa72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPerformingJumpAttack: 0
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 3421038290567181999}
   currentWeaponBeingUsed: {fileID: 0}
+  StonePrefab: {fileID: 8090473924721829483, guid: c2c8dd078afec8e438261b950bb32877,
+    type: 3}
+  LandingDustVFX: {fileID: 6124539474622611333, guid: e00324faf67041a418196b4f3657bda2,
+    type: 3}
+  numberOfPrefabs: 5
+  spawnRadius: 10
+  canComboWithWeapon: 0
 --- !u!114 &3102385522071529017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,6 +1438,10 @@ MonoBehaviour:
   isJumping:
     m_InternalValue: 0
   isLockedOn:
+    m_InternalValue: 0
+  isChargingLeftAttack:
+    m_InternalValue: 0
+  isChargingRightAttack:
     m_InternalValue: 0
   constitution:
     m_InternalValue: 1

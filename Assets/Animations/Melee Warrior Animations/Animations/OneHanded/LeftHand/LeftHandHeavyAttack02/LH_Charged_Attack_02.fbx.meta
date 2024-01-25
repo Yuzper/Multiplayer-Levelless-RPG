@@ -1,188 +1,188 @@
 fileFormatVersion: 2
-guid: 08b38e954dff74d41a3f087cb7239c21
+guid: 492a940d19401d142b076efbcea84c87
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       1: 100000
-    second: //RootNode
-  - first:
-      1: 100002
     second: B-chest
   - first:
+      1: 100002
+    second: B-f_index_01.L
+  - first:
       1: 100004
-    second: B-f_index_01_L
+    second: B-f_index_01.R
   - first:
       1: 100006
-    second: B-f_index_01_R
+    second: B-f_index_02.L
   - first:
       1: 100008
-    second: B-f_index_02_L
+    second: B-f_index_02.R
   - first:
       1: 100010
-    second: B-f_index_02_R
+    second: B-f_index_03.L
   - first:
       1: 100012
-    second: B-f_index_03_L
+    second: B-f_index_03.R
   - first:
       1: 100014
-    second: B-f_index_03_R
+    second: B-f_middle_01.L
   - first:
       1: 100016
-    second: B-f_middle_01_L
+    second: B-f_middle_01.R
   - first:
       1: 100018
-    second: B-f_middle_01_R
+    second: B-f_middle_02.L
   - first:
       1: 100020
-    second: B-f_middle_02_L
+    second: B-f_middle_02.R
   - first:
       1: 100022
-    second: B-f_middle_02_R
+    second: B-f_middle_03.L
   - first:
       1: 100024
-    second: B-f_middle_03_L
+    second: B-f_middle_03.R
   - first:
       1: 100026
-    second: B-f_middle_03_R
+    second: B-f_pinky_01.L
   - first:
       1: 100028
-    second: B-f_pinky_01_L
+    second: B-f_pinky_01.R
   - first:
       1: 100030
-    second: B-f_pinky_01_R
+    second: B-f_pinky_02.L
   - first:
       1: 100032
-    second: B-f_pinky_02_L
+    second: B-f_pinky_02.R
   - first:
       1: 100034
-    second: B-f_pinky_02_R
+    second: B-f_pinky_03.L
   - first:
       1: 100036
-    second: B-f_pinky_03_L
+    second: B-f_pinky_03.R
   - first:
       1: 100038
-    second: B-f_pinky_03_R
+    second: B-f_ring_01.L
   - first:
       1: 100040
-    second: B-f_ring_01_L
+    second: B-f_ring_01.R
   - first:
       1: 100042
-    second: B-f_ring_01_R
+    second: B-f_ring_02.L
   - first:
       1: 100044
-    second: B-f_ring_02_L
+    second: B-f_ring_02.R
   - first:
       1: 100046
-    second: B-f_ring_02_R
+    second: B-f_ring_03.L
   - first:
       1: 100048
-    second: B-f_ring_03_L
+    second: B-f_ring_03.R
   - first:
       1: 100050
-    second: B-f_ring_03_R
+    second: B-foot.L
   - first:
       1: 100052
-    second: B-foot_L
+    second: B-foot.R
   - first:
       1: 100054
-    second: B-foot_R
+    second: B-forearm.L
   - first:
       1: 100056
-    second: B-forearm_L
+    second: B-forearm.R
   - first:
       1: 100058
-    second: B-forearm_R
+    second: B-hand.L
   - first:
       1: 100060
-    second: B-hand_L
+    second: B-hand.R
   - first:
       1: 100062
-    second: B-hand_R
-  - first:
-      1: 100064
     second: B-head
   - first:
-      1: 100066
+      1: 100064
     second: B-hips
+  - first:
+      1: 100066
+    second: B-jaw
   - first:
       1: 100068
     second: B-neck
   - first:
       1: 100070
-    second: B-palm_01_L
+    second: B-palm_01.L
   - first:
       1: 100072
-    second: B-palm_01_R
+    second: B-palm_01.R
   - first:
       1: 100074
-    second: B-palm_02_L
+    second: B-palm_02.L
   - first:
       1: 100076
-    second: B-palm_02_R
+    second: B-palm_02.R
   - first:
       1: 100078
-    second: B-palm_03_L
+    second: B-palm_03.L
   - first:
       1: 100080
-    second: B-palm_03_R
+    second: B-palm_03.R
   - first:
       1: 100082
-    second: B-palm_04_L
+    second: B-palm_04.L
   - first:
       1: 100084
-    second: B-palm_04_R
+    second: B-palm_04.R
   - first:
       1: 100086
-    second: B-shin_L
+    second: B-shin.L
   - first:
       1: 100088
-    second: B-shin_R
+    second: B-shin.R
   - first:
       1: 100090
-    second: B-shoulder_L
+    second: B-shoulder.L
   - first:
       1: 100092
-    second: B-shoulder_R
+    second: B-shoulder.R
   - first:
       1: 100094
     second: B-spine
   - first:
       1: 100096
-    second: B-thigh_L
+    second: B-thigh.L
   - first:
       1: 100098
-    second: B-thigh_R
+    second: B-thigh.R
   - first:
       1: 100100
-    second: B-thumb_01_L
+    second: B-thumb_01.L
   - first:
       1: 100102
-    second: B-thumb_01_R
+    second: B-thumb_01.R
   - first:
       1: 100104
-    second: B-thumb_02_L
+    second: B-thumb_02.L
   - first:
       1: 100106
-    second: B-thumb_02_R
+    second: B-thumb_02.R
   - first:
       1: 100108
-    second: B-thumb_03_L
+    second: B-thumb_03.L
   - first:
       1: 100110
-    second: B-thumb_03_R
+    second: B-thumb_03.R
   - first:
       1: 100112
-    second: B-toe_L
+    second: B-toe.L
   - first:
       1: 100114
-    second: B-toe_R
+    second: B-toe.R
   - first:
       1: 100116
-    second: B-upper_arm_L
+    second: B-upper_arm.L
   - first:
       1: 100118
-    second: B-upper_arm_R
+    second: B-upper_arm.R
   - first:
       1: 100120
     second: B-upperChest
@@ -191,361 +191,190 @@ ModelImporter:
     second: DummyRig
   - first:
       1: 100124
-    second: LeftHandIK
-  - first:
-      1: 100126
-    second: Retargeters
-  - first:
-      1: 100128
-    second: root
-  - first:
-      1: 100130
-    second: ShieldRetargeter
-  - first:
-      1: 100132
-    second: B-f_index_01.L
-  - first:
-      1: 100134
-    second: B-f_index_01.R
-  - first:
-      1: 100136
-    second: B-f_index_02.L
-  - first:
-      1: 100138
-    second: B-f_index_02.R
-  - first:
-      1: 100140
-    second: B-f_index_03.L
-  - first:
-      1: 100142
-    second: B-f_index_03.R
-  - first:
-      1: 100144
-    second: B-f_middle_01.L
-  - first:
-      1: 100146
-    second: B-f_middle_01.R
-  - first:
-      1: 100148
-    second: B-f_middle_02.L
-  - first:
-      1: 100150
-    second: B-f_middle_02.R
-  - first:
-      1: 100152
-    second: B-f_middle_03.L
-  - first:
-      1: 100154
-    second: B-f_middle_03.R
-  - first:
-      1: 100156
-    second: B-f_pinky_01.L
-  - first:
-      1: 100158
-    second: B-f_pinky_01.R
-  - first:
-      1: 100160
-    second: B-f_pinky_02.L
-  - first:
-      1: 100162
-    second: B-f_pinky_02.R
-  - first:
-      1: 100164
-    second: B-f_pinky_03.L
-  - first:
-      1: 100166
-    second: B-f_pinky_03.R
-  - first:
-      1: 100168
-    second: B-f_ring_01.L
-  - first:
-      1: 100170
-    second: B-f_ring_01.R
-  - first:
-      1: 100172
-    second: B-f_ring_02.L
-  - first:
-      1: 100174
-    second: B-f_ring_02.R
-  - first:
-      1: 100176
-    second: B-f_ring_03.L
-  - first:
-      1: 100178
-    second: B-f_ring_03.R
-  - first:
-      1: 100180
-    second: B-foot.L
-  - first:
-      1: 100182
-    second: B-foot.R
-  - first:
-      1: 100184
-    second: B-forearm.L
-  - first:
-      1: 100186
-    second: B-forearm.R
-  - first:
-      1: 100188
-    second: B-hand.L
-  - first:
-      1: 100190
-    second: B-hand.R
-  - first:
-      1: 100192
-    second: B-jaw
-  - first:
-      1: 100194
-    second: B-palm_01.L
-  - first:
-      1: 100196
-    second: B-palm_01.R
-  - first:
-      1: 100198
-    second: B-palm_02.L
-  - first:
-      1: 100200
-    second: B-palm_02.R
-  - first:
-      1: 100202
-    second: B-palm_03.L
-  - first:
-      1: 100204
-    second: B-palm_03.R
-  - first:
-      1: 100206
-    second: B-palm_04.L
-  - first:
-      1: 100208
-    second: B-palm_04.R
-  - first:
-      1: 100210
-    second: B-shin.L
-  - first:
-      1: 100212
-    second: B-shin.R
-  - first:
-      1: 100214
-    second: B-shoulder.L
-  - first:
-      1: 100216
-    second: B-shoulder.R
-  - first:
-      1: 100218
-    second: B-thigh.L
-  - first:
-      1: 100220
-    second: B-thigh.R
-  - first:
-      1: 100222
-    second: B-thumb_01.L
-  - first:
-      1: 100224
-    second: B-thumb_01.R
-  - first:
-      1: 100226
-    second: B-thumb_02.L
-  - first:
-      1: 100228
-    second: B-thumb_02.R
-  - first:
-      1: 100230
-    second: B-thumb_03.L
-  - first:
-      1: 100232
-    second: B-thumb_03.R
-  - first:
-      1: 100234
-    second: B-toe.L
-  - first:
-      1: 100236
-    second: B-toe.R
-  - first:
-      1: 100238
-    second: B-upper_arm.L
-  - first:
-      1: 100240
-    second: B-upper_arm.R
-  - first:
-      4: 400000
     second: //RootNode
   - first:
-      4: 400002
+      1: 100126
+    second: root
+  - first:
+      4: 400000
     second: B-chest
   - first:
+      4: 400002
+    second: B-f_index_01.L
+  - first:
       4: 400004
-    second: B-f_index_01_L
+    second: B-f_index_01.R
   - first:
       4: 400006
-    second: B-f_index_01_R
+    second: B-f_index_02.L
   - first:
       4: 400008
-    second: B-f_index_02_L
+    second: B-f_index_02.R
   - first:
       4: 400010
-    second: B-f_index_02_R
+    second: B-f_index_03.L
   - first:
       4: 400012
-    second: B-f_index_03_L
+    second: B-f_index_03.R
   - first:
       4: 400014
-    second: B-f_index_03_R
+    second: B-f_middle_01.L
   - first:
       4: 400016
-    second: B-f_middle_01_L
+    second: B-f_middle_01.R
   - first:
       4: 400018
-    second: B-f_middle_01_R
+    second: B-f_middle_02.L
   - first:
       4: 400020
-    second: B-f_middle_02_L
+    second: B-f_middle_02.R
   - first:
       4: 400022
-    second: B-f_middle_02_R
+    second: B-f_middle_03.L
   - first:
       4: 400024
-    second: B-f_middle_03_L
+    second: B-f_middle_03.R
   - first:
       4: 400026
-    second: B-f_middle_03_R
+    second: B-f_pinky_01.L
   - first:
       4: 400028
-    second: B-f_pinky_01_L
+    second: B-f_pinky_01.R
   - first:
       4: 400030
-    second: B-f_pinky_01_R
+    second: B-f_pinky_02.L
   - first:
       4: 400032
-    second: B-f_pinky_02_L
+    second: B-f_pinky_02.R
   - first:
       4: 400034
-    second: B-f_pinky_02_R
+    second: B-f_pinky_03.L
   - first:
       4: 400036
-    second: B-f_pinky_03_L
+    second: B-f_pinky_03.R
   - first:
       4: 400038
-    second: B-f_pinky_03_R
+    second: B-f_ring_01.L
   - first:
       4: 400040
-    second: B-f_ring_01_L
+    second: B-f_ring_01.R
   - first:
       4: 400042
-    second: B-f_ring_01_R
+    second: B-f_ring_02.L
   - first:
       4: 400044
-    second: B-f_ring_02_L
+    second: B-f_ring_02.R
   - first:
       4: 400046
-    second: B-f_ring_02_R
+    second: B-f_ring_03.L
   - first:
       4: 400048
-    second: B-f_ring_03_L
+    second: B-f_ring_03.R
   - first:
       4: 400050
-    second: B-f_ring_03_R
+    second: B-foot.L
   - first:
       4: 400052
-    second: B-foot_L
+    second: B-foot.R
   - first:
       4: 400054
-    second: B-foot_R
+    second: B-forearm.L
   - first:
       4: 400056
-    second: B-forearm_L
+    second: B-forearm.R
   - first:
       4: 400058
-    second: B-forearm_R
+    second: B-hand.L
   - first:
       4: 400060
-    second: B-hand_L
+    second: B-hand.R
   - first:
       4: 400062
-    second: B-hand_R
-  - first:
-      4: 400064
     second: B-head
   - first:
-      4: 400066
+      4: 400064
     second: B-hips
+  - first:
+      4: 400066
+    second: B-jaw
   - first:
       4: 400068
     second: B-neck
   - first:
       4: 400070
-    second: B-palm_01_L
+    second: B-palm_01.L
   - first:
       4: 400072
-    second: B-palm_01_R
+    second: B-palm_01.R
   - first:
       4: 400074
-    second: B-palm_02_L
+    second: B-palm_02.L
   - first:
       4: 400076
-    second: B-palm_02_R
+    second: B-palm_02.R
   - first:
       4: 400078
-    second: B-palm_03_L
+    second: B-palm_03.L
   - first:
       4: 400080
-    second: B-palm_03_R
+    second: B-palm_03.R
   - first:
       4: 400082
-    second: B-palm_04_L
+    second: B-palm_04.L
   - first:
       4: 400084
-    second: B-palm_04_R
+    second: B-palm_04.R
   - first:
       4: 400086
-    second: B-shin_L
+    second: B-shin.L
   - first:
       4: 400088
-    second: B-shin_R
+    second: B-shin.R
   - first:
       4: 400090
-    second: B-shoulder_L
+    second: B-shoulder.L
   - first:
       4: 400092
-    second: B-shoulder_R
+    second: B-shoulder.R
   - first:
       4: 400094
     second: B-spine
   - first:
       4: 400096
-    second: B-thigh_L
+    second: B-thigh.L
   - first:
       4: 400098
-    second: B-thigh_R
+    second: B-thigh.R
   - first:
       4: 400100
-    second: B-thumb_01_L
+    second: B-thumb_01.L
   - first:
       4: 400102
-    second: B-thumb_01_R
+    second: B-thumb_01.R
   - first:
       4: 400104
-    second: B-thumb_02_L
+    second: B-thumb_02.L
   - first:
       4: 400106
-    second: B-thumb_02_R
+    second: B-thumb_02.R
   - first:
       4: 400108
-    second: B-thumb_03_L
+    second: B-thumb_03.L
   - first:
       4: 400110
-    second: B-thumb_03_R
+    second: B-thumb_03.R
   - first:
       4: 400112
-    second: B-toe_L
+    second: B-toe.L
   - first:
       4: 400114
-    second: B-toe_R
+    second: B-toe.R
   - first:
       4: 400116
-    second: B-upper_arm_L
+    second: B-upper_arm.L
   - first:
       4: 400118
-    second: B-upper_arm_R
+    second: B-upper_arm.R
   - first:
       4: 400120
     second: B-upperChest
@@ -554,190 +383,16 @@ ModelImporter:
     second: DummyRig
   - first:
       4: 400124
-    second: LeftHandIK
+    second: //RootNode
   - first:
       4: 400126
-    second: Retargeters
-  - first:
-      4: 400128
     second: root
   - first:
-      4: 400130
-    second: ShieldRetargeter
-  - first:
-      4: 400132
-    second: B-f_index_01.L
-  - first:
-      4: 400134
-    second: B-f_index_01.R
-  - first:
-      4: 400136
-    second: B-f_index_02.L
-  - first:
-      4: 400138
-    second: B-f_index_02.R
-  - first:
-      4: 400140
-    second: B-f_index_03.L
-  - first:
-      4: 400142
-    second: B-f_index_03.R
-  - first:
-      4: 400144
-    second: B-f_middle_01.L
-  - first:
-      4: 400146
-    second: B-f_middle_01.R
-  - first:
-      4: 400148
-    second: B-f_middle_02.L
-  - first:
-      4: 400150
-    second: B-f_middle_02.R
-  - first:
-      4: 400152
-    second: B-f_middle_03.L
-  - first:
-      4: 400154
-    second: B-f_middle_03.R
-  - first:
-      4: 400156
-    second: B-f_pinky_01.L
-  - first:
-      4: 400158
-    second: B-f_pinky_01.R
-  - first:
-      4: 400160
-    second: B-f_pinky_02.L
-  - first:
-      4: 400162
-    second: B-f_pinky_02.R
-  - first:
-      4: 400164
-    second: B-f_pinky_03.L
-  - first:
-      4: 400166
-    second: B-f_pinky_03.R
-  - first:
-      4: 400168
-    second: B-f_ring_01.L
-  - first:
-      4: 400170
-    second: B-f_ring_01.R
-  - first:
-      4: 400172
-    second: B-f_ring_02.L
-  - first:
-      4: 400174
-    second: B-f_ring_02.R
-  - first:
-      4: 400176
-    second: B-f_ring_03.L
-  - first:
-      4: 400178
-    second: B-f_ring_03.R
-  - first:
-      4: 400180
-    second: B-foot.L
-  - first:
-      4: 400182
-    second: B-foot.R
-  - first:
-      4: 400184
-    second: B-forearm.L
-  - first:
-      4: 400186
-    second: B-forearm.R
-  - first:
-      4: 400188
-    second: B-hand.L
-  - first:
-      4: 400190
-    second: B-hand.R
-  - first:
-      4: 400192
-    second: B-jaw
-  - first:
-      4: 400194
-    second: B-palm_01.L
-  - first:
-      4: 400196
-    second: B-palm_01.R
-  - first:
-      4: 400198
-    second: B-palm_02.L
-  - first:
-      4: 400200
-    second: B-palm_02.R
-  - first:
-      4: 400202
-    second: B-palm_03.L
-  - first:
-      4: 400204
-    second: B-palm_03.R
-  - first:
-      4: 400206
-    second: B-palm_04.L
-  - first:
-      4: 400208
-    second: B-palm_04.R
-  - first:
-      4: 400210
-    second: B-shin.L
-  - first:
-      4: 400212
-    second: B-shin.R
-  - first:
-      4: 400214
-    second: B-shoulder.L
-  - first:
-      4: 400216
-    second: B-shoulder.R
-  - first:
-      4: 400218
-    second: B-thigh.L
-  - first:
-      4: 400220
-    second: B-thigh.R
-  - first:
-      4: 400222
-    second: B-thumb_01.L
-  - first:
-      4: 400224
-    second: B-thumb_01.R
-  - first:
-      4: 400226
-    second: B-thumb_02.L
-  - first:
-      4: 400228
-    second: B-thumb_02.R
-  - first:
-      4: 400230
-    second: B-thumb_03.L
-  - first:
-      4: 400232
-    second: B-thumb_03.R
-  - first:
-      4: 400234
-    second: B-toe.L
-  - first:
-      4: 400236
-    second: B-toe.R
-  - first:
-      4: 400238
-    second: B-upper_arm.L
-  - first:
-      4: 400240
-    second: B-upper_arm.R
-  - first:
       74: 7400000
-    second: 2H Jump Attack
+    second: LH_Charged_Attack_02
   - first:
       95: 9500000
     second: //RootNode
-  - first:
-      41386430: 2186277476908879412
-    second: ImportLogs
   externalObjects: {}
   materials:
     materialImportMode: 0
@@ -768,11 +423,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 2H Jump Attack
-      takeName: 2H@Attack04
+      name: LH_Charged_Attack_02
+      takeName: RightHand@Attack04
       internalID: 0
-      firstFrame: 14
-      lastFrame: 42
+      firstFrame: 5
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -788,26 +443,40 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.04508195
+      - time: 0.030726247
+        functionName: PlaySwordSwipeSFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.09358207
         functionName: OpenDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.27331486
-        functionName: SpawnSmallStones
+      - time: 0.13996136
+        functionName: DrainStaminaBasedAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36921602
+      - time: 0.35694125
         functionName: CloseDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.43895072
+        functionName: EnableCanDoComboLeft
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionID: 0
   Heavy_Attack_01: RH_Charged_Attack_Opening_01
-  Heavy_Attack_02: 
+  Heavy_Attack_02: RH_Charged_Attack_Opening_02

@@ -12,7 +12,7 @@ public class PlayerEffectsManager : CharacterEffectsManager
     [SerializeField] bool HealthProcessEffect = false;
     [SerializeField] bool ManaProcessEffect = false;
     [SerializeField] bool StaminaProcessEffect = false;
-
+    
     private void Update()
     {
         if (HealthProcessEffect)
@@ -45,7 +45,6 @@ public class PlayerEffectsManager : CharacterEffectsManager
             ProcessInstantEffect(effectMana);
         }
     }
-
 
 
 

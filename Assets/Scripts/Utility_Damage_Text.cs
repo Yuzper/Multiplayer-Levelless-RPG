@@ -10,11 +10,11 @@ public class Utility_Damage_Text : MonoBehaviour
 
     private void Awake()
     {
-        Destroy(gameObject, timeUntilDestroyed);
-
         transform.localPosition += new Vector3(Random.Range(-RandomizeIntensity.x, RandomizeIntensity.x),
                                                 Random.Range(RandomizeIntensity.y*3, RandomizeIntensity.y*6), // Not in minus since the number should be slighty above head.
                                                 Random.Range(-RandomizeIntensity.z, RandomizeIntensity.z));
+        
+        Destroy(gameObject, timeUntilDestroyed);
     }
 
     public void Update()

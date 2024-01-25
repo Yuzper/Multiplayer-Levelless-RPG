@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 190d38bbd6427384db1f0663a039ab17
+guid: c4c7655ec353d0e4189723d8f2174537
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -389,7 +389,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: RH_Charged_Attack
+    second: RH_Charged_Attack_Attack_02
   - first:
       95: 9500000
     second: //RootNode
@@ -423,11 +423,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RH_Charged_Attack
-      takeName: RightHand@Attack03
+      name: RH_Heavy_Attack_02
+      takeName: RightHand@Attack01
       internalID: 0
-      firstFrame: 5
-      lastFrame: 39
+      firstFrame: 10
+      lastFrame: 42
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -447,29 +447,36 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.0957851
-        functionName: DrainStaminaBasedAttack
+      - time: 0
+        functionName: PlaySwordSwipeSFX
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.15066315
+      - time: 0.22929269
         functionName: OpenDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.46076772
+      - time: 0.24949668
+        functionName: DrainStaminaBasedAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.39871722
         functionName: CloseDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0
-        functionName: PlaySwordSwipeSFX
+      - time: 0.46867332
+        functionName: EnableCanDoComboRight
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

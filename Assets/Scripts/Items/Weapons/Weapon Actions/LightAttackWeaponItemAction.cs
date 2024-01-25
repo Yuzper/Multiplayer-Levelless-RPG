@@ -16,7 +16,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
         if (!playerPerformingAction.isGrounded) return;
         if (playerPerformingAction.isDancing) return;
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
-        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack())) return;
+        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType))) return;
         //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         PerformLightAttack(playerPerformingAction, weaponPerformingAction);
     }

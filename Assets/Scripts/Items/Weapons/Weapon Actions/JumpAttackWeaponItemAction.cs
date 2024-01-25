@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Jump Attack")]
-public class JumpAttack : WeaponItemAction
+public class JumpAttackWeaponItemAction : WeaponItemAction
 {
     [SerializeField] string jumpAttackAnimation = "2H Jump Attack Opening";
     public LayerMask raycastLayer;
@@ -20,7 +20,7 @@ public class JumpAttack : WeaponItemAction
         if (!(playerPerformingAction.playerNetworkManager.isLockedOn.Value)) return;
 
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
-        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack())) return;
+        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType))) return;
         //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         PerformJumpAttack(playerPerformingAction, weaponPerformingAction);
     }
@@ -33,9 +33,7 @@ public class JumpAttack : WeaponItemAction
         // Set the maximum distance for the raycast
         float maxDistance = Vector3.Distance(playerPerformingAction.transform.position, currentTarget.position);
 
-        // Create a RaycastHit variable to store information about the hit point
         RaycastHit hit;
-
         // Check if the ray hits something
         if (Physics.Raycast(ray, out hit, maxDistance, raycastLayer))
         {
@@ -52,7 +50,7 @@ public class JumpAttack : WeaponItemAction
 
             // Jump
             playerPerformingAction.playerLocomotionManager.AttemptToPerformJump();
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, jumpAttackAnimation, true, false);
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.JumpAttack, jumpAttackAnimation, true, false);
             // Setting variable in playerCombatManager
             playerPerformingAction.playerCombatManager.isPerformingJumpAttack = true;
 

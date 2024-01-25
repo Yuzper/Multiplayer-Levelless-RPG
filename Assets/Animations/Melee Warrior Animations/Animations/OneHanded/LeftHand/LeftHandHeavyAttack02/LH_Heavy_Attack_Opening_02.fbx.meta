@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 60f86550d064ac542930e6aa30eabeaa
+guid: 8138bced3f4bad047ad83326926df748
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -389,7 +389,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: RH_Heavy_Attack
+    second: LH_Charged_Attack_Opening_02
   - first:
       95: 9500000
     second: //RootNode
@@ -423,11 +423,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RH_Heavy_Attack
-      takeName: RightHand@Attack02
+      name: LH_Charged_Attack_Opening_02
+      takeName: RightHand@Attack04
       internalID: 0
-      firstFrame: 8.5
-      lastFrame: 35
+      firstFrame: 0
+      lastFrame: 4
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -443,33 +443,12 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.10196196
-        functionName: OpenDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.14834125
-        functionName: DrainStaminaBasedAttack
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.42956695
-        functionName: CloseDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0
-        functionName: PlaySwordSwipeSFX
+      - time: 0.52793294
+        functionName: PrintAnimation
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
