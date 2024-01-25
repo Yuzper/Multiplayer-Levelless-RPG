@@ -18,6 +18,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
 
+
     [Header("Character group")]
     public CharacterGroup characterGroup;
 

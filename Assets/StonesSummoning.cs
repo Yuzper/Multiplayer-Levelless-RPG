@@ -6,26 +6,29 @@ public class StonesSummoning : MonoBehaviour
 {
 
     public float moveSpeed = 3f;
+    Vector3 summonPosition;
     bool activateSummon = false;
 
     // Update is called once per frame
     void Update()
     {
-       // MoveObjectTowards();
+        if (activateSummon)
+        {
+            MoveObjectTowards(transform, summonPosition);
+        }
     }
 
-    public void ActivateSummon()
+    // Activates the summon when hit with a raycast to the position it originated from, is not updating.
+    public void ActivateSummon(Vector3 rayOrigin)
     {
         activateSummon = true;
+        summonPosition = rayOrigin;
     }
 
-    private void MoveObjectTowards(Transform objTransform, Vector3 targetPosition)
+    private void MoveObjectTowards(Transform stoneTransform, Vector3 targetPosition)
     {
-        // Calculate the direction towards the target
-        Vector3 direction = (targetPosition - objTransform.position).normalized;
-
         // Move the object towards the target
-        objTransform.position = Vector3.MoveTowards(objTransform.position, targetPosition, moveSpeed * Time.deltaTime);
+        stoneTransform.position = Vector3.MoveTowards(stoneTransform.position, targetPosition, moveSpeed * Time.deltaTime);
     }
 
 

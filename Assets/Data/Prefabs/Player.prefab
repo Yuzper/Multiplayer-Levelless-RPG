@@ -1197,6 +1197,7 @@ GameObject:
   - component: {fileID: 4919811160954312666}
   - component: {fileID: -7552384589292500154}
   - component: {fileID: -6838890959375998241}
+  - component: {fileID: 6046763726154373151}
   - component: {fileID: 4119943543529186907}
   - component: {fileID: 3102385522071529017}
   - component: {fileID: 3362887032212460857}
@@ -1309,6 +1310,24 @@ MonoBehaviour:
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
+  playerSpellsManager: {fileID: 0}
+--- !u!114 &6046763726154373151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cabe5b43b1ca042890d5d8456f8068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StoneGolemPrefab: {fileID: 1438108860708227689, guid: 827ffc0ce69ea974ca5460e17b4e0fca,
+    type: 3}
+  StoneGolemPrefabVFX: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4,
+    type: 3}
+  detectionRadius: 5
 --- !u!114 &4119943543529186907
 MonoBehaviour:
   m_ObjectHideFlags: 0
