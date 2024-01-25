@@ -6643,6 +6643,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldNetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7526547767403235489, guid: 29c38e6cfa2d0a24fa08e0310ac2afbf,
+        type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7526547767403235490, guid: 29c38e6cfa2d0a24fa08e0310ac2afbf,
         type: 3}
       propertyPath: m_RootOrder
