@@ -423,7 +423,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             rightMouseAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-
+            Debug.Log("RightMouseChargeAttackInput");
             player.playerNetworkManager.SetCharacterActionHand(true);
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
@@ -445,7 +445,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             leftMouseAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-
+            Debug.Log("LeftMouseChargeAttackInput!!!");
             player.playerNetworkManager.SetCharacterActionHand(false);
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 

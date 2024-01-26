@@ -19,7 +19,7 @@ public class PlayerSpellsManager : CharacterSpellsManager
     public void ChooseStone()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float maxRaycastDistance = 1000f;
+        float maxRaycastDistance = 100f;
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, maxRaycastDistance) && hit.collider.CompareTag("Stone"))
@@ -40,22 +40,28 @@ public class PlayerSpellsManager : CharacterSpellsManager
         Collider[] colliders = Physics.OverlapSphere(summonPosition, detectionRadius);
 
         int stoneCount = 0;
+        List<GameObject> StoneList = new List<GameObject>();
 
         foreach (Collider collider in colliders)
         {
             if (collider.CompareTag("Stone"))
             {
                 stoneCount++;
-
+                StoneList.Add(collider.gameObject);
                 // You may perform additional actions here if needed for each "Stone" object
             }
         }
 
-        // Check if there are at least 5 "Stone" objects within the radius
+        // Check if there are at least 4 "Stone" objects within the radius
         if (stoneCount >= 4)
         {
             float offsetY = 1f;
             summonPosition.y = summonPosition.y + offsetY;
+
+            foreach (GameObject Stone in StoneList)
+            {
+                Destroy(Stone);
+            }
 
             Instantiate(StoneGolemPrefab, summonPosition, Quaternion.identity);
             Instantiate(StoneGolemPrefabVFX, transform.position, Quaternion.identity);

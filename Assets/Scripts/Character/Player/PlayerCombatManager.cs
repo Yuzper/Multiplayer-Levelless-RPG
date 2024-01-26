@@ -80,12 +80,24 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.LightAttack01:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
+            case AttackType.LightAttack02:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
             case AttackType.HeavyAttack01:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
+            case AttackType.HeavyAttack02:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
             case AttackType.ChargedAttack01:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
+            case AttackType.ChargedAttack02:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
             case AttackType.JumpAttack:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;

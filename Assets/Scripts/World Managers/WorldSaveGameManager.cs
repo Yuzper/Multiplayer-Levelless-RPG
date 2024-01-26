@@ -241,6 +241,8 @@ public class WorldSaveGameManager : MonoBehaviour
         TitleScreenManager.instance.DisplayNoFreeCharacterSlotsPopUp();
     }
 
+    // Temp code in NewGame to decide player stats
+    // Temp code in NewGame to delete save files from saves list
     private void NewGame()
     {
         // SAVES THE NEWLY CREATED CHARACTERS STATS, AND ITEMS (WHEN CREATION SCREEN IS ADDED)
@@ -253,6 +255,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         SaveGame();
         StartCoroutine(LoadWorldScene());
+        DeleteGame(currentCharacterSlotBeingUsed); // TEMP CODE TO HAVE CLEAN SAVE FILES LIST
     }
 
     public void LoadGame()

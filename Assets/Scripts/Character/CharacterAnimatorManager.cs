@@ -7,7 +7,6 @@ public class CharacterAnimatorManager : MonoBehaviour
 {
     CharacterManager character;
 
-
     [Header("Damage Animations")]
     public string lastAnimationPlayed;
     [SerializeField] string hit_Forward_Animation_Medium_01 = "hit_Forward_Animation_Medium_01";

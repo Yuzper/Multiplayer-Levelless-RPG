@@ -5,7 +5,8 @@ using UnityEngine;
 public class StonesSummoning : MonoBehaviour
 {
 
-    public float moveSpeed = 3f;
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 180f;
     Vector3 summonPosition;
     bool activateSummon = false;
 
@@ -29,6 +30,10 @@ public class StonesSummoning : MonoBehaviour
     {
         // Move the object towards the target
         stoneTransform.position = Vector3.MoveTowards(stoneTransform.position, targetPosition, moveSpeed * Time.deltaTime);
+
+     //   Vector3 direction = (targetPosition - stoneTransform.position).normalized;
+    //    Quaternion targetRotation = Quaternion.LookRotation(direction);
+    //    stoneTransform.rotation = Quaternion.RotateTowards(stoneTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
 
