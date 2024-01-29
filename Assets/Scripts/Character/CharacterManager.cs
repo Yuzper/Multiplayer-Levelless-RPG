@@ -29,6 +29,7 @@ public class CharacterManager : NetworkBehaviour
     public bool applyRootMotion = false;
     public bool canRotate = true;
     public bool canMove = true;
+    public bool JumpAttackInRange = false;
 
     // Start is called before the first frame update
     protected virtual void Awake()

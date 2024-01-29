@@ -29,9 +29,22 @@ MonoBehaviour:
   lightningDamage: 0
   poiseDamage: 10
   light_Attack_01_Modifier: 1.1
+  light_Attack_02_Modifier: 1.5
+  heavy_Attack_01_Modifier: 2
+  heavy_Attack_02_Modifier: 2.5
+  charge_Attack_01_Modifier: 3
+  charge_Attack_02_Modifier: 3.5
+  jump_Attack_Modifier: 4
   baseStaminaCost: 20
   lightAttackStaminaCostMultiplier: 0.9
+  heavyAttackStaminaCostMultiplier: 1.5
+  jumpAttackStaminaCostMultiplier: 2
   oneHandRightMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
     type: 2}
   oneHandLeftMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
     type: 2}
+  oneHandHeavyRightMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
+    type: 2}
+  oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
+    type: 2}
+  JumpAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6, type: 2}

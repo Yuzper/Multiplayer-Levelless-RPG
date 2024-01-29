@@ -182,11 +182,9 @@ public class PlayerInputManager : MonoBehaviour
         HandleDanceInput();
         HandleRevivalInput();
         HandleActionInputs();
-        //
+        // Attack Inputs
         HandleMouseAttackInput();
         HandleMouseChargeAttackInput();
-        //HandleRightMouseAttackInput();
-        //HandleLeftMouseAttackInput();
     }
 
     // LOCK ON
@@ -423,7 +421,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             rightMouseAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-            Debug.Log("RightMouseChargeAttackInput");
             player.playerNetworkManager.SetCharacterActionHand(true);
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
@@ -445,7 +442,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             leftMouseAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-            Debug.Log("LeftMouseChargeAttackInput!!!");
             player.playerNetworkManager.SetCharacterActionHand(false);
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
@@ -479,41 +475,4 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleRightMouseAttackInput()
-    {
-        if (leftMouseAttackInput == true)
-        {
-            leftMouseAttackInput = false;
-        }
-
-        if (rightMouseAttackInput)
-        {
-            rightMouseAttackInput = false;
-            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-
-            player.playerNetworkManager.SetCharacterActionHand(false);
-            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
-
-            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oneHandRightMouseAttack, player.playerInventoryManager.currentRightHandWeapon);
-        }
-    }
-
-    private void HandleLeftMouseAttackInput()
-    {
-        if (rightMouseAttackInput == true)
-        {
-            rightMouseAttackInput = false;
-        }
-
-        if (leftMouseAttackInput)
-        {
-            leftMouseAttackInput = false;
-            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-
-            player.playerNetworkManager.SetCharacterActionHand(true);
-            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
-
-            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oneHandLeftMouseAttack, player.playerInventoryManager.currentLeftHandWeapon);
-        }
-    }
 }
