@@ -18,6 +18,7 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     [Header("Flags")]
     public bool isRolling = false;
+    public bool isBackstepping = false;
 
     protected virtual void Awake()
     {
