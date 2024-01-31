@@ -82,7 +82,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         }
         else if (horizontalMovement < -0.5f && horizontalMovement >= -1)
         {
-            snappedHorizontal = 1;
+            snappedHorizontal = -1;
         }
         else
         {
@@ -105,7 +105,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         }
         else if (verticalMovement < -0.5f && verticalMovement >= -1)
         {
-            snappedVertical = 1;
+            snappedVertical = -1;
         }
         else
         {

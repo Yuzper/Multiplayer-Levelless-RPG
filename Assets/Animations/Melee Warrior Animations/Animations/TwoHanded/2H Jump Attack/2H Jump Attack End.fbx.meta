@@ -799,15 +799,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.053278692
+      - time: 0.06480607
         functionName: OpenDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.27331486
-        functionName: SpawnSmallStones
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

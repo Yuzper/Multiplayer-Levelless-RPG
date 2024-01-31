@@ -10,9 +10,7 @@ public class PlayerCombatManager : CharacterCombatManager
     public WeaponItems currentWeaponBeingUsed;
 
     // Jump Attack variables
-    public GameObject StonePrefab;
     public GameObject LandingDustVFX;
-    public int numberOfPrefabs = 4;
     public float spawnRadius = 0f;
 
     [Header("Flags")]
@@ -131,26 +129,11 @@ public class PlayerCombatManager : CharacterCombatManager
         {
             isPerformingJumpAttack = false;
             character.animator.SetBool("JumpAttackInRange", true);
-            Debug.Log("CLOSEE!!!");
+            Debug.Log("CLOSE!!!");
         }
     }
 
-    public void SpawnSmallStones()
-    {
-        Instantiate(LandingDustVFX, player.transform.position, Quaternion.Euler(90f, 0f, 0f));
-        for (int i = 0; i < numberOfPrefabs; i++)
-        {
-            // Calculate a random position within the spawn radius
-            Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
-            Vector3 spawnPosition = player.transform.position + new Vector3(randomCircle.x, 0f, randomCircle.y);
-            Instantiate(StonePrefab, spawnPosition, Quaternion.identity);
-        }
-    }
 
-    public void PrintAnimation()
-    {
-        Debug.Log("CHARGED ATTACK 2!!!");
-    }
     public void Update()
     {
         /*if (isPerformingJumpAttack)
