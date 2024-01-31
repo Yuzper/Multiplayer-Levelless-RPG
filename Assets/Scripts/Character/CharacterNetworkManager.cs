@@ -111,7 +111,7 @@ public class CharacterNetworkManager : NetworkBehaviour
     [ClientRpc]
     public void PlayActionAnimationForAllClientsClientRpc(ulong clientID, string animationID, bool applyRootMotion)
     {
-        // WE MAKE SURE TO NOT RUN THE FUNCTION ON THE CHARACTER WHO SENT IT (SO WE  DON'T PLAY IT TWICE)
+        // WE MAKE SURE TO NOT RUN THE FUNCTION ON THE CHARACTER WHO SENT IT (SO WE DON'T PLAY IT TWICE)
         if (clientID != NetworkManager.Singleton.LocalClientId)
         {
             PerformActionAnimationFromServer(animationID, applyRootMotion);

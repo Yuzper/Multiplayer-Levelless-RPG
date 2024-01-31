@@ -153,9 +153,9 @@ public class PlayerCombatManager : CharacterCombatManager
     }
     public void Update()
     {
-        if (isPerformingJumpAttack)
+        /*if (isPerformingJumpAttack)
         {
             SetJumpAttackFlag();
-        }
+        }*/
     }
 }
