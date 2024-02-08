@@ -35,7 +35,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float unlockedCameraHeight = 1.65f;
     [SerializeField] float lockedCameraHeight = 2.0f;
     private Coroutine cameraLockOnHeightCoroutine;
-    private List<CharacterManager> availableTargets = new List<CharacterManager>();
+    [SerializeField] List<CharacterManager> availableTargets = new List<CharacterManager>();
     public CharacterManager nearestLockOnTarget;
     public CharacterManager leftLockOnTarget;
     public CharacterManager rightLockOnTarget;
@@ -180,11 +180,10 @@ public class PlayerCamera : MonoBehaviour
         float shortestDistanceOfLeftTarget = -Mathf.Infinity;   // WILL BE USED TO DETERMINE SHORTEST DISTANCE ON ONE AXIS TO THE LEFT OF CURRENT TARGET (-)
 
         Collider[] colliders = Physics.OverlapSphere(player.transform.position, lockOnRadius, WorldUtilityManager.instance.GetCharacterLayers());
-
+        
         for (int i = 0; i < colliders.Length; i++)
         {
             CharacterManager lockOnTarget = colliders[i].GetComponent<CharacterManager>();
-
             if (lockOnTarget != null)
             {
                 // CHECK IF THEY ARE WITHIN OUR FIELD OF VIEW
@@ -198,7 +197,7 @@ public class PlayerCamera : MonoBehaviour
                 // IF TARGET IS US, CHECK THE NEXT POTENTIAL TARGET
                 if (lockOnTarget.transform.root == player.transform.root) continue;
 
-                // LASTLY IF THE TARGET IS OUTSIDE FIELD OF VIEW OR IS BLCOKED BY ENVIROMENT, CHECK NEXT POTENTIAL TARGET
+                // LASTLY IF THE TARGET IS OUTSIDE FIELD OF VIEW OR IS BLOCKED BY ENVIROMENT, CHECK NEXT POTENTIAL TARGET
                 if (viewableAngle > minimumViewableAngle && viewableAngle < maximumViewableAngle)
                 {
                     RaycastHit hit;
@@ -231,7 +230,7 @@ public class PlayerCamera : MonoBehaviour
                     shortestDistance = distanceFromTarget;
                     nearestLockOnTarget = availableTargets[k];
                 }
-
+                
                 // IF WE ARE ALREADY LOCKED ON WHEN SEARCHING FOR TARGETS, SEARCH OUR NEAREST LEFT/RIGHT TARGETS
                 if (player.playerNetworkManager.isLockedOn.Value)
                 {
@@ -296,6 +295,10 @@ public class PlayerCamera : MonoBehaviour
         {
             player.playerCombatManager.SetTarget(nearestLockOnTarget);
             player.playerNetworkManager.isLockedOn.Value = true;
+        }
+        else
+        {
+            player.playerNetworkManager.isLockedOn.Value = false;
         }
 
         yield return null;

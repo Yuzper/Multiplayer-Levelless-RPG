@@ -170,7 +170,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                 Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                transform.rotation = targetRotation;
+                transform.rotation = finalRotation;
             }
         }
         else
@@ -239,7 +239,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (!player.isGrounded) return;
 
         player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", false);
-
         player.isDancing = true;
 
     }

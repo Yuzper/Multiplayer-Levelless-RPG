@@ -193,20 +193,22 @@ public class PlayerInputManager : MonoBehaviour
         // CHECK FOR DEAD TARGET
         if (player.playerNetworkManager.isLockedOn.Value)
         {
-            if (player.playerCombatManager.currentTarget == null) return;
-            
             if (player.playerCombatManager.currentTarget.isDead.Value)
+            {
+                // THIS ASSURES US THAT THE COROUTINE NEVER RUNS MULTIPLE TIMES OVERLAPPING ITSELF
+                if (lockOnCoroutine != null)
+                {
+                    StopCoroutine(lockOnCoroutine);
+                }
+
+                // ATTEMPT TO FIND NEW TARGET
+                lockOnCoroutine = StartCoroutine(PlayerCamera.instance.WaitThenFindNewTarget());
+            }
+
+            if (player.playerCombatManager.currentTarget == null)
             {
                 player.playerNetworkManager.isLockedOn.Value = false;
             }
-            // ATTEMPT TO FIND NEW TARGET
-
-            // THIS ASSURES US THAT THE COROUTINE NEVER RUNS MULTIPLE TIMES OVERLAPPING ITSELF
-            if (lockOnCoroutine != null)
-            {
-                StopCoroutine(lockOnCoroutine);
-            }
-            lockOnCoroutine = StartCoroutine(PlayerCamera.instance.WaitThenFindNewTarget());
         }
 
 
@@ -237,6 +239,8 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleLockOnSwitchTargetInput()
     {
+        // KNOWN BUG!!!
+        // If you keep switching left and right target the list of available targets grow without limit. It has no functional error but should be fixed.
         if (lockOnLeftInput)
         {
             lockOnLeftInput = false;
