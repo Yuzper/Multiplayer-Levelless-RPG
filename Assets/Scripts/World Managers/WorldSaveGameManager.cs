@@ -255,7 +255,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         SaveGame();
         StartCoroutine(LoadWorldScene());
-        DeleteGame(currentCharacterSlotBeingUsed); // TEMP CODE TO HAVE CLEAN SAVE FILES LIST
+        //DeleteGame(currentCharacterSlotBeingUsed); // TEMP CODE TO HAVE CLEAN SAVE FILES LIST
     }
 
     public void LoadGame()
