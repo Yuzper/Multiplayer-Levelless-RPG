@@ -619,6 +619,7 @@ GameObject:
   - component: {fileID: 2599565169934923317}
   - component: {fileID: 4878598199742682414}
   - component: {fileID: 2599565169934923312}
+  - component: {fileID: 1148962295572994990}
   - component: {fileID: 2599565169934923313}
   - component: {fileID: 2599565169934923326}
   - component: {fileID: 1651267895453237601}
@@ -714,6 +715,7 @@ MonoBehaviour:
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
+  JumpAttackInRange: 0
   aiCharacterNetworkManager: {fileID: 0}
   aICharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -754,6 +756,10 @@ MonoBehaviour:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
+  isChargingLeftAttack:
+    m_InternalValue: 0
+  isChargingRightAttack:
+    m_InternalValue: 0
   constitution:
     m_InternalValue: 1
   intelligence:
@@ -786,6 +792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7740e9561106fe42a34de3a4184f476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPerformingJumpAttack: 0
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 8747438468179607427}
@@ -820,6 +828,7 @@ MonoBehaviour:
   groundedYVelocity: -20
   fallStartYVelocity: -5
   isRolling: 0
+  isBackstepping: 0
 --- !u!114 &2599565169934923314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,6 +885,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3370ea0580076014c8a84f6bfb485b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1148962295572994990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322495801545780366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7722b855938f3a547becc64838fa091b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2599565169934923313

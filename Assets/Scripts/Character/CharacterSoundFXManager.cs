@@ -19,7 +19,7 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public void PlayRollSoundFX()
     {
-        audioSource.PlayOneShot(WorldSoundFXManager.instance.rollSFX);
+        PlaySoundFX(WorldSoundFXManager.instance.rollSFX);
     }
 
     public void PlaySoundFX(AudioClip soundFX, float volume = 1, bool randomizePitch = true, float pitchRandom = 0.1f)

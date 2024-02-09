@@ -1205,6 +1205,7 @@ GameObject:
   - component: {fileID: -4850607042919652327}
   - component: {fileID: 1820767909}
   - component: {fileID: 5531915241888746379}
+  - component: {fileID: -5671665878480558004}
   - component: {fileID: 5537857349065083524}
   - component: {fileID: -1136134484293859745}
   - component: {fileID: 4681113189932714061}
@@ -1299,6 +1300,7 @@ MonoBehaviour:
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
+  JumpAttackInRange: 0
   respawnCharacter: 0
   switchRightWeapon: 0
   switchLeftWeapon: 0
@@ -1323,11 +1325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cabe5b43b1ca042890d5d8456f8068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StoneGolemPrefab: {fileID: 1438108860708227689, guid: 827ffc0ce69ea974ca5460e17b4e0fca,
-    type: 3}
-  StoneGolemPrefabVFX: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4,
-    type: 3}
-  detectionRadius: 5
 --- !u!114 &4119943543529186907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,12 +1343,6 @@ MonoBehaviour:
   currentAttackType: 0
   lockOnTransform: {fileID: 3421038290567181999}
   currentWeaponBeingUsed: {fileID: 0}
-  StonePrefab: {fileID: 8090473924721829483, guid: c2c8dd078afec8e438261b950bb32877,
-    type: 3}
-  LandingDustVFX: {fileID: 6124539474622611333, guid: e00324faf67041a418196b4f3657bda2,
-    type: 3}
-  numberOfPrefabs: 5
-  spawnRadius: 10
   canComboWithWeapon: 0
 --- !u!114 &3102385522071529017
 MonoBehaviour:
@@ -1374,6 +1365,7 @@ MonoBehaviour:
   groundedYVelocity: -10
   fallStartYVelocity: -5
   isRolling: 0
+  isBackstepping: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -1446,6 +1438,8 @@ MonoBehaviour:
   networkPositionVelocity: {x: 0, y: 0, z: 0}
   networkPositionSmoothTime: 0.1
   networkRotationSmoothTime: 0.1
+  isMoving:
+    m_InternalValue: 0
   horizontalMovement:
     m_InternalValue: 0
   verticalMovement:
@@ -1593,6 +1587,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41d631059db3ed64d8fa15f9204a9253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5671665878480558004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c355613a8ae8041afae410d29e661d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5537857349065083524

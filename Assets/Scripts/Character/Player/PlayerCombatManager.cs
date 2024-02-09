@@ -9,10 +9,6 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public WeaponItems currentWeaponBeingUsed;
 
-    // Jump Attack variables
-    public GameObject LandingDustVFX;
-    public float spawnRadius = 0f;
-
     [Header("Flags")]
     public bool canComboWithWeapon = false;
     //public bool isPerformingJumpAttack = false; This variable is moved to CharacterCombatManager
@@ -118,27 +114,5 @@ public class PlayerCombatManager : CharacterCombatManager
         }
     }
 
-    // Jump Attack functions
-    public void SetJumpAttackFlag()
-    {
-        player = GetComponent<PlayerManager>();
-        Transform currentTarget = lockOnTransform;
 
-        //Debug.Log("Distance" + Vector3.Distance(player.transform.position, currentTarget.position));
-        if (Vector3.Distance(player.transform.position, currentTarget.position) < 1.3f)
-        {
-            isPerformingJumpAttack = false;
-            character.animator.SetBool("JumpAttackInRange", true);
-            Debug.Log("CLOSE!!!");
-        }
-    }
-
-
-    public void Update()
-    {
-        /*if (isPerformingJumpAttack)
-        {
-            SetJumpAttackFlag();
-        }*/
-    }
 }

@@ -55,4 +55,5 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
         //player.playerCombatManager.canComboWithOffHandWeapon = false;
     }
 
+
 }
