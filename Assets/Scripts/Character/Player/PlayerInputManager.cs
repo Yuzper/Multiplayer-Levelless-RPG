@@ -42,6 +42,9 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool leftMouseChargeAttackInput = false;
     [SerializeField] bool leftMouseAttackInput = false;
 
+    [Header("UI")]
+    [SerializeField] bool escapeMenuInput = false;
+    public EscapeMenuManager escapeMenu;
 
     private void Awake()
     {
@@ -61,13 +64,14 @@ public class PlayerInputManager : MonoBehaviour
 
         // WHEN THE SCENE CHANGES, RUN THIS LOGIC
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
-
+        
         instance.enabled = false;
-
+        
         if (playerControls != null)
         {
             playerControls.Disable();
         }
+        escapeMenu = EscapeMenuManager.instance;
     }
 
     // GETTER FUNCTIONS
@@ -75,12 +79,12 @@ public class PlayerInputManager : MonoBehaviour
     {
         return rightMouseAttackInput;
     }
+
     public bool Get_LeftMouseAttackInput()
     {
         return leftMouseAttackInput;
     }
-
-
+    
     private void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
     {
         // IF WE ARE LOADING INTO OUR WORLD SCENE, ENABLE OUR PLAYER CONTROLS
@@ -138,6 +142,9 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.LeftMouseAttack.performed += i => leftMouseAttackInput = true;
             playerControls.PlayerActions.LeftMouseChargeAttack.performed += i => leftMouseChargeAttackInput = true;
             playerControls.PlayerActions.LeftMouseChargeAttack.canceled += i => leftMouseChargeAttackInput = false;
+
+            // UI
+            playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
         }
 
         playerControls.Enable();
@@ -172,6 +179,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleAllInputs()
     {
+        HandleEscapeMenu();
         HandleLockOnInput();
         HandleLockOnSwitchTargetInput();
         HandlePlayerMovementInput();
@@ -185,6 +193,16 @@ public class PlayerInputManager : MonoBehaviour
         // Attack Inputs
         HandleMouseAttackInput();
         HandleMouseChargeAttackInput();
+    }
+
+    // UI
+    private void HandleEscapeMenu()
+    {
+        if (escapeMenuInput)
+        {
+            escapeMenuInput = false;
+            EscapeMenuManager.instance.DecideOpenOrCloseEscapeMenu();
+        }
     }
 
     // LOCK ON

@@ -423,6 +423,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f4986bf-7439-4617-b964-d7e3259fc0ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -434,6 +443,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bed04af3-b7e5-4262-8b0a-f7d8fd6e226f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -467,6 +487,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
+        m_UI_EscapeMenu = m_UI.FindAction("Escape Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -730,11 +751,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_X;
+    private readonly InputAction m_UI_EscapeMenu;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
         public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @X => m_Wrapper.m_UI_X;
+        public InputAction @EscapeMenu => m_Wrapper.m_UI_EscapeMenu;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -747,6 +770,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @X.started -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
                 @X.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
                 @X.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
+                @EscapeMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeMenu;
+                @EscapeMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeMenu;
+                @EscapeMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEscapeMenu;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -754,6 +780,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @X.started += instance.OnX;
                 @X.performed += instance.OnX;
                 @X.canceled += instance.OnX;
+                @EscapeMenu.started += instance.OnEscapeMenu;
+                @EscapeMenu.performed += instance.OnEscapeMenu;
+                @EscapeMenu.canceled += instance.OnEscapeMenu;
             }
         }
     }
@@ -786,5 +815,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnX(InputAction.CallbackContext context);
+        void OnEscapeMenu(InputAction.CallbackContext context);
     }
 }

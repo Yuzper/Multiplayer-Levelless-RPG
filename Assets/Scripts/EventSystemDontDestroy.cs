@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class EventSystemDontDestroy : MonoBehaviour
 {
-    public void Awake()
+    public static EventSystemDontDestroy instance;
+
+    private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
