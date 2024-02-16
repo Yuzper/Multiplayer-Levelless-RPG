@@ -21,17 +21,30 @@ MonoBehaviour:
   weaponType: 1
   strengthREQ: 1
   dexREQ: 1
-  intREQ: 0
+  intREQ: 1
   physicalDamage: 80
   magicDamage: 0
   fireDamage: 0
   holyDamage: 0
   lightningDamage: 0
   poiseDamage: 25
-  light_Attack_01_Modifier: 1.1
+  light_Attack_01_Modifier: 1
+  light_Attack_02_Modifier: 1.5
+  heavy_Attack_01_Modifier: 2
+  heavy_Attack_02_Modifier: 2.5
+  charge_Attack_01_Modifier: 3
+  charge_Attack_02_Modifier: 3.5
+  jump_Attack_Modifier: 4
   baseStaminaCost: 20
-  lightAttackStaminaCostMultiplier: 0.9
-  oneHandRightMouseAttack: {fileID: 11400000, guid: ad81920433aa2a1478f5c2b00b6421a8,
+  lightAttackStaminaCostMultiplier: 1
+  heavyAttackStaminaCostMultiplier: 1.5
+  jumpAttackStaminaCostMultiplier: 2
+  oneHandRightMouseAttack: {fileID: 11400000, guid: 71a263f0dd4081141a634d18936fc302,
     type: 2}
   oneHandLeftMouseAttack: {fileID: 11400000, guid: ad81920433aa2a1478f5c2b00b6421a8,
     type: 2}
+  oneHandHeavyRightMouseAttack: {fileID: 11400000, guid: d4cecfc5ea595dd4ebcd95d0f7831a65,
+    type: 2}
+  oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,
+    type: 2}
+  JumpAttack: {fileID: 11400000, guid: 3b786fdbfdc4dd04d83f45b23661963b, type: 2}

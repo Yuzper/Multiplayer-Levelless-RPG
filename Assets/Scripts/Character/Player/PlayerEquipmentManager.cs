@@ -66,7 +66,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             rightHandSlot.LoadWeapon(rightHandWeaponModel);
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
             rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
-            rightWeaponManager.SetWeaponDamge(player, player.playerInventoryManager.currentRightHandWeapon);
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
             // Play draw weapon sound
             DecideDrawWeaponSound(player.playerInventoryManager.currentRightHandWeapon);
         }
@@ -77,7 +77,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (!player.IsOwner) return;
 
         // PLAY SWAPPING ANIMATION                               AnimationName ,isPerformingAction, applyRootMotion, canRotate, canMove
-        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, true, true, true);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, false, true, true);
 
         WeaponItems selectedWeapon = null;
         // TOGO https://youtu.be/xrw_yOGp9Jo?si=t52MywHL2l_Lq-Np&t=644
@@ -156,7 +156,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             leftHandSlot.LoadWeapon(leftHandWeaponModel);
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
             leftWeaponManager = leftHandWeaponModel.GetComponent<WeaponManager>();
-            leftWeaponManager.SetWeaponDamge(player, player.playerInventoryManager.currentLeftHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
             // Play draw weapon sound
             DecideDrawWeaponSound(player.playerInventoryManager.currentLeftHandWeapon);
         }
@@ -167,7 +167,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (!player.IsOwner) return;
 
         // PLAY SWAPPING ANIMATION                               AnimationName ,isPerformingAction, applyRootMotion, canRotate, canMove
-        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, true, true, true);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, false, true, true);
 
         WeaponItems selectedWeapon = null;
         // TOGO https://youtu.be/xrw_yOGp9Jo?si=t52MywHL2l_Lq-Np&t=644

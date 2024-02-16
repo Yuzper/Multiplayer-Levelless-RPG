@@ -15,6 +15,7 @@ public class CharacterNetworkManager : NetworkBehaviour
     public float networkRotationSmoothTime = 0.1f;
 
     [Header("Animator")]
+    public NetworkVariable<bool> isMoving = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> horizontalMovement = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> verticalMovement = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> moveAmount = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -26,6 +27,8 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<bool> isJumping = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     //public NetworkVariable<bool> isSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isLockedOn = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isChargingLeftAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isChargingRightAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Stats")]
     // Constitution determines how much health a character has.
@@ -83,6 +86,18 @@ public class CharacterNetworkManager : NetworkBehaviour
         }
     }
 
+    public void OnIsMovingChanged(bool oldStatus, bool newStatus)
+    {
+        character.animator.SetBool("isMoving", isMoving.Value);
+    }
+
+    public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus)
+    {
+        //character.animator.SetBool("isChargingLeftAttack", isChargingLeftAttack.Value);
+        character.animator.SetBool("isChargingRightAttack", isChargingRightAttack.Value);
+        character.animator.SetBool("isChargingLeftAttack", isChargingLeftAttack.Value);
+    }
+
     // A SERVER RPC IS A FUNCTION CALLED FROM A CLIENT, TO THE SERVER (IN OUR CASE HOST)
     [ServerRpc]
     public void NotifyTheServerOfActionAnimationServerRpc(ulong clientID, string animationID, bool applyRootMotion)
@@ -96,7 +111,7 @@ public class CharacterNetworkManager : NetworkBehaviour
     [ClientRpc]
     public void PlayActionAnimationForAllClientsClientRpc(ulong clientID, string animationID, bool applyRootMotion)
     {
-        // WE MAKE SURE TO NOT RUN THE FUNCTION ON THE CHARACTER WHO SENT IT (SO WE  DON'T PLAY IT TWICE)
+        // WE MAKE SURE TO NOT RUN THE FUNCTION ON THE CHARACTER WHO SENT IT (SO WE DON'T PLAY IT TWICE)
         if (clientID != NetworkManager.Singleton.LocalClientId)
         {
             PerformActionAnimationFromServer(animationID, applyRootMotion);

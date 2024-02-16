@@ -18,6 +18,10 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
 
+
+    [Header("Character group")]
+    public CharacterGroup characterGroup;
+
     [Header("Flags")]
     public bool isPerformingAction = false;
     public bool isDancing = false;
@@ -25,6 +29,7 @@ public class CharacterManager : NetworkBehaviour
     public bool applyRootMotion = false;
     public bool canRotate = true;
     public bool canMove = true;
+    public bool JumpAttackInRange = false;
 
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -78,6 +83,25 @@ public class CharacterManager : NetworkBehaviour
 
     }
 
+    protected virtual void FixedUpdate()
+    {
+
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+
+        characterNetworkManager.isMoving.OnValueChanged -= characterNetworkManager.OnIsMovingChanged;
+    }
+
     public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
     {
         if (IsOwner)
@@ -92,12 +116,11 @@ public class CharacterManager : NetworkBehaviour
             if (!manuallySelectDeathAnimation)
             {
                 characterAnimatorManager.PlayerTargetActionAnimation("Dead_01", true);
-                Debug.Log("Arh de dead");
             }
         }
         // Play death SFX
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
 
         // Award players with loot
         // Disable Character model

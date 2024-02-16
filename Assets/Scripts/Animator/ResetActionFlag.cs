@@ -16,11 +16,16 @@ public class ResetActionFlag : StateMachineBehaviour
 
         // THIS IS CALLED WHEN THE ACTION ENDS, AND STATE RETURNS TO EMPTY.
         character.isPerformingAction = false;
+        character.isDancing = false;
         character.applyRootMotion = false;
         character.canRotate = true;
         character.canMove = true;
         character.characterLocomotionManager.isRolling = false;
-        
+        character.characterLocomotionManager.isBackstepping = false;
+        character.characterAnimatorManager.DisableCanDoCombo();
+        //character.characterCombatManager.isPerformingJumpAttack = false; // Used in jump attack
+        //character.animator.SetBool("JumpAttackInRange", false);
+
         if (character.IsOwner)
         {
             character.characterNetworkManager.isJumping.Value = false;

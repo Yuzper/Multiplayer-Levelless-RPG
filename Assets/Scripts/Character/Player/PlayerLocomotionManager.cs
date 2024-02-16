@@ -25,6 +25,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [Header("Dodge")]
     private Vector3 rollDirection;
+    private Vector3 backStepDirection;
 
     protected override void Awake()
     {
@@ -41,6 +42,18 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             player.characterNetworkManager.verticalMovement.Value = verticalMovement;
             player.characterNetworkManager.horizontalMovement.Value = horizontalMovement;
             player.characterNetworkManager.moveAmount.Value = moveAmount;
+
+            if (isRolling)
+            {
+                player.characterController.Move(rollDirection * 1.5f * Time.deltaTime);
+                //Debug.Log(rollDirection);
+            }
+
+            if (isBackstepping)
+            {
+                player.characterController.Move(backStepDirection * 2f * Time.deltaTime);
+                //Debug.Log(backStepDirection);
+            }
         }
         else
         {
@@ -119,6 +132,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             freeFallDirection.y = 0;
 
             player.characterController.Move(freeFallDirection * freeFallSpeed * Time.deltaTime);
+
         }
     }
 
@@ -156,7 +170,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                 Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                transform.rotation = targetRotation;
+                transform.rotation = finalRotation;
             }
         }
         else
@@ -191,15 +205,28 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             rollDirection.y = 0;
             rollDirection.Normalize();
 
-            Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
-            player.transform.rotation = playerRotation;
-            // PERFORM A ROLL ANIMATION
-            player.playerAnimatorManager.PlayerTargetActionAnimation("Roll_forward", true, false);
-            player.playerLocomotionManager.isRolling = true;
+            if (rollDirection != Vector3.zero)
+            {
+                Debug.Log("ZERO ROLL");
+                Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
+                player.transform.rotation = playerRotation;
+
+                // PERFORM A ROLL ANIMATION
+                player.playerAnimatorManager.PlayerTargetActionAnimation("Roll_forward", true, true, false, false);
+                player.playerLocomotionManager.isRolling = true;
+            }
         }
         else
         {
+            backStepDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
+            backStepDirection += PlayerCamera.instance.cameraObject.transform.right * horizontalMovement;
+            backStepDirection.y = 0;
+            backStepDirection *= -1;
+            //backStepDirection.Normalize();
+
             // PERFORM A BACKSTEP ANIMATION
+            player.playerAnimatorManager.PlayerTargetActionAnimation("Backstep", true, true);
+            player.playerLocomotionManager.isBackstepping = true;
         }
 
     }
@@ -208,13 +235,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     public void AttemptToPerformDance()
     {
         if (player.isPerformingAction) return;
-
         if (player.playerNetworkManager.isJumping.Value) return;
-
         if (!player.isGrounded) return;
 
         player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", false);
-
         player.isDancing = true;
 
     }
@@ -223,12 +247,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     public void AttemptToPerformJump()
     {
         if (player.isPerformingAction) return;
-
         if (player.playerNetworkManager.isJumping.Value) return;
-
         if (!player.isGrounded) return;
 
-        player.playerAnimatorManager.PlayerTargetActionAnimation("BasicMotions@Jump01 - Start", false);
+        player.playerAnimatorManager.PlayerTargetActionAnimation("BasicMotions@Jump01 - Start", false, true, true, true);
 
         player.playerNetworkManager.isJumping.Value = true;
 
@@ -248,13 +270,17 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
                 jumpDirection *= 0.5f;
             }
         }
-
     }
 
     public void ApplyJumpingVelocity()
     {
         yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
 
+    }
+
+    public void ApplyJumpingActionVelocity()
+    {
+        yVelocity.y = Mathf.Sqrt((jumpHeight*2) * -2 * gravityForce);
     }
 
     // REVIVAL

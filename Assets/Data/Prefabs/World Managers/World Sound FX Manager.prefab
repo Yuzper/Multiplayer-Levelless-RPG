@@ -51,7 +51,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 05d0536a3eefc80438f95f9662331f52, type: 3}
   rollSFX: {fileID: 8300000, guid: 49fd127f5f85aa047bc9005ac2fd6331, type: 3}
   deathSFX: {fileID: 8300000, guid: 942c7aa7e91dc2042913b84d53f8df0a, type: 3}
-  DrawSwordSFX: {fileID: 8300000, guid: 5106aa09b9d5a374e86d3c643beb374c, type: 3}
-  SheathSwordSFX: {fileID: 8300000, guid: 09f89d6f9c83c0e4588d9111a0a56ffc, type: 3}
-  SwordSwipeSFX: {fileID: 8300000, guid: 8b70a0fb40c237241a538f9ea21485cf, type: 3}
+  DrawSwordSFX:
+  - {fileID: 8300000, guid: 5106aa09b9d5a374e86d3c643beb374c, type: 3}
+  SheathSwordSFX:
+  - {fileID: 8300000, guid: 09f89d6f9c83c0e4588d9111a0a56ffc, type: 3}
+  SwordSwipeSFX:
+  - {fileID: 8300000, guid: 8b70a0fb40c237241a538f9ea21485cf, type: 3}
   BackgroundMusic: {fileID: 8300000, guid: 0643908ea2a90c341a1f488fb302af76, type: 3}

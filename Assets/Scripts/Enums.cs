@@ -7,6 +7,14 @@ public class Enums : MonoBehaviour
     
 }
 
+                                                ////////////////////////
+                                                /// NOTE ON ENUMS!!! ///
+                                                ////////////////////////
+
+// If we add in the middle of enum, we most likely have to check all references to that enum that its the correct field
+// since adding in the middle of enum will serialize the fields differently now.
+// Think of enum as it references indexes in the enum. So if we add a new index 2 all higher indexes will also go one up.
+
 public enum CharacterSlot
 {
     CharacterSlot_01,
@@ -23,7 +31,15 @@ public enum CharacterSlot
 
 }
 
-
+//TODO SETS; might want to extend the amount of charactergroups
+// for example if we want enemies to be able to attack enemies
+// or if players can attack players
+// or if some enemies can attack some enemies... etc.
+public enum CharacterGroup
+{
+    Team01, // is friendly (assumed to be player in general)
+    Team02, // enemy
+}
 public enum WeaponModelSlot
 {
     RightHand,
@@ -41,7 +57,14 @@ public enum WeaponType
     Staff
 }
 
+// THIS IS USED TO CALCULATE DAMAGE BASED ON ATTACK TYPE
 public enum AttackType
 {
-    LightAttack01
+    LightAttack01,
+    LightAttack02,
+    HeavyAttack01,
+    HeavyAttack02,
+    ChargedAttack01,
+    ChargedAttack02,
+    JumpAttack
 }

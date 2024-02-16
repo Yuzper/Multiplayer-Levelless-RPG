@@ -7,7 +7,6 @@ public class CharacterAnimatorManager : MonoBehaviour
 {
     CharacterManager character;
 
-
     [Header("Damage Animations")]
     public string lastAnimationPlayed;
     [SerializeField] string hit_Forward_Animation_Medium_01 = "hit_Forward_Animation_Medium_01";
@@ -83,7 +82,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         }
         else if (horizontalMovement < -0.5f && horizontalMovement >= -1)
         {
-            snappedHorizontal = 1;
+            snappedHorizontal = -1;
         }
         else
         {
@@ -106,7 +105,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         }
         else if (verticalMovement < -0.5f && verticalMovement >= -1)
         {
-            snappedVertical = 1;
+            snappedVertical = -1;
         }
         else
         {
@@ -120,11 +119,11 @@ public class CharacterAnimatorManager : MonoBehaviour
     public virtual void PlayerTargetActionAnimation(
         string targetAnimation,
         bool isPerformingAction,
-        bool applyRootMotion = false,
-        bool canRotate = true,
-        bool canMove = true)
+        bool applyRootMotion = true,
+        bool canRotate = false,
+        bool canMove = false)
     {
-        character.animator.applyRootMotion = applyRootMotion;
+        character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         // CAN BE USED TO STOP CHARACTER FROM ATTEMPTING NEW ACTIONS
         // FOR EXAMPLE, IF YOU GET DAMAGED, AND BEGIN PERFORMING A DAMAGE ANIMATION
@@ -150,6 +149,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         // KEEP TRACK OF LAST ATTACK PERFORMED (FOR COMBOS)
         // KEEP TRACK OF CURRENT ATTACK TYPE (LIGHT, HEAVY, ETC)
         character.characterCombatManager.currentAttackType = attackType;
+        character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
         character.animator.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
@@ -158,6 +158,22 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         // TELL SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
         character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+
+    }
+
+
+    public virtual void EnableCanDoComboLeft()
+    {
+        
+    }
+
+    public virtual void EnableCanDoComboRight()
+    {
+        
+    }
+
+    public virtual void DisableCanDoCombo()
+    {
 
     }
 }

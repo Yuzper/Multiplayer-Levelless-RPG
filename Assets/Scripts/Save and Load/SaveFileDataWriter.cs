@@ -88,6 +88,7 @@ public class SaveFileDataWriter
             }
             catch (Exception ex)
             {
+                Debug.Log("ERROR: " + ex);
                 characterData = null;
             }
         }

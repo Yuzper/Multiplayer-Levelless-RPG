@@ -5,7 +5,11 @@ using Unity.Netcode;
 
 public class CharacterCombatManager : NetworkBehaviour
 {
-    CharacterManager character;
+    protected CharacterManager character;
+    public bool isPerformingJumpAttack = false;
+
+    [Header("Last Attack Animation Performed")]
+    public string lastAttackAnimationPerformed;
 
     [Header("Attack Target")]
     public CharacterManager currentTarget;

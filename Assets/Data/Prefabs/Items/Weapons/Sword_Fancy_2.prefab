@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 5260893046786072201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 362174439416701103}
@@ -174,8 +174,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.24047047, y: 1.4925507, z: 0.064815104}
-  m_Center: {x: -0.000295192, y: 0.9504865, z: -0.00020249933}
+  m_Size: {x: 0.24047047, y: 1.555832, z: 0.064815104}
+  m_Center: {x: -0.000295192, y: 0.91884583, z: -0.00020249933}
 --- !u!114 &5260893046786072215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +196,12 @@ MonoBehaviour:
   holyDamage: 0
   characterCausingDamage: {fileID: 0}
   light_Attack_01_Modifier: 0
+  light_Attack_02_Modifier: 0
+  heavy_Attack_01_Modifier: 0
+  heavy_Attack_02_Modifier: 0
+  charge_Attack_01_Modifier: 0
+  charge_Attack_02_Modifier: 0
+  jump_Attack_Modifier: 0
 --- !u!1 &5260893047292594106
 GameObject:
   m_ObjectHideFlags: 0

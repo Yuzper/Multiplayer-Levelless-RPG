@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Damage")]
 public class TakeDamageEffect : InstantCharacterEffect
 {
+    public GameObject FloatingTextPrefab;
+
     [Header("Character Causing Damage")]
     public CharacterManager characterCausingDamage; // If the damage is caused by another characters attack it will be stored here
 
@@ -63,7 +66,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         }
 
         finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
-
+        Debug.Log("Damage: " + finalDamageDealt);
         if (finalDamageDealt <= 0)
         {
             finalDamageDealt = 1; // Always deal at least 1 damage, might change later
@@ -75,12 +78,18 @@ public class TakeDamageEffect : InstantCharacterEffect
     private void PlayDamageVFX(CharacterManager character)
     {
         character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
+        SpawnFloatingDamageText();
+    }
+
+    private void SpawnFloatingDamageText()
+    {
+        var txt = Instantiate(FloatingTextPrefab, contactPoint, Quaternion.identity);
+        txt.GetComponent<TextMeshPro>().text = finalDamageDealt.ToString();
     }
 
     private void PlayDamageSFX(CharacterManager character)
     {
         AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
-
         character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
     }
 
@@ -89,7 +98,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         if (!character.IsOwner) return;
         
         if (character.isDead.Value) return;
-
+        
         // TODO CALCULATE IF POISE IS BROKEN
         poiseIsBroken = true;
 

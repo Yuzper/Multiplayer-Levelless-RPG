@@ -19,6 +19,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
+    [HideInInspector] public PlayerSpellsManager playerSpellsManager;
 
     protected override void Awake()
     {
@@ -61,6 +62,7 @@ public class PlayerManager : CharacterManager
         PlayerCamera.instance.HandleAllCameraActions();
     }
 
+    // WHEN ADDING TO NETWORK-SPAWN ALSO ADD TO ONNETWORK-DESPAWN
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -98,12 +100,56 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
+        // FLAGS
+        playerNetworkManager.isChargingRightAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isChargingLeftAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+
+
         // UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
         // WE DON'T RUN THIS IF WE ARE THE SERVER, BECAUSE SINCE THEY ARE THE HOST, THEY ARE ALREADY LOADED IN AND DON'T NEED TO RELOAD THEIR DATA
         if (IsOwner && !IsServer)
         {
             LoadGameDataFromCurrentCharacterData(ref WorldSaveGameManager.instance.currentCharacterData);
         }
+    }
+
+    // WHEN ADDING TO NETWORK-SPAWN ALSO ADD TO ONNETWORK-DESPAWN
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
+
+        // IF THIS IS THE PLAYER OBJECT OWNED BY THIS CLIENT
+        if (IsOwner)
+        {
+            // UPDATES THE TOTAL AMOUNT OF HEALTH OR MANA WHEN THE STAT LINKED TO EITHER CHANGES
+            playerNetworkManager.constitution.OnValueChanged -= playerNetworkManager.SetNewMaxHealthValue;
+            playerNetworkManager.intelligence.OnValueChanged -= playerNetworkManager.SetNewMaxManaValue;
+            playerNetworkManager.endurance.OnValueChanged -= playerNetworkManager.SetNewMaxStaminaValue;
+
+            // UPDATES UI STAT BARS WHEN A STAT CHANGES (HEALTH OR MANA ETC)
+            playerNetworkManager.currentHealth.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
+            playerNetworkManager.currentMana.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewManaValue;
+            playerNetworkManager.currentMana.OnValueChanged -= playerStatsManager.ResetManaRegenTimer;
+            playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+            playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
+        }
+        // STATS
+        playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
+
+        // LOCK ON
+        playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;
+        playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged -= playerNetworkManager.OnLockOnTargetIDChange;
+
+        // EQUIPMENT
+        playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
+        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+
+        // FLAGS
+        playerNetworkManager.isChargingRightAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
+        //playerNetworkManager.isChargingLeftAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
+
     }
 
     private void OnClientConnectedCallback(ulong clientID)

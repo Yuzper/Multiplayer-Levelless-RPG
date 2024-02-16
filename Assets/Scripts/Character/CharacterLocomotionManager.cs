@@ -18,11 +18,13 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     [Header("Flags")]
     public bool isRolling = false;
+    public bool isBackstepping = false;
 
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
     }
+
 
     protected virtual void Update()
     {

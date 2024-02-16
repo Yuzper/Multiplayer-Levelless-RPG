@@ -447,6 +447,20 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: PlaySwordSwipeSFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.22929269
+        functionName: OpenDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.24949668
         functionName: DrainStaminaBasedAttack
         data: 
@@ -454,15 +468,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.23176794
-        functionName: OpenDamageCollider
+      - time: 0.39871722
+        functionName: CloseDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.42099446
-        functionName: CloseDamageCollider
+      - time: 0.46867332
+        functionName: EnableCanDoComboRight
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

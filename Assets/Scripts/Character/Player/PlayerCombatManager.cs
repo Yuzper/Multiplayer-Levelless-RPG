@@ -9,6 +9,10 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public WeaponItems currentWeaponBeingUsed;
 
+    [Header("Flags")]
+    public bool canComboWithWeapon = false;
+    //public bool isPerformingJumpAttack = false; This variable is moved to CharacterCombatManager
+
     override protected void Awake()
     {
         base.Awake();
@@ -28,9 +32,34 @@ public class PlayerCombatManager : CharacterCombatManager
         }
     }
 
-    public float CalculateStaminaForAttack()
+    public float CalculateStaminaForAttack(AttackType currentAttackType)
     {
-        return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+        switch (currentAttackType)
+        {
+            case AttackType.LightAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+
+            case AttackType.LightAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+
+            case AttackType.HeavyAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.HeavyAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.ChargedAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.ChargedAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+            case AttackType.JumpAttack:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.jumpAttackStaminaCostMultiplier;
+
+            default:
+                return 100000f; // Random hard coded value that should not be possible to reach
+        }
     }
 
     public virtual void DrainStaminaBasedAttack()
@@ -43,7 +72,28 @@ public class PlayerCombatManager : CharacterCombatManager
         switch (currentAttackType)
         {
             case AttackType.LightAttack01:
-                staminaDeducted = CalculateStaminaForAttack();
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.LightAttack02:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
+            case AttackType.HeavyAttack01:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.HeavyAttack02:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
+            case AttackType.ChargedAttack01:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.ChargedAttack02:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
+            case AttackType.JumpAttack:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
             default:
                 break;
@@ -63,4 +113,6 @@ public class PlayerCombatManager : CharacterCombatManager
             PlayerCamera.instance.SetLockCameraHeight();
         }
     }
+
+
 }
