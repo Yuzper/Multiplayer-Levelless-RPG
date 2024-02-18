@@ -49,7 +49,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
                 //Debug.Log(rollDirection);
             }
 
-            if (isBackstepping)
+            if (isBackstepping && player.isDead.Value)
             {
                 player.characterController.Move(backStepDirection * 2f * Time.deltaTime);
                 //Debug.Log(backStepDirection);
@@ -196,6 +196,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     public void AttemptToPerformDodge()
     {
         if (player.isPerformingAction) return;
+        if (player.isDead.Value) return;
 
         // IF WE ARE MOVING WHEN WE ATTEMPT TO DODGE, WE PERFORM A ROLL
         if (PlayerInputManager.instance.moveAmount > 0)
@@ -237,6 +238,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (player.isPerformingAction) return;
         if (player.playerNetworkManager.isJumping.Value) return;
         if (!player.isGrounded) return;
+        if (player.isDead.Value) return;
 
         player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", false);
         player.isDancing = true;
