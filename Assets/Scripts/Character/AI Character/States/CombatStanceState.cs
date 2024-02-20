@@ -23,7 +23,7 @@ public class CombatStanceState : AIState
     protected bool hasRolledForComboChange = false;      // If we have already rolled for the chance during this state
 
     [Header("Engagement Distance")]
-    [SerializeField] protected float maximumEngagementDistance = 5; // The distance we have to be away from the target before we enter the pursue target state.
+    [SerializeField] public float maximumEngagementDistance = 5; // The distance we have to be away from the target before we enter the pursue target state.
 
     public override AIState Tick(AICharacterManager aiCharacter)
     {
@@ -39,7 +39,10 @@ public class CombatStanceState : AIState
                 aiCharacter.aICharacterCombatManager.PivotTowardsTarget(aiCharacter);
         }
 
-        // ROTATE TO FACE OUR TARGET
+        aiCharacter.aICharacterCombatManager.RotateTowardsAgent(aiCharacter);
+
+        if (aiCharacter.aICharacterCombatManager.currentTarget == null)
+            return SwitchState(aiCharacter, aiCharacter.idle);
 
         // IF WE DO NOT HAVE AN ATTACK, GET ONE
         if (!hasAttack)
@@ -48,10 +51,9 @@ public class CombatStanceState : AIState
         }
         else
         {
-            // CHECK RECOVERY TIMER
-            // PASS ATTACK TO ATTACK STATE
+            aiCharacter.attack.currentAttack = choosenAttack;
             // ROLL FOR COMBO CHANCE
-            // SWITCH STATE
+            return SwitchState(aiCharacter, aiCharacter.attack);
         }
 
         if (aiCharacter.aICharacterCombatManager.distanceFromTarget > maximumEngagementDistance)
@@ -68,19 +70,22 @@ public class CombatStanceState : AIState
     {
         potentialAttacks = new List<AICharacterAttackAction>();
 
-        foreach (var potentialAttack in potentialAttacks)
+        foreach (var potentialAttack in aiCharacterAttacks)
         {
+            // IF WE ARE TOO CLOSE FOR THIS ATTACK, CHECK THE NEXT
             if (potentialAttack.minimumAttackDistance > aICharacter.aICharacterCombatManager.distanceFromTarget)
                 continue;
-
+            // IF WE ARE FAR CLOSE FOR THIS ATTACK, CHECK THE NEXT
             if (potentialAttack.maximumAttackDistance < aICharacter.aICharacterCombatManager.distanceFromTarget)
                 continue;
-
+            // IF THE TARGET IS OUTSIDE MINIMUM FIELD OF VIEW FOR THIS ATTACK, CHECK THE NEXT
             if (potentialAttack.minimumAttackAngle > aICharacter.aICharacterCombatManager.viewableAngle)
                 continue;
-
+            // IF THE TARGET IS OUTSIDE MAXIMUM FIELD OF VIEW FOR THIS ATTACK, CHECK THE NEXT
             if (potentialAttack.maximumAttackAngle < aICharacter.aICharacterCombatManager.viewableAngle)
                 continue;
+
+            potentialAttacks.Add(potentialAttack);
         }
 
         if (potentialAttacks.Count <= 0)
@@ -108,6 +113,7 @@ public class CombatStanceState : AIState
                 choosenAttack = attack;
                 previousAttack = choosenAttack;
                 hasAttack = true;
+                return;
             }
         }
 

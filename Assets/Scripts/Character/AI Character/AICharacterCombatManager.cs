@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AICharacterCombatManager : CharacterCombatManager
 {
+    [Header("Action Recovery")]
+    public float actionRecoveryTimer = 0;
+
     [Header("Target information")]
     public float distanceFromTarget;
     public float viewableAngle;
@@ -13,6 +16,9 @@ public class AICharacterCombatManager : CharacterCombatManager
     [SerializeField] float detectionRadius = 15;
     public float minimumFOV = -35;
     public float maximumFOV = 35;
+
+    [Header("Attack Rotation Speed")]
+    public float attackRotationSpeed = 25;
 
     [Header("AI Turn Settings")]
     public bool enableTurnAnimations = false;
@@ -124,6 +130,46 @@ public class AICharacterCombatManager : CharacterCombatManager
         else if (enableTurn_180 && viewableAngle <= -minAngle180)
         {
             aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation("Turn_L_180", true);
+        }
+    }
+
+    public void RotateTowardsAgent(AICharacterManager aiCharacter)
+    {
+        if (aiCharacter.aiCharacterNetworkManager.isMoving.Value)
+        {
+            aiCharacter.transform.rotation = aiCharacter.navmeshAgent.transform.rotation;
+        }
+    }
+
+    // If we want to have some AI characters track faster so they can rotate faster, then this is the function to handle it
+    public void RotateTowardsTargetWhilstAttacking(AICharacterManager aiCharacter)
+    {
+        if (currentTarget == null) return;
+        if (!aiCharacter.canRotate) return;
+        if (!aiCharacter.isPerformingAction) return;
+
+        Vector3 targetDirection = currentTarget.transform.position - aiCharacter.transform.position;
+        targetDirection.y = 0;
+        targetDirection.Normalize();
+
+        if (targetDirection == Vector3.zero)
+        {
+            targetDirection = aiCharacter.transform.forward;
+        }
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.deltaTime);
+
+    }
+
+    public void HandleActionRecovery(AICharacterManager aiCharacter)
+    {
+        if (actionRecoveryTimer > 0)
+        {
+            if (!aiCharacter.isPerformingAction)
+            {
+                actionRecoveryTimer -= Time.deltaTime;
+            }
         }
     }
 }

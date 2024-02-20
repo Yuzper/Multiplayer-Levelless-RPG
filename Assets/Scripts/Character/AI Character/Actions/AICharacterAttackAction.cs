@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "A.I/Actions/Attack Action")]
 public class AICharacterAttackAction : ScriptableObject
 {
     [Header("Attacks")]

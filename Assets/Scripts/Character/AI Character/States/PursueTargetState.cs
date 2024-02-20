@@ -31,8 +31,10 @@ public class PursueTargetState : AIState
 
         aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
-
-        // if in combat range of target, switch state to combat state
+        if (aiCharacter.aICharacterCombatManager.distanceFromTarget <= aiCharacter.navmeshAgent.stoppingDistance)
+        {
+            return SwitchState(aiCharacter, aiCharacter.combatStance);
+        }
 
         // of target is not reachable and they are too far away -> return home
 
