@@ -5,6 +5,7 @@ using UnityEngine;
 public class AICharacterCombatManager : CharacterCombatManager
 {
     [Header("Target information")]
+    public float distanceFromTarget;
     public float viewableAngle;
     public Vector3 targetsDirection;
 
