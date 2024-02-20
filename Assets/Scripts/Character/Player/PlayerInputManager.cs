@@ -198,6 +198,8 @@ public class PlayerInputManager : MonoBehaviour
     // UI
     private void HandleEscapeMenu()
     {
+        // TODO NOT IMPLEMENTED CORRECTLY WITH MULTIPLAYER 
+        return;
         if (escapeMenuInput)
         {
             escapeMenuInput = false;
