@@ -14,8 +14,10 @@ public class TitleScreenManager : MonoBehaviour
 
     [Header("Buttons")]
     [SerializeField] Button loadMenuReturnButton;
-    [SerializeField] Button mainMenuLoadGameButton;
     [SerializeField] Button mainMenuNewGameButton;
+    [SerializeField] Button mainMenuLoadGameButton;
+    [SerializeField] Button mainMenuSettingsButton;
+    [SerializeField] Button mainMenuExitGameButton;
     [SerializeField] Button deleteCharacterPopUpConfirmButton;
 
     [Header("Pop Ups")]
@@ -122,5 +124,12 @@ public class TitleScreenManager : MonoBehaviour
         loadMenuReturnButton.Select();
     }
 
-
+    public void ExitGameFunction()
+    {
+        #if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
+    }
 }

@@ -10,11 +10,12 @@ public class EscapeMenuManager : MonoBehaviour
     public static EscapeMenuManager instance;
 
     [Header("Menus")]
-    [SerializeField] GameObject escapeMenu;
+    [SerializeField] public GameObject escapeMenu;
 
     [Header("Buttons")]
     [SerializeField] Button ContinueGameButton;
     [SerializeField] Button EscapeMenuSaveGameButton;
+    [SerializeField] Button SettingsButton;
     [SerializeField] Button ReturnToMainMenuButton;
     
 
@@ -29,6 +30,12 @@ public class EscapeMenuManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
 
     public void StartNetworkAsHost()
     {

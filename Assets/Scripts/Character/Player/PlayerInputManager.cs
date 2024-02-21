@@ -195,18 +195,6 @@ public class PlayerInputManager : MonoBehaviour
         HandleMouseChargeAttackInput();
     }
 
-    // UI
-    private void HandleEscapeMenu()
-    {
-        // TODO NOT IMPLEMENTED CORRECTLY WITH MULTIPLAYER 
-        return;
-        if (escapeMenuInput)
-        {
-            escapeMenuInput = false;
-            EscapeMenuManager.instance.DecideOpenOrCloseEscapeMenu();
-        }
-    }
-
     // LOCK ON
     private void HandleLockOnInput()
     {
@@ -406,6 +394,17 @@ public class PlayerInputManager : MonoBehaviour
     }
 
     //// UI Button Inputs ////
+    private void HandleEscapeMenu()
+    {
+        // TODO NOT IMPLEMENTED CORRECTLY WITH MULTIPLAYER 
+        //return;
+        if (escapeMenuInput && WorldSaveGameManager.instance.GetWorldSceneIndex() != 0) // Index 0 is Main Menu
+        {
+            escapeMenuInput = false;
+            EscapeMenuManager.instance.DecideOpenOrCloseEscapeMenu();
+        }
+    }
+
     public void HandleDanceInputButton()
     {
         danceInput = true;
