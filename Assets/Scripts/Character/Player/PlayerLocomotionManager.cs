@@ -93,7 +93,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleGroundMovement()
     {
-        if (!player.canMove) return;
+        if (!player.characterLocomotionManager.canMove) return;
 
         GetMovementValues();
 
@@ -123,7 +123,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleFreeFallMovement()
     {
-        if (!player.isGrounded)
+        if (!player.characterLocomotionManager.isGrounded)
         {
             Vector3 freeFallDirection;
 
@@ -139,7 +139,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     private void HandleRotation()
     {
         if (player.isDead.Value) return;
-        if (!player.canRotate) return;
+        if (!player.characterLocomotionManager.canRotate) return;
 
         if (player.playerNetworkManager.isLockedOn.Value)
         {
@@ -237,7 +237,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         if (player.isPerformingAction) return;
         if (player.playerNetworkManager.isJumping.Value) return;
-        if (!player.isGrounded) return;
+        if (!player.characterLocomotionManager.isGrounded) return;
         if (player.isDead.Value) return;
 
         player.playerAnimatorManager.PlayerTargetActionAnimation("Dance_04", false);
@@ -250,7 +250,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         if (player.isPerformingAction) return;
         if (player.playerNetworkManager.isJumping.Value) return;
-        if (!player.isGrounded) return;
+        if (!player.characterLocomotionManager.isGrounded) return;
 
         player.playerAnimatorManager.PlayerTargetActionAnimation("BasicMotions@Jump01 - Start", false, true, true, true);
 

@@ -25,11 +25,6 @@ public class CharacterManager : NetworkBehaviour
     [Header("Flags")]
     public bool isPerformingAction = false;
     public bool isDancing = false;
-    public bool isGrounded = true;
-    public bool applyRootMotion = false;
-    public bool canRotate = true;
-    public bool canMove = true;
-    public bool JumpAttackInRange = false;
 
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -54,7 +49,7 @@ public class CharacterManager : NetworkBehaviour
 
     protected virtual void Update()
     {
-        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isGrounded", characterLocomotionManager.isGrounded);
         // IF THIS CHARACTER IS BEING CONTROLLED FROM OUR SIDE, THEN ASSIGN ITS NETWORK POSITION OF OUR TRANSFORM
         if (IsOwner)
         {
@@ -108,8 +103,8 @@ public class CharacterManager : NetworkBehaviour
         {
             characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
-            canMove = false;
-            canRotate = false;
+            characterLocomotionManager.canMove = false;
+            characterLocomotionManager.canRotate = false;
 
             // Reset any flags here that need to be reset
 
@@ -135,8 +130,8 @@ public class CharacterManager : NetworkBehaviour
         isDead.Value = false;
 
         // Reenable control over player movement
-        canRotate = true;
-        canMove = true;
+        characterLocomotionManager.canRotate = true;
+        characterLocomotionManager.canMove = true;
     }
 
     protected virtual void IgnoreMyOwnColliders()

@@ -18,7 +18,7 @@ public class AICharacterCombatManager : CharacterCombatManager
     public float maximumFOV = 35;
 
     [Header("Attack Rotation Speed")]
-    public float attackRotationSpeed = 25;
+    public float attackRotationSpeed = 45;
 
     [Header("AI Turn Settings")]
     public bool enableTurnAnimations = false;
@@ -26,6 +26,13 @@ public class AICharacterCombatManager : CharacterCombatManager
     [SerializeField] private bool enableTurn_90 = false;
     [SerializeField] private bool enableTurn_135 = false;
     [SerializeField] private bool enableTurn_180 = false;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
+    }
 
     public void FindATargetByLineOfSight(AICharacterManager aiCharacter)
     {
@@ -145,7 +152,7 @@ public class AICharacterCombatManager : CharacterCombatManager
     public void RotateTowardsTargetWhilstAttacking(AICharacterManager aiCharacter)
     {
         if (currentTarget == null) return;
-        if (!aiCharacter.canRotate) return;
+        if (!aiCharacter.characterLocomotionManager.canRotate) return;
         if (!aiCharacter.isPerformingAction) return;
 
         Vector3 targetDirection = currentTarget.transform.position - aiCharacter.transform.position;

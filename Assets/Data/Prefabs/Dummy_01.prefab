@@ -231,6 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8747438468179607427}
+  - component: {fileID: 7908903683082486604}
   m_Layer: 7
   m_Name: Lock on Transform
   m_TagString: Untagged
@@ -253,6 +254,18 @@ Transform:
   m_Father: {fileID: 1322495801545683296}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7908903683082486604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786017648663907365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e395a54e7c0a04244900116c29f69883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &874916820017008022
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,8 +695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2209814028
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3053695438
+  InScenePlacedSourceGlobalObjectIdHash: 2209814028
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1999,7 +2012,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3015025890927307946}
-  m_Layer: 6
+  - component: {fileID: 3383089988348727386}
+  - component: {fileID: 6905849525501021647}
+  m_Layer: 10
   m_Name: B-f_middle_01.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,6 +2037,37 @@ Transform:
   m_Father: {fileID: 1894679411026304627}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3383089988348727386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502070684638035691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a6b9deb41337046a563ceecdfc7bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
+  physicalDamage: 0
+  magicDamage: 0
+  fireDamage: 0
+  lightningDamage: 0
+  holyDamage: 0
+--- !u!135 &6905849525501021647
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502070684638035691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1924591
+  m_Center: {x: 0.05306247, y: -0.013576212, z: 0.024141477}
 --- !u!1 &4654513337902204789
 GameObject:
   m_ObjectHideFlags: 0

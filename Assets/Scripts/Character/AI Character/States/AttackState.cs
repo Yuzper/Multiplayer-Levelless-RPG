@@ -24,7 +24,7 @@ public class AttackState : AIState
         if (aiCharacter.aICharacterCombatManager.currentTarget.isDead.Value)
             return SwitchState(aiCharacter, aiCharacter.idle);
 
-        // ROTATE TOWARDS THE TARGET WHILST ATTACKING
+        aiCharacter.aICharacterCombatManager.RotateTowardsTargetWhilstAttacking(aiCharacter);
 
         aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0, 0);
 
@@ -40,12 +40,12 @@ public class AttackState : AIState
             }
         }
 
+        if (aiCharacter.isPerformingAction)
+            return this;
+
         if (!hasPerformedAttack)
         {
             if (aiCharacter.aICharacterCombatManager.actionRecoveryTimer > 0)
-                return this;
-
-            if (aiCharacter.isPerformingAction)
                 return this;
 
             PerformAttack(aiCharacter);

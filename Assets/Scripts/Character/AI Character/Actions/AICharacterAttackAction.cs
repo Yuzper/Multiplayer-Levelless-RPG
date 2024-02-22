@@ -14,11 +14,11 @@ public class AICharacterAttackAction : ScriptableObject
     [SerializeField] AttackType attackType;
     public int attackWeight = 50;
     // ATTACK CAN BE REAPEATED
-    public float actionRecoveryTime = 1.5f;
+    public float actionRecoveryTime = 1f;
     public float minimumAttackAngle = -35;
     public float maximumAttackAngle = 35;
     public float minimumAttackDistance = 0;
-    public float maximumAttackDistance = 2;
+    public float maximumAttackDistance = 1.5f;
 
     public void AttemptToPerformAction(AICharacterManager aiCharacter)
     {

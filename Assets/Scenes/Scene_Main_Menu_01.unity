@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1212,6 +1212,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4478641426771209490}
+    - target: {fileID: 4791074083078140120, guid: 141334ff82c1adb4db5687f57d3e0acd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -34.14795
+      objectReference: {fileID: 0}
     - target: {fileID: 4791074083324457538, guid: 141334ff82c1adb4db5687f57d3e0acd,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1321,6 +1326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Escape Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791074083710225983, guid: 141334ff82c1adb4db5687f57d3e0acd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -241.70972
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 141334ff82c1adb4db5687f57d3e0acd, type: 3}
@@ -1766,7 +1776,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960.0001, y: -44.515175}
+  m_AnchoredPosition: {x: 960.0001, y: -376.66925}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492304331
@@ -1900,7 +1910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -399.40228}
+  m_AnchoredPosition: {x: 960, y: -731.55634}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554008517
@@ -3007,7 +3017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -281.10657}
+  m_AnchoredPosition: {x: 960, y: -613.2606}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &909714777
@@ -3600,7 +3610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960.0001, y: -162.81088}
+  m_AnchoredPosition: {x: 960.0001, y: -494.96494}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1296788574
@@ -6461,7 +6471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -241.70923}
+  m_AnchoredPosition: {x: 0, y: -241.70972}
   m_SizeDelta: {x: 0, y: -483.418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2131507568
@@ -7649,11 +7659,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WorldNetworkManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7526547767403235489, guid: 29c38e6cfa2d0a24fa08e0310ac2afbf,
-        type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7526547767403235490, guid: 29c38e6cfa2d0a24fa08e0310ac2afbf,
         type: 3}

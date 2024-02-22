@@ -19,6 +19,9 @@ public class CharacterLocomotionManager : MonoBehaviour
     [Header("Flags")]
     public bool isRolling = false;
     public bool isBackstepping = false;
+    public bool canRotate = true;
+    public bool canMove = true;
+    public bool isGrounded = true;
 
     protected virtual void Awake()
     {
@@ -30,7 +33,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     {
         HandleGroundCheck();
 
-        if (character.isGrounded)
+        if (character.characterLocomotionManager.isGrounded)
         {
             if (yVelocity.y < 0)
             {
@@ -58,7 +61,7 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected void HandleGroundCheck()
     {
-        character.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
+        character.characterLocomotionManager.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
     }
     
     // DRAWS OUR GROUND CHECK SPHERE IN SCENE VIEW
@@ -70,5 +73,16 @@ public class CharacterLocomotionManager : MonoBehaviour
     }
     */
 
+
+    // Animation Events
+    public void EnableCanRotate()
+    {
+        canRotate = true;
+    }
+
+    public void DisableCanRotate()
+    {
+        canRotate = false;
+    }
 
 }

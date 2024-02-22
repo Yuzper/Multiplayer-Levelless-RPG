@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Teleporter
   - Teleport Platform
-  - Stone
   layers:
   - Default
   - TransparentFX
