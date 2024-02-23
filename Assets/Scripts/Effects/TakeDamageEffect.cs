@@ -90,7 +90,9 @@ public class TakeDamageEffect : InstantCharacterEffect
     private void PlayDamageSFX(CharacterManager character)
     {
         AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
+
         character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
+        character.characterSoundFXManager.PlayDamageGrunt();
     }
 
     private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
