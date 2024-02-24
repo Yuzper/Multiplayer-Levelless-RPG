@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2615900843
+  GlobalObjectIdHash: 116302440
   InScenePlacedSourceGlobalObjectIdHash: 3713777260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1604,6 +1604,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ec37c89a97a3a194d98cecd9bb3a61d5, type: 3}
   - {fileID: 8300000, guid: 5db80d54d2dafd348b6cae53c6d9924a, type: 3}
   - {fileID: 8300000, guid: 37f1bb4806a676249891c3249bf962a2, type: 3}
+  attackGrunts: []
 --- !u!114 &-5671665878480558004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1664,7 +1665,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.8
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

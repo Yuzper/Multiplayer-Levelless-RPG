@@ -695,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3053695438
+  GlobalObjectIdHash: 2556154420
   InScenePlacedSourceGlobalObjectIdHash: 2209814028
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -729,11 +729,6 @@ MonoBehaviour:
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
-  isGrounded: 1
-  applyRootMotion: 0
-  canRotate: 1
-  canMove: 1
-  JumpAttackInRange: 0
   aiCharacterNetworkManager: {fileID: 0}
   aICharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -852,6 +847,9 @@ MonoBehaviour:
   fallStartYVelocity: -5
   isRolling: 0
   isBackstepping: 0
+  canRotate: 1
+  canMove: 1
+  isGrounded: 1
 --- !u!114 &2599565169934923314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,6 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d6e9ce6a7fd2b44949156a3f7d89d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  applyRootMotion: 0
   lastAnimationPlayed: 
   hit_Forward_Animation_Medium_01: hit_Forward_Animation_Medium_01
   hit_Forward_Animation_Medium_02: hit_Forward_Animation_Medium_02
@@ -910,6 +909,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3370ea0580076014c8a84f6bfb485b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageGrunts: []
+  attackGrunts: []
 --- !u!114 &1148962295572994990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,7 +964,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.8
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2055,6 +2056,7 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  aiUndeadCharacterCausingDamage: {fileID: 0}
 --- !u!135 &6905849525501021647
 SphereCollider:
   m_ObjectHideFlags: 0

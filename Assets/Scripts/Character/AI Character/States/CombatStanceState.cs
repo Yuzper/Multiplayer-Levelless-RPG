@@ -90,7 +90,7 @@ public class CombatStanceState : AIState
 
         if (potentialAttacks.Count <= 0)
         {
-            Debug.Log("Potential Attacks Count: " + potentialAttacks.Count);
+            //Debug.Log("Potential Attacks Count: " + potentialAttacks.Count);
             return;
         }
 

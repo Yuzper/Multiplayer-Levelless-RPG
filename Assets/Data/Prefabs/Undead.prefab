@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1925126394
+  GlobalObjectIdHash: 848430197
   InScenePlacedSourceGlobalObjectIdHash: 1377172762
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -693,7 +693,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.8
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -1410,7 +1410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6688379986893989285}
   - component: {fileID: 6688379986893989282}
-  - component: {fileID: 6688379986893989283}
+  - component: {fileID: 4784007922293171756}
   m_Layer: 10
   m_Name: B-f_middle_01.R
   m_TagString: Untagged
@@ -1447,14 +1447,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  characterCausingDamage: {fileID: 6614536817782390563}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
   aiUndeadCharacterCausingDamage: {fileID: 0}
---- !u!135 &6688379986893989283
-SphereCollider:
+--- !u!136 &4784007922293171756
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1463,9 +1464,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0.00018149693, y: -0.027747203, z: 0.06700464}
+  m_Radius: 0.07328901
+  m_Height: 0.5129504
+  m_Direction: 0
+  m_Center: {x: 0.12142183, y: 0.020000007, z: 0.029554894}
 --- !u!1 &2408469035510246039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,7 +1573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2106264709662402785}
   - component: {fileID: 2625472143580034340}
-  - component: {fileID: 2625472143580034343}
+  - component: {fileID: 2993604473174200933}
   m_Layer: 10
   m_Name: B-f_middle_01.L
   m_TagString: Untagged
@@ -1608,14 +1610,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  characterCausingDamage: {fileID: 6614536817782390563}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
   aiUndeadCharacterCausingDamage: {fileID: 0}
---- !u!135 &2625472143580034343
-SphereCollider:
+--- !u!136 &2993604473174200933
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1624,9 +1627,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0.00018149693, y: -0.027747203, z: 0.06700464}
+  m_Radius: 0.07328901
+  m_Height: 0.5129504
+  m_Direction: 0
+  m_Center: {x: 0.12142183, y: 0.020000007, z: 0.029554894}
 --- !u!1 &3110834893955610007
 GameObject:
   m_ObjectHideFlags: 0

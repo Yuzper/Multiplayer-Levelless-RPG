@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MeleeWeaponDamageCollider : DamageCollider
 {
-    [Header("Attacking Character")]
-    public CharacterManager characterCausingDamage; // (When calculating damage this is used to check for attackers damage modifiers, effetcs etc)
-
     [Header("Weapon Attack Modifiers")]
     public float light_Attack_01_Modifier;
     public float light_Attack_02_Modifier;
