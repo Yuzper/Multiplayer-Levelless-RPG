@@ -14,6 +14,7 @@ public class EscapeMenuManager : MonoBehaviour
 
     [Header("Buttons")]
     [SerializeField] Button ContinueGameButton;
+    [SerializeField] Button ConnectGameButton;
     [SerializeField] Button EscapeMenuSaveGameButton;
     [SerializeField] Button SettingsButton;
     [SerializeField] Button ReturnToMainMenuButton;
@@ -40,6 +41,11 @@ public class EscapeMenuManager : MonoBehaviour
     public void StartNetworkAsHost()
     {
         NetworkManager.Singleton.StartHost();
+    }
+
+    public void ConnectAsClient()
+    {
+        PlayerUIManager.instance.SetStartGameAsClient();
     }
 
     public void DecideOpenOrCloseEscapeMenu()
@@ -79,7 +85,7 @@ public class EscapeMenuManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         CloseEscapeMenu();
-        PlayerInputManager.instance.player.transform.position = new Vector3(0f, 2f, 0f);
+        NetworkManager.Singleton.Shutdown();
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(0); // Index 0 is Main Menu
     }
     

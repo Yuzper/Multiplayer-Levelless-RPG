@@ -40,8 +40,6 @@ public class DamageCollider : MonoBehaviour
             // Check if we can damage this target based on friendly fire
             if (WorldUtilityManager.instance.CanIDamageThisTarget(characterCausingDamage.characterGroup, damageTarget.characterGroup))
             {
-                Debug.Log("characterCausingDamage " + characterCausingDamage.gameObject.name + "   " + characterCausingDamage.characterGroup);
-                Debug.Log("damageTarget " + damageTarget.gameObject.name + "   " + damageTarget.characterGroup);
                 // Check if target is blocking
                 // Check if target is invulnerable
                 DamageTarget(damageTarget);
