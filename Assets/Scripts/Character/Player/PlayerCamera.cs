@@ -45,7 +45,6 @@ public class PlayerCamera : MonoBehaviour
     public float zoomSpeed = 5f;
     public float minZoom = 20f;
     public float maxZoom = 60f;
-    public float zoomSmoothness = 5f;
     private float targetZoom;
 
     private void Awake()
@@ -64,7 +63,7 @@ public class PlayerCamera : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         cameraZPosition = cameraObject.transform.localPosition.z;
-        targetZoom = Camera.main.fieldOfView;
+        targetZoom = 4;
     }
 
     public void HandleAllCameraActions()
@@ -95,7 +94,8 @@ public class PlayerCamera : MonoBehaviour
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
 
         // Smoothly interpolate to the target zoom
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetZoom, Time.deltaTime * zoomSmoothness);
+        cameraZPosition = -targetZoom;
+        
     }
 
     private void HandleRotations()
@@ -119,7 +119,6 @@ public class PlayerCamera : MonoBehaviour
 
             // SAVE OUR ROTATIONS TO OUR LOOK ANGLES, SO WHEN WE UNLOCK IT DOESNT SNAP TOO FAR AWAY
             leftAndRightLookAngle = transform.eulerAngles.y;
-            //leftAndRightLookAngle = Mathf.Clamp(leftAndRightLookAngle, minimumPivot, maximumPivot);
             upAndDownLookAngle = transform.eulerAngles.x;
         }
         // ELSE ROTATE REGULARLY IF ESCAPE MENU IS NOT OPEN
