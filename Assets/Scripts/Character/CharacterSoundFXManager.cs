@@ -6,6 +6,13 @@ public class CharacterSoundFXManager : MonoBehaviour
 {
     private AudioSource audioSource;
 
+    [Header("Damage Grunts")]
+    [SerializeField] protected AudioClip[] damageGrunts;
+
+    [Header("Damage Grunts")]
+    [SerializeField] protected AudioClip[] attackGrunts;
+
+
     protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -60,4 +67,13 @@ public class CharacterSoundFXManager : MonoBehaviour
         PlaySoundFX(swordSwipeSFX);
     }
     
+    public virtual void PlayDamageGrunt()
+    {
+        PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(damageGrunts));
+    }
+
+    public virtual void PlayAttackGrunt()
+    {
+        PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
+    }
 }

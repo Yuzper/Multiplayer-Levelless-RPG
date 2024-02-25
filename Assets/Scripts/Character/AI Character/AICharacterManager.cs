@@ -19,6 +19,8 @@ public class AICharacterManager : CharacterManager
     [Header("States")]
     public IdleState idle;
     public PursueTargetState pursueTarget;
+    public CombatStanceState combatStance;
+    public AttackState attack;
 
     protected override void Awake()
     {
@@ -35,6 +37,12 @@ public class AICharacterManager : CharacterManager
         pursueTarget = Instantiate(pursueTarget);
 
         currentState = idle;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        aICharacterCombatManager.HandleActionRecovery(this);
     }
 
     // using fixed update as it is not called as much as Update and we don't need to do this as often...
@@ -66,6 +74,7 @@ public class AICharacterManager : CharacterManager
         {
             aICharacterCombatManager.targetsDirection = aICharacterCombatManager.currentTarget.transform.position - transform.position;
             aICharacterCombatManager.viewableAngle = WorldUtilityManager.instance.GetAngleOfTarget(transform, aICharacterCombatManager.targetsDirection);
+            aICharacterCombatManager.distanceFromTarget = Vector3.Distance(transform.position, aICharacterCombatManager.currentTarget.transform.position);
         }
 
         if(navmeshAgent.enabled)

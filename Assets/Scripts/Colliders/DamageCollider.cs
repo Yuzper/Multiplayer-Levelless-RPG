@@ -7,6 +7,9 @@ public class DamageCollider : MonoBehaviour
     [Header("Collider")]
     [SerializeField] protected Collider damageCollider;
 
+    [Header("Attacking Character")]
+    public CharacterManager characterCausingDamage; // (When calculating damage this is used to check for attackers damage modifiers, effetcs etc)
+
     [Header("Damage")]
     public float physicalDamage = 0; // Could be subdivided into standard, strike, slash and pierce
     public float magicDamage = 0;
@@ -35,9 +38,12 @@ public class DamageCollider : MonoBehaviour
             contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
             // Check if we can damage this target based on friendly fire
-            // Check if target is blocking
-            // Check if target is invulnerable
-            DamageTarget(damageTarget);
+            if (WorldUtilityManager.instance.CanIDamageThisTarget(characterCausingDamage.characterGroup, damageTarget.characterGroup))
+            {
+                // Check if target is blocking
+                // Check if target is invulnerable
+                DamageTarget(damageTarget);
+            }
         }
     }
 

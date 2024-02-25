@@ -17,7 +17,7 @@ public class AICharacterAnimatorManager : CharacterAnimatorManager
         // host
         if(aiCharacter.IsOwner)
         {
-            if(!aiCharacter.isGrounded)
+            if(!aiCharacter.characterLocomotionManager.isGrounded)
             {
                 return;
             }
@@ -30,7 +30,7 @@ public class AICharacterAnimatorManager : CharacterAnimatorManager
         else
         {
             // client
-            if (!aiCharacter.isGrounded)
+            if (!aiCharacter.characterLocomotionManager.isGrounded)
             {
                 return;
             }

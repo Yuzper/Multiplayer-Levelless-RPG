@@ -14,7 +14,7 @@ public class JumpAttackWeaponItemAction : WeaponItemAction
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
         if (!playerPerformingAction.IsOwner) return;
-        if (!playerPerformingAction.isGrounded) return;
+        if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;
         if (playerPerformingAction.isDancing) return;
         if (playerPerformingAction.isPerformingAction) return;
         if (!(playerPerformingAction.playerNetworkManager.isLockedOn.Value)) return;

@@ -48,3 +48,5 @@ MonoBehaviour:
   oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,
     type: 2}
   JumpAttack: {fileID: 11400000, guid: 3b786fdbfdc4dd04d83f45b23661963b, type: 2}
+  whooshes:
+  - {fileID: 8300000, guid: 8b70a0fb40c237241a538f9ea21485cf, type: 3}

@@ -49,5 +49,8 @@ public class WeaponItems : Item
 
     public WeaponItemAction JumpAttack;
 
+    [Header("Whooshes")]
+    public AudioClip[] whooshes;
+
 
 }

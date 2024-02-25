@@ -121,8 +121,8 @@ public class PlayerCamera : MonoBehaviour
             leftAndRightLookAngle = transform.eulerAngles.y;
             upAndDownLookAngle = transform.eulerAngles.x;
         }
-        // ELSE ROTATE REGULARLY
-        else
+        // ELSE ROTATE REGULARLY IF ESCAPE MENU IS NOT OPEN
+        else if (!EscapeMenuManager.instance.escapeMenu.gameObject.activeSelf)
         {
             // ROTATE LEFT AND RIGHT BASED ON HORIZONTAL MOVEMENT OF THE MOUSE
             leftAndRightLookAngle += (PlayerInputManager.instance.cameraHorizontalInput * leftAndRightRotationSpeed) * Time.deltaTime;

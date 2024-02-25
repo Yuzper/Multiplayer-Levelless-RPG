@@ -30,6 +30,11 @@ public class PlayerUIManager : MonoBehaviour
         playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
     }
 
+    public void SetStartGameAsClient()
+    {
+        startGameAsClient = true;
+    }
+
     private void Start()
     {
         DontDestroyOnLoad(gameObject);

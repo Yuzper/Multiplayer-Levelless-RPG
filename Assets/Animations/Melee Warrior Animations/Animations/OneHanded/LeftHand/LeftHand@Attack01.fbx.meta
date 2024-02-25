@@ -454,13 +454,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.27227724
-        functionName: PlaySwordSwipeSFX
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.3389959
         functionName: DrainStaminaBasedAttack
         data: 
