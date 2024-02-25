@@ -374,6 +374,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9218599907498011321}
+  - {fileID: 964997153538542326}
   - {fileID: 3655360558201826164}
   - {fileID: 964997152158705652}
   m_Father: {fileID: 0}
@@ -552,7 +553,7 @@ MonoBehaviour:
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
-  lockOnTransform: {fileID: 0}
+  lockOnTransform: {fileID: 964997153538542326}
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 0
@@ -1235,7 +1236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 949031247782651231}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &964997152158705653
 NavMeshAgent:
@@ -1283,13 +1284,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964997153538542217}
-  m_LocalRotation: {x: 0.00000002107351, y: -0.016015377, z: -0.00000010536708, w: 0.99987173}
-  m_LocalPosition: {x: -0.055, y: -0.002, z: 0.07}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.001999855, y: 1.4170973, z: 0.06009364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3045409575102512859}
-  m_RootOrder: 3
+  m_Father: {fileID: 949031247782651231}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &964997153538542327
 MonoBehaviour:
@@ -1818,7 +1819,7 @@ Transform:
   m_Children:
   - {fileID: 9002848809962904300}
   m_Father: {fileID: 949031247782651231}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3484167365823384556
 GameObject:
@@ -2997,7 +2998,6 @@ Transform:
   - {fileID: 6077171034903674290}
   - {fileID: 2563048180695777627}
   - {fileID: 15742402333335399}
-  - {fileID: 964997153538542326}
   m_Father: {fileID: 9036538030445436857}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -119,6 +119,7 @@ public class PlayerCamera : MonoBehaviour
 
             // SAVE OUR ROTATIONS TO OUR LOOK ANGLES, SO WHEN WE UNLOCK IT DOESNT SNAP TOO FAR AWAY
             leftAndRightLookAngle = transform.eulerAngles.y;
+            //leftAndRightLookAngle = Mathf.Clamp(leftAndRightLookAngle, minimumPivot, maximumPivot);
             upAndDownLookAngle = transform.eulerAngles.x;
         }
         // ELSE ROTATE REGULARLY IF ESCAPE MENU IS NOT OPEN
@@ -267,11 +268,11 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetLockCameraHeight()
     {
+
         if (cameraLockOnHeightCoroutine != null)
         {
             StopCoroutine(cameraLockOnHeightCoroutine);
         }
-
         cameraLockOnHeightCoroutine = StartCoroutine(SetCameraHeight());
     }
 
@@ -312,7 +313,6 @@ public class PlayerCamera : MonoBehaviour
         Vector3 velocity = Vector3.zero;
         Vector3 newLockedCameraHeight = new Vector3(cameraPivotTransform.transform.localPosition.x, lockedCameraHeight);
         Vector3 newUnlockedCameraHeight = new Vector3(cameraPivotTransform.transform.localPosition.x, unlockedCameraHeight);
-
         while (timer < duration)
         {
             timer += Time.deltaTime;
@@ -321,12 +321,19 @@ public class PlayerCamera : MonoBehaviour
             {
                 if (player.playerCombatManager.currentTarget != null)
                 {
-                    cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedCameraHeight, ref velocity, setCameraHeightSpeed);
-                    cameraPivotTransform.transform.localRotation = Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), lockOnTargetFollowSpeed);
+                    cameraPivotTransform.transform.localPosition = 
+                        Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedCameraHeight, ref velocity, setCameraHeightSpeed);
+
+                    // todo delete. This is not needed a rotation is handle in handleRotation if locked on...
+                    //cameraPivotTransform.transform.localRotation = 
+                    //    Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), lockOnTargetFollowSpeed);
+
                 }
                 else
                 {
                     cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newUnlockedCameraHeight, ref velocity, setCameraHeightSpeed);
+                    cameraPivotTransform.transform.localRotation =
+                        Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), lockOnTargetFollowSpeed);
                 }
             }
             yield return null;
@@ -338,7 +345,9 @@ public class PlayerCamera : MonoBehaviour
             if (player.playerCombatManager.currentTarget != null)
             {
                 cameraPivotTransform.transform.localPosition = newLockedCameraHeight;
-                cameraPivotTransform.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                // todo delete. This is not needed a rotation is handle in handleRotation if locked on...
+                //cameraPivotTransform.transform.localRotation = Quaternion.Euler(0, 0, 0); 
+                
             }
             else
             {

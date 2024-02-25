@@ -473,7 +473,7 @@ Transform:
   m_Children:
   - {fileID: 5020482472798931689}
   m_Father: {fileID: 3780630715779446106}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1686210083533891738
 GameObject:
@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  characterCausingDamage: {fileID: 0}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
@@ -749,6 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  characterCausingDamage: {fileID: 0}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
@@ -1100,7 +1102,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3780630715779446106}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &3762905590742693872
 NavMeshAgent:
@@ -1148,13 +1150,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3762905591451736716}
-  m_LocalRotation: {x: 0.00000002107351, y: -0.016015377, z: -0.00000010536708, w: 0.99987173}
-  m_LocalPosition: {x: -0.055, y: -0.002, z: 0.07}
+  m_LocalRotation: {x: -0.0113239875, y: -0.011324047, z: -0.7070162, w: 0.7070161}
+  m_LocalPosition: {x: -0.002000004, y: 1.4170974, z: 0.06009364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1378007620332072670}
-  m_RootOrder: 3
+  m_Father: {fileID: 3780630715779446106}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3762905591451736818
 MonoBehaviour:
@@ -1667,6 +1669,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5094651692217825980}
+  - {fileID: 3762905591451736819}
   - {fileID: 857564580249189233}
   - {fileID: 3762905590742693873}
   m_Father: {fileID: 0}
@@ -1811,7 +1814,7 @@ MonoBehaviour:
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
-  lockOnTransform: {fileID: 0}
+  lockOnTransform: {fileID: 3762905591451736819}
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 0
@@ -2326,7 +2329,6 @@ Transform:
   - {fileID: 7857285623552126391}
   - {fileID: 1931230340026143070}
   - {fileID: 4137454417389490018}
-  - {fileID: 3762905591451736819}
   m_Father: {fileID: 4914806018424197052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
