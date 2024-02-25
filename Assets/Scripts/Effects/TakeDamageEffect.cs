@@ -133,7 +133,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         if (poiseIsBroken)
         {
             character.characterAnimatorManager.lastAnimationPlayed = damageAnimation;
-            character.characterAnimatorManager.PlayerTargetActionAnimation(damageAnimation, false);
+            character.characterAnimatorManager.PlayerTargetActionAnimation(damageAnimation, true);
         }
     }
 
