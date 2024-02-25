@@ -164,24 +164,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightMouseAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""2b708589-1fcc-42ce-a43c-f071c6bf5cd5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RightMouseChargeAttack"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""e1f9a11b-55ab-4897-895d-4bda70e6c9de"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold(pressPoint=0.05)"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dance"",
                     ""type"": ""Button"",
                     ""id"": ""1e294a45-de77-4b92-aebe-d543030b8d11"",
@@ -290,17 +272,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""27e7e308-2369-4e40-8116-cfe58eaf437a"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightMouseAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""6bd858d9-5d51-4ece-a65e-4f0e1dcf29b8"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
@@ -351,17 +322,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftMouseAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6677c6f6-fbd2-4f02-bf4e-f225d889d49c"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightMouseChargeAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -425,7 +385,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Escape Menu"",
+                    ""name"": ""EscapeMenu"",
                     ""type"": ""Button"",
                     ""id"": ""6f4986bf-7439-4617-b964-d7e3259fc0ba"",
                     ""expectedControlType"": ""Button"",
@@ -453,7 +413,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Escape Menu"",
+                    ""action"": ""EscapeMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -474,8 +434,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_LeftMouseAttack = m_PlayerActions.FindAction("LeftMouseAttack", throwIfNotFound: true);
         m_PlayerActions_LeftMouseChargeAttack = m_PlayerActions.FindAction("LeftMouseChargeAttack", throwIfNotFound: true);
-        m_PlayerActions_RightMouseAttack = m_PlayerActions.FindAction("RightMouseAttack", throwIfNotFound: true);
-        m_PlayerActions_RightMouseChargeAttack = m_PlayerActions.FindAction("RightMouseChargeAttack", throwIfNotFound: true);
         m_PlayerActions_Dance = m_PlayerActions.FindAction("Dance", throwIfNotFound: true);
         m_PlayerActions_Revival = m_PlayerActions.FindAction("Revival", throwIfNotFound: true);
         m_PlayerActions_ActionNumber1 = m_PlayerActions.FindAction("ActionNumber1", throwIfNotFound: true);
@@ -487,7 +445,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
-        m_UI_EscapeMenu = m_UI.FindAction("Escape Menu", throwIfNotFound: true);
+        m_UI_EscapeMenu = m_UI.FindAction("EscapeMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -617,8 +575,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_LeftMouseAttack;
     private readonly InputAction m_PlayerActions_LeftMouseChargeAttack;
-    private readonly InputAction m_PlayerActions_RightMouseAttack;
-    private readonly InputAction m_PlayerActions_RightMouseChargeAttack;
     private readonly InputAction m_PlayerActions_Dance;
     private readonly InputAction m_PlayerActions_Revival;
     private readonly InputAction m_PlayerActions_ActionNumber1;
@@ -635,8 +591,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @LeftMouseAttack => m_Wrapper.m_PlayerActions_LeftMouseAttack;
         public InputAction @LeftMouseChargeAttack => m_Wrapper.m_PlayerActions_LeftMouseChargeAttack;
-        public InputAction @RightMouseAttack => m_Wrapper.m_PlayerActions_RightMouseAttack;
-        public InputAction @RightMouseChargeAttack => m_Wrapper.m_PlayerActions_RightMouseChargeAttack;
         public InputAction @Dance => m_Wrapper.m_PlayerActions_Dance;
         public InputAction @Revival => m_Wrapper.m_PlayerActions_Revival;
         public InputAction @ActionNumber1 => m_Wrapper.m_PlayerActions_ActionNumber1;
@@ -666,12 +620,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LeftMouseChargeAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseChargeAttack;
                 @LeftMouseChargeAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseChargeAttack;
                 @LeftMouseChargeAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseChargeAttack;
-                @RightMouseAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
-                @RightMouseAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
-                @RightMouseAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
-                @RightMouseChargeAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseChargeAttack;
                 @Dance.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
@@ -712,12 +660,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LeftMouseChargeAttack.started += instance.OnLeftMouseChargeAttack;
                 @LeftMouseChargeAttack.performed += instance.OnLeftMouseChargeAttack;
                 @LeftMouseChargeAttack.canceled += instance.OnLeftMouseChargeAttack;
-                @RightMouseAttack.started += instance.OnRightMouseAttack;
-                @RightMouseAttack.performed += instance.OnRightMouseAttack;
-                @RightMouseAttack.canceled += instance.OnRightMouseAttack;
-                @RightMouseChargeAttack.started += instance.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.performed += instance.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.canceled += instance.OnRightMouseChargeAttack;
                 @Dance.started += instance.OnDance;
                 @Dance.performed += instance.OnDance;
                 @Dance.canceled += instance.OnDance;
@@ -801,8 +743,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLeftMouseAttack(InputAction.CallbackContext context);
         void OnLeftMouseChargeAttack(InputAction.CallbackContext context);
-        void OnRightMouseAttack(InputAction.CallbackContext context);
-        void OnRightMouseChargeAttack(InputAction.CallbackContext context);
         void OnDance(InputAction.CallbackContext context);
         void OnRevival(InputAction.CallbackContext context);
         void OnActionNumber1(InputAction.CallbackContext context);

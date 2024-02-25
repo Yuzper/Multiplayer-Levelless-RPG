@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c703e3e281b5e4fa638f81bb7627e8, type: 3}
   m_Name: Unarmed
   m_EditorClassIdentifier: 
-  itemName: 
-  itemIcon: {fileID: 0}
+  itemName: Unarmed
+  itemIcon: {fileID: 21300000, guid: bc60983560259e247b15d7ebf000827a, type: 3}
   itemDescription: 
   itemID: 0
   weaponModel: {fileID: 5740575227788992252, guid: bc0734bad4e2d4544b89139ff0944dd7,
@@ -48,3 +48,14 @@ MonoBehaviour:
   oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
     type: 2}
   JumpAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6, type: 2}
+  whooshes:
+  - {fileID: 8300000, guid: 0aadd833bb2d5c6459071cec3b57b6fc, type: 3}
+  - {fileID: 8300000, guid: bab2beee4e54b6b4884ba37eee560014, type: 3}
+  - {fileID: 8300000, guid: 479575cc89c3733419221428dae636ad, type: 3}
+  - {fileID: 8300000, guid: 7a043f0917c61774d94c1a6331f30f9c, type: 3}
+  - {fileID: 8300000, guid: 2ed46ddcc4f7dd549b61957f22cc624d, type: 3}
+  - {fileID: 8300000, guid: dfd9240fb951bf6498605be9a417b5de, type: 3}
+  - {fileID: 8300000, guid: a390f9932470d264da3696567a4a581c, type: 3}
+  - {fileID: 8300000, guid: ec37c89a97a3a194d98cecd9bb3a61d5, type: 3}
+  - {fileID: 8300000, guid: 5db80d54d2dafd348b6cae53c6d9924a, type: 3}
+  - {fileID: 8300000, guid: 37f1bb4806a676249891c3249bf962a2, type: 3}

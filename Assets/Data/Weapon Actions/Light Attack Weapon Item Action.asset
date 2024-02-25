@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef05db79743408c42881a8e1a041d9cf, type: 3}
-  m_Name: Heavy Attack Weapon Item Action RIGHT
+  m_Script: {fileID: 11500000, guid: 07bd004c0edb60743b5cbf5331f9dc62, type: 3}
+  m_Name: Light Attack Weapon Item Action
   m_EditorClassIdentifier: 
   actionID: 0
-  Heavy_Attack_01: RH_Charged_Attack_Opening_01
-  Heavy_Attack_02: RH_Charged_Attack_Opening_02
+  light_Attack_01: Left_Light_Attack_01
+  light_Attack_02: Left_Light_Attack_02

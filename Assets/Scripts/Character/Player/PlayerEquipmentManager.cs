@@ -72,7 +72,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         }
     }
 
-    public void SwitchRightWeapon()
+    public void SwitchRightWeapon_old()
     {
         if (!player.IsOwner) return;
 
@@ -143,6 +143,33 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         }
     }
 
+    public void SwitchRightWeapon()
+    {
+        if (!player.IsOwner) return;
+
+        // PLAY SWAPPING ANIMATION                               AnimationName ,isPerformingAction, applyRootMotion, canRotate, canMove
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, false, true, true);
+
+        WeaponItems selectedWeapon = null;
+
+        if (player.playerInventoryManager.rightHandWeaponIndex == 0)
+        {
+            // ADD ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
+            player.playerInventoryManager.rightHandWeaponIndex += 1;
+        }
+
+        else if (player.playerInventoryManager.rightHandWeaponIndex == 1)
+        {
+            // SUB ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
+            player.playerInventoryManager.rightHandWeaponIndex -= 1;
+        }
+
+        selectedWeapon = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex];
+        player.playerNetworkManager.currentRightHandWeaponID.Value = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID;
+        DecideDrawWeaponSound(selectedWeapon);
+        return;
+    }
+
     // LEFT WEAPON
     public void LoadLeftWeapon()
     {
@@ -162,7 +189,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         }
     }
 
-    public void SwitchLeftWeapon()
+    public void SwitchLeftWeapon_old()
     {
         if (!player.IsOwner) return;
 
@@ -235,6 +262,32 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         
     }
 
+    public void SwitchLeftWeapon()
+    {
+        if (!player.IsOwner) return;
+
+        // PLAY SWAPPING ANIMATION                               AnimationName ,isPerformingAction, applyRootMotion, canRotate, canMove
+        player.playerAnimatorManager.PlayerTargetActionAnimation("Swap_Weapon_Right", false, false, true, true);
+
+        WeaponItems selectedWeapon = null;
+
+        if (player.playerInventoryManager.leftHandWeaponIndex == 0)
+        {
+            // ADD ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
+            player.playerInventoryManager.leftHandWeaponIndex += 1;
+        }
+
+        else if (player.playerInventoryManager.leftHandWeaponIndex == 1)
+        {
+            // SUB ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
+            player.playerInventoryManager.leftHandWeaponIndex -= 1;
+        }
+
+        selectedWeapon = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex];
+        player.playerNetworkManager.currentLeftHandWeaponID.Value = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex].itemID;
+        DecideDrawWeaponSound(selectedWeapon);
+        return;
+    }
 
     private void DecideDrawWeaponSound(WeaponItems selectedWeapon)
     {

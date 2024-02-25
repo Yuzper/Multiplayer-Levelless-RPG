@@ -142,24 +142,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightMouseAttack",
-                    "type": "Button",
-                    "id": "2b708589-1fcc-42ce-a43c-f071c6bf5cd5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RightMouseChargeAttack",
-                    "type": "PassThrough",
-                    "id": "e1f9a11b-55ab-4897-895d-4bda70e6c9de",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(pressPoint=0.05)",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dance",
                     "type": "Button",
                     "id": "1e294a45-de77-4b92-aebe-d543030b8d11",
@@ -268,17 +250,6 @@
                 },
                 {
                     "name": "",
-                    "id": "27e7e308-2369-4e40-8116-cfe58eaf437a",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightMouseAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6bd858d9-5d51-4ece-a65e-4f0e1dcf29b8",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -329,17 +300,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftMouseAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6677c6f6-fbd2-4f02-bf4e-f225d889d49c",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightMouseChargeAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 116302440
+  GlobalObjectIdHash: 3713777260
   InScenePlacedSourceGlobalObjectIdHash: 3713777260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1397,12 +1397,10 @@ MonoBehaviour:
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   - {fileID: 11400000, guid: 0b018f0518d852844b8320e24e4fbc85, type: 2}
-  - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   rightHandWeaponIndex: 0
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   - {fileID: 11400000, guid: 529c5ebf1fd86344c8f817b9a09c676d, type: 2}
-  - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   leftHandWeaponIndex: 0
 --- !u!114 &512546009604817133
 MonoBehaviour:

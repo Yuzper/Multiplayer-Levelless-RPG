@@ -41,10 +41,7 @@ public class WeaponItems : Item
     public float jumpAttackStaminaCostMultiplier = 2f; // Adjusts the cost to perform this attack from the base cost
 
     [Header("Actions")]
-    public WeaponItemAction oneHandRightMouseAttack;
     public WeaponItemAction oneHandLeftMouseAttack;
-
-    public WeaponItemAction oneHandHeavyRightMouseAttack;
     public WeaponItemAction oneHandHeavyLeftMouseAttack;
 
     public WeaponItemAction JumpAttack;
