@@ -30,15 +30,18 @@ MonoBehaviour:
   poiseDamage: 25
   light_Attack_01_Modifier: 1
   light_Attack_02_Modifier: 1.5
+  light_Attack_03_Modifier: 2
   heavy_Attack_01_Modifier: 2
   heavy_Attack_02_Modifier: 2.5
   charge_Attack_01_Modifier: 3
   charge_Attack_02_Modifier: 3.5
   jump_Attack_Modifier: 4
+  unarmed_Melee_Attack_Modifier: 1
   baseStaminaCost: 20
   lightAttackStaminaCostMultiplier: 1
   heavyAttackStaminaCostMultiplier: 1.5
   jumpAttackStaminaCostMultiplier: 2
+  UnarmedMeleeAttackStaminaCostMultiplier: 1
   oneHandLeftMouseAttack: {fileID: 11400000, guid: 71a263f0dd4081141a634d18936fc302,
     type: 2}
   oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,

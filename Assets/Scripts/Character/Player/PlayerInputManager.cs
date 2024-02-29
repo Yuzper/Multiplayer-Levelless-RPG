@@ -369,10 +369,10 @@ public class PlayerInputManager : MonoBehaviour
             player.playerEquipmentManager.SwitchRightWeapon();
         }
 
-        if (actionNumber3Input && player.playerInventoryManager.currentRightHandWeapon != null)
+        if (actionNumber3Input)
         {
             actionNumber3Input = false;
-            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.JumpAttack, player.playerInventoryManager.currentRightHandWeapon);
+            
         }
     }
 

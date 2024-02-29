@@ -37,24 +37,20 @@ public class PlayerCombatManager : CharacterCombatManager
         {
             case AttackType.LightAttack01:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
-
             case AttackType.LightAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+            case AttackType.LightAttack03:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
 
             case AttackType.HeavyAttack01:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
-
             case AttackType.HeavyAttack02:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
 
             case AttackType.ChargedAttack01:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
-
             case AttackType.ChargedAttack02:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
-
-            case AttackType.JumpAttack:
-                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.jumpAttackStaminaCostMultiplier;
 
             case AttackType.UnarmedMeleeAttack:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.UnarmedMeleeAttackStaminaCostMultiplier;
@@ -79,6 +75,9 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.LightAttack02:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
+            case AttackType.LightAttack03:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
 
             case AttackType.HeavyAttack01:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
@@ -94,9 +93,6 @@ public class PlayerCombatManager : CharacterCombatManager
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
 
-            case AttackType.JumpAttack:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
             case AttackType.UnarmedMeleeAttack:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;

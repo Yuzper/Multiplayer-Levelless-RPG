@@ -30,6 +30,7 @@ MonoBehaviour:
   poiseDamage: 10
   light_Attack_01_Modifier: 1
   light_Attack_02_Modifier: 1
+  light_Attack_03_Modifier: 1
   heavy_Attack_01_Modifier: 1
   heavy_Attack_02_Modifier: 1
   charge_Attack_01_Modifier: 1

@@ -7,6 +7,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 {
     [SerializeField] string light_Attack_01 = "";
     [SerializeField] string light_Attack_02 = "";
+    [SerializeField] string light_Attack_03 = "";
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
@@ -31,6 +32,10 @@ public class LightAttackWeaponItemAction : WeaponItemAction
             if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
             {
                 playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack02, light_Attack_02, true, true, true, false);
+            }
+            else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_02)
+            {
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack03, light_Attack_03, true, true, true, false);
             }
             else
             {

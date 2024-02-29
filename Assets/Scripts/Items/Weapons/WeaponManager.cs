@@ -22,14 +22,14 @@ public class WeaponManager : MonoBehaviour
 
         meleeDamageCollider.light_Attack_01_Modifier = weapon.light_Attack_01_Modifier;
         meleeDamageCollider.light_Attack_02_Modifier = weapon.light_Attack_02_Modifier;
+        meleeDamageCollider.light_Attack_03_Modifier = weapon.light_Attack_03_Modifier;
 
         meleeDamageCollider.heavy_Attack_01_Modifier = weapon.heavy_Attack_01_Modifier;
         meleeDamageCollider.heavy_Attack_02_Modifier = weapon.heavy_Attack_02_Modifier;
 
         meleeDamageCollider.charge_Attack_01_Modifier = weapon.charge_Attack_01_Modifier;
         meleeDamageCollider.charge_Attack_02_Modifier = weapon.charge_Attack_02_Modifier;
-
-        meleeDamageCollider.jump_Attack_Modifier = weapon.jump_Attack_Modifier;
+        
         meleeDamageCollider.unarmed_Melee_Attack_Modifier = weapon.unarmed_Melee_Attack_Modifier;
 
     }

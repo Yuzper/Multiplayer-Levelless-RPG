@@ -6,7 +6,6 @@ using Unity.Netcode;
 public class CharacterCombatManager : NetworkBehaviour
 {
     protected CharacterManager character;
-    public bool isPerformingJumpAttack = false;
 
     [Header("Last Attack Animation Performed")]
     public string lastAttackAnimationPerformed;

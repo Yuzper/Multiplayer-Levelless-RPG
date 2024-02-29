@@ -46,17 +46,38 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.1703854
+        functionName: OpenDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.23492455
+        functionName: DrainStaminaBasedAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.47330803
+        functionName: CloseDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -518,33 +539,33 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: OneHandCombo(Clone)
+    - name: OneHandCombo_Pt3(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Erika_Archer_Eyes_Mesh
-      parentName: OneHandCombo(Clone)
+      parentName: OneHandCombo_Pt3(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Erika_Archer_Body_Mesh
-      parentName: OneHandCombo(Clone)
+      parentName: OneHandCombo_Pt3(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Erika_Archer_Clothes_Mesh
-      parentName: OneHandCombo(Clone)
+      parentName: OneHandCombo_Pt3(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Erika_Archer_Eyelashes_Mesh
-      parentName: OneHandCombo(Clone)
+      parentName: OneHandCombo_Pt3(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: OneHandCombo(Clone)
+      parentName: OneHandCombo_Pt3(Clone)
       position: {x: 0.008512277, y: 1.071655, z: 0.00738646}
       rotation: {x: -6.7762636e-17, y: -0.000000023283064, z: 0.000000008731149, w: 1}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}

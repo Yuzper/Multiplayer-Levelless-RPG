@@ -59,7 +59,7 @@ public enum WeaponType
 
 // THIS IS USED TO CALCULATE DAMAGE BASED ON ATTACK TYPE
 public enum AttackType
-{
+{ // WHEN REORDING ENUMS ALL VALUES ON INDEXES HIGHER THAN THE ONE CHANGED WILL BE OFFSET!!!
     LightAttack01,
     LightAttack02,
     HeavyAttack01,
@@ -67,5 +67,6 @@ public enum AttackType
     ChargedAttack01,
     ChargedAttack02,
     JumpAttack,
-    UnarmedMeleeAttack
+    UnarmedMeleeAttack,
+    LightAttack03
 }
