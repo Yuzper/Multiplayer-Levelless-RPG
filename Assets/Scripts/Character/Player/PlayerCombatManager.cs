@@ -11,7 +11,6 @@ public class PlayerCombatManager : CharacterCombatManager
 
     [Header("Flags")]
     public bool canComboWithWeapon = false;
-    //public bool isPerformingJumpAttack = false; This variable is moved to CharacterCombatManager
 
     override protected void Awake()
     {
@@ -57,6 +56,9 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.JumpAttack:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.jumpAttackStaminaCostMultiplier;
 
+            case AttackType.UnarmedMeleeAttack:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.UnarmedMeleeAttackStaminaCostMultiplier;
+
             default:
                 return 100000f; // Random hard coded value that should not be possible to reach
         }
@@ -93,6 +95,9 @@ public class PlayerCombatManager : CharacterCombatManager
                 break;
 
             case AttackType.JumpAttack:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.UnarmedMeleeAttack:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
             default:

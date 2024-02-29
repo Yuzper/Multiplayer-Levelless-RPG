@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Light Attack Action")]
+[CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Unarmed Melee Action")]
 public class UnarmedWeaponItemAction : WeaponItemAction
 {
     [SerializeField] string unarmed_Attack_01 = "";

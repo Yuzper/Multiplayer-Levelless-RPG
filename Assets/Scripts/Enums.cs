@@ -66,5 +66,6 @@ public enum AttackType
     HeavyAttack02,
     ChargedAttack01,
     ChargedAttack02,
-    JumpAttack
+    JumpAttack,
+    UnarmedMeleeAttack
 }

@@ -12,6 +12,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
     public float charge_Attack_01_Modifier;
     public float charge_Attack_02_Modifier;
     public float jump_Attack_Modifier;
+    public float unarmed_Melee_Attack_Modifier;
 
     protected override void Awake()
     {
@@ -81,9 +82,14 @@ public class MeleeWeaponDamageCollider : DamageCollider
             case AttackType.JumpAttack:
                 ApplyAttackDamageModifiers(jump_Attack_Modifier, damageEffect);
                 break;
+            case AttackType.UnarmedMeleeAttack:
+                ApplyAttackDamageModifiers(unarmed_Melee_Attack_Modifier, damageEffect);
+                break;
+
             default:
                 break;
         }
+        
 
         // Explanation: https://youtu.be/v8WNgipqbOs?si=gMGpO5drVUuAiXI_&t=998
         if (characterCausingDamage.IsOwner)

@@ -30,6 +30,7 @@ public class WeaponManager : MonoBehaviour
         meleeDamageCollider.charge_Attack_02_Modifier = weapon.charge_Attack_02_Modifier;
 
         meleeDamageCollider.jump_Attack_Modifier = weapon.jump_Attack_Modifier;
+        meleeDamageCollider.unarmed_Melee_Attack_Modifier = weapon.unarmed_Melee_Attack_Modifier;
 
     }
 

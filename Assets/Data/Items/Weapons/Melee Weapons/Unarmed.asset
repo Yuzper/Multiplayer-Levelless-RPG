@@ -28,26 +28,24 @@ MonoBehaviour:
   holyDamage: 0
   lightningDamage: 0
   poiseDamage: 10
-  light_Attack_01_Modifier: 1.1
-  light_Attack_02_Modifier: 1.5
-  heavy_Attack_01_Modifier: 2
-  heavy_Attack_02_Modifier: 2.5
-  charge_Attack_01_Modifier: 3
-  charge_Attack_02_Modifier: 3.5
-  jump_Attack_Modifier: 4
-  baseStaminaCost: 20
-  lightAttackStaminaCostMultiplier: 0.9
-  heavyAttackStaminaCostMultiplier: 1.5
-  jumpAttackStaminaCostMultiplier: 2
-  oneHandRightMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
+  light_Attack_01_Modifier: 1
+  light_Attack_02_Modifier: 1
+  heavy_Attack_01_Modifier: 1
+  heavy_Attack_02_Modifier: 1
+  charge_Attack_01_Modifier: 1
+  charge_Attack_02_Modifier: 1
+  jump_Attack_Modifier: 1
+  unarmed_Melee_Attack_Modifier: 1
+  baseStaminaCost: 10
+  lightAttackStaminaCostMultiplier: 1
+  heavyAttackStaminaCostMultiplier: 1
+  jumpAttackStaminaCostMultiplier: 1
+  UnarmedMeleeAttackStaminaCostMultiplier: 1
+  oneHandLeftMouseAttack: {fileID: 11400000, guid: 32cce9310a0ef534c9dd43c54c8748b4,
     type: 2}
-  oneHandLeftMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
+  oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 32cce9310a0ef534c9dd43c54c8748b4,
     type: 2}
-  oneHandHeavyRightMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
-    type: 2}
-  oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6,
-    type: 2}
-  JumpAttack: {fileID: 11400000, guid: 522f9361f311b644ca5fe8d6804c77d6, type: 2}
+  JumpAttack: {fileID: 11400000, guid: 32cce9310a0ef534c9dd43c54c8748b4, type: 2}
   whooshes:
   - {fileID: 8300000, guid: 0aadd833bb2d5c6459071cec3b57b6fc, type: 3}
   - {fileID: 8300000, guid: bab2beee4e54b6b4884ba37eee560014, type: 3}
