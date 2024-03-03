@@ -32,7 +32,7 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     [Header("Stats")]
     // Constitution determines how much health a character has.
-    public NetworkVariable<int> constitution = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> constitution = new NetworkVariable<int>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Intelligence determines how much mana a character has.
     public NetworkVariable<int> intelligence = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Endurance determines how much stamina a character has.

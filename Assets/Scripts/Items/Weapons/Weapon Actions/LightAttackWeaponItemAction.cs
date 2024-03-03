@@ -29,13 +29,13 @@ public class LightAttackWeaponItemAction : WeaponItemAction
         {
             playerPerformingAction.playerCombatManager.canComboWithWeapon = false;
 
-            if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
-            {
-                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack02, light_Attack_02, true, true, true, false);
-            }
-            else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_02)
+            if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_02)
             {
                 playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack03, light_Attack_03, true, true, true, false);
+            }
+            else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
+            {
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack02, light_Attack_02, true, true, true, false);
             }
             else
             {

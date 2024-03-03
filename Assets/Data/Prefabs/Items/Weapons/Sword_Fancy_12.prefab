@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 5390722295563896746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5494631635251429306}
@@ -189,19 +189,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  characterCausingDamage: {fileID: 0}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
-  characterCausingDamage: {fileID: 0}
   light_Attack_01_Modifier: 0
   light_Attack_02_Modifier: 0
+  light_Attack_03_Modifier: 0
   heavy_Attack_01_Modifier: 0
   heavy_Attack_02_Modifier: 0
   charge_Attack_01_Modifier: 0
   charge_Attack_02_Modifier: 0
   jump_Attack_Modifier: 0
+  unarmed_Melee_Attack_Modifier: 0
 --- !u!1 &5390722295638708418
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,12 +227,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5390722295638708418}
-  m_LocalRotation: {x: -0.17334768, y: 0.04153245, z: 0.0073169363, w: 0.98395735}
-  m_LocalPosition: {x: -0.117, y: 0.01, z: 0.042}
+  m_LocalRotation: {x: 0.015666619, y: 0.09019709, z: -0.6029916, w: 0.7924773}
+  m_LocalPosition: {x: -0.037, y: 0.078, z: 0.038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5494631635251429306}
   m_Father: {fileID: 5390722294476993605}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -19.983, y: 4.834, z: 0}
+  m_LocalEulerAnglesHint: {x: 7.678, y: 7.192, z: -74.051}

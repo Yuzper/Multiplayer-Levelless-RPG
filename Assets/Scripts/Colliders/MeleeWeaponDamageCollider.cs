@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeleeWeaponDamageCollider : DamageCollider
 {
     [Header("Weapon Attack Modifiers")]
+    public float unarmed_Melee_Attack_Modifier;
     public float light_Attack_01_Modifier;
     public float light_Attack_02_Modifier;
     public float light_Attack_03_Modifier;
@@ -12,8 +13,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
     public float heavy_Attack_02_Modifier;
     public float charge_Attack_01_Modifier;
     public float charge_Attack_02_Modifier;
-    public float jump_Attack_Modifier;
-    public float unarmed_Melee_Attack_Modifier;
 
     protected override void Awake()
     {
@@ -62,6 +61,9 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
         switch (characterCausingDamage.characterCombatManager.currentAttackType)
         {
+            case AttackType.UnarmedMeleeAttack:
+                ApplyAttackDamageModifiers(unarmed_Melee_Attack_Modifier, damageEffect);
+                break;
             case AttackType.LightAttack01:
                 ApplyAttackDamageModifiers(light_Attack_01_Modifier, damageEffect);
                 break;
@@ -83,12 +85,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
                 break;
             case AttackType.ChargedAttack02:
                 ApplyAttackDamageModifiers(charge_Attack_02_Modifier, damageEffect);
-                break;
-            case AttackType.JumpAttack:
-                ApplyAttackDamageModifiers(jump_Attack_Modifier, damageEffect);
-                break;
-            case AttackType.UnarmedMeleeAttack:
-                ApplyAttackDamageModifiers(unarmed_Melee_Attack_Modifier, damageEffect);
                 break;
 
             default:

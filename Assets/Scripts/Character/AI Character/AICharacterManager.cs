@@ -10,6 +10,9 @@ public class AICharacterManager : CharacterManager
     [HideInInspector] public AICharacterCombatManager aICharacterCombatManager;
     [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
 
+    [Header("TEMP Invulnerable")]
+    [SerializeField] bool invulnerable = false;
+
     [Header("Navmesh Agent")]
     public NavMeshAgent navmeshAgent;
 
@@ -56,6 +59,29 @@ public class AICharacterManager : CharacterManager
         }
         
     }
+
+    public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+    {
+        if (IsOwner && invulnerable == false)
+        {
+            characterNetworkManager.currentHealth.Value = 0;
+            isDead.Value = true;
+            characterLocomotionManager.canMove = false;
+            characterLocomotionManager.canRotate = false;
+
+            // Reset any flags here that need to be reset
+
+            if (!manuallySelectDeathAnimation)
+            {
+                characterAnimatorManager.PlayerTargetActionAnimation("Dead_01", true);
+            }
+
+            yield return new WaitForSeconds(5f); // Wait for 5 seconds
+
+            Destroy(gameObject); // Destroy the character after 5 seconds
+        }
+    }
+
 
     private void ProcessStateMachine()
     {

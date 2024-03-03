@@ -44,11 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4c6f2b4e472e74181fcff11f2c9507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  despawnCharacters: 0
-  respawnCharacters: 0
-  aiCharacters:
-  - {fileID: 1322495801545780366, guid: 024cc4c63909b8c48855e48536afd42f, type: 3}
-  - {fileID: 459492819286163429, guid: db78b11f5d5dccd47b6936d90d01e754, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  aiCharacterSpawners: []
   spawnedCharacters: []

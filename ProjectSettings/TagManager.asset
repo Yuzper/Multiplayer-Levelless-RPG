@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Teleporter
   - Teleport Platform
+  - Teleport Arena
   layers:
   - Default
   - TransparentFX

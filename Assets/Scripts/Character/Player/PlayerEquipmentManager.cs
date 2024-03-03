@@ -294,7 +294,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (playSoundCheck > 2)
         {
             // Deciding draw weapon sound based on the weapon type.
-            if (selectedWeapon.weaponType == WeaponType.Sword)
+            if (selectedWeapon.weaponType == WeaponType.OneHandedSword || selectedWeapon.weaponType == WeaponType.TwoHandedSword)
             {
                 player.playerSoundFXManager.PlayDrawSwordSFX();
             }

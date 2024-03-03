@@ -89,7 +89,8 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
         }
         // STATS
-        playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+        // Moved to CharacterManager
+        //playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
 
         // LOCK ON
         playerNetworkManager.isLockedOn.OnValueChanged += playerNetworkManager.OnIsLockedOnChanged;
@@ -135,7 +136,7 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
         }
         // STATS
-        playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
+        //playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
 
         // LOCK ON
         playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;

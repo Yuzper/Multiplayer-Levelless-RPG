@@ -15,7 +15,13 @@ public class Box_Collision_Script : MonoBehaviour
             Debug.Log("TELEPORT PLATFORM");
             other.transform.position = new Vector3(-4, 41, -8);
         }
-        else if (other.CompareTag("Player"))
+        else if (this.gameObject.CompareTag("Teleport Arena") && other.CompareTag("Player"))
+        {
+            // TELEPORT PLATFORM LOGIC
+            Debug.Log("TELEPORT ARENA");
+            other.transform.position = new Vector3(-37, 4, -30);
+        }
+        else if (this.gameObject.CompareTag("Teleporter") && other.CompareTag("Player")) 
         {
             // TELEPORT WORLD LOGIC
             Debug.Log("TELEPORT WORLD");

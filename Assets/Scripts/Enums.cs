@@ -51,22 +51,32 @@ public enum WeaponModelSlot
 public enum WeaponType
 {
     Unarmed,
-    Sword,
+    FistWeapon,
+    OneHandedSword,
+    TwoHandedSword,
+    OneHandedAxe,
+    TwoHandedAxe,
+    OneHandedMace,
+    TwoHandedMace,
+    Polearm,
     Dagger,
     Bow,
-    Staff
+    Crossbow,
+    Wand,
+    Staff,
+    ThrowingProjectile,
+    Misc
 }
 
 // THIS IS USED TO CALCULATE DAMAGE BASED ON ATTACK TYPE
 public enum AttackType
 { // WHEN REORDING ENUMS ALL VALUES ON INDEXES HIGHER THAN THE ONE CHANGED WILL BE OFFSET!!!
+    UnarmedMeleeAttack,
     LightAttack01,
     LightAttack02,
+    LightAttack03,
     HeavyAttack01,
     HeavyAttack02,
     ChargedAttack01,
-    ChargedAttack02,
-    JumpAttack,
-    UnarmedMeleeAttack,
-    LightAttack03
+    ChargedAttack02
 }
