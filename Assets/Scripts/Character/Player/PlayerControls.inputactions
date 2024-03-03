@@ -187,6 +187,60 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ActionNumber4",
+                    "type": "Button",
+                    "id": "f44e6bde-d4b4-4556-a645-adbb58c41149",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber5",
+                    "type": "Button",
+                    "id": "72094e09-d2ad-4f8f-903e-8dcbffbc366a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber6",
+                    "type": "Button",
+                    "id": "97ea46eb-c8e4-435f-9703-eb76fc273af7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber7",
+                    "type": "Button",
+                    "id": "f8dd9a1e-6fbc-44dc-bb01-ae4610aabe10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber8",
+                    "type": "Button",
+                    "id": "bd6c1a0b-66e2-4dc0-b280-a24f75f532de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber9",
+                    "type": "Button",
+                    "id": "cffbc065-b0fa-4c1a-962f-53fbf3f074ba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Lock On",
                     "type": "Button",
                     "id": "cc845a24-5537-4a58-a287-9cd437e91b87",
@@ -344,6 +398,72 @@
                     "processors": "",
                     "groups": "",
                     "action": "Seek Right Lock On Target",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25cd6f1c-343e-4aad-9b3d-2dc90efa52f3",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a76df9bc-3c7f-4668-be76-97b1b21cda98",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "955e738c-7c13-4bf0-8312-00a5a9c8fdc7",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1932ef6e-550f-483d-81cb-396bfda853b4",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f1b3fc8-b604-4bdd-af07-115d1a6f9133",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber8",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e2bdd67-9d73-4e6f-9a8c-abb4b3b9c09f",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber9",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

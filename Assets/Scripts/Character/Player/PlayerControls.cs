@@ -209,6 +209,60 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ActionNumber4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f44e6bde-d4b4-4556-a645-adbb58c41149"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber5"",
+                    ""type"": ""Button"",
+                    ""id"": ""72094e09-d2ad-4f8f-903e-8dcbffbc366a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber6"",
+                    ""type"": ""Button"",
+                    ""id"": ""97ea46eb-c8e4-435f-9703-eb76fc273af7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber7"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8dd9a1e-6fbc-44dc-bb01-ae4610aabe10"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber8"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd6c1a0b-66e2-4dc0-b280-a24f75f532de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber9"",
+                    ""type"": ""Button"",
+                    ""id"": ""cffbc065-b0fa-4c1a-962f-53fbf3f074ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Lock On"",
                     ""type"": ""Button"",
                     ""id"": ""cc845a24-5537-4a58-a287-9cd437e91b87"",
@@ -368,6 +422,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Seek Right Lock On Target"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25cd6f1c-343e-4aad-9b3d-2dc90efa52f3"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a76df9bc-3c7f-4668-be76-97b1b21cda98"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""955e738c-7c13-4bf0-8312-00a5a9c8fdc7"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1932ef6e-550f-483d-81cb-396bfda853b4"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f1b3fc8-b604-4bdd-af07-115d1a6f9133"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e2bdd67-9d73-4e6f-9a8c-abb4b3b9c09f"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -439,6 +559,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_ActionNumber1 = m_PlayerActions.FindAction("ActionNumber1", throwIfNotFound: true);
         m_PlayerActions_ActionNumber2 = m_PlayerActions.FindAction("ActionNumber2", throwIfNotFound: true);
         m_PlayerActions_ActionNumber3 = m_PlayerActions.FindAction("ActionNumber3", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber4 = m_PlayerActions.FindAction("ActionNumber4", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber5 = m_PlayerActions.FindAction("ActionNumber5", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber6 = m_PlayerActions.FindAction("ActionNumber6", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber7 = m_PlayerActions.FindAction("ActionNumber7", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber8 = m_PlayerActions.FindAction("ActionNumber8", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber9 = m_PlayerActions.FindAction("ActionNumber9", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
@@ -580,6 +706,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_ActionNumber1;
     private readonly InputAction m_PlayerActions_ActionNumber2;
     private readonly InputAction m_PlayerActions_ActionNumber3;
+    private readonly InputAction m_PlayerActions_ActionNumber4;
+    private readonly InputAction m_PlayerActions_ActionNumber5;
+    private readonly InputAction m_PlayerActions_ActionNumber6;
+    private readonly InputAction m_PlayerActions_ActionNumber7;
+    private readonly InputAction m_PlayerActions_ActionNumber8;
+    private readonly InputAction m_PlayerActions_ActionNumber9;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
@@ -596,6 +728,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @ActionNumber1 => m_Wrapper.m_PlayerActions_ActionNumber1;
         public InputAction @ActionNumber2 => m_Wrapper.m_PlayerActions_ActionNumber2;
         public InputAction @ActionNumber3 => m_Wrapper.m_PlayerActions_ActionNumber3;
+        public InputAction @ActionNumber4 => m_Wrapper.m_PlayerActions_ActionNumber4;
+        public InputAction @ActionNumber5 => m_Wrapper.m_PlayerActions_ActionNumber5;
+        public InputAction @ActionNumber6 => m_Wrapper.m_PlayerActions_ActionNumber6;
+        public InputAction @ActionNumber7 => m_Wrapper.m_PlayerActions_ActionNumber7;
+        public InputAction @ActionNumber8 => m_Wrapper.m_PlayerActions_ActionNumber8;
+        public InputAction @ActionNumber9 => m_Wrapper.m_PlayerActions_ActionNumber9;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @SeekLeftLockOnTarget => m_Wrapper.m_PlayerActions_SeekLeftLockOnTarget;
         public InputAction @SeekRightLockOnTarget => m_Wrapper.m_PlayerActions_SeekRightLockOnTarget;
@@ -635,6 +773,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber3.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
                 @ActionNumber3.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
                 @ActionNumber3.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
+                @ActionNumber4.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber4;
+                @ActionNumber4.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber4;
+                @ActionNumber4.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber4;
+                @ActionNumber5.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber5;
+                @ActionNumber5.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber5;
+                @ActionNumber5.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber5;
+                @ActionNumber6.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber6;
+                @ActionNumber6.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber6;
+                @ActionNumber6.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber6;
+                @ActionNumber7.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber7;
+                @ActionNumber7.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber7;
+                @ActionNumber7.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber7;
+                @ActionNumber8.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber8;
+                @ActionNumber8.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber8;
+                @ActionNumber8.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber8;
+                @ActionNumber9.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber9;
+                @ActionNumber9.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber9;
+                @ActionNumber9.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber9;
                 @LockOn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
@@ -675,6 +831,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber3.started += instance.OnActionNumber3;
                 @ActionNumber3.performed += instance.OnActionNumber3;
                 @ActionNumber3.canceled += instance.OnActionNumber3;
+                @ActionNumber4.started += instance.OnActionNumber4;
+                @ActionNumber4.performed += instance.OnActionNumber4;
+                @ActionNumber4.canceled += instance.OnActionNumber4;
+                @ActionNumber5.started += instance.OnActionNumber5;
+                @ActionNumber5.performed += instance.OnActionNumber5;
+                @ActionNumber5.canceled += instance.OnActionNumber5;
+                @ActionNumber6.started += instance.OnActionNumber6;
+                @ActionNumber6.performed += instance.OnActionNumber6;
+                @ActionNumber6.canceled += instance.OnActionNumber6;
+                @ActionNumber7.started += instance.OnActionNumber7;
+                @ActionNumber7.performed += instance.OnActionNumber7;
+                @ActionNumber7.canceled += instance.OnActionNumber7;
+                @ActionNumber8.started += instance.OnActionNumber8;
+                @ActionNumber8.performed += instance.OnActionNumber8;
+                @ActionNumber8.canceled += instance.OnActionNumber8;
+                @ActionNumber9.started += instance.OnActionNumber9;
+                @ActionNumber9.performed += instance.OnActionNumber9;
+                @ActionNumber9.canceled += instance.OnActionNumber9;
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
@@ -748,6 +922,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnActionNumber1(InputAction.CallbackContext context);
         void OnActionNumber2(InputAction.CallbackContext context);
         void OnActionNumber3(InputAction.CallbackContext context);
+        void OnActionNumber4(InputAction.CallbackContext context);
+        void OnActionNumber5(InputAction.CallbackContext context);
+        void OnActionNumber6(InputAction.CallbackContext context);
+        void OnActionNumber7(InputAction.CallbackContext context);
+        void OnActionNumber8(InputAction.CallbackContext context);
+        void OnActionNumber9(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnSeekLeftLockOnTarget(InputAction.CallbackContext context);
         void OnSeekRightLockOnTarget(InputAction.CallbackContext context);
