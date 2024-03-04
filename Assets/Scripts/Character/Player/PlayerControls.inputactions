@@ -124,7 +124,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftMouseAttack",
+                    "name": "MainHandAttack",
                     "type": "Button",
                     "id": "1d1fcb02-11c1-4437-96bf-d5f201c469c9",
                     "expectedControlType": "Button",
@@ -133,7 +133,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftMouseChargeAttack",
+                    "name": "MainHandChargeAttack",
                     "type": "PassThrough",
                     "id": "93c6e28c-db30-4dde-9d27-9b2ed9b9345d",
                     "expectedControlType": "Button",
@@ -353,7 +353,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftMouseAttack",
+                    "action": "MainHandAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -364,7 +364,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftMouseChargeAttack",
+                    "action": "MainHandChargeAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

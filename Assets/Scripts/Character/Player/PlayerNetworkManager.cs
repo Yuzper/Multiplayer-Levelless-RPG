@@ -12,10 +12,10 @@ public class PlayerNetworkManager : CharacterNetworkManager
 
     [Header("Equipment")]
     public NetworkVariable<int> currentWeaponBeingUsed = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<int> currentRightHandWeaponID = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<int> currentLeftHandWeaponID = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<bool> isUsingRightHand = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public NetworkVariable<bool> isUsingLeftHand = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> currentMainHandWeaponID = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> currentOffHandWeaponID = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isUsingMainHand = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isUsingOffHand = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     protected override void Awake()
     {
@@ -24,17 +24,17 @@ public class PlayerNetworkManager : CharacterNetworkManager
         player = GetComponent<PlayerManager>();
     }
 
-    public void SetCharacterActionHand(bool rightHandedAction)
+    public void SetCharacterActionHand(bool mainHandedAction)
     {
-        if (rightHandedAction)
+        if (mainHandedAction)
         {
-            isUsingRightHand.Value = true;
-            isUsingLeftHand.Value = false;
+            isUsingMainHand.Value = true;
+            isUsingOffHand.Value = false;
         }
         else
         {
-            isUsingRightHand.Value = false;
-            isUsingLeftHand.Value = true;
+            isUsingMainHand.Value = false;
+            isUsingOffHand.Value = true;
         }
     }
 
@@ -57,18 +57,18 @@ public class PlayerNetworkManager : CharacterNetworkManager
         currentStamina.Value = maxStamina.Value; // When setting new max fill resource bar to max like a level up
     }
 
-    public void OnCurrentRightHandWeaponIDChange(int oldID, int newID)
+    public void OnCurrentMainHandWeaponIDChange(int oldID, int newID)
     {
         WeaponItems newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponByID(newID));
-        player.playerInventoryManager.currentRightHandWeapon = newWeapon;
-        player.playerEquipmentManager.LoadRightWeapon();
+        player.playerInventoryManager.currentMainHandWeapon = newWeapon;
+        player.playerEquipmentManager.LoadMainHandWeapon();
     }
 
-    public void OnCurrentLeftHandWeaponIDChange(int oldID, int newID)
+    public void OnCurrentOffHandWeaponIDChange(int oldID, int newID)
     {
         WeaponItems newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponByID(newID));
-        player.playerInventoryManager.currentLeftHandWeapon = newWeapon;
-        player.playerEquipmentManager.LoadLeftWeapon();
+        player.playerInventoryManager.currentOffHandWeapon = newWeapon;
+        player.playerEquipmentManager.LoadOffHandWeapon();
     }
 
     public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID)

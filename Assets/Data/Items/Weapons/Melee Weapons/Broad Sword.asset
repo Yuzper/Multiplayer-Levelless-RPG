@@ -40,9 +40,9 @@ MonoBehaviour:
   UnarmedMeleeAttackStaminaCostMultiplier: 1
   lightAttackStaminaCostMultiplier: 1
   heavyAttackStaminaCostMultiplier: 1.5
-  oneHandLeftMouseAttack: {fileID: 11400000, guid: 71a263f0dd4081141a634d18936fc302,
+  oneHandMainHandMouseAttack: {fileID: 11400000, guid: 71a263f0dd4081141a634d18936fc302,
     type: 2}
-  oneHandHeavyLeftMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,
+  oneHandHeavyMainHandMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,
     type: 2}
   whooshes:
   - {fileID: 8300000, guid: 8b70a0fb40c237241a538f9ea21485cf, type: 3}

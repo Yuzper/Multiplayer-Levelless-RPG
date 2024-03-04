@@ -35,6 +35,9 @@ public class PlayerCombatManager : CharacterCombatManager
     {
         switch (currentAttackType)
         {
+            case AttackType.UnarmedMeleeAttack:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.UnarmedMeleeAttackStaminaCostMultiplier;
+
             case AttackType.LightAttack01:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
             case AttackType.LightAttack02:
@@ -51,9 +54,6 @@ public class PlayerCombatManager : CharacterCombatManager
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
             case AttackType.ChargedAttack02:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
-
-            case AttackType.UnarmedMeleeAttack:
-                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.UnarmedMeleeAttackStaminaCostMultiplier;
 
             default:
                 return 100000f; // Random hard coded value that should not be possible to reach
@@ -69,6 +69,10 @@ public class PlayerCombatManager : CharacterCombatManager
 
         switch (currentAttackType)
         {
+            case AttackType.UnarmedMeleeAttack:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
             case AttackType.LightAttack01:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
@@ -92,10 +96,7 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.ChargedAttack02:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
-
-            case AttackType.UnarmedMeleeAttack:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
+            
             default:
                 break;
         }

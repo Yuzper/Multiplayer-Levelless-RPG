@@ -8,8 +8,8 @@ public class PlayerManager : CharacterManager
 {
     [Header("DEBUG MENU")]
     [SerializeField] bool respawnCharacter = false;
-    [SerializeField] bool switchRightWeapon = false;
-    [SerializeField] bool switchLeftWeapon = false;
+    [SerializeField] bool switchMainHandWeapon = false;
+    [SerializeField] bool switchOffHandWeapon = false;
 
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
@@ -97,13 +97,12 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged += playerNetworkManager.OnLockOnTargetIDChange;
 
         // EQUIPMENT
-        playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
-        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentMainHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentMainHandWeaponIDChange;
+        playerNetworkManager.currentOffHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentOffHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         // FLAGS
-        playerNetworkManager.isChargingRightAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
-        playerNetworkManager.isChargingLeftAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isChargingMainHandAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
 
 
         // UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
@@ -143,13 +142,12 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged -= playerNetworkManager.OnLockOnTargetIDChange;
 
         // EQUIPMENT
-        playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
-        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentMainHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentMainHandWeaponIDChange;
+        playerNetworkManager.currentOffHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentOffHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         // FLAGS
-        playerNetworkManager.isChargingRightAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
-        //playerNetworkManager.isChargingLeftAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isChargingMainHandAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
 
     }
 
@@ -259,8 +257,8 @@ public class PlayerManager : CharacterManager
     public void LoadOtherPlayersCharacterWhenJoiningServer()
     {
         // SYNC WEAPONS
-        playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
-        playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+        playerNetworkManager.OnCurrentMainHandWeaponIDChange(0, playerNetworkManager.currentMainHandWeaponID.Value);
+        playerNetworkManager.OnCurrentOffHandWeaponIDChange(0, playerNetworkManager.currentOffHandWeaponID.Value);
 
         // ARMOR
 
@@ -280,16 +278,16 @@ public class PlayerManager : CharacterManager
             ReviveCharacter();
         }
 
-        if (switchRightWeapon)
+        if (switchMainHandWeapon)
         {
-            switchRightWeapon = false;
-            playerEquipmentManager.SwitchRightWeapon();
+            switchMainHandWeapon = false;
+            playerEquipmentManager.SwitchMainHandWeapon();
         }
 
-        if (switchLeftWeapon)
+        if (switchOffHandWeapon)
         {
-            switchLeftWeapon = false;
-            playerEquipmentManager.SwitchLeftWeapon();
+            switchOffHandWeapon = false;
+            playerEquipmentManager.SwitchOffHandWeapon();
         }
     }
 

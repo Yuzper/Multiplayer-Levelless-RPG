@@ -49,5 +49,5 @@ public class LightAttackWeaponItemAction : WeaponItemAction
             playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true, true, true, false);
         }
     }
-    
+
 }

@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerEquipmentManager : CharacterEquipmentManager
 {
     PlayerManager player;
-    public WeaponModelInstantiationSlot rightHandSlot;
-    public WeaponModelInstantiationSlot leftHandSlot;
+    public WeaponModelInstantiationSlot mainHandSlot;
+    public WeaponModelInstantiationSlot offHandSlot;
 
-    [SerializeField] WeaponManager rightWeaponManager;
-    [SerializeField] WeaponManager leftWeaponManager;
+    [SerializeField] WeaponManager mainHandWeaponManager;
+    [SerializeField] WeaponManager offHandWeaponManager;
 
-    public GameObject rightHandWeaponModel;
-    public GameObject leftHandWeaponModel;
+    public GameObject mainHandWeaponModel;
+    public GameObject offHandWeaponModel;
 
     // A quick fix for preventing the draw weapon sound of unarmed weapon to play when character spawns.
     private int playSoundCheck = 0;
@@ -38,40 +38,40 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         {
             if (weaponSlot.weaponSlot == WeaponModelSlot.RightHand)
             {
-                rightHandSlot = weaponSlot;
+                mainHandSlot = weaponSlot;
             }
             else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHand)
             {
-                leftHandSlot = weaponSlot;
+                offHandSlot = weaponSlot;
             }
         }
     }
 
     public void LoadWeaponOnBothHands()
     {
-        LoadRightWeapon();
-        LoadLeftWeapon();
+        LoadMainHandWeapon();
+        LoadOffHandWeapon();
     }
 
     // RIGHT WEAPON
-    public void LoadRightWeapon()
+    public void LoadMainHandWeapon()
     {
-        if (player.playerInventoryManager.currentRightHandWeapon != null)
+        if (player.playerInventoryManager.currentMainHandWeapon != null)
         {
             // REMOVE OLD WEAPON
-            rightHandSlot.UnloadWeapon();
+            mainHandSlot.UnloadWeapon();
 
             // BRING IN NEW WEAPON
-            rightHandWeaponModel = Instantiate(player.playerInventoryManager.currentRightHandWeapon.weaponModel);
-            rightHandSlot.LoadWeapon(rightHandWeaponModel);
+            mainHandWeaponModel = Instantiate(player.playerInventoryManager.currentMainHandWeapon.weaponModel);
+            mainHandSlot.LoadWeapon(mainHandWeaponModel);
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
-            rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
-            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            mainHandWeaponManager = mainHandWeaponModel.GetComponent<WeaponManager>();
+            mainHandWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentMainHandWeapon);
             // Play draw weapon sound
-            DecideDrawWeaponSound(player.playerInventoryManager.currentRightHandWeapon);
+            DecideDrawWeaponSound(player.playerInventoryManager.currentMainHandWeapon);
         }
     }
-
+    /*
     public void SwitchRightWeapon_old()
     {
         if (!player.IsOwner) return;
@@ -139,11 +139,12 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         if (selectedWeapon == null && player.playerInventoryManager.rightHandWeaponIndex <= 2)
         {
-            SwitchRightWeapon();
+            SwitchMainHandWeapon();
         }
     }
+    */
 
-    public void SwitchRightWeapon()
+    public void SwitchMainHandWeapon()
     {
         if (!player.IsOwner) return;
 
@@ -152,43 +153,43 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         WeaponItems selectedWeapon = null;
 
-        if (player.playerInventoryManager.rightHandWeaponIndex == 0)
+        if (player.playerInventoryManager.mainHandWeaponIndex == 0)
         {
             // ADD ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
-            player.playerInventoryManager.rightHandWeaponIndex += 1;
+            player.playerInventoryManager.mainHandWeaponIndex += 1;
         }
 
-        else if (player.playerInventoryManager.rightHandWeaponIndex == 1)
+        else if (player.playerInventoryManager.mainHandWeaponIndex == 1)
         {
             // SUB ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
-            player.playerInventoryManager.rightHandWeaponIndex -= 1;
+            player.playerInventoryManager.mainHandWeaponIndex -= 1;
         }
 
-        selectedWeapon = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex];
-        player.playerNetworkManager.currentRightHandWeaponID.Value = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID;
+        selectedWeapon = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex];
+        player.playerNetworkManager.currentMainHandWeaponID.Value = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex].itemID;
         DecideDrawWeaponSound(selectedWeapon);
         return;
     }
 
     // LEFT WEAPON
-    public void LoadLeftWeapon()
+    public void LoadOffHandWeapon()
     {
-        if (player.playerInventoryManager.currentLeftHandWeapon != null)
+        if (player.playerInventoryManager.currentOffHandWeapon != null)
         {
             // REMOVE OLD WEAPON
-            leftHandSlot.UnloadWeapon();
+            offHandSlot.UnloadWeapon();
 
             // BRING IN NEW WEAPON
-            leftHandWeaponModel = Instantiate(player.playerInventoryManager.currentLeftHandWeapon.weaponModel);
-            leftHandSlot.LoadWeapon(leftHandWeaponModel);
+            offHandWeaponModel = Instantiate(player.playerInventoryManager.currentOffHandWeapon.weaponModel);
+            offHandSlot.LoadWeapon(offHandWeaponModel);
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
-            leftWeaponManager = leftHandWeaponModel.GetComponent<WeaponManager>();
-            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
+            offHandWeaponManager = offHandWeaponModel.GetComponent<WeaponManager>();
+            offHandWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentOffHandWeapon);
             // Play draw weapon sound
-            DecideDrawWeaponSound(player.playerInventoryManager.currentLeftHandWeapon);
+            DecideDrawWeaponSound(player.playerInventoryManager.currentOffHandWeapon);
         }
     }
-
+    /*
     public void SwitchLeftWeapon_old()
     {
         if (!player.IsOwner) return;
@@ -256,13 +257,14 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         if (selectedWeapon == null && player.playerInventoryManager.leftHandWeaponIndex <= 2)
         {
-            SwitchLeftWeapon();
+            SwitchOffHandWeapon();
         }
 
         
     }
+    */
 
-    public void SwitchLeftWeapon()
+    public void SwitchOffHandWeapon()
     {
         if (!player.IsOwner) return;
 
@@ -271,20 +273,20 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         WeaponItems selectedWeapon = null;
 
-        if (player.playerInventoryManager.leftHandWeaponIndex == 0)
+        if (player.playerInventoryManager.offHandWeaponIndex == 0)
         {
             // ADD ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
-            player.playerInventoryManager.leftHandWeaponIndex += 1;
+            player.playerInventoryManager.offHandWeaponIndex += 1;
         }
 
-        else if (player.playerInventoryManager.leftHandWeaponIndex == 1)
+        else if (player.playerInventoryManager.offHandWeaponIndex == 1)
         {
             // SUB ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
-            player.playerInventoryManager.leftHandWeaponIndex -= 1;
+            player.playerInventoryManager.offHandWeaponIndex -= 1;
         }
 
-        selectedWeapon = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex];
-        player.playerNetworkManager.currentLeftHandWeaponID.Value = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex].itemID;
+        selectedWeapon = player.playerInventoryManager.weaponsInOffHandSlots[player.playerInventoryManager.offHandWeaponIndex];
+        player.playerNetworkManager.currentOffHandWeaponID.Value = player.playerInventoryManager.weaponsInOffHandSlots[player.playerInventoryManager.offHandWeaponIndex].itemID;
         DecideDrawWeaponSound(selectedWeapon);
         return;
     }
@@ -314,30 +316,30 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     public void OpenDamageCollider()
     {
         // OPEN RIGHT WEAPON DAMAGE COLLIDER
-        if (player.playerNetworkManager.isUsingRightHand.Value)
+        if (player.playerNetworkManager.isUsingMainHand.Value)
         {
-            rightWeaponManager.meleeDamageCollider.EnableDamageCollider();
-            player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(player.playerInventoryManager.currentRightHandWeapon.whooshes));
+            mainHandWeaponManager.meleeDamageCollider.EnableDamageCollider();
+            player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(player.playerInventoryManager.currentMainHandWeapon.whooshes));
         }
         // OPEN LEFT WEAPON DAMAGE COLLIDER
-        else if (player.playerNetworkManager.isUsingLeftHand.Value)
+        else if (player.playerNetworkManager.isUsingOffHand.Value)
         {
-            leftWeaponManager.meleeDamageCollider.EnableDamageCollider();
-            player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(player.playerInventoryManager.currentLeftHandWeapon.whooshes));
+            offHandWeaponManager.meleeDamageCollider.EnableDamageCollider();
+            player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(player.playerInventoryManager.currentOffHandWeapon.whooshes));
         }
     }
 
     public void CloseDamageCollider()
     {
         // CLOSE RIGHT WEAPON DAMAGE COLLIDER
-        if (player.playerNetworkManager.isUsingRightHand.Value)
+        if (player.playerNetworkManager.isUsingMainHand.Value)
         {
-            rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
+            mainHandWeaponManager.meleeDamageCollider.DisableDamageCollider();
         }
         // CLOSE LEFT WEAPON DAMAGE COLLIDER
-        else if (player.playerNetworkManager.isUsingLeftHand.Value)
+        else if (player.playerNetworkManager.isUsingOffHand.Value)
         {
-            leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
+            offHandWeaponManager.meleeDamageCollider.DisableDamageCollider();
         }
     }
 

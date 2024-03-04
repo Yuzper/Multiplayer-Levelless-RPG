@@ -42,8 +42,8 @@ public class WeaponItems : Item
     public float heavyAttackStaminaCostMultiplier = 1.5f; // Adjusts the cost to perform this attack from the base cost
 
     [Header("Actions")]
-    public WeaponItemAction oneHandLeftMouseAttack;
-    public WeaponItemAction oneHandHeavyLeftMouseAttack;
+    public WeaponItemAction oneHandMainHandMouseAttack;
+    public WeaponItemAction oneHandHeavyMainHandMouseAttack;
 
     [Header("Whooshes")]
     public AudioClip[] whooshes;

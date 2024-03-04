@@ -166,12 +166,7 @@ public class CharacterAnimatorManager : MonoBehaviour
     }
 
 
-    public virtual void EnableCanDoComboLeft()
-    {
-        
-    }
-
-    public virtual void EnableCanDoComboRight()
+    public virtual void EnableCanDoCombo()
     {
         
     }
