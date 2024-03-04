@@ -8,10 +8,10 @@ public class PlayerInventoryManager : CharacterInventoryManager
     public WeaponItems currentOffHandWeapon;
 
     [Header("Quick Slots")]
-    public WeaponItems[] weaponsInMainHandSlots = new WeaponItems[2];
+    public WeaponItems[] weaponsInMainHandSlots = new WeaponItems[3];
     public int mainHandWeaponIndex = 0;
 
-    public WeaponItems[] weaponsInOffHandSlots = new WeaponItems[2];
+    public WeaponItems[] weaponsInOffHandSlots = new WeaponItems[3];
     public int offHandWeaponIndex = 0;
 
 

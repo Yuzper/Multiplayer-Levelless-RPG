@@ -1852,10 +1852,11 @@ MonoBehaviour:
   weaponsInMainHandSlots:
   - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   - {fileID: 11400000, guid: 529c5ebf1fd86344c8f817b9a09c676d, type: 2}
+  - {fileID: 11400000, guid: 0b018f0518d852844b8320e24e4fbc85, type: 2}
   mainHandWeaponIndex: 0
   weaponsInOffHandSlots:
   - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
-  - {fileID: 11400000, guid: 0b018f0518d852844b8320e24e4fbc85, type: 2}
+  - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
   offHandWeaponIndex: 0
 --- !u!114 &512546009604817133
 MonoBehaviour:

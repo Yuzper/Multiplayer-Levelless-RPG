@@ -507,7 +507,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             mainHandChargeAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-            player.playerNetworkManager.SetCharacterActionHand(true);
+            player.playerNetworkManager.SetCharacterActionHand(false);
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentMainHandWeapon.oneHandHeavyMainHandMouseAttack, player.playerInventoryManager.currentMainHandWeapon);
