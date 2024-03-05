@@ -153,16 +153,16 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         WeaponItems selectedWeapon = null;
 
-        if (player.playerInventoryManager.mainHandWeaponIndex == 0)
+        if (player.playerInventoryManager.mainHandWeaponIndex < player.playerInventoryManager.weaponsInMainHandSlots.Length-1)
         {
             // ADD ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
             player.playerInventoryManager.mainHandWeaponIndex += 1;
         }
 
-        else if (player.playerInventoryManager.mainHandWeaponIndex == 1)
+        else if (player.playerInventoryManager.mainHandWeaponIndex == player.playerInventoryManager.weaponsInMainHandSlots.Length-1)
         {
             // SUB ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
-            player.playerInventoryManager.mainHandWeaponIndex -= 1;
+            player.playerInventoryManager.mainHandWeaponIndex = 0;
         }
 
         selectedWeapon = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex];
@@ -273,16 +273,16 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         WeaponItems selectedWeapon = null;
 
-        if (player.playerInventoryManager.offHandWeaponIndex == 0)
+        if (player.playerInventoryManager.offHandWeaponIndex < player.playerInventoryManager.weaponsInOffHandSlots.Length-1)
         {
             // ADD ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
             player.playerInventoryManager.offHandWeaponIndex += 1;
         }
 
-        else if (player.playerInventoryManager.offHandWeaponIndex == 1)
+        else if (player.playerInventoryManager.offHandWeaponIndex == player.playerInventoryManager.weaponsInOffHandSlots.Length-1)
         {
             // SUB ONE TO OUR INDEX TO SWITCH TO THE NEXT WEAPON
-            player.playerInventoryManager.offHandWeaponIndex -= 1;
+            player.playerInventoryManager.offHandWeaponIndex = 0;
         }
 
         selectedWeapon = player.playerInventoryManager.weaponsInOffHandSlots[player.playerInventoryManager.offHandWeaponIndex];

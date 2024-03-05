@@ -24,6 +24,10 @@ public class PlayerNetworkManager : CharacterNetworkManager
         player = GetComponent<PlayerManager>();
     }
 
+    // Open the correct collider in unarmed melee attack
+    // OpenDamageCollider is determined by isUsingMainHand.Value
+    // isUsingMainHand.Value is set here
+    // SEARCH FOR ALL USES!!!
     public void SetCharacterActionHand(bool mainHandedAction)
     {
         if (mainHandedAction)

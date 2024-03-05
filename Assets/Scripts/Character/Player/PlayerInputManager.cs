@@ -502,12 +502,12 @@ public class PlayerInputManager : MonoBehaviour
     //// Attack Inputs ////
     private void HandleMouseAttackInput()
     {
-        // LEFT HAND
+        // LEFT MOUSE CLICK
         if (mainHandChargeAttackInput)
         {
             mainHandChargeAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-            player.playerNetworkManager.SetCharacterActionHand(false);
+            player.playerNetworkManager.SetCharacterActionHand(true);
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentMainHandWeapon.oneHandHeavyMainHandMouseAttack, player.playerInventoryManager.currentMainHandWeapon);
