@@ -30,10 +30,12 @@ public class UnarmedWeaponItemAction : WeaponItemAction
 
             if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == unarmed_Attack_01)
             {
+                playerPerformingAction.playerNetworkManager.SetCharacterActionHand(false);
                 playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack02, unarmed_Attack_02, true, true, true, false);
             }
             else
             {
+                playerPerformingAction.playerNetworkManager.SetCharacterActionHand(true);
                 playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, unarmed_Attack_01, true, true, true, false);
             }
         }
@@ -41,6 +43,7 @@ public class UnarmedWeaponItemAction : WeaponItemAction
 
         else if (!playerPerformingAction.isPerformingAction)
         {
+            playerPerformingAction.playerNetworkManager.SetCharacterActionHand(true);
             playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, unarmed_Attack_01, true, true, true, false);
         }
     }

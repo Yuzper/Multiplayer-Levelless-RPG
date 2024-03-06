@@ -559,8 +559,8 @@ ModelImporter:
       name: BasicMotions@LandRoll01 - Run [RM]
       takeName: BasicMotions@LandRoll01 - Run [RM]
       internalID: 0
-      firstFrame: 0
-      lastFrame: 25
+      firstFrame: 2
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
