@@ -133,6 +133,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "MainHandHeavyAttack",
+                    "type": "Button",
+                    "id": "089e8665-7d89-4121-b2dd-783acc7d1c2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MainHandChargeAttack",
                     "type": "PassThrough",
                     "id": "93c6e28c-db30-4dde-9d27-9b2ed9b9345d",
@@ -360,7 +369,7 @@
                 {
                     "name": "",
                     "id": "24060c47-b509-4f26-bbd5-3468e29fabb6",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -464,6 +473,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ActionNumber9",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "654303a0-2815-4bc2-b937-b5a46233c2d2",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MainHandHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

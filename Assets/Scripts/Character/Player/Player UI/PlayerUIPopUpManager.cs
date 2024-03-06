@@ -11,6 +11,11 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI youDiedPopUpText;
     [SerializeField] CanvasGroup youDiedPopUpCanvasGroup;
 
+    [Header("WEAPON Pop Up")]
+    [SerializeField] GameObject weaponDescriptionPopUpGameObject;
+    [SerializeField] TextMeshProUGUI weaponDescriptionPopUpText;
+    [SerializeField] CanvasGroup weaponDescriptionPopUpCanvasGroup;
+
     public void SendYouDiedPopUp()
     {
         youDiedPopUpGameObject.SetActive(true);
@@ -19,6 +24,16 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 3));
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(youDiedPopUpCanvasGroup, 2, 4));
     }
+
+    public void SendWeaponDescriptionPopUp(string weaponDescription)
+    {
+        weaponDescriptionPopUpGameObject.SetActive(true);
+        weaponDescriptionPopUpText.text = weaponDescription;
+        weaponDescriptionPopUpText.characterSpacing = 0;
+        StartCoroutine(FadeInPopUpOverTime(weaponDescriptionPopUpCanvasGroup, 3));
+        StartCoroutine(WaitThenFadeOutPopUpOverTimer(weaponDescriptionPopUpCanvasGroup, 2, 4));
+    }
+
 
     private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)
     {

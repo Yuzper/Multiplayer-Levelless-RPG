@@ -155,6 +155,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""MainHandHeavyAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""089e8665-7d89-4121-b2dd-783acc7d1c2f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""MainHandChargeAttack"",
                     ""type"": ""PassThrough"",
                     ""id"": ""93c6e28c-db30-4dde-9d27-9b2ed9b9345d"",
@@ -382,7 +391,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""24060c47-b509-4f26-bbd5-3468e29fabb6"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -488,6 +497,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""ActionNumber9"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""654303a0-2815-4bc2-b937-b5a46233c2d2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainHandHeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -553,6 +573,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_MainHandAttack = m_PlayerActions.FindAction("MainHandAttack", throwIfNotFound: true);
+        m_PlayerActions_MainHandHeavyAttack = m_PlayerActions.FindAction("MainHandHeavyAttack", throwIfNotFound: true);
         m_PlayerActions_MainHandChargeAttack = m_PlayerActions.FindAction("MainHandChargeAttack", throwIfNotFound: true);
         m_PlayerActions_Dance = m_PlayerActions.FindAction("Dance", throwIfNotFound: true);
         m_PlayerActions_Revival = m_PlayerActions.FindAction("Revival", throwIfNotFound: true);
@@ -700,6 +721,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_MainHandAttack;
+    private readonly InputAction m_PlayerActions_MainHandHeavyAttack;
     private readonly InputAction m_PlayerActions_MainHandChargeAttack;
     private readonly InputAction m_PlayerActions_Dance;
     private readonly InputAction m_PlayerActions_Revival;
@@ -722,6 +744,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @MainHandAttack => m_Wrapper.m_PlayerActions_MainHandAttack;
+        public InputAction @MainHandHeavyAttack => m_Wrapper.m_PlayerActions_MainHandHeavyAttack;
         public InputAction @MainHandChargeAttack => m_Wrapper.m_PlayerActions_MainHandChargeAttack;
         public InputAction @Dance => m_Wrapper.m_PlayerActions_Dance;
         public InputAction @Revival => m_Wrapper.m_PlayerActions_Revival;
@@ -755,6 +778,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MainHandAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
                 @MainHandAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
                 @MainHandAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
+                @MainHandHeavyAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
                 @MainHandChargeAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
                 @MainHandChargeAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
                 @MainHandChargeAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
@@ -813,6 +839,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MainHandAttack.started += instance.OnMainHandAttack;
                 @MainHandAttack.performed += instance.OnMainHandAttack;
                 @MainHandAttack.canceled += instance.OnMainHandAttack;
+                @MainHandHeavyAttack.started += instance.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.performed += instance.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.canceled += instance.OnMainHandHeavyAttack;
                 @MainHandChargeAttack.started += instance.OnMainHandChargeAttack;
                 @MainHandChargeAttack.performed += instance.OnMainHandChargeAttack;
                 @MainHandChargeAttack.canceled += instance.OnMainHandChargeAttack;
@@ -916,6 +945,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMainHandAttack(InputAction.CallbackContext context);
+        void OnMainHandHeavyAttack(InputAction.CallbackContext context);
         void OnMainHandChargeAttack(InputAction.CallbackContext context);
         void OnDance(InputAction.CallbackContext context);
         void OnRevival(InputAction.CallbackContext context);

@@ -44,8 +44,9 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool actionNumber9Input = false;
 
     [Header("Mouse Attack Inputs")]
-    [SerializeField] bool mainHandChargeAttackInput = false;
     [SerializeField] bool mainHandAttackInput = false;
+    [SerializeField] bool mainHandHeavyAttackInput = false;
+    [SerializeField] bool mainHandChargeAttackInput = false;
 
     [Header("UI")]
     [SerializeField] bool escapeMenuInput = false;
@@ -136,6 +137,7 @@ public class PlayerInputManager : MonoBehaviour
 
             // Mouse Attack Actions
             playerControls.PlayerActions.MainHandAttack.performed += i => mainHandAttackInput = true;
+            playerControls.PlayerActions.MainHandHeavyAttack.performed += i => mainHandHeavyAttackInput = true;
             playerControls.PlayerActions.MainHandChargeAttack.performed += i => mainHandChargeAttackInput = true;
             playerControls.PlayerActions.MainHandChargeAttack.canceled += i => mainHandChargeAttackInput = false;
 
@@ -188,6 +190,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleActionInputs();
         // Attack Inputs
         HandleMouseAttackInput();
+        HandleMouseHeavyAttackInput();
         HandleMouseChargeAttackInput();
     }
 
@@ -503,16 +506,7 @@ public class PlayerInputManager : MonoBehaviour
     private void HandleMouseAttackInput()
     {
         // LEFT MOUSE CLICK
-        if (mainHandChargeAttackInput)
-        {
-            mainHandChargeAttackInput = false;
-            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
-            player.playerNetworkManager.SetCharacterActionHand(true);
-            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
-
-            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentMainHandWeapon.oneHandHeavyMainHandMouseAttack, player.playerInventoryManager.currentMainHandWeapon);
-        }
-        else if (mainHandAttackInput)
+        if (mainHandAttackInput)
         {
             mainHandAttackInput = false;
             // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
@@ -521,6 +515,20 @@ public class PlayerInputManager : MonoBehaviour
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentMainHandWeapon.oneHandMainHandMouseAttack, player.playerInventoryManager.currentMainHandWeapon);
+        }
+    }
+
+    private void HandleMouseHeavyAttackInput()
+    {
+        // LEFT MOUSE CLICK
+        if (mainHandHeavyAttackInput)
+        {
+            mainHandHeavyAttackInput = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+            player.playerNetworkManager.SetCharacterActionHand(true);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentMainHandWeapon.oneHandHeavyMainHandMouseAttack, player.playerInventoryManager.currentMainHandWeapon);
         }
     }
 
