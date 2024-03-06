@@ -47,7 +47,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
             if (isRolling)
             {
-                player.characterController.Move(rollDirection * 1.5f * Time.deltaTime);
+                //player.characterController.Move(rollDirection * 1.5f * Time.deltaTime);
                 //Debug.Log(rollDirection);
             }
 

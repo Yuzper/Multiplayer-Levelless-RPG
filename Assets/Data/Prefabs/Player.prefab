@@ -1757,9 +1757,6 @@ MonoBehaviour:
   characterGroup: 0
   isPerformingAction: 0
   isDancing: 0
-  respawnCharacter: 0
-  switchMainHandWeapon: 0
-  switchOffHandWeapon: 0
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
@@ -1859,7 +1856,7 @@ MonoBehaviour:
   mainHandWeaponIndex: 0
   weaponsInOffHandSlots:
   - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
-  - {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef, type: 2}
+  - {fileID: 11400000, guid: 0b018f0518d852844b8320e24e4fbc85, type: 2}
   offHandWeaponIndex: 0
 --- !u!114 &512546009604817133
 MonoBehaviour:
