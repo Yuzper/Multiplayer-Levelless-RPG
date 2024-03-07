@@ -36,7 +36,7 @@ ModelImporter:
       name: Unarmed_Melee_Right
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 0
+      firstFrame: 6
       lastFrame: 52
       wrapMode: 0
       orientationOffsetY: 0
@@ -78,7 +78,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.47084478
+      - time: 0.5217254
         functionName: EnableCanDoCombo
         data: 
         objectReferenceParameter: {instanceID: 0}

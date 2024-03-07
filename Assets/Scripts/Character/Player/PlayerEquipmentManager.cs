@@ -30,6 +30,19 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         LoadWeaponOnBothHands();
     }
 
+    // Getters
+    public WeaponManager get_mainHandWeaponManager()
+    {
+        return mainHandWeaponManager;
+    }
+
+    public WeaponManager get_offHandWeaponManager()
+    {
+        return offHandWeaponManager;
+    }
+
+
+
     private void IntializeWeaponSlots()
     {
         WeaponModelInstantiationSlot[] weaponSlots = GetComponentsInChildren<WeaponModelInstantiationSlot>();

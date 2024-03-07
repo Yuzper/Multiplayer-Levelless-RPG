@@ -23,8 +23,19 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterLocomotionManager.isRolling = false;
         character.characterLocomotionManager.isBackstepping = false;
         character.characterAnimatorManager.DisableCanDoCombo();
-        //character.characterCombatManager.isPerformingJumpAttack = false; // Used in jump attack
-        //character.animator.SetBool("JumpAttackInRange", false);
+
+        // Reset damage colliders in player if they are interrupted in animation
+        if (character.GetComponent<PlayerManager>() != null)
+        {
+            PlayerManager player = character.GetComponent<PlayerManager>();
+
+            WeaponManager mainHandWeapon = player.playerEquipmentManager.get_mainHandWeaponManager();
+            mainHandWeapon.meleeDamageCollider.DisableDamageCollider();
+
+            WeaponManager offHandWeapon = player.playerEquipmentManager.get_offHandWeaponManager();
+            offHandWeapon.meleeDamageCollider.DisableDamageCollider();
+        }
+        
 
         if (character.IsOwner)
         {
