@@ -17,6 +17,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
+    [HideInInspector] public CharacterStatsManager characterStatsManager;
 
 
     [Header("Character group")]
@@ -40,6 +41,7 @@ public class CharacterManager : NetworkBehaviour
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
         characterCombatManager = GetComponent<CharacterCombatManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
+        characterStatsManager = GetComponent<CharacterStatsManager>();
     }
 
     protected virtual void Start()
@@ -90,6 +92,8 @@ public class CharacterManager : NetworkBehaviour
         characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
         // STATS
         characterNetworkManager.currentHealth.OnValueChanged += characterNetworkManager.CheckHP;
+        characterNetworkManager.maxHealth.Value = characterStatsManager.CalculateHealthBasedOnConstitution(characterNetworkManager.constitution.Value);
+        characterNetworkManager.currentHealth.Value = characterNetworkManager.maxHealth.Value;
     }
 
     public override void OnNetworkDespawn()
