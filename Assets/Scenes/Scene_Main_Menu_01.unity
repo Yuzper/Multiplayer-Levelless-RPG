@@ -7323,6 +7323,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4361680107773944320, guid: 71da8bb341fca3244a251603f5e3f557,
+        type: 3}
+      propertyPath: maxZoom
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361680107773944320, guid: 71da8bb341fca3244a251603f5e3f557,
+        type: 3}
+      propertyPath: minZoom
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361680107773944320, guid: 71da8bb341fca3244a251603f5e3f557,
+        type: 3}
+      propertyPath: zoomSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041858683409778157, guid: 71da8bb341fca3244a251603f5e3f557,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 7041858683521665841, guid: 71da8bb341fca3244a251603f5e3f557,
         type: 3}
       propertyPath: m_RootOrder

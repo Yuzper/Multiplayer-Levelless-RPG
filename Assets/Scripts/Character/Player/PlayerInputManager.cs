@@ -221,17 +221,19 @@ public class PlayerInputManager : MonoBehaviour
 
         if (lockOnInput && player.playerNetworkManager.isLockedOn.Value)
         {
+            // DISABLE LOCK ON   
             lockOnInput = false;
+            player.playerCombatManager.SetTarget(null);
             PlayerCamera.instance.ClearLockOnTargets();
-            player.playerNetworkManager.isLockedOn.Value = false;
-            // DISABLE LOCK ON    
+            player.playerNetworkManager.isLockedOn.Value = false; 
             return;
         }
 
         if (lockOnInput && !player.playerNetworkManager.isLockedOn.Value)
         {
+            // ENABLE LOCK ON   
             lockOnInput = false;
-            // IF WE ARE AIMING USING RANGED WEAPONS RETURN (DO NOT ALLOW LOCK ON WHILST AIMING)
+            // TODO IF WE ARE AIMING USING RANGED WEAPONS RETURN (DO NOT ALLOW LOCK ON WHILST AIMING)
 
             PlayerCamera.instance.HandleLocatingLockOnTarget();
 

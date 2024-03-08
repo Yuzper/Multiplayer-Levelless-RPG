@@ -45,7 +45,6 @@ public class PlayerCamera : MonoBehaviour
     public float zoomSpeed = 5f;
     public float minZoom = 20f;
     public float maxZoom = 60f;
-    public float zoomSmoothness = 5f;
     private float targetZoom;
 
     private void Awake()
@@ -64,7 +63,7 @@ public class PlayerCamera : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         cameraZPosition = cameraObject.transform.localPosition.z;
-        targetZoom = Camera.main.fieldOfView;
+        targetZoom = 4;
     }
 
     public void HandleAllCameraActions()
@@ -95,7 +94,8 @@ public class PlayerCamera : MonoBehaviour
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
 
         // Smoothly interpolate to the target zoom
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetZoom, Time.deltaTime * zoomSmoothness);
+        cameraZPosition = -targetZoom;
+        
     }
 
     private void HandleRotations()
@@ -267,11 +267,11 @@ public class PlayerCamera : MonoBehaviour
 
     public void SetLockCameraHeight()
     {
+
         if (cameraLockOnHeightCoroutine != null)
         {
             StopCoroutine(cameraLockOnHeightCoroutine);
         }
-
         cameraLockOnHeightCoroutine = StartCoroutine(SetCameraHeight());
     }
 
@@ -312,7 +312,6 @@ public class PlayerCamera : MonoBehaviour
         Vector3 velocity = Vector3.zero;
         Vector3 newLockedCameraHeight = new Vector3(cameraPivotTransform.transform.localPosition.x, lockedCameraHeight);
         Vector3 newUnlockedCameraHeight = new Vector3(cameraPivotTransform.transform.localPosition.x, unlockedCameraHeight);
-
         while (timer < duration)
         {
             timer += Time.deltaTime;
@@ -321,12 +320,19 @@ public class PlayerCamera : MonoBehaviour
             {
                 if (player.playerCombatManager.currentTarget != null)
                 {
-                    cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedCameraHeight, ref velocity, setCameraHeightSpeed);
-                    cameraPivotTransform.transform.localRotation = Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), lockOnTargetFollowSpeed);
+                    cameraPivotTransform.transform.localPosition = 
+                        Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedCameraHeight, ref velocity, setCameraHeightSpeed);
+
+                    // todo delete. This is not needed a rotation is handle in handleRotation if locked on...
+                    //cameraPivotTransform.transform.localRotation = 
+                    //    Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), lockOnTargetFollowSpeed);
+
                 }
                 else
                 {
                     cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newUnlockedCameraHeight, ref velocity, setCameraHeightSpeed);
+                    cameraPivotTransform.transform.localRotation =
+                        Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), lockOnTargetFollowSpeed);
                 }
             }
             yield return null;
@@ -338,7 +344,9 @@ public class PlayerCamera : MonoBehaviour
             if (player.playerCombatManager.currentTarget != null)
             {
                 cameraPivotTransform.transform.localPosition = newLockedCameraHeight;
-                cameraPivotTransform.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                // todo delete. This is not needed a rotation is handle in handleRotation if locked on...
+                //cameraPivotTransform.transform.localRotation = Quaternion.Euler(0, 0, 0); 
+                
             }
             else
             {
