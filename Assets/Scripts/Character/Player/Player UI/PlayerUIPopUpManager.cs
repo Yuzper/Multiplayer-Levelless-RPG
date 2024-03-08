@@ -32,39 +32,52 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(youDiedPopUpCanvasGroup, 2, 4));
     }
 
-    public void SendWeaponDescriptionPopUp(string weaponDescription)
+    public void SendWeaponDescriptionPopUp(string weaponName, string weaponDescription)
     {
+        // First, check if the pop-up is already active.
+        if (weaponDescriptionPopUpGameObject.activeSelf)
+        {
+            // If it is, deactivate the current pop-up before showing the new one.
+            StopAllCoroutines(); // Stop all ongoing coroutines to reset the animation/effects.
+        }
+
         weaponDescriptionPopUpGameObject.SetActive(true);
-        weaponDescriptionPopUpText.text = weaponDescription;
+        weaponDescriptionPopUpText.text = weaponName + "\n" + weaponDescription;
         weaponDescriptionPopUpText.characterSpacing = 0;
-        StartCoroutine(FadeInPopUpOverTime(weaponDescriptionPopUpCanvasGroup, 3));
+        StartCoroutine(FadeInPopUpOverTime(weaponDescriptionPopUpCanvasGroup, 0.5f));
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(weaponDescriptionPopUpCanvasGroup, 2, 4));
     }
 
-    public void SendAbilityErrorPopUp(string errorCode, bool flashingHealthBar = false, bool flashingManaBar = false, bool flashingStaminaBar = false)
+    public void SendAbilityAndResourceErrorPopUp(string errorCode, bool flashingHealthBar = false, bool flashingManaBar = false, bool flashingStaminaBar = false)
     {
+        // First, check if the pop-up is already active.
+        if (abilityErrorPopUpGameObject.activeSelf)
+        {
+            // If it is, deactivate the current pop-up before showing the new one.
+            StopAllCoroutines(); // Stop all ongoing coroutines to reset the animation/effects.
+            abilityErrorPopUpCanvasGroup.alpha = 0; // Reset opacity in case it was faded in/out.
+        }
+
         abilityErrorPopUpGameObject.SetActive(true);
         abilityErrorPopUpText.text = errorCode;
-        
-        // Used in case we want to make the border around a resource bar flash red, example on low resource.
+
         if (flashingHealthBar)
         {
-            StartCoroutine(ChangeColorOverTime(PlayerUIManager.instance.playerUIHudManager.healthBarBorder, new Color(1f, 0f, 0f, 1f), 1));
+            StartCoroutine(ChangeColorOverTime(PlayerUIManager.instance.playerUIHudManager.healthBarBorder, new Color(1f, 0f, 0f, 1f), 0.25f, 2));
         }
         else if (flashingManaBar)
         {
-            StartCoroutine(ChangeColorOverTime(PlayerUIManager.instance.playerUIHudManager.manaBarBorder, new Color(1f, 0f, 0f, 1f), 1));
+            StartCoroutine(ChangeColorOverTime(PlayerUIManager.instance.playerUIHudManager.manaBarBorder, new Color(1f, 0f, 0f, 1f), 0.25f, 2));
         }
         else if (flashingStaminaBar)
         {
-            StartCoroutine(ChangeColorOverTime(PlayerUIManager.instance.playerUIHudManager.staminaBarBorder, new Color(1f, 0f, 0f, 1f), 1));
+            StartCoroutine(ChangeColorOverTime(PlayerUIManager.instance.playerUIHudManager.staminaBarBorder, new Color(1f, 0f, 0f, 1f), 0.25f, 2));
         }
-        
-        // TO DO:
-        // Play error sound
+
+        // Assuming the color flash takes a certain time, adjust the timing here as needed
         abilityErrorPopUpText.characterSpacing = 0;
-        StartCoroutine(FadeInPopUpOverTime(abilityErrorPopUpCanvasGroup, 2));
-        StartCoroutine(WaitThenFadeOutPopUpOverTimer(abilityErrorPopUpCanvasGroup, 4, 1));
+        StartCoroutine(FadeInPopUpOverTime(abilityErrorPopUpCanvasGroup, 2)); // Start fade-in slightly after color flash
+        StartCoroutine(WaitThenFadeOutPopUpOverTimer(abilityErrorPopUpCanvasGroup, 2, 0.5f)); // Adjust timing as needed
     }
 
 
@@ -137,7 +150,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
     }
 
     // Used for flashing red resource bars on low.
-    private IEnumerator ChangeColorOverTime(GameObject obj, Color targetColor, float duration)
+    private IEnumerator ChangeColorOverTime(GameObject obj, Color targetColor, float duration, int flashes)
     {
         Image image = obj.GetComponent<Image>();
         if (image == null)
@@ -146,24 +159,29 @@ public class PlayerUIPopUpManager : MonoBehaviour
             yield break;
         }
 
-        Color originalColor = new Color(0f, 0f, 0f, 0.7843137f); // Save the original color, hard coded from inspector values
-        float time = 0f;
+        Color originalColor = new Color(0f, 0f, 0f, 0.7843137f); // Hard Coded the originial color
 
-        // Change to target color
-        while (time < duration)
+        for (int i = 0; i < flashes; i++)
         {
-            image.color = Color.Lerp(originalColor, targetColor, time / duration);
-            time += Time.deltaTime;
-            yield return null;
+            float time = 0f;
+            while (time < duration)
+            {
+                image.color = Color.Lerp(originalColor, targetColor, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+            // Reset the timer for the transition back to the original color
+            time = 0f;
+            while (time < duration)
+            {
+                image.color = Color.Lerp(targetColor, originalColor, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            image.color = originalColor; // Ensure it's exactly the original color
+
         }
-
-        image.color = targetColor; // Ensure it's exactly the target color
-
-        // Wait for the specified time before changing the color back
-        yield return new WaitForSeconds(1);
-
-        image.color = originalColor; // Ensure it's exactly the original color
     }
-
 
 }

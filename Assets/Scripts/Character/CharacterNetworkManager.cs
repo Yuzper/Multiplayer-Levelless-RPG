@@ -52,7 +52,7 @@ public class CharacterNetworkManager : NetworkBehaviour
         character = GetComponent<CharacterManager>();
     }
 
-    public void CheckHP(float oldValue, float newValue)
+    public virtual void CheckHP(float oldValue, float newValue)
     {
         if (currentHealth.Value <= 0)
         {

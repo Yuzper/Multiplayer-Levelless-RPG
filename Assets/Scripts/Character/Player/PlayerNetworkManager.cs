@@ -24,10 +24,7 @@ public class PlayerNetworkManager : CharacterNetworkManager
         player = GetComponent<PlayerManager>();
     }
 
-    // Open the correct collider in unarmed melee attack
-    // OpenDamageCollider is determined by isUsingMainHand.Value
-    // isUsingMainHand.Value is set here
-    // SEARCH FOR ALL USES!!!
+    
     public void SetCharacterActionHand(bool mainHandedAction)
     {
         if (mainHandedAction)
@@ -42,7 +39,19 @@ public class PlayerNetworkManager : CharacterNetworkManager
         }
     }
 
-    public void SetNewMaxHealthValue(int oldConstitution, int newConstitution)
+    public override void CheckHP(float oldValue, float newValue)
+    {
+        if (currentHealth.Value <= (maxHealth.Value * 0.1f) && currentHealth.Value >= 0) // If player has less than 10% of maxHealth but not 0.
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Low Health!", true, false, false);
+        }
+
+        base.CheckHP(oldValue, newValue);
+    }
+
+
+
+public void SetNewMaxHealthValue(int oldConstitution, int newConstitution)
     {
         maxHealth.Value = player.playerStatsManager.CalculateHealthBasedOnConstitution(newConstitution);
         PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth.Value);

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8225910135928321249}
   - component: {fileID: 8225910135931712705}
   - component: {fileID: 8225910135930746369}
+  - component: {fileID: -259717532488669909}
   m_Layer: 0
   m_Name: ResourceCamp
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-259717532488669909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8225910135928481985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2895052, y: 2.3197348, z: 2.2731895}
+  m_Center: {x: 0, y: 1.1598674, z: 0.07279396}
 --- !u!1 &8225910135928481987
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +111,7 @@ GameObject:
   - component: {fileID: 8225910135928321251}
   - component: {fileID: 8225910135931712707}
   - component: {fileID: 8225910135930746371}
+  - component: {fileID: 1596648533254578551}
   m_Layer: 0
   m_Name: WoodCamp
   m_TagString: Untagged
@@ -169,6 +184,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1596648533254578551
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8225910135928481987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4375381, y: 0.47834352, z: 2.1284518}
+  m_Center: {x: -0.13746262, y: 0.23917176, z: 0.5160315}
 --- !u!1 &8225910135928481989
 GameObject:
   m_ObjectHideFlags: 0

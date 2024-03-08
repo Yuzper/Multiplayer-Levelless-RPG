@@ -181,7 +181,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         selectedWeapon = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex];
         player.playerNetworkManager.currentMainHandWeaponID.Value = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex].itemID;
         DecideDrawWeaponSound(selectedWeapon);
-        PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.itemDescription);
+        PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.name, selectedWeapon.itemDescription);
         return;
     }
 
@@ -302,7 +302,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         selectedWeapon = player.playerInventoryManager.weaponsInOffHandSlots[player.playerInventoryManager.offHandWeaponIndex];
         player.playerNetworkManager.currentOffHandWeaponID.Value = player.playerInventoryManager.weaponsInOffHandSlots[player.playerInventoryManager.offHandWeaponIndex].itemID;
         DecideDrawWeaponSound(selectedWeapon);
-        PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.itemDescription);
+        PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.name, selectedWeapon.itemDescription);
         return;
     }
 

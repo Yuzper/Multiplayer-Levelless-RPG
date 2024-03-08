@@ -387,6 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2835767126738880733}
+  - component: {fileID: 7652407171503082651}
   m_Layer: 0
   m_Name: Campfire (1)
   m_TagString: Untagged
@@ -417,6 +418,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7652407171503082651
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166504254960707033}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7467022, y: 0.38258314, z: 2.68561}
+  m_Center: {x: -0.008214563, y: 0.17719775, z: -0.0160712}
 --- !u!1 &7859313860661075664
 GameObject:
   m_ObjectHideFlags: 0

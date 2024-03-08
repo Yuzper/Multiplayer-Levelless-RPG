@@ -18,7 +18,7 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
         if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType)))
         {
-            PlayerUIManager.instance.playerUIPopUpManager.SendAbilityErrorPopUp("Not Enough Stamina!", false, false, true);
+            PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Not Enough Stamina!", false, false, true);
             return;
         }
         //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
