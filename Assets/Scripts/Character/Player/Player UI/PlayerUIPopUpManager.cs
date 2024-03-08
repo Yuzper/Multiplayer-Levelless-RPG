@@ -50,7 +50,11 @@ public class PlayerUIPopUpManager : MonoBehaviour
 
     public void SendAbilityAndResourceErrorPopUp(string errorCode, bool flashingHealthBar = false, bool flashingManaBar = false, bool flashingStaminaBar = false)
     {
-        // First, check if the pop-up is already active.
+        // Possible Ability/Resource Errors
+        // - Not enough Stamina / Mana
+        // - Too close / Too far away
+        // - Needs to be locked on
+
         if (abilityErrorPopUpGameObject.activeSelf)
         {
             // If it is, deactivate the current pop-up before showing the new one.
@@ -73,8 +77,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
         {
             StartCoroutine(ChangeColorOverTime(PlayerUIManager.instance.playerUIHudManager.staminaBarBorder, new Color(1f, 0f, 0f, 1f), 0.25f, 2));
         }
-
-        // Assuming the color flash takes a certain time, adjust the timing here as needed
+        
         abilityErrorPopUpText.characterSpacing = 0;
         StartCoroutine(FadeInPopUpOverTime(abilityErrorPopUpCanvasGroup, 2)); // Start fade-in slightly after color flash
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(abilityErrorPopUpCanvasGroup, 2, 0.5f)); // Adjust timing as needed
@@ -183,5 +186,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
 
         }
     }
+
+
 
 }
