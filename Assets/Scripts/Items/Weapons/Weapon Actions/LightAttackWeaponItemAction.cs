@@ -7,16 +7,21 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 {
     [SerializeField] string light_Attack_01 = "";
     [SerializeField] string light_Attack_02 = "";
+    [SerializeField] string light_Attack_03 = "";
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
         if (!playerPerformingAction.IsOwner) return;
-        if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;
         if (playerPerformingAction.isDancing) return;
+        if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
-        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType))) return;
+        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType)))
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Not Enough Stamina!", false, false, true);
+            return;
+        }
         //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         PerformLightAttack(playerPerformingAction, weaponPerformingAction);
     }
@@ -28,21 +33,25 @@ public class LightAttackWeaponItemAction : WeaponItemAction
         {
             playerPerformingAction.playerCombatManager.canComboWithWeapon = false;
 
-            if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
+            if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_02)
             {
-                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack02, light_Attack_02, true);
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack03, light_Attack_03, true, true, true, false);
+            }
+            else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
+            {
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack02, light_Attack_02, true, true, true, false);
             }
             else
             {
-                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true);
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true, true, true, false);
             }
         }
         // OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
 
         else if (!playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true);
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true, true, true, false);
         }
     }
-    
+
 }

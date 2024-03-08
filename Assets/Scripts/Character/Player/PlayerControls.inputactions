@@ -124,7 +124,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftMouseAttack",
+                    "name": "MainHandAttack",
                     "type": "Button",
                     "id": "1d1fcb02-11c1-4437-96bf-d5f201c469c9",
                     "expectedControlType": "Button",
@@ -133,27 +133,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftMouseChargeAttack",
-                    "type": "PassThrough",
-                    "id": "93c6e28c-db30-4dde-9d27-9b2ed9b9345d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(pressPoint=0.05)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RightMouseAttack",
+                    "name": "MainHandHeavyAttack",
                     "type": "Button",
-                    "id": "2b708589-1fcc-42ce-a43c-f071c6bf5cd5",
+                    "id": "089e8665-7d89-4121-b2dd-783acc7d1c2f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightMouseChargeAttack",
+                    "name": "MainHandChargeAttack",
                     "type": "PassThrough",
-                    "id": "e1f9a11b-55ab-4897-895d-4bda70e6c9de",
+                    "id": "93c6e28c-db30-4dde-9d27-9b2ed9b9345d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold(pressPoint=0.05)",
@@ -199,6 +190,60 @@
                     "name": "ActionNumber3",
                     "type": "Button",
                     "id": "ea2585c8-9e36-49ec-b5d1-dc8d0fc3af50",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber4",
+                    "type": "Button",
+                    "id": "f44e6bde-d4b4-4556-a645-adbb58c41149",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber5",
+                    "type": "Button",
+                    "id": "72094e09-d2ad-4f8f-903e-8dcbffbc366a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber6",
+                    "type": "Button",
+                    "id": "97ea46eb-c8e4-435f-9703-eb76fc273af7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber7",
+                    "type": "Button",
+                    "id": "f8dd9a1e-6fbc-44dc-bb01-ae4610aabe10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber8",
+                    "type": "Button",
+                    "id": "bd6c1a0b-66e2-4dc0-b280-a24f75f532de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionNumber9",
+                    "type": "Button",
+                    "id": "cffbc065-b0fa-4c1a-962f-53fbf3f074ba",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -268,17 +313,6 @@
                 },
                 {
                     "name": "",
-                    "id": "27e7e308-2369-4e40-8116-cfe58eaf437a",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightMouseAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6bd858d9-5d51-4ece-a65e-4f0e1dcf29b8",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -328,29 +362,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftMouseAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6677c6f6-fbd2-4f02-bf4e-f225d889d49c",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightMouseChargeAttack",
+                    "action": "MainHandAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "24060c47-b509-4f26-bbd5-3468e29fabb6",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftMouseChargeAttack",
+                    "action": "MainHandChargeAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -384,6 +407,83 @@
                     "processors": "",
                     "groups": "",
                     "action": "Seek Right Lock On Target",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25cd6f1c-343e-4aad-9b3d-2dc90efa52f3",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a76df9bc-3c7f-4668-be76-97b1b21cda98",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "955e738c-7c13-4bf0-8312-00a5a9c8fdc7",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1932ef6e-550f-483d-81cb-396bfda853b4",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f1b3fc8-b604-4bdd-af07-115d1a6f9133",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber8",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e2bdd67-9d73-4e6f-9a8c-abb4b3b9c09f",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionNumber9",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "654303a0-2815-4bc2-b937-b5a46233c2d2",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MainHandHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

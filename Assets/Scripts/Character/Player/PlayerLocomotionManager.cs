@@ -25,7 +25,9 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [Header("Dodge")]
     private Vector3 rollDirection;
-    private Vector3 backStepDirection;
+
+    public float smoothTime = 0.2f; // Adjust this value for the desired smoothness
+    private Vector3 velocity = Vector3.zero;
 
     protected override void Awake()
     {
@@ -49,11 +51,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
                 //Debug.Log(rollDirection);
             }
 
-            if (isBackstepping && player.isDead.Value)
-            {
-                player.characterController.Move(backStepDirection * 2f * Time.deltaTime);
-                //Debug.Log(backStepDirection);
-            }
         }
         else
         {
@@ -208,7 +205,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
             if (rollDirection != Vector3.zero)
             {
-                Debug.Log("ZERO ROLL");
                 Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
                 player.transform.rotation = playerRotation;
 
@@ -219,15 +215,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
         else
         {
-            backStepDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
-            backStepDirection += PlayerCamera.instance.cameraObject.transform.right * horizontalMovement;
-            backStepDirection.y = 0;
-            backStepDirection *= -1;
-            //backStepDirection.Normalize();
-
             // PERFORM A BACKSTEP ANIMATION
             player.playerAnimatorManager.PlayerTargetActionAnimation("Backstep", true, true);
-            player.playerLocomotionManager.isBackstepping = true;
         }
 
     }
@@ -278,11 +267,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
 
-    }
-
-    public void ApplyJumpingActionVelocity()
-    {
-        yVelocity.y = Mathf.Sqrt((jumpHeight*2) * -2 * gravityForce);
     }
 
     // REVIVAL

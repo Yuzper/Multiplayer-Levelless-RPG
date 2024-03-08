@@ -447,7 +447,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.030726247
+      - time: 0.0287693
         functionName: PlaySwordSwipeSFX
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -476,7 +476,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.47526357
-        functionName: EnableCanDoComboRight
+        functionName: EnableCanDoCombo
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

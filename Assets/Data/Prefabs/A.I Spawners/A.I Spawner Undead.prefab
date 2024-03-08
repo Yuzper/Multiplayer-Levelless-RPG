@@ -971,7 +971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6589298414211937456}
   - component: {fileID: 5780989505818717707}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: A.I Spawner Undead
   m_TagString: Untagged
   m_Icon: {fileID: 0}

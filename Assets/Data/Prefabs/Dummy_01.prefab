@@ -695,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2556154420
+  GlobalObjectIdHash: 2209814028
   InScenePlacedSourceGlobalObjectIdHash: 2209814028
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -732,10 +732,11 @@ MonoBehaviour:
   aiCharacterNetworkManager: {fileID: 0}
   aICharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
+  invulnerable: 1
   navmeshAgent: {fileID: 0}
   currentState: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
   idle: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
-  pursueTarget: {fileID: 11400000, guid: 39f99b34e9c83644f91b3e3503de42c4, type: 2}
+  pursueTarget: {fileID: 0}
   combatStance: {fileID: 11400000, guid: 778369fa24a7c7244aa11d0908bfd655, type: 2}
   attack: {fileID: 11400000, guid: 2eae52f23cd2fa04a8f34e126a05673c, type: 2}
 --- !u!114 &-5390492993820861539
@@ -807,7 +808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7740e9561106fe42a34de3a4184f476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPerformingJumpAttack: 0
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -909,7 +909,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3370ea0580076014c8a84f6bfb485b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageGrunts: []
+  damageGrunts:
+  - {fileID: 8300000, guid: 0aadd833bb2d5c6459071cec3b57b6fc, type: 3}
+  - {fileID: 8300000, guid: bab2beee4e54b6b4884ba37eee560014, type: 3}
+  - {fileID: 8300000, guid: 479575cc89c3733419221428dae636ad, type: 3}
+  - {fileID: 8300000, guid: 7a043f0917c61774d94c1a6331f30f9c, type: 3}
+  - {fileID: 8300000, guid: 2ed46ddcc4f7dd549b61957f22cc624d, type: 3}
+  - {fileID: 8300000, guid: dfd9240fb951bf6498605be9a417b5de, type: 3}
+  - {fileID: 8300000, guid: a390f9932470d264da3696567a4a581c, type: 3}
+  - {fileID: 8300000, guid: ec37c89a97a3a194d98cecd9bb3a61d5, type: 3}
+  - {fileID: 8300000, guid: 5db80d54d2dafd348b6cae53c6d9924a, type: 3}
+  - {fileID: 8300000, guid: 37f1bb4806a676249891c3249bf962a2, type: 3}
   attackGrunts: []
 --- !u!114 &1148962295572994990
 MonoBehaviour:
@@ -2013,8 +2023,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3015025890927307946}
-  - component: {fileID: 3383089988348727386}
-  - component: {fileID: 6905849525501021647}
   m_Layer: 10
   m_Name: B-f_middle_01.L
   m_TagString: Untagged
@@ -2038,38 +2046,6 @@ Transform:
   m_Father: {fileID: 1894679411026304627}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3383089988348727386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4502070684638035691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a6b9deb41337046a563ceecdfc7bb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageCollider: {fileID: 0}
-  physicalDamage: 0
-  magicDamage: 0
-  fireDamage: 0
-  lightningDamage: 0
-  holyDamage: 0
-  aiUndeadCharacterCausingDamage: {fileID: 0}
---- !u!135 &6905849525501021647
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4502070684638035691}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1924591
-  m_Center: {x: 0.05306247, y: -0.013576212, z: 0.024141477}
 --- !u!1 &4654513337902204789
 GameObject:
   m_ObjectHideFlags: 0

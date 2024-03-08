@@ -1706,7 +1706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2798986193
+  GlobalObjectIdHash: 2153404585
   InScenePlacedSourceGlobalObjectIdHash: 2153404585
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1809,7 +1809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c06531646b5d974a9f4590577dd7807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPerformingJumpAttack: 0
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -1860,6 +1859,7 @@ MonoBehaviour:
   aiCharacterNetworkManager: {fileID: 0}
   aICharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
+  invulnerable: 1
   navmeshAgent: {fileID: 0}
   currentState: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
   idle: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
