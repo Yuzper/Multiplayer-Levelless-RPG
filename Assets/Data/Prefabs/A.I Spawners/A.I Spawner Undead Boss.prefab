@@ -11185,6 +11185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  characterCausingDamage: {fileID: 0}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
@@ -11283,6 +11284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  characterCausingDamage: {fileID: 0}
   physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
@@ -12111,11 +12113,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8387617477149247443}
-  - component: {fileID: 2487923729953922473}
   - component: {fileID: 2487923729953922472}
   m_Layer: 6
   m_Name: A.I Spawner Undead Boss
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12127,7 +12128,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9164012751862275433}
-  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071079}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 17.693354, y: 0, z: -7.81}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -12137,26 +12138,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!95 &2487923729953922473
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9164012751862275433}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0112b3ddf6b69f148b600356eb9c21a3, type: 3}
-  m_Controller: {fileID: 9100000, guid: c8abafa033f2c134fb0c8ca7c7953c9b, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &2487923729953922472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12169,7 +12150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665336c5317c3f441a3c2e3d7c08afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterGameObject: {fileID: 0}
+  characterGameObject: {fileID: 4556709571103993824, guid: 36c6d7d457eccc042a0fc5be0fc2ed51,
+    type: 3}
   instantiatedGameObject: {fileID: 0}
 --- !u!1 &9171759734412592159
 GameObject:

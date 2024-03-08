@@ -13,10 +13,14 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
         if (!playerPerformingAction.IsOwner) return;
-        if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;
         if (playerPerformingAction.isDancing) return;
+        if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;
         // MAKES SURE ACTION CAN'T BE PERFORMED IF STAMINA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
-        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType))) return;
+        if (!(playerPerformingAction.playerNetworkManager.currentStamina.Value >= playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType)))
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Not Enough Stamina!", false, false, true);
+            return;
+        }
         //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         PerformHeavyAttack(playerPerformingAction, weaponPerformingAction);
     }
@@ -30,18 +34,18 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
 
             if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == Heavy_Attack_01)
             {
-                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack02, Heavy_Attack_02, true, false, false, false);
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack02, Heavy_Attack_02, true, true, true, false);
             }
             else
             {
-                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true, false, false, false);
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true, true, true, false);
             }
         }
         // OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
 
         else if (!playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true, false, false, false);
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true, true, true, false);
         }
     }
 }

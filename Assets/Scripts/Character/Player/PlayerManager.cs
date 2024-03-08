@@ -6,11 +6,6 @@ using Unity.Netcode;
 
 public class PlayerManager : CharacterManager
 {
-    [Header("DEBUG MENU")]
-    [SerializeField] bool respawnCharacter = false;
-    [SerializeField] bool switchRightWeapon = false;
-    [SerializeField] bool switchLeftWeapon = false;
-
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerNetworkManager playerNetworkManager;
@@ -49,8 +44,6 @@ public class PlayerManager : CharacterManager
         playerStatsManager.RegenerateMana();
         // REGEN STAMINA
         playerStatsManager.RegenerateStamina();
-
-        DebugMenu();
     }
 
     protected override void LateUpdate()
@@ -89,20 +82,20 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
         }
         // STATS
-        playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+        // Moved to CharacterManager
+        //playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
 
         // LOCK ON
         playerNetworkManager.isLockedOn.OnValueChanged += playerNetworkManager.OnIsLockedOnChanged;
         playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged += playerNetworkManager.OnLockOnTargetIDChange;
 
         // EQUIPMENT
-        playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
-        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentMainHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentMainHandWeaponIDChange;
+        playerNetworkManager.currentOffHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentOffHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         // FLAGS
-        playerNetworkManager.isChargingRightAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
-        playerNetworkManager.isChargingLeftAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isChargingMainHandAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
 
 
         // UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
@@ -135,20 +128,19 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
         }
         // STATS
-        playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
+        //playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
 
         // LOCK ON
         playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;
         playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged -= playerNetworkManager.OnLockOnTargetIDChange;
 
         // EQUIPMENT
-        playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
-        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentMainHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentMainHandWeaponIDChange;
+        playerNetworkManager.currentOffHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentOffHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         // FLAGS
-        playerNetworkManager.isChargingRightAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
-        //playerNetworkManager.isChargingLeftAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isChargingMainHandAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
 
     }
 
@@ -258,8 +250,8 @@ public class PlayerManager : CharacterManager
     public void LoadOtherPlayersCharacterWhenJoiningServer()
     {
         // SYNC WEAPONS
-        playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
-        playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+        playerNetworkManager.OnCurrentMainHandWeaponIDChange(0, playerNetworkManager.currentMainHandWeaponID.Value);
+        playerNetworkManager.OnCurrentOffHandWeaponIDChange(0, playerNetworkManager.currentOffHandWeaponID.Value);
 
         // ARMOR
 
@@ -267,28 +259,6 @@ public class PlayerManager : CharacterManager
         if (playerNetworkManager.isLockedOn.Value)
         {
             playerNetworkManager.OnLockOnTargetIDChange(0, playerNetworkManager.currentTargetNetworkObjectID.Value);
-        }
-    }
-
-    // DEBUG DELETE LATER
-    private void DebugMenu()
-    {
-        if (respawnCharacter)
-        {
-            respawnCharacter = false;
-            ReviveCharacter();
-        }
-
-        if (switchRightWeapon)
-        {
-            switchRightWeapon = false;
-            playerEquipmentManager.SwitchRightWeapon();
-        }
-
-        if (switchLeftWeapon)
-        {
-            switchLeftWeapon = false;
-            playerEquipmentManager.SwitchLeftWeapon();
         }
     }
 

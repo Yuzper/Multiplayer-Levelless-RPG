@@ -10,11 +10,21 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] UI_StatBar manaBar;
     [SerializeField] UI_StatBar staminaBar;
 
+    public GameObject healthBarBorder;
+    public GameObject manaBarBorder;
+    public GameObject staminaBarBorder;
+
     // Action Buttons
     [Header("Action Buttons")]
     [SerializeField] public Button Button_1;
     [SerializeField] public Button Button_2;
     [SerializeField] public Button Button_3;
+    [SerializeField] public Button Button_4;
+    [SerializeField] public Button Button_5;
+    [SerializeField] public Button Button_6;
+    [SerializeField] public Button Button_7;
+    [SerializeField] public Button Button_8;
+    [SerializeField] public Button Button_9;
     [SerializeField] public Button Button_Z;
     [SerializeField] public Button Button_R;
 

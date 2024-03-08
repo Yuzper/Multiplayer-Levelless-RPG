@@ -154,7 +154,8 @@ public class CharacterAnimatorManager : MonoBehaviour
         // KEEP TRACK OF CURRENT ATTACK TYPE (LIGHT, HEAVY, ETC)
         character.characterCombatManager.currentAttackType = attackType;
         character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
-        character.animator.applyRootMotion = applyRootMotion;
+        //character.animator.applyRootMotion = applyRootMotion;
+        this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
         character.characterLocomotionManager.canRotate = canRotate;
@@ -166,12 +167,7 @@ public class CharacterAnimatorManager : MonoBehaviour
     }
 
 
-    public virtual void EnableCanDoComboLeft()
-    {
-        
-    }
-
-    public virtual void EnableCanDoComboRight()
+    public virtual void EnableCanDoCombo()
     {
         
     }

@@ -11,7 +11,6 @@ public class PlayerCombatManager : CharacterCombatManager
 
     [Header("Flags")]
     public bool canComboWithWeapon = false;
-    //public bool isPerformingJumpAttack = false; This variable is moved to CharacterCombatManager
 
     override protected void Awake()
     {
@@ -36,26 +35,25 @@ public class PlayerCombatManager : CharacterCombatManager
     {
         switch (currentAttackType)
         {
+            case AttackType.UnarmedMeleeAttack:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.UnarmedMeleeAttackStaminaCostMultiplier;
+
             case AttackType.LightAttack01:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
-
             case AttackType.LightAttack02:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+            case AttackType.LightAttack03:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
 
             case AttackType.HeavyAttack01:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
-
             case AttackType.HeavyAttack02:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
 
             case AttackType.ChargedAttack01:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
-
             case AttackType.ChargedAttack02:
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
-
-            case AttackType.JumpAttack:
-                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.jumpAttackStaminaCostMultiplier;
 
             default:
                 return 100000f; // Random hard coded value that should not be possible to reach
@@ -71,10 +69,17 @@ public class PlayerCombatManager : CharacterCombatManager
 
         switch (currentAttackType)
         {
+            case AttackType.UnarmedMeleeAttack:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+
             case AttackType.LightAttack01:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
             case AttackType.LightAttack02:
+                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+                break;
+            case AttackType.LightAttack03:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
 
@@ -91,10 +96,7 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.ChargedAttack02:
                 staminaDeducted = CalculateStaminaForAttack(currentAttackType);
                 break;
-
-            case AttackType.JumpAttack:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
+            
             default:
                 break;
         }

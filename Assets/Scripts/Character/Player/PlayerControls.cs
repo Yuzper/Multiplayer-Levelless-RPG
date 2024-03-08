@@ -146,7 +146,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LeftMouseAttack"",
+                    ""name"": ""MainHandAttack"",
                     ""type"": ""Button"",
                     ""id"": ""1d1fcb02-11c1-4437-96bf-d5f201c469c9"",
                     ""expectedControlType"": ""Button"",
@@ -155,27 +155,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LeftMouseChargeAttack"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""93c6e28c-db30-4dde-9d27-9b2ed9b9345d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold(pressPoint=0.05)"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RightMouseAttack"",
+                    ""name"": ""MainHandHeavyAttack"",
                     ""type"": ""Button"",
-                    ""id"": ""2b708589-1fcc-42ce-a43c-f071c6bf5cd5"",
+                    ""id"": ""089e8665-7d89-4121-b2dd-783acc7d1c2f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightMouseChargeAttack"",
+                    ""name"": ""MainHandChargeAttack"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""e1f9a11b-55ab-4897-895d-4bda70e6c9de"",
+                    ""id"": ""93c6e28c-db30-4dde-9d27-9b2ed9b9345d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold(pressPoint=0.05)"",
@@ -221,6 +212,60 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""ActionNumber3"",
                     ""type"": ""Button"",
                     ""id"": ""ea2585c8-9e36-49ec-b5d1-dc8d0fc3af50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f44e6bde-d4b4-4556-a645-adbb58c41149"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber5"",
+                    ""type"": ""Button"",
+                    ""id"": ""72094e09-d2ad-4f8f-903e-8dcbffbc366a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber6"",
+                    ""type"": ""Button"",
+                    ""id"": ""97ea46eb-c8e4-435f-9703-eb76fc273af7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber7"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8dd9a1e-6fbc-44dc-bb01-ae4610aabe10"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber8"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd6c1a0b-66e2-4dc0-b280-a24f75f532de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionNumber9"",
+                    ""type"": ""Button"",
+                    ""id"": ""cffbc065-b0fa-4c1a-962f-53fbf3f074ba"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -290,17 +335,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""27e7e308-2369-4e40-8116-cfe58eaf437a"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightMouseAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""6bd858d9-5d51-4ece-a65e-4f0e1dcf29b8"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
@@ -350,29 +384,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftMouseAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6677c6f6-fbd2-4f02-bf4e-f225d889d49c"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightMouseChargeAttack"",
+                    ""action"": ""MainHandAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""24060c47-b509-4f26-bbd5-3468e29fabb6"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftMouseChargeAttack"",
+                    ""action"": ""MainHandChargeAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -408,6 +431,83 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Seek Right Lock On Target"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25cd6f1c-343e-4aad-9b3d-2dc90efa52f3"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a76df9bc-3c7f-4668-be76-97b1b21cda98"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""955e738c-7c13-4bf0-8312-00a5a9c8fdc7"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1932ef6e-550f-483d-81cb-396bfda853b4"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f1b3fc8-b604-4bdd-af07-115d1a6f9133"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e2bdd67-9d73-4e6f-9a8c-abb4b3b9c09f"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionNumber9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""654303a0-2815-4bc2-b937-b5a46233c2d2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainHandHeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -425,7 +525,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Escape Menu"",
+                    ""name"": ""EscapeMenu"",
                     ""type"": ""Button"",
                     ""id"": ""6f4986bf-7439-4617-b964-d7e3259fc0ba"",
                     ""expectedControlType"": ""Button"",
@@ -453,7 +553,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Escape Menu"",
+                    ""action"": ""EscapeMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -472,22 +572,27 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerActions_LeftMouseAttack = m_PlayerActions.FindAction("LeftMouseAttack", throwIfNotFound: true);
-        m_PlayerActions_LeftMouseChargeAttack = m_PlayerActions.FindAction("LeftMouseChargeAttack", throwIfNotFound: true);
-        m_PlayerActions_RightMouseAttack = m_PlayerActions.FindAction("RightMouseAttack", throwIfNotFound: true);
-        m_PlayerActions_RightMouseChargeAttack = m_PlayerActions.FindAction("RightMouseChargeAttack", throwIfNotFound: true);
+        m_PlayerActions_MainHandAttack = m_PlayerActions.FindAction("MainHandAttack", throwIfNotFound: true);
+        m_PlayerActions_MainHandHeavyAttack = m_PlayerActions.FindAction("MainHandHeavyAttack", throwIfNotFound: true);
+        m_PlayerActions_MainHandChargeAttack = m_PlayerActions.FindAction("MainHandChargeAttack", throwIfNotFound: true);
         m_PlayerActions_Dance = m_PlayerActions.FindAction("Dance", throwIfNotFound: true);
         m_PlayerActions_Revival = m_PlayerActions.FindAction("Revival", throwIfNotFound: true);
         m_PlayerActions_ActionNumber1 = m_PlayerActions.FindAction("ActionNumber1", throwIfNotFound: true);
         m_PlayerActions_ActionNumber2 = m_PlayerActions.FindAction("ActionNumber2", throwIfNotFound: true);
         m_PlayerActions_ActionNumber3 = m_PlayerActions.FindAction("ActionNumber3", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber4 = m_PlayerActions.FindAction("ActionNumber4", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber5 = m_PlayerActions.FindAction("ActionNumber5", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber6 = m_PlayerActions.FindAction("ActionNumber6", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber7 = m_PlayerActions.FindAction("ActionNumber7", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber8 = m_PlayerActions.FindAction("ActionNumber8", throwIfNotFound: true);
+        m_PlayerActions_ActionNumber9 = m_PlayerActions.FindAction("ActionNumber9", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
-        m_UI_EscapeMenu = m_UI.FindAction("Escape Menu", throwIfNotFound: true);
+        m_UI_EscapeMenu = m_UI.FindAction("EscapeMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -615,15 +720,20 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_Jump;
-    private readonly InputAction m_PlayerActions_LeftMouseAttack;
-    private readonly InputAction m_PlayerActions_LeftMouseChargeAttack;
-    private readonly InputAction m_PlayerActions_RightMouseAttack;
-    private readonly InputAction m_PlayerActions_RightMouseChargeAttack;
+    private readonly InputAction m_PlayerActions_MainHandAttack;
+    private readonly InputAction m_PlayerActions_MainHandHeavyAttack;
+    private readonly InputAction m_PlayerActions_MainHandChargeAttack;
     private readonly InputAction m_PlayerActions_Dance;
     private readonly InputAction m_PlayerActions_Revival;
     private readonly InputAction m_PlayerActions_ActionNumber1;
     private readonly InputAction m_PlayerActions_ActionNumber2;
     private readonly InputAction m_PlayerActions_ActionNumber3;
+    private readonly InputAction m_PlayerActions_ActionNumber4;
+    private readonly InputAction m_PlayerActions_ActionNumber5;
+    private readonly InputAction m_PlayerActions_ActionNumber6;
+    private readonly InputAction m_PlayerActions_ActionNumber7;
+    private readonly InputAction m_PlayerActions_ActionNumber8;
+    private readonly InputAction m_PlayerActions_ActionNumber9;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
@@ -633,15 +743,20 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
-        public InputAction @LeftMouseAttack => m_Wrapper.m_PlayerActions_LeftMouseAttack;
-        public InputAction @LeftMouseChargeAttack => m_Wrapper.m_PlayerActions_LeftMouseChargeAttack;
-        public InputAction @RightMouseAttack => m_Wrapper.m_PlayerActions_RightMouseAttack;
-        public InputAction @RightMouseChargeAttack => m_Wrapper.m_PlayerActions_RightMouseChargeAttack;
+        public InputAction @MainHandAttack => m_Wrapper.m_PlayerActions_MainHandAttack;
+        public InputAction @MainHandHeavyAttack => m_Wrapper.m_PlayerActions_MainHandHeavyAttack;
+        public InputAction @MainHandChargeAttack => m_Wrapper.m_PlayerActions_MainHandChargeAttack;
         public InputAction @Dance => m_Wrapper.m_PlayerActions_Dance;
         public InputAction @Revival => m_Wrapper.m_PlayerActions_Revival;
         public InputAction @ActionNumber1 => m_Wrapper.m_PlayerActions_ActionNumber1;
         public InputAction @ActionNumber2 => m_Wrapper.m_PlayerActions_ActionNumber2;
         public InputAction @ActionNumber3 => m_Wrapper.m_PlayerActions_ActionNumber3;
+        public InputAction @ActionNumber4 => m_Wrapper.m_PlayerActions_ActionNumber4;
+        public InputAction @ActionNumber5 => m_Wrapper.m_PlayerActions_ActionNumber5;
+        public InputAction @ActionNumber6 => m_Wrapper.m_PlayerActions_ActionNumber6;
+        public InputAction @ActionNumber7 => m_Wrapper.m_PlayerActions_ActionNumber7;
+        public InputAction @ActionNumber8 => m_Wrapper.m_PlayerActions_ActionNumber8;
+        public InputAction @ActionNumber9 => m_Wrapper.m_PlayerActions_ActionNumber9;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @SeekLeftLockOnTarget => m_Wrapper.m_PlayerActions_SeekLeftLockOnTarget;
         public InputAction @SeekRightLockOnTarget => m_Wrapper.m_PlayerActions_SeekRightLockOnTarget;
@@ -660,18 +775,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
-                @LeftMouseAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseAttack;
-                @LeftMouseAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseAttack;
-                @LeftMouseAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseAttack;
-                @LeftMouseChargeAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseChargeAttack;
-                @LeftMouseChargeAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseChargeAttack;
-                @LeftMouseChargeAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftMouseChargeAttack;
-                @RightMouseAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
-                @RightMouseAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
-                @RightMouseAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseAttack;
-                @RightMouseChargeAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRightMouseChargeAttack;
+                @MainHandAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
+                @MainHandAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
+                @MainHandAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
+                @MainHandHeavyAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
+                @MainHandChargeAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
+                @MainHandChargeAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
+                @MainHandChargeAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
                 @Dance.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
                 @Dance.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDance;
@@ -687,6 +799,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber3.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
                 @ActionNumber3.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
                 @ActionNumber3.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber3;
+                @ActionNumber4.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber4;
+                @ActionNumber4.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber4;
+                @ActionNumber4.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber4;
+                @ActionNumber5.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber5;
+                @ActionNumber5.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber5;
+                @ActionNumber5.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber5;
+                @ActionNumber6.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber6;
+                @ActionNumber6.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber6;
+                @ActionNumber6.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber6;
+                @ActionNumber7.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber7;
+                @ActionNumber7.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber7;
+                @ActionNumber7.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber7;
+                @ActionNumber8.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber8;
+                @ActionNumber8.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber8;
+                @ActionNumber8.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber8;
+                @ActionNumber9.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber9;
+                @ActionNumber9.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber9;
+                @ActionNumber9.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnActionNumber9;
                 @LockOn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
@@ -706,18 +836,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @LeftMouseAttack.started += instance.OnLeftMouseAttack;
-                @LeftMouseAttack.performed += instance.OnLeftMouseAttack;
-                @LeftMouseAttack.canceled += instance.OnLeftMouseAttack;
-                @LeftMouseChargeAttack.started += instance.OnLeftMouseChargeAttack;
-                @LeftMouseChargeAttack.performed += instance.OnLeftMouseChargeAttack;
-                @LeftMouseChargeAttack.canceled += instance.OnLeftMouseChargeAttack;
-                @RightMouseAttack.started += instance.OnRightMouseAttack;
-                @RightMouseAttack.performed += instance.OnRightMouseAttack;
-                @RightMouseAttack.canceled += instance.OnRightMouseAttack;
-                @RightMouseChargeAttack.started += instance.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.performed += instance.OnRightMouseChargeAttack;
-                @RightMouseChargeAttack.canceled += instance.OnRightMouseChargeAttack;
+                @MainHandAttack.started += instance.OnMainHandAttack;
+                @MainHandAttack.performed += instance.OnMainHandAttack;
+                @MainHandAttack.canceled += instance.OnMainHandAttack;
+                @MainHandHeavyAttack.started += instance.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.performed += instance.OnMainHandHeavyAttack;
+                @MainHandHeavyAttack.canceled += instance.OnMainHandHeavyAttack;
+                @MainHandChargeAttack.started += instance.OnMainHandChargeAttack;
+                @MainHandChargeAttack.performed += instance.OnMainHandChargeAttack;
+                @MainHandChargeAttack.canceled += instance.OnMainHandChargeAttack;
                 @Dance.started += instance.OnDance;
                 @Dance.performed += instance.OnDance;
                 @Dance.canceled += instance.OnDance;
@@ -733,6 +860,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ActionNumber3.started += instance.OnActionNumber3;
                 @ActionNumber3.performed += instance.OnActionNumber3;
                 @ActionNumber3.canceled += instance.OnActionNumber3;
+                @ActionNumber4.started += instance.OnActionNumber4;
+                @ActionNumber4.performed += instance.OnActionNumber4;
+                @ActionNumber4.canceled += instance.OnActionNumber4;
+                @ActionNumber5.started += instance.OnActionNumber5;
+                @ActionNumber5.performed += instance.OnActionNumber5;
+                @ActionNumber5.canceled += instance.OnActionNumber5;
+                @ActionNumber6.started += instance.OnActionNumber6;
+                @ActionNumber6.performed += instance.OnActionNumber6;
+                @ActionNumber6.canceled += instance.OnActionNumber6;
+                @ActionNumber7.started += instance.OnActionNumber7;
+                @ActionNumber7.performed += instance.OnActionNumber7;
+                @ActionNumber7.canceled += instance.OnActionNumber7;
+                @ActionNumber8.started += instance.OnActionNumber8;
+                @ActionNumber8.performed += instance.OnActionNumber8;
+                @ActionNumber8.canceled += instance.OnActionNumber8;
+                @ActionNumber9.started += instance.OnActionNumber9;
+                @ActionNumber9.performed += instance.OnActionNumber9;
+                @ActionNumber9.canceled += instance.OnActionNumber9;
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
@@ -799,15 +944,20 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnLeftMouseAttack(InputAction.CallbackContext context);
-        void OnLeftMouseChargeAttack(InputAction.CallbackContext context);
-        void OnRightMouseAttack(InputAction.CallbackContext context);
-        void OnRightMouseChargeAttack(InputAction.CallbackContext context);
+        void OnMainHandAttack(InputAction.CallbackContext context);
+        void OnMainHandHeavyAttack(InputAction.CallbackContext context);
+        void OnMainHandChargeAttack(InputAction.CallbackContext context);
         void OnDance(InputAction.CallbackContext context);
         void OnRevival(InputAction.CallbackContext context);
         void OnActionNumber1(InputAction.CallbackContext context);
         void OnActionNumber2(InputAction.CallbackContext context);
         void OnActionNumber3(InputAction.CallbackContext context);
+        void OnActionNumber4(InputAction.CallbackContext context);
+        void OnActionNumber5(InputAction.CallbackContext context);
+        void OnActionNumber6(InputAction.CallbackContext context);
+        void OnActionNumber7(InputAction.CallbackContext context);
+        void OnActionNumber8(InputAction.CallbackContext context);
+        void OnActionNumber9(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnSeekLeftLockOnTarget(InputAction.CallbackContext context);
         void OnSeekRightLockOnTarget(InputAction.CallbackContext context);
