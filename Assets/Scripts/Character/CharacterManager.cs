@@ -89,11 +89,23 @@ public class CharacterManager : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         animator.SetBool("isMoving", characterNetworkManager.isMoving.Value);
+        characterNetworkManager.OnIsActiveChanged(false, characterNetworkManager.isActive.Value);
+
         characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
+        characterNetworkManager.isActive.OnValueChanged += characterNetworkManager.OnIsActiveChanged;
+
         // STATS
         characterNetworkManager.currentHealth.OnValueChanged += characterNetworkManager.CheckHP;
+        // Set Health based on Constitution
         characterNetworkManager.maxHealth.Value = characterStatsManager.CalculateHealthBasedOnConstitution(characterNetworkManager.constitution.Value);
         characterNetworkManager.currentHealth.Value = characterNetworkManager.maxHealth.Value;
+        // Set Mana based on Intelligence
+        characterNetworkManager.maxMana.Value = characterStatsManager.CalculateManaBasedOnIntelligence(characterNetworkManager.intelligence.Value);
+        characterNetworkManager.currentMana.Value = characterNetworkManager.maxMana.Value;
+        // Set Stamina based on Endurance
+        characterNetworkManager.maxMana.Value = characterStatsManager.CalculateStaminaBasedOnEndurance(characterNetworkManager.endurance.Value);
+        characterNetworkManager.currentStamina.Value = characterNetworkManager.maxStamina.Value;
+
     }
 
     public override void OnNetworkDespawn()
@@ -101,6 +113,7 @@ public class CharacterManager : NetworkBehaviour
         base.OnNetworkDespawn();
 
         characterNetworkManager.isMoving.OnValueChanged -= characterNetworkManager.OnIsMovingChanged;
+        characterNetworkManager.isActive.OnValueChanged -= characterNetworkManager.OnIsActiveChanged;
         // STATS
         characterNetworkManager.currentHealth.OnValueChanged -= characterNetworkManager.CheckHP;
     }

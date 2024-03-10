@@ -31,4 +31,14 @@ public class CharacterSaveData
     public int endurance;
     public int fortitude;
 
+    [Header("Bosses")]
+    public SerializableDictionary<int, bool>bossesAwakened; // THE INT IS THE BOSS I.D, THE BOOL IS THE AWAKENDED/DEFEATED STATUS
+    public SerializableDictionary<int, bool>bossesDefeated;
+
+    public CharacterSaveData()
+    {
+        bossesAwakened = new SerializableDictionary<int, bool>();
+        bossesDefeated = new SerializableDictionary<int, bool>();
+    }
+
 }

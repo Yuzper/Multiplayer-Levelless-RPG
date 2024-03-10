@@ -1749,9 +1749,7 @@ MonoBehaviour:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
-  isChargingLeftAttack:
-    m_InternalValue: 0
-  isChargingRightAttack:
+  isChargingMainHandAttack:
     m_InternalValue: 0
   constitution:
     m_InternalValue: 1
@@ -1854,6 +1852,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
