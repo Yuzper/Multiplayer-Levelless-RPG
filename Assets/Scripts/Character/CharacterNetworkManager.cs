@@ -95,7 +95,7 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     public virtual void OnIsActiveChanged(bool oldStatus, bool newStatus)
     {
-        gameObject.SetActive(isActive.Value);
+        //gameObject.SetActive(isActive.Value);
     }
 
     public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus)

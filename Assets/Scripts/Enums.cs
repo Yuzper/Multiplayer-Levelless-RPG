@@ -65,6 +65,7 @@ public enum WeaponType
     Wand,
     Staff,
     ThrowingProjectile,
+    Instrument,
     Misc
 }
 
