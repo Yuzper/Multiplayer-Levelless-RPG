@@ -59,7 +59,7 @@ public class AIBossCharacterManager : AICharacterManager
     {
         if (IsOwner)
         {
-            characterNetworkManager.currentHealth.Value = 0;
+            //characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
             characterLocomotionManager.canMove = false;
             characterLocomotionManager.canRotate = false;
