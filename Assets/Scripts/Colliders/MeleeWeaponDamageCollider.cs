@@ -38,7 +38,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
             // Check if we can damage this target based on friendly fire
             // Check if target is blocking
-            // Check if target is invulnerable
+
             DamageTarget(damageTarget);
         }
     }

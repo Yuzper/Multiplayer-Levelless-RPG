@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9111c098d0d214398824a1a2dded15, type: 3}
+  m_Name: GiantBoss Combat Stance State
+  m_EditorClassIdentifier: 
+  aiCharacterAttacks:
+  - {fileID: 11400000, guid: 215a635225fe27f429bcfb2eb31ff53a, type: 2}
+  - {fileID: 11400000, guid: 028068806e0692c4a98afaa89fe10ffd, type: 2}
+  - {fileID: 11400000, guid: 65ac65647a2410940b65d473d7ef6be0, type: 2}
+  - {fileID: 11400000, guid: 6024abd58033f6c4fbc894221b42b2ac, type: 2}
+  canPerformCombo: 0
+  changeToPerformCombo: 25
+  maximumEngagementDistance: 5

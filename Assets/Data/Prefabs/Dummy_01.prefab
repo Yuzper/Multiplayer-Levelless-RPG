@@ -726,6 +726,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
@@ -736,7 +737,7 @@ MonoBehaviour:
   navmeshAgent: {fileID: 0}
   currentState: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
   idle: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
-  pursueTarget: {fileID: 0}
+  pursueTarget: {fileID: 11400000, guid: 39f99b34e9c83644f91b3e3503de42c4, type: 2}
   combatStance: {fileID: 11400000, guid: 778369fa24a7c7244aa11d0908bfd655, type: 2}
   attack: {fileID: 11400000, guid: 2eae52f23cd2fa04a8f34e126a05673c, type: 2}
 --- !u!114 &-5390492993820861539
@@ -751,6 +752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1049e32c8a692a4599ed16d7512dda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive:
+    m_InternalValue: 1
   networkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   networkRotation:
@@ -772,9 +775,7 @@ MonoBehaviour:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
-  isChargingLeftAttack:
-    m_InternalValue: 0
-  isChargingRightAttack:
+  isChargingMainHandAttack:
     m_InternalValue: 0
   constitution:
     m_InternalValue: 1

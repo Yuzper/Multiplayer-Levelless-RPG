@@ -42,6 +42,8 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     public override void ProcessEffect(CharacterManager character)
     {
+        if (character.characterNetworkManager.isInvulnerable.Value) return; // if invulnerable dont take damage 
+
         base.ProcessEffect(character);
 
         // If the character is dead, no additional damage effects should be processed

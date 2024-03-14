@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fdcce2b0ab67fd34b9c6c320eca5ae52
+guid: 6ccfba892df29434cb62f609eed92510
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Giant@UnarmedAttack01
+      name: Giant@UnarmedAttack02
       takeName: Giant@Damage01
       internalID: -2462987048499481074
       firstFrame: 0
@@ -53,33 +53,33 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.15286624
+      - time: 0.15764332
         functionName: EnableCanRotate
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.32405025
+      - time: 0.32882732
         functionName: DisableCanRotate
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.37911028
-        functionName: OpenLeftFootDamageCollider
+      - time: 0.36943907
+        functionName: OpenRightFootDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.41779497
-        functionName: CloseLeftFootDamageCollider
+      - time: 0.41392648
+        functionName: CloseRightFootDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

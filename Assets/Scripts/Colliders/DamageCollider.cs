@@ -41,7 +41,7 @@ public class DamageCollider : MonoBehaviour
             if (WorldUtilityManager.instance.CanIDamageThisTarget(characterCausingDamage.characterGroup, damageTarget.characterGroup))
             {
                 // Check if target is blocking
-                // Check if target is invulnerable
+
                 DamageTarget(damageTarget);
             }
         }

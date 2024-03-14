@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "A.I/States/PursueTarget")]
 public class PursueTargetState : AIState
 {
+
     public override AIState Tick(AICharacterManager aiCharacter)
     {
 
@@ -22,12 +23,16 @@ public class PursueTargetState : AIState
         }
 
         // if our target is outside of character FOV, then pivot to face them
-        // TODO MAKE OPTION TO TURN OFFF
-        if(aiCharacter.aICharacterCombatManager.enableTurnAnimations && ( aiCharacter.aICharacterCombatManager.viewableAngle < aiCharacter.aICharacterCombatManager.minimumFOV 
-            || aiCharacter.aICharacterCombatManager.viewableAngle > aiCharacter.aICharacterCombatManager.maximumFOV))
+        // OPTION TO TURN OFFF
+        if(aiCharacter.aICharacterCombatManager.enableTurnAnimations)
         {
-            aiCharacter.aICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            if (aiCharacter.aICharacterCombatManager.enableTurnAnimations && (aiCharacter.aICharacterCombatManager.viewableAngle < aiCharacter.aICharacterCombatManager.minimumFOV
+                || aiCharacter.aICharacterCombatManager.viewableAngle > aiCharacter.aICharacterCombatManager.maximumFOV))
+            {
+                aiCharacter.aICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            }
         }
+
 
         aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 

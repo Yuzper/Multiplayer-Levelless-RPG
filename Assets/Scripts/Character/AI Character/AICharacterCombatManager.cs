@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO SEBS NOTE (stopped video 3 boss fight at 23.58
+
 public class AICharacterCombatManager : CharacterCombatManager
 {
     protected AICharacterManager aiCharacter;
@@ -92,7 +94,7 @@ public class AICharacterCombatManager : CharacterCombatManager
     }
 
 
-    public void PivotTowardsTarget(AICharacterManager aiCharacter)
+    public virtual void PivotTowardsTarget(AICharacterManager aiCharacter)
     {
         if (!enableTurnAnimations) return;
         // play pivot animation depending on viewable angle of target

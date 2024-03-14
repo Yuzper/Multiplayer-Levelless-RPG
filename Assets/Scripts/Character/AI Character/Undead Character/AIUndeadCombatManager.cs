@@ -38,8 +38,9 @@ public class AIUndeadCombatManager : AICharacterCombatManager
         rightHandDamageCollider.DisableDamageCollider();
     }
 
-    public void OpenLeftHandDamageCollider()
+    public void OpenLeftHandDamageColliderWEE()
     {
+        Debug.Log("HELLO");
         aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         leftHandDamageCollider.EnableDamageCollider();
     }
