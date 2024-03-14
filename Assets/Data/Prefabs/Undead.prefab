@@ -494,6 +494,8 @@ MonoBehaviour:
     m_InternalValue: 0
   isChargingMainHandAttack:
     m_InternalValue: 0
+  isInvulnerable:
+    m_InternalValue: 0
   constitution:
     m_InternalValue: 1
   intelligence:

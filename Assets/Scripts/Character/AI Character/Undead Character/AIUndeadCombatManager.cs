@@ -38,7 +38,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
         rightHandDamageCollider.DisableDamageCollider();
     }
 
-    public void OpenLeftHandDamageColliderWEE()
+    public void OpenLeftHandDamageCollider()
     {
         Debug.Log("HELLO");
         aiCharacter.characterSoundFXManager.PlayAttackGrunt();

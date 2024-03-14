@@ -276,6 +276,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1102564217597288133}
   - {fileID: 2319308980488725330}
   - {fileID: 8283463029143891217}
   - {fileID: 5483605016614414781}
@@ -491,8 +492,54 @@ Transform:
   m_Children:
   - {fileID: 1370239729756781909}
   m_Father: {fileID: 5220046225504492078}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1731397730881443116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102564217597288133}
+  - component: {fileID: 1147932734822129464}
+  m_Layer: 7
+  m_Name: TEMP COLLIDER - SHOULD ADD TO ALL JOINTS INSTEAD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102564217597288133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731397730881443116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5220046225504492078}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1147932734822129464
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731397730881443116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.14177376
+  m_Height: 1.48
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1905832857654796094
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +844,7 @@ Transform:
   m_Children:
   - {fileID: 6959501055908641676}
   m_Father: {fileID: 5220046225504492078}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2907469851557917205
 GameObject:
@@ -1259,7 +1306,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3768603882586335273}
-  m_LocalRotation: {x: 0.032877285, y: 0.0028547237, z: 0.0025734291, w: 0.999452}
+  m_LocalRotation: {x: 0.03287729, y: 0.0028547237, z: 0.0025734294, w: 0.999452}
   m_LocalPosition: {x: -0, y: 0.16860473, z: -7.105427e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1661,7 +1708,7 @@ GameObject:
   - component: {fileID: -1136134484293859745}
   - component: {fileID: 4681113189932714061}
   - component: {fileID: 6631685241724113260}
-  - component: {fileID: -1004480303964061948}
+  - component: {fileID: 2991822748274302797}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1723,7 +1770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3713777260
+  GlobalObjectIdHash: 116302440
   InScenePlacedSourceGlobalObjectIdHash: 3713777260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1754,6 +1801,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 0
   isPerformingAction: 0
   isDancing: 0
@@ -1888,6 +1936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420d44fac12e23144a8176af5dca1d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive:
+    m_InternalValue: 1
   networkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   networkRotation:
@@ -1910,6 +1960,8 @@ MonoBehaviour:
   isLockedOn:
     m_InternalValue: 0
   isChargingMainHandAttack:
+    m_InternalValue: 0
+  isInvulnerable:
     m_InternalValue: 0
   constitution:
     m_InternalValue: 1
@@ -2219,7 +2271,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &-1004480303964061948
+--- !u!54 &2991822748274302797
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2671,7 +2723,7 @@ Transform:
   m_Children:
   - {fileID: 5740229257846936459}
   m_Father: {fileID: 5220046225504492078}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6470723009239768861
 GameObject:
