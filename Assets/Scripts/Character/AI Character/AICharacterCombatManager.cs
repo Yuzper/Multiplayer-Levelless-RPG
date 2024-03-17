@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO SEBS NOTE (stopped video 3 boss fight at 23.58
-
 public class AICharacterCombatManager : CharacterCombatManager
 {
     protected AICharacterManager aiCharacter;

@@ -71,22 +71,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.37911028
-        functionName: OpenLeftFootDamageCollider
+      - time: 0.41114056
+        functionName: PlayStompImpact
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.41779497
-        functionName: CloseLeftFootDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0
-        functionName: SetAttack02Damage
+      - time: 0.41201463
+        functionName: RightStompActivate
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

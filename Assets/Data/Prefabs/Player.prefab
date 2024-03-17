@@ -1703,7 +1703,6 @@ GameObject:
   - component: {fileID: -4850607042919652327}
   - component: {fileID: 1820767909}
   - component: {fileID: 5531915241888746379}
-  - component: {fileID: -5671665878480558004}
   - component: {fileID: 5537857349065083524}
   - component: {fileID: -1136134484293859745}
   - component: {fileID: 4681113189932714061}
@@ -2109,18 +2108,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5db80d54d2dafd348b6cae53c6d9924a, type: 3}
   - {fileID: 8300000, guid: 37f1bb4806a676249891c3249bf962a2, type: 3}
   attackGrunts: []
---- !u!114 &-5671665878480558004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919811160946927010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c355613a8ae8041afae410d29e661d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5537857349065083524
 MonoBehaviour:
   m_ObjectHideFlags: 0

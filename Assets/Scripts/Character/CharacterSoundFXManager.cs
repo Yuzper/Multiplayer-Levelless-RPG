@@ -12,6 +12,11 @@ public class CharacterSoundFXManager : MonoBehaviour
     [Header("Damage Grunts")]
     [SerializeField] protected AudioClip[] attackGrunts;
 
+    [Header("Footsteps")]
+    [SerializeField] public AudioClip[] footstepsDefault;
+    [SerializeField] public AudioClip[] footstepsDirt;
+    [SerializeField] public AudioClip[] footstepsStone;
+
 
     protected virtual void Awake()
     {
@@ -80,5 +85,11 @@ public class CharacterSoundFXManager : MonoBehaviour
     {
         if (attackGrunts.Length > 0)
             PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
+    }
+
+    public virtual void PlayFootstep()
+    {
+        if (attackGrunts.Length > 0)
+            PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(footstepsDefault));
     }
 }

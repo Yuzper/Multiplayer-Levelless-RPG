@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * In the tutorials he actually makes a DurkDamageCollider (that meaning a combat manager that is very specific to the boss)
+ * Hence for each boss there would be a new class. However I just called this class "MeleeBossDamageCollider".
+ * It would be nice if we could make a base boss class that we can just tune in the editor or if we want a very specific boss
+ * then we can just inherit from this class
+ */
 public class MeleeBossDamageCollider : DamageCollider
 {
     [SerializeField] AIBossCharacterManager bossCharacterManager;

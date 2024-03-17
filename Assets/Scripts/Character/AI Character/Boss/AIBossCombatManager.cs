@@ -2,42 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * In the tutorials he actually makes a AIDurkCombatManager (that meaning a combat manager that is very specific to the boss)
+ * Hence for each boss there would be a new class. However I just called this class "AIBossCombatManager".
+ * It would be nice if we could make a base boss class that we can just tune in the editor or if we want a very specific boss
+ * then we can just inherit from this class
+ */
 public class AIBossCombatManager : AICharacterCombatManager
 {
+    AIBossCharacterManager aiBossManager;
+
     [Header("Damage Colliders")]
     [SerializeField] MeleeBossDamageCollider rightHandDamageCollider;
     [SerializeField] MeleeBossDamageCollider leftHandDamageCollider;
-    [SerializeField] MeleeBossDamageCollider rightFootDamageCollider;
-    [SerializeField] MeleeBossDamageCollider leftFootDamageCollider;
+    [SerializeField] StompCollider rightFootDamageCollider;
+    [SerializeField] StompCollider leftFootDamageCollider;
+
+    public float stompAttackAOERadious = 1.5f;
 
     [Header("Damage")]
     [SerializeField] int baseDamage = 25;
-    [SerializeField] float attack01DamageModifier = 1.0f;
-    [SerializeField] float attack02DamageModifier = 1.8f;
     [SerializeField] float attack03DamageModifier = 1.4f;
     [SerializeField] float attack04DamageModifier = 1.4f;
 
-    // right foot
-    public void SetAttack01Damage()
-    {
-        rightFootDamageCollider.physicalDamage = baseDamage * attack01DamageModifier;
-    }
+    public float stompDamage = 25f;
 
-    // left foot
-    public void SetAttack02Damage()
-    {
-        leftFootDamageCollider.physicalDamage = baseDamage * attack02DamageModifier;
-    }
+    [Header("VFX")]
+    public GameObject stompImpactVFX;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        aiBossManager = GetComponent<AIBossCharacterManager>();
+    }
     //right hand
     public void SetAttack03Damage()
     {
+        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         rightHandDamageCollider.physicalDamage = baseDamage * attack03DamageModifier;
     }
 
     //left hand
     public void SetAttack04Damage()
     {
+        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         leftHandDamageCollider.physicalDamage = baseDamage * attack04DamageModifier;
     }
 
@@ -45,10 +53,11 @@ public class AIBossCombatManager : AICharacterCombatManager
 
     public void OpenRightHandDamageCollider()
     {
-        Debug.Log("OPEN");
-        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         rightHandDamageCollider.EnableDamageCollider();
+        PlayWhoosh();
     }
+
+
 
     public void CloseRightHandDamageCollider()
     {
@@ -57,9 +66,8 @@ public class AIBossCombatManager : AICharacterCombatManager
 
     public void OpenLeftHandDamageCollider()
     {
-        Debug.Log("OPEN");
-        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         leftHandDamageCollider.EnableDamageCollider();
+        PlayWhoosh();
     }
 
     public void CloseLeftHandDamageCollider()
@@ -69,26 +77,22 @@ public class AIBossCombatManager : AICharacterCombatManager
 
 
     // feet
-
-    public void OpenRightFootDamageCollider()
+    public void RightStompActivate()
     {
-        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
-        rightFootDamageCollider.EnableDamageCollider();
+        rightFootDamageCollider.StompAttack();
     }
 
-    public void CloseRightFootDamageCollider()
+    public void LeftStompActivate()
     {
-        rightFootDamageCollider.DisableDamageCollider();
+        leftFootDamageCollider.StompAttack();
     }
 
-    public void OpenLeftFootDamageCollider()
+    private void PlayWhoosh()
     {
-        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
-        leftFootDamageCollider.EnableDamageCollider();
-    }
-
-    public void CloseLeftFootDamageCollider()
-    {
-        leftFootDamageCollider.DisableDamageCollider();
+        var bossSoundFXManager = aiBossManager.characterSoundFXManager as AIBossSoundFXManager;
+        if (bossSoundFXManager != null)
+        {
+            bossSoundFXManager.PlayWhoosh();
+        }
     }
 }

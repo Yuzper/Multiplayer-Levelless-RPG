@@ -44,4 +44,17 @@ public class WorldSoundFXManager : MonoBehaviour
         int index = Random.Range(0, array.Length);
         return array[index];
     }
+
+    public AudioClip ChooseRandomFootstepSoundBasedOnGround(GameObject steppedOnObject, CharacterManager manager)
+    {
+        switch (steppedOnObject.tag)
+        {
+            case "Dirt":
+                return ChooseRandomSFXFromArray(manager.characterSoundFXManager.footstepsDirt);
+            case "Stone":
+                return ChooseRandomSFXFromArray(manager.characterSoundFXManager.footstepsStone);
+            default:
+                return ChooseRandomSFXFromArray(manager.characterSoundFXManager.footstepsDefault);
+        }
+    }
 }
