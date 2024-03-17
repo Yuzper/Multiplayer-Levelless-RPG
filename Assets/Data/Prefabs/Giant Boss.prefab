@@ -733,7 +733,7 @@ MonoBehaviour:
   leftHandDamageCollider: {fileID: 8798921117378878392}
   rightFootDamageCollider: {fileID: 7876915274844748070}
   leftFootDamageCollider: {fileID: 6621621682127951339}
-  stompAttackAOERadious: 1.5
+  stompAttackAOERadious: 2
   baseDamage: 25
   attack03DamageModifier: 1.8
   attack04DamageModifier: 1.8
