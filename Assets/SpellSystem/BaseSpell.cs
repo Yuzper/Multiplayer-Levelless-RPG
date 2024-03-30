@@ -13,6 +13,7 @@ public class BaseSpell : ScriptableObject
     public bool canMove = true;
     public bool spawnRightHandVFX = true;
     public bool spawnLeftHandVFX = true;
+
     public List<SpellEffect> additionalEffects;
 
     [Header("Stats")]
@@ -39,6 +40,6 @@ public class BaseSpell : ScriptableObject
     {
         if (!spellPrefab) return;
 
-        Instantiate(spellPrefab, startPos.position,Quaternion.identity);
+        Instantiate(spellPrefab, startPos.position, spellManager.gameObject.transform.rotation);
     }
 }
