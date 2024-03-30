@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ffd86729f642bb4dab974323149764b, type: 3}
-  m_Name: Basic_Projectile_Fireball
+  m_Name: Basic_Projectile_Frostbold
   m_EditorClassIdentifier: 
-  spellName: Fireball
+  spellName: Frostbold
   animationName: MovingSpellCast
-  spellPrefab: {fileID: 579393599800319720, guid: 8a38e43a2e6ff944eaafdb03ef49df19,
+  spellPrefab: {fileID: 579393599800319720, guid: 091f015dc5f7dd1469233aeb65f1ef2d,
     type: 3}
   handVFX: {fileID: 1140579960723542, guid: 09849ac8c58dd6b4f9b9965478663b93, type: 3}
   canMove: 1
@@ -22,6 +22,6 @@ MonoBehaviour:
   spawnLeftHandVFX: 1
   additionalEffects: []
   manaCost: 25
-  speed: 550
+  speed: 400
   damage: 10
   lifeTime: 5

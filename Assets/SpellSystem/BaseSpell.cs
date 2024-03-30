@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spellsystem/Spells/BaseSpell")]
 public class BaseSpell : ScriptableObject
 {
     public string spellName;
