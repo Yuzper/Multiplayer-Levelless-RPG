@@ -28,6 +28,10 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] public Button Button_Z;
     [SerializeField] public Button Button_R;
 
+    [Header("Boss Health Bar")]
+    public Transform bossHealthBarParent;
+    public GameObject bossHealthBarObject;
+
     
     public void RefreshHUI()
     {

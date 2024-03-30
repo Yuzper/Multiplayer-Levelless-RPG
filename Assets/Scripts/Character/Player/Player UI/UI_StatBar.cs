@@ -21,7 +21,7 @@ public class UI_StatBar : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         rectTransform = GetComponent<RectTransform>();
-        resourceAmountText = GetComponentInChildren<TMP_Text>();
+        resourceAmountText = GetComponentInChildren<TMP_Text>(); // TODO this causes the boss name to say the health value
     }
 
     public virtual void SetStat(float newValue)
@@ -51,6 +51,7 @@ public class UI_StatBar : MonoBehaviour
 
     private void ChangeUIBarText()
     {
+        if (resourceAmountText == null) return;
         resourceAmountText.SetText(currentBarValue.ToString() + " / " + maxBarValue.ToString());
         /*if (valueToChange == "maxvalue")
         {

@@ -5,15 +5,16 @@ using UnityEngine;
 public class StompCollider : DamageCollider
 {
     AIBossCharacterManager characterManager;
-    AIBossCombatManager combatManager;
+    AIGolemBossCombatManager combatManager;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
 
         characterManager = GetComponentInParent<AIBossCharacterManager>();
-        combatManager = characterManager.aICharacterCombatManager as AIBossCombatManager;
+        combatManager = characterManager.aICharacterCombatManager as AIGolemBossCombatManager;
     }
+
     public void StompAttack()
     {
         GameObject stompVFX = Instantiate(combatManager.stompImpactVFX, transform.position, combatManager.stompImpactVFX.transform.rotation);

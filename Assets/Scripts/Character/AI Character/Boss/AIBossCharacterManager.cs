@@ -6,27 +6,41 @@ using Unity.Netcode;
 public class AIBossCharacterManager : AICharacterManager
 {
     public int bossID = 0;
-    [SerializeField] bool hasBeenDefeated = false;
-    [SerializeField] bool hasBeenAwakended = false;
 
-    [Header("DEBUG")]
-    [SerializeField] bool wakeBossUp = false;
+    [Header("Status")]
+    public NetworkVariable<bool> bossFightIsActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> hasBeenDefeated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> hasBeenAwakended = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] string sleepAnimation;
+    [SerializeField] string awakenAnimation;
+
+    [Header("States")]
+    [SerializeField] BossSleepState sleepState;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     protected override void Update()
     {
         base.Update();
-
-        if (wakeBossUp)
-        {
-            wakeBossUp = false;
-            WakeBoss();
-        }
     }
 
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+
+        bossFightIsActive.OnValueChanged += OnBossFightIsActiveChanged;
+        OnBossFightIsActiveChanged(false,bossFightIsActive.Value); // so if you join when the fight is already active, you will get the hp bar
+
+        if (IsOwner)
+        {
+            sleepState = Instantiate(sleepState);
+            currentState = sleepState;
+        }
+
 
         if (IsServer)
         {
@@ -39,21 +53,35 @@ public class AIBossCharacterManager : AICharacterManager
             // OTHERWISE, LOAD THE DATA THAT ALREADY EXISTS ON THIS BOSS
             else
             {
-                hasBeenDefeated = WorldSaveGameManager.instance.currentCharacterData.bossesDefeated[bossID];
+                hasBeenDefeated.Value = WorldSaveGameManager.instance.currentCharacterData.bossesDefeated[bossID];
+                hasBeenAwakended.Value = WorldSaveGameManager.instance.currentCharacterData.bossesAwakened[bossID];
 
-                if (hasBeenDefeated)
+                // boss has been defeated (was used to enable disable fog walls)
+                if (hasBeenDefeated.Value)
                 {
                     aiCharacterNetworkManager.isActive.Value = false;
                 }
 
-                if (hasBeenAwakended)
+                // boss has been awakend (was used to enable disable fog walls)
+                if (hasBeenAwakended.Value)
                 {
 
                 }
             }
         }
+
+        if (!hasBeenAwakended.Value)
+        {
+            characterAnimatorManager.PlayerTargetActionAnimation(sleepAnimation, true);
+        }
     }
 
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+
+        bossFightIsActive.OnValueChanged -= OnBossFightIsActiveChanged;
+    }
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
     {
@@ -64,6 +92,8 @@ public class AIBossCharacterManager : AICharacterManager
             characterLocomotionManager.canMove = false;
             characterLocomotionManager.canRotate = false;
 
+            bossFightIsActive.Value = false;
+
             // Reset any flags here that need to be reset
 
             if (!manuallySelectDeathAnimation)
@@ -72,7 +102,7 @@ public class AIBossCharacterManager : AICharacterManager
             }
 
             // SAVING DATA FOR IF THE BOSS IS DEFEATED
-            hasBeenDefeated = true;
+            hasBeenDefeated.Value = true;
 
             if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
             {
@@ -102,7 +132,51 @@ public class AIBossCharacterManager : AICharacterManager
 
     public void WakeBoss()
     {
-        hasBeenAwakended = true;
+
+        if (IsOwner)
+        {
+
+            if (!hasBeenAwakended.Value)
+            {
+
+                characterAnimatorManager.PlayerTargetActionAnimation(awakenAnimation, true);
+            }
+            bossFightIsActive.Value= true;
+            hasBeenAwakended.Value = true;
+
+            currentState = idle;
+
+            if(!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
+            {
+                WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID, true );
+            } else
+            {
+                WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Remove(bossID );
+                WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID , true);
+            }
+
+
+        }
+
     }
+
+
+
+    private void OnBossFightIsActiveChanged(bool oldValue, bool newValue)
+    {
+        // create hp bar for each boss that is in the fight ( if its active)
+        // destory any hp bars currently active ( if the boss is no longer active )
+
+        if(bossFightIsActive.Value)
+        {
+            GameObject bossHealthBar
+                = Instantiate(PlayerUIManager.instance.playerUIHudManager.bossHealthBarObject, PlayerUIManager.instance.playerUIHudManager.bossHealthBarParent);
+
+            UI_Boss_HP_Bar bossHPBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
+            bossHPBar.EnableBossHPBar(this);
+        }
+
+    }
+
 
 }

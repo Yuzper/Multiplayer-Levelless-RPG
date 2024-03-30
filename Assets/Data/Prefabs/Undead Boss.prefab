@@ -1706,7 +1706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2798986193
+  GlobalObjectIdHash: 2153404585
   InScenePlacedSourceGlobalObjectIdHash: 2153404585
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1832,11 +1832,12 @@ MonoBehaviour:
   leftHandDamageCollider: {fileID: 0}
   rightFootDamageCollider: {fileID: 0}
   leftFootDamageCollider: {fileID: 0}
+  stompAttackAOERadious: 1.5
   baseDamage: 25
-  attack01DamageModifier: 1
-  attack02DamageModifier: 1.5
   attack03DamageModifier: 1.4
   attack04DamageModifier: 1.4
+  stompDamage: 25
+  stompImpactVFX: {fileID: 0}
 --- !u!114 &4032848166402318265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,10 +1874,14 @@ MonoBehaviour:
   pursueTarget: {fileID: 11400000, guid: 39f99b34e9c83644f91b3e3503de42c4, type: 2}
   combatStance: {fileID: 11400000, guid: 778369fa24a7c7244aa11d0908bfd655, type: 2}
   attack: {fileID: 11400000, guid: 2eae52f23cd2fa04a8f34e126a05673c, type: 2}
-  bossID: 0
-  hasBeenDefeated: 0
-  hasBeenAwakended: 0
-  wakeBossUp: 0
+  bossID: 1
+  hasBeenDefeated:
+    m_InternalValue: 0
+  hasBeenAwakended:
+    m_InternalValue: 0
+  sleepAnimation: Empty
+  awakenAnimation: Empty
+  sleepState: {fileID: 11400000, guid: 13478fb4405d8264eb6ee9c4e0508a23, type: 2}
 --- !u!114 &7104238533779074862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,6 +1951,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a705c8e0e06b7c489d622a42b280a75, type: 3}
   - {fileID: 8300000, guid: 62f0b40b5ce888a4392e239c777f1c42, type: 3}
   - {fileID: 8300000, guid: 3d2667c01afd9564caf9e9acff7f6b4d, type: 3}
+  footstepsDefault: []
+  footstepsDirt: []
+  footstepsStone: []
 --- !u!114 &7104238533779074861
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class AICharacterManager : CharacterManager
 {
+    public string characterName = "";
     [HideInInspector] public AICharacterNetworkManager aiCharacterNetworkManager;
     [HideInInspector] public AICharacterCombatManager aICharacterCombatManager;
     [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
@@ -18,7 +19,7 @@ public class AICharacterManager : CharacterManager
     public NavMeshAgent navmeshAgent;
 
     [Header("Current State")]
-    [SerializeField] AIState currentState;
+    [SerializeField] protected AIState currentState;
 
     [Header("States")]
     public IdleState idle;
@@ -36,11 +37,19 @@ public class AICharacterManager : CharacterManager
 
         navmeshAgent = GetComponentInChildren<NavMeshAgent>();
 
-        // using copy of SO so the original is not modified
-        idle = Instantiate(idle);
-        pursueTarget = Instantiate(pursueTarget);
+    }
 
-        currentState = idle;
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        if (IsOwner)
+        {
+            // using copy of SO so the original is not modified
+            idle = Instantiate(idle);
+            pursueTarget = Instantiate(pursueTarget);
+            currentState = idle;
+        }
     }
 
     protected override void Update()

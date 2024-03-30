@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 245359009
+  GlobalObjectIdHash: 4113435708
   InScenePlacedSourceGlobalObjectIdHash: 4113435708
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -766,6 +766,7 @@ MonoBehaviour:
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
+  characterName: Golem boss of doom
   aiCharacterNetworkManager: {fileID: 0}
   aICharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -777,9 +778,15 @@ MonoBehaviour:
   combatStance: {fileID: 11400000, guid: 78d20b7a3d0551f44b77dfd57f8a1dd0, type: 2}
   attack: {fileID: 11400000, guid: bef700bc1b624a6418bc66dc447d65ca, type: 2}
   bossID: 0
-  hasBeenDefeated: 0
-  hasBeenAwakended: 0
-  wakeBossUp: 0
+  bossFightIsActive:
+    m_InternalValue: 0
+  hasBeenDefeated:
+    m_InternalValue: 0
+  hasBeenAwakended:
+    m_InternalValue: 0
+  sleepAnimation: Sleep_01
+  awakenAnimation: Awaken_01
+  sleepState: {fileID: 11400000, guid: 13478fb4405d8264eb6ee9c4e0508a23, type: 2}
 --- !u!114 &5091333720538509493
 MonoBehaviour:
   m_ObjectHideFlags: 0
