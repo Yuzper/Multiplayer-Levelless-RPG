@@ -52,6 +52,10 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool escapeMenuInput = false;
     public EscapeMenuManager escapeMenu;
 
+    [Header("Spell casting")]
+    public bool inSpellMode = false;
+    public bool castSpell = false; 
+
     private void Awake()
     {
         if (instance == null)
@@ -143,6 +147,11 @@ public class PlayerInputManager : MonoBehaviour
 
             // UI
             playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
+
+            // Spell casting
+            playerControls.PlayerSpellcasting.SpellMode.performed += i => inSpellMode = !inSpellMode;
+            //playerControls.PlayerSpellcasting.SpellMode.canceled += i => inSpellMode = false;
+            playerControls.PlayerSpellcasting.UseSpell.performed += i => castSpell = true;
         }
 
         playerControls.Enable();
@@ -188,10 +197,21 @@ public class PlayerInputManager : MonoBehaviour
         HandleDanceInput();
         HandleRevivalInput();
         HandleActionInputs();
-        // Attack Inputs
-        HandleMouseAttackInput();
-        HandleMouseHeavyAttackInput();
-        HandleMouseChargeAttackInput();
+
+        if(inSpellMode)
+        {
+            mainHandChargeAttackInput = false;
+            mainHandHeavyAttackInput = false;
+            mainHandAttackInput = false;
+        } 
+        else
+        {
+            // Attack Inputs
+            HandleMouseAttackInput();
+            HandleMouseHeavyAttackInput();
+            HandleMouseChargeAttackInput();
+        }
+
     }
 
     // LOCK ON
@@ -327,8 +347,17 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleCameraMovementInput()
     {
-        cameraVerticalInput = cameraInput.y;
-        cameraHorizontalInput = cameraInput.x;
+        if (inSpellMode)
+        {
+            cameraVerticalInput = 0;
+            cameraHorizontalInput = 0;
+        }
+        else
+        {
+            cameraVerticalInput = cameraInput.y;
+            cameraHorizontalInput = cameraInput.x;
+        }
+
     }
 
     // ACTIONS SECTION

@@ -536,6 +536,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player Spellcasting",
+            "id": "f03c4dd9-ddba-4801-b285-635d2f601b53",
+            "actions": [
+                {
+                    "name": "SpellMode",
+                    "type": "Button",
+                    "id": "8042414f-7e59-4e8c-b186-bfe1790a3604",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseSpell",
+                    "type": "Button",
+                    "id": "be7a8766-8f7f-4d20-8290-dde08a63207b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d103cf81-6a8f-4cce-813a-77cea06fda6e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51ebd37b-d423-45a2-9600-a4056790ccd4",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseSpell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

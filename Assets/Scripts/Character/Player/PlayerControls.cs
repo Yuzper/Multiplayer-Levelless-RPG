@@ -558,6 +558,54 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Player Spellcasting"",
+            ""id"": ""f03c4dd9-ddba-4801-b285-635d2f601b53"",
+            ""actions"": [
+                {
+                    ""name"": ""SpellMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""8042414f-7e59-4e8c-b186-bfe1790a3604"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSpell"",
+                    ""type"": ""Button"",
+                    ""id"": ""be7a8766-8f7f-4d20-8290-dde08a63207b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d103cf81-6a8f-4cce-813a-77cea06fda6e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51ebd37b-d423-45a2-9600-a4056790ccd4"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseSpell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -593,6 +641,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
         m_UI_EscapeMenu = m_UI.FindAction("EscapeMenu", throwIfNotFound: true);
+        // Player Spellcasting
+        m_PlayerSpellcasting = asset.FindActionMap("Player Spellcasting", throwIfNotFound: true);
+        m_PlayerSpellcasting_SpellMode = m_PlayerSpellcasting.FindAction("SpellMode", throwIfNotFound: true);
+        m_PlayerSpellcasting_UseSpell = m_PlayerSpellcasting.FindAction("UseSpell", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -932,6 +984,47 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Player Spellcasting
+    private readonly InputActionMap m_PlayerSpellcasting;
+    private IPlayerSpellcastingActions m_PlayerSpellcastingActionsCallbackInterface;
+    private readonly InputAction m_PlayerSpellcasting_SpellMode;
+    private readonly InputAction m_PlayerSpellcasting_UseSpell;
+    public struct PlayerSpellcastingActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PlayerSpellcastingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SpellMode => m_Wrapper.m_PlayerSpellcasting_SpellMode;
+        public InputAction @UseSpell => m_Wrapper.m_PlayerSpellcasting_UseSpell;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerSpellcasting; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerSpellcastingActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerSpellcastingActions instance)
+        {
+            if (m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface != null)
+            {
+                @SpellMode.started -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellMode;
+                @SpellMode.performed -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellMode;
+                @SpellMode.canceled -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellMode;
+                @UseSpell.started -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpell;
+                @UseSpell.performed -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpell;
+                @UseSpell.canceled -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpell;
+            }
+            m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SpellMode.started += instance.OnSpellMode;
+                @SpellMode.performed += instance.OnSpellMode;
+                @SpellMode.canceled += instance.OnSpellMode;
+                @UseSpell.started += instance.OnUseSpell;
+                @UseSpell.performed += instance.OnUseSpell;
+                @UseSpell.canceled += instance.OnUseSpell;
+            }
+        }
+    }
+    public PlayerSpellcastingActions @PlayerSpellcasting => new PlayerSpellcastingActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -966,5 +1059,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnX(InputAction.CallbackContext context);
         void OnEscapeMenu(InputAction.CallbackContext context);
+    }
+    public interface IPlayerSpellcastingActions
+    {
+        void OnSpellMode(InputAction.CallbackContext context);
+        void OnUseSpell(InputAction.CallbackContext context);
     }
 }

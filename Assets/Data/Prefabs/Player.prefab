@@ -1695,7 +1695,6 @@ GameObject:
   - component: {fileID: 4919811160954312666}
   - component: {fileID: -7552384589292500154}
   - component: {fileID: -6838890959375998241}
-  - component: {fileID: 6046763726154373151}
   - component: {fileID: 4119943543529186907}
   - component: {fileID: 3102385522071529017}
   - component: {fileID: 3362887032212460857}
@@ -1708,6 +1707,7 @@ GameObject:
   - component: {fileID: 4681113189932714061}
   - component: {fileID: 6631685241724113260}
   - component: {fileID: 2991822748274302797}
+  - component: {fileID: 7484951405844618786}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1769,7 +1769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 116302440
+  GlobalObjectIdHash: 3713777260
   InScenePlacedSourceGlobalObjectIdHash: 3713777260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1812,19 +1812,7 @@ MonoBehaviour:
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
-  playerSpellsManager: {fileID: 0}
---- !u!114 &6046763726154373151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919811160946927010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51cabe5b43b1ca042890d5d8456f8068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  playerSpellManager: {fileID: 0}
 --- !u!114 &4119943543529186907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2108,6 +2096,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5db80d54d2dafd348b6cae53c6d9924a, type: 3}
   - {fileID: 8300000, guid: 37f1bb4806a676249891c3249bf962a2, type: 3}
   attackGrunts: []
+  footstepsDefault: []
+  footstepsDirt: []
+  footstepsStone: []
 --- !u!114 &5537857349065083524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2274,6 +2265,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7484951405844618786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919811160946927010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4673ab7a812bb4eab4a6f9bf370a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHand: {fileID: 1881962692823523993}
+  leftHand: {fileID: 6455869404960901266}
+  rightHandVFX: {fileID: 0}
+  leftHandVFX: {fileID: 0}
+  equippedSpell: {fileID: 11400000, guid: e73eb5023c5163e46902f83f7a02e573, type: 2}
 --- !u!1 &4952772147308521837
 GameObject:
   m_ObjectHideFlags: 0
