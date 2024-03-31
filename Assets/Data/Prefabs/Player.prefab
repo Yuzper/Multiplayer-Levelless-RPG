@@ -1769,7 +1769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 116302440
+  GlobalObjectIdHash: 3713777260
   InScenePlacedSourceGlobalObjectIdHash: 3713777260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2283,7 +2283,7 @@ MonoBehaviour:
   midPoint: {fileID: 5220046225504492078}
   rightHandVFX: {fileID: 0}
   leftHandVFX: {fileID: 0}
-  equippedSpell: {fileID: 11400000, guid: deebf0a7722d18345a81386860ee7a5e, type: 2}
+  equippedSpell: {fileID: 11400000, guid: 66826d8f378f7fc4b90f0dbad2f26bdc, type: 2}
 --- !u!1 &4952772147308521837
 GameObject:
   m_ObjectHideFlags: 0
