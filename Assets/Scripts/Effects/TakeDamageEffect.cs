@@ -68,7 +68,6 @@ public class TakeDamageEffect : InstantCharacterEffect
         }
 
         finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
-        Debug.Log("Damage: " + finalDamageDealt);
         if (finalDamageDealt <= 0)
         {
             finalDamageDealt = 1; // Always deal at least 1 damage, might change later

@@ -11,8 +11,6 @@ public class SpellProjectileWorld : MonoBehaviour
         collider.physicalDamage = spell.damage;
         collider.EnableDamageCollider();
 
-
-
         GetComponent<Rigidbody>().AddForce(spell.speed * direction);
     }
 }

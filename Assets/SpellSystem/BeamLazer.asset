@@ -22,3 +22,5 @@ MonoBehaviour:
   spawnLeftHandVFX: 1
   additionalEffects: []
   manaCost: 1
+  damage: 10
+  intervalBetweenDamage: 1
