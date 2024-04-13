@@ -97,6 +97,7 @@ public class PlayerManager : CharacterManager
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isHoldingDownSpell.OnValueChanged += playerNetworkManager.OnIsHoldingDownSpellChanged;
 
 
         // UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
@@ -142,7 +143,7 @@ public class PlayerManager : CharacterManager
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
-
+        playerNetworkManager.isHoldingDownSpell.OnValueChanged -= playerNetworkManager.OnIsHoldingDownSpellChanged;
     }
 
     private void OnClientConnectedCallback(ulong clientID)

@@ -19,6 +19,8 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
     [HideInInspector] public CharacterStatsManager characterStatsManager;
 
+    [HideInInspector] public CharacterSpellManager characterSpellManager;
+
 
     [Header("Character group")]
     public CharacterGroup characterGroup;
@@ -42,6 +44,7 @@ public class CharacterManager : NetworkBehaviour
         characterCombatManager = GetComponent<CharacterCombatManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
         characterStatsManager = GetComponent<CharacterStatsManager>();
+        characterSpellManager = GetComponent<CharacterSpellManager>();
     }
 
     protected virtual void Start()

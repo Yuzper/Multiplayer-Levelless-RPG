@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class PlayerInputManager : MonoBehaviour
 {
@@ -51,10 +53,6 @@ public class PlayerInputManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] bool escapeMenuInput = false;
     public EscapeMenuManager escapeMenu;
-
-    [Header("Spell casting")]
-    public bool inSpellMode = false;
-    public bool castSpell = false; 
 
     private void Awake()
     {
@@ -149,9 +147,11 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
 
             // Spell casting
-            playerControls.PlayerSpellcasting.SpellMode.performed += i => inSpellMode = !inSpellMode;
+            playerControls.PlayerSpellcasting.SpellMode.performed += i => player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
             //playerControls.PlayerSpellcasting.SpellMode.canceled += i => inSpellMode = false;
-            playerControls.PlayerSpellcasting.UseSpell.performed += i => castSpell = true;
+            playerControls.PlayerSpellcasting.UseSpell.performed += i => player.characterSpellManager.castSpell = true;
+            playerControls.PlayerSpellcasting.UseSpellHold.started += i => player.characterSpellManager.castSpellHold = true;
+            playerControls.PlayerSpellcasting.UseSpellHold.canceled += i => player.characterSpellManager.castSpellHold = false;
         }
 
         playerControls.Enable();
@@ -198,11 +198,12 @@ public class PlayerInputManager : MonoBehaviour
         HandleRevivalInput();
         HandleActionInputs();
 
-        if(inSpellMode)
+        if(player.characterSpellManager.inSpellMode)
         {
             mainHandChargeAttackInput = false;
             mainHandHeavyAttackInput = false;
             mainHandAttackInput = false;
+            HandleSpellAttackInput();
         } 
         else
         {
@@ -212,6 +213,28 @@ public class PlayerInputManager : MonoBehaviour
             HandleMouseChargeAttackInput();
         }
 
+    }
+
+    private void HandleSpellAttackInput()
+    {
+        if (player.characterSpellManager.inSpellMode)
+        {
+
+            //player.animator.SetBool("isHoldingDownSpell", player.characterSpellManager.castSpellHold); // TODO Make network variable? like charge attack
+            player.playerNetworkManager.isHoldingDownSpell.Value = player.characterSpellManager.castSpellHold;
+
+            if (player.characterSpellManager.castSpell)
+            {
+                player.characterSpellManager.castSpell = false;
+                player.playerSpellManager.equippedSpell.UseSpell(player);
+            }
+        }
+        else
+        {
+            player.characterSpellManager.castSpell = false;
+            //player.animator.SetBool("isHoldingDownSpell", false);
+            player.playerNetworkManager.isHoldingDownSpell.Value = false;
+        }
     }
 
     // LOCK ON
@@ -347,7 +370,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleCameraMovementInput()
     {
-        if (inSpellMode)
+        if (player.characterSpellManager.inSpellMode)
         {
             cameraVerticalInput = 0;
             cameraHorizontalInput = 0;

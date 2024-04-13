@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e94fb41032838042b5efa49ce795109, type: 3}
-  m_Name: BeamLazer
+  m_Name: LazerBeam
   m_EditorClassIdentifier: 
   spellName: 
   animationName: StandingSpellCast
   spellPrefab: {fileID: 1141913809608956257, guid: 9bc3e141ddb08484ea12d03bc3ea6a01,
     type: 3}
-  handVFX: {fileID: 1140579960723542, guid: 09849ac8c58dd6b4f9b9965478663b93, type: 3}
+  handVFX: {fileID: 0}
   canMove: 0
   spawnRightHandVFX: 1
   spawnLeftHandVFX: 1
   additionalEffects: []
-  manaCost: 1
-  damage: 10
+  manaCost: 10
+  damage: 1
   intervalBetweenDamage: 1

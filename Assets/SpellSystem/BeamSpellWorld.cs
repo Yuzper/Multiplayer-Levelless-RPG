@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class SpellBeamWorld : MonoBehaviour
+public class BeamSpellWorld : MonoBehaviour
 {
     public void StartSpell(CharacterSpellManager characterCausingDamage, BeamSpell spell, Vector3 direction)
     {
@@ -14,5 +14,4 @@ public class SpellBeamWorld : MonoBehaviour
         collider.EnableDamageCollider();
         Destroy(this.gameObject, GetComponent<VisualEffect>().GetFloat("duration"));
     }
-
 }

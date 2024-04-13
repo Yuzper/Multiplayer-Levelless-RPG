@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e94fb41032838042b5efa49ce795109, type: 3}
+  m_Script: {fileID: 11500000, guid: e36cc761a9926f2419553a991901e19b, type: 3}
   m_Name: Firebreath
   m_EditorClassIdentifier: 
   spellName: 
-  animationName: MovingSpellCast
+  animationName: Right_Use_Spell_Hold_Opening
   spellPrefab: {fileID: 7848975395760338688, guid: 7024026e1d5bf0a46b041989ec9071a4,
     type: 3}
   handVFX: {fileID: 1140579960723542, guid: 09849ac8c58dd6b4f9b9965478663b93, type: 3}
@@ -22,3 +22,5 @@ MonoBehaviour:
   spawnLeftHandVFX: 1
   additionalEffects: []
   manaCost: 1
+  damage: 5
+  intervalBetweenDamage: 1

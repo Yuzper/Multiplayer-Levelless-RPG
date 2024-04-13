@@ -13,7 +13,12 @@ public class CharacterSpellManager : NetworkBehaviour
     public GameObject rightHandVFX;
     public GameObject leftHandVFX;
 
-    [SerializeField] protected BaseSpell equippedSpell;
+    [SerializeField] public BaseSpell equippedSpell;
+
+    [Header("Spell casting")]
+    public bool inSpellMode = false;
+    public bool castSpell = false;
+    public bool castSpellHold = false;
 
     protected virtual void Awake()
     {
@@ -61,6 +66,14 @@ public class CharacterSpellManager : NetworkBehaviour
         if (equippedSpell != null)
         {
             equippedSpell.SpawnSpell(this, midPoint, character.gameObject.transform.forward);
+        }
+    }
+
+    public virtual void StopSpell()
+    {
+        if (equippedSpell != null)
+        {
+            equippedSpell.StopSpell();
         }
     }
 }

@@ -1801,6 +1801,7 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
+  characterSpellManager: {fileID: 0}
   characterGroup: 0
   isPerformingAction: 0
   isDancing: 0
@@ -1949,6 +1950,8 @@ MonoBehaviour:
   isChargingMainHandAttack:
     m_InternalValue: 0
   isInvulnerable:
+    m_InternalValue: 0
+  isHoldingDownSpell:
     m_InternalValue: 0
   constitution:
     m_InternalValue: 1
@@ -2283,7 +2286,10 @@ MonoBehaviour:
   midPoint: {fileID: 5220046225504492078}
   rightHandVFX: {fileID: 0}
   leftHandVFX: {fileID: 0}
-  equippedSpell: {fileID: 11400000, guid: 66826d8f378f7fc4b90f0dbad2f26bdc, type: 2}
+  equippedSpell: {fileID: 11400000, guid: 22dbd342ea535c247b11f35c1ce10a3e, type: 2}
+  inSpellMode: 0
+  castSpell: 0
+  castSpellHold: 0
 --- !u!1 &4952772147308521837
 GameObject:
   m_ObjectHideFlags: 0

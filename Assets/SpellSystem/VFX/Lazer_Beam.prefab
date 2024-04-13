@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1141913809608956258}
   - component: {fileID: 1141913809608956260}
   - component: {fileID: 1141913809608956259}
-  - component: {fileID: -7653711206445844791}
+  - component: {fileID: 6883191376685238595}
   m_Layer: 0
   m_Name: Lazer_Beam
   m_TagString: Untagged
@@ -112,7 +112,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-7653711206445844791
+--- !u!114 &6883191376685238595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1141913809608956257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd982d8f272e604184497fd865f631f, type: 3}
+  m_Script: {fileID: 11500000, guid: 720902f5fffce834e9e8d67cf16a909a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5675809740128579351

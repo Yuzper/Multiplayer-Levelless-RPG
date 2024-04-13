@@ -23,6 +23,8 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterLocomotionManager.isRolling = false;
         character.characterLocomotionManager.isBackstepping = false;
         character.characterAnimatorManager.DisableCanDoCombo();
+        character.characterSpellManager?.StopSpell();
+        character.characterSpellManager?.RemoveHandVFX();
 
         // Reset damage colliders in player if they are interrupted in animation
         if (character.GetComponent<PlayerManager>() != null)

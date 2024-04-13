@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4accf136b05606f46a0657e3c51271ff
+guid: d7e092f8be90ad844ab6df2c28deab23
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -542,7 +542,7 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
@@ -730,7 +730,7 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
@@ -897,7 +897,7 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
@@ -1064,12 +1064,12 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9928058
-        functionName: SpawnSpellRightHand
+      - time: 0.9892087
+        functionName: SpawnSpellLeftHand
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
