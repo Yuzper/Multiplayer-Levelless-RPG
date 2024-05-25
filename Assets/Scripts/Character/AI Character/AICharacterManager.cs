@@ -48,6 +48,7 @@ public class AICharacterManager : CharacterManager
             // using copy of SO so the original is not modified
             idle = Instantiate(idle);
             pursueTarget = Instantiate(pursueTarget);
+            attack = Instantiate(attack);
             currentState = idle;
         }
     }

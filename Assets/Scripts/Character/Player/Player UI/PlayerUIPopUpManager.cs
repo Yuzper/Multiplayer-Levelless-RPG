@@ -22,6 +22,12 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI abilityErrorPopUpText;
     [SerializeField] CanvasGroup abilityErrorPopUpCanvasGroup;
 
+    [Header("BOSS DEFEATED Pop Up")]
+    [SerializeField] GameObject bossDefeatedPopUpGameObject;
+    [SerializeField] TextMeshProUGUI bossDefeatedPopUpBackgroundText;
+    [SerializeField] TextMeshProUGUI bossDefeatedPopUpText;
+    [SerializeField] CanvasGroup bossDefeatedPopUpCanvasGroup;
+
     // Functions that calls the pop ups
     public void SendYouDiedPopUp()
     {
@@ -81,6 +87,17 @@ public class PlayerUIPopUpManager : MonoBehaviour
         abilityErrorPopUpText.characterSpacing = 0;
         StartCoroutine(FadeInPopUpOverTime(abilityErrorPopUpCanvasGroup, 2)); // Start fade-in slightly after color flash
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(abilityErrorPopUpCanvasGroup, 2, 0.5f)); // Adjust timing as needed
+    }
+
+    public void SendBossDefeatedPopUp(string bossDefeatedMessage)
+    {
+        bossDefeatedPopUpText.text = bossDefeatedMessage;
+        bossDefeatedPopUpBackgroundText.text = bossDefeatedMessage;
+        bossDefeatedPopUpGameObject.SetActive(true);
+        bossDefeatedPopUpBackgroundText.characterSpacing = 0;
+        StartCoroutine(StretchPopUpTextOverTime(bossDefeatedPopUpBackgroundText, 8, 20f));
+        StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopUpCanvasGroup, 3));
+        StartCoroutine(WaitThenFadeOutPopUpOverTimer(bossDefeatedPopUpCanvasGroup, 2, 4));
     }
 
 

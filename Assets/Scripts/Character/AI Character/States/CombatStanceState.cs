@@ -12,9 +12,9 @@ public class CombatStanceState : AIState
 
     [Header("Attacks")]
     public List<AICharacterAttackAction> aiCharacterAttacks; // A list of all possible attacks this character can do
-    protected List<AICharacterAttackAction> potentialAttacks; // All attacks possible in this situation (based on angle, distance etc)
-    private AICharacterAttackAction choosenAttack;
-    private AICharacterAttackAction previousAttack;
+    [SerializeField] protected List<AICharacterAttackAction> potentialAttacks; // All attacks possible in this situation (based on angle, distance etc)
+    [SerializeField] private AICharacterAttackAction choosenAttack;
+    [SerializeField] private AICharacterAttackAction previousAttack;
     protected bool hasAttack = false;
 
     [Header("Combo")]

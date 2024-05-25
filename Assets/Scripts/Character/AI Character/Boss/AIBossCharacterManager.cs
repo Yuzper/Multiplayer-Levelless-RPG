@@ -7,12 +7,21 @@ public class AIBossCharacterManager : AICharacterManager
 {
     public int bossID = 0;
 
+    [Header("Music")]
+    [SerializeField] AudioClip bossIntroClip;
+    [SerializeField] AudioClip bossBattleLoopClip;
+
     [Header("Status")]
     public NetworkVariable<bool> bossFightIsActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> hasBeenDefeated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> hasBeenAwakended = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     [SerializeField] string sleepAnimation;
     [SerializeField] string awakenAnimation;
+
+    [Header("Phase Shift")]
+    public float minimumHealthPercentageToShift = 50;
+    [SerializeField] string phaseShiftAnimation = "Phase_Change_01";
+    [SerializeField] CombatStanceState phase02CombatStanceState;
 
     [Header("States")]
     [SerializeField] BossSleepState sleepState;
@@ -85,6 +94,7 @@ public class AIBossCharacterManager : AICharacterManager
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
     {
+        PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp("GREAT FOE FELLED");
         if (IsOwner)
         {
             //characterNetworkManager.currentHealth.Value = 0;
@@ -169,13 +179,25 @@ public class AIBossCharacterManager : AICharacterManager
 
         if(bossFightIsActive.Value)
         {
+            WorldSoundFXManager.instance.PlayBossTrack(bossIntroClip, bossBattleLoopClip);
             GameObject bossHealthBar
                 = Instantiate(PlayerUIManager.instance.playerUIHudManager.bossHealthBarObject, PlayerUIManager.instance.playerUIHudManager.bossHealthBarParent);
 
             UI_Boss_HP_Bar bossHPBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
             bossHPBar.EnableBossHPBar(this);
         }
+        else
+        {
+            WorldSoundFXManager.instance.StopBossMusic();
+        }
 
+    }
+
+    public void PhaseShift()
+    {
+        characterAnimatorManager.PlayerTargetActionAnimation(phaseShiftAnimation, true);
+        combatStance = Instantiate(phase02CombatStanceState);
+        currentState = combatStance;
     }
 
 
