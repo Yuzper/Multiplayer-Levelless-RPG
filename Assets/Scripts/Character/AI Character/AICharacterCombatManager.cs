@@ -146,7 +146,6 @@ public class AICharacterCombatManager : CharacterCombatManager
 
     public void RotateTowardsAgent(AICharacterManager aiCharacter)
     {
-        Debug.Log("RotateTowardsAgent " + aiCharacter.aiCharacterNetworkManager.isMoving.Value);
         if (aiCharacter.aiCharacterNetworkManager.isMoving.Value)
         {
             aiCharacter.transform.rotation = aiCharacter.navmeshAgent.transform.rotation;
@@ -156,7 +155,6 @@ public class AICharacterCombatManager : CharacterCombatManager
     // If we want to have some AI characters track faster so they can rotate faster, then this is the function to handle it
     public void RotateTowardsTargetWhilstAttacking(AICharacterManager aiCharacter)
     {
-        Debug.Log("RotateTowardsTargetWhilstAttacking");
         if (currentTarget == null) return;
         if (!aiCharacter.characterLocomotionManager.canRotate) return;
         if (!aiCharacter.isPerformingAction) return;

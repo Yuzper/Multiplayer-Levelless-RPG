@@ -89,7 +89,7 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public virtual void PlayFootstep()
     {
-        if (attackGrunts.Length > 0)
+        if (footstepsDefault.Length > 0)
             PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(footstepsDefault));
     }
 }
