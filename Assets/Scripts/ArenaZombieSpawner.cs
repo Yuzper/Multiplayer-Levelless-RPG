@@ -44,7 +44,7 @@ public class ArenaZombieSpawner : MonoBehaviour
         Vector3 spawnPosition = transform.position + randomOffset;
 
         Instantiate(undeadCharacterSpawner, spawnPosition, Quaternion.identity);
-        Debug.Log("Spawn Undead");
+      //  Debug.Log("Spawn Undead");
     }
 
 
