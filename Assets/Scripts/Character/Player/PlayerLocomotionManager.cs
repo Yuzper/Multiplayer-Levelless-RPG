@@ -136,6 +136,18 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     private void HandleRotation()
     {
         if (player.isDead.Value) return;
+
+        if (player.characterLocomotionManager.useMouseForRotation)
+        {
+            var cameraForward = PlayerCamera.instance.cameraObject.transform.forward;
+            cameraForward.y = 0;
+            cameraForward.Normalize();
+            Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+            player.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            return;
+        }
+
         if (!player.characterLocomotionManager.canRotate) return;
 
         if (player.playerNetworkManager.isLockedOn.Value)

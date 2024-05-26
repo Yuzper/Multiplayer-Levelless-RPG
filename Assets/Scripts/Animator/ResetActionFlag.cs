@@ -22,6 +22,7 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterLocomotionManager.canMove = true;
         character.characterLocomotionManager.isRolling = false;
         character.characterLocomotionManager.isBackstepping = false;
+        character.characterLocomotionManager.useMouseForRotation = false;
         character.characterAnimatorManager.DisableCanDoCombo();
         character.characterSpellManager?.StopSpell();
         character.characterSpellManager?.RemoveHandVFX();

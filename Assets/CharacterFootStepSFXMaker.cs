@@ -41,27 +41,23 @@ public class CharacterFootStepSFXMaker : MonoBehaviour
         if (Physics.Raycast(transform.position, character.transform.TransformDirection(Vector3.down), out hit, distanceToGround, WorldUtilityManager.instance.GetEnviromentalLayers()))
         {
             hasTouchedGround = true;
-            Debug.Log("Hit " + hit.transform.gameObject.name);
 
             if(!hasPlayedFootStepSFX)
             {
                 steppedOnObject = hit.transform.gameObject;
             } 
-            else
-            {
-                hasTouchedGround = false;
-                hasPlayedFootStepSFX = false;
-                steppedOnObject = null;
-            }
 
             if(hasTouchedGround && !hasPlayedFootStepSFX)
             {
-                Debug.Log("PLAYED SOUND");
                 hasPlayedFootStepSFX = true;
                 PlayFootstepSoundFX();
             }
+        } else
+        {
+            hasTouchedGround = false;
+            hasPlayedFootStepSFX = false;
+            steppedOnObject = null;
         }
-
     }
 
     private void PlayFootstepSoundFX()

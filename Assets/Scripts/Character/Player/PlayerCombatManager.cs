@@ -21,8 +21,11 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItems weaponPerformingAction)
     {
+        // TODO TURN TOWARD PLAYER AIMING
         if (player.IsOwner)
         {
+            player.characterLocomotionManager.useMouseForRotation = true;
+
             // PERFORM THE ACTION
             weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
 
