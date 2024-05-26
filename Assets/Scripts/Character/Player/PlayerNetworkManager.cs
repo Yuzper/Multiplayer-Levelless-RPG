@@ -115,6 +115,7 @@ public void SetNewMaxHealthValue(int oldConstitution, int newConstitution)
 
         if (weaponAction != null)
         {
+            // SETS TURN TORWARDS LOOKING
             weaponAction.AttemptToPerformAction(player, WorldItemDatabase.instance.GetWeaponByID(weaponID));
         }
         else
