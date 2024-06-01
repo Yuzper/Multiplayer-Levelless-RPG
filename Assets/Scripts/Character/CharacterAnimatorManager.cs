@@ -147,7 +147,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         string targetAnimation,
         bool isPerformingAction,
         bool applyRootMotion = false,
-        bool canRotate = true,
+        bool canRotate = false,
         bool canMove = true)
     {
         // KEEP TRACK OF LAST ATTACK PERFORMED (FOR COMBOS)

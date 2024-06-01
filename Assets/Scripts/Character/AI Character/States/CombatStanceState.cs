@@ -42,7 +42,6 @@ public class CombatStanceState : AIState
             }
         }
 
-
         aiCharacter.aICharacterCombatManager.RotateTowardsAgent(aiCharacter);
 
         if (aiCharacter.aICharacterCombatManager.currentTarget == null)

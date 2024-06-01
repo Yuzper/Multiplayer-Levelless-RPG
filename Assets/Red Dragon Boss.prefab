@@ -111,8 +111,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 10
+  m_AngularSpeed: 250
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1678,6 +1678,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isGrounded: 1
+  useMouseForRotation: 0
 --- !u!114 &2833062790203258003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1982,7 +1983,7 @@ MonoBehaviour:
   detectionRadius: 15
   minimumFOV: -35
   maximumFOV: 35
-  attackRotationSpeed: 45
+  attackRotationSpeed: 8
   enableTurnAnimations: 0
   enableTurn_45: 0
   enableTurn_90: 0

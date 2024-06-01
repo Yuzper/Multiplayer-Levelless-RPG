@@ -26,6 +26,12 @@ public class AIBossCharacterManager : AICharacterManager
     [Header("States")]
     [SerializeField] BossSleepState sleepState;
 
+    //  WHEN THIS A.I IS SPAWNED, CHECK OUR SAVE FILE (DICTIONARY)
+    //  IF THE SAVE FILE DOES NOT CONTAIN A BOSS MONSTER WITH THIS I.D ADD IT
+    //  IF IT IS PRESENT, CHECK IF THE BOSS HAS BEEN DEFEATED
+    //  IF THE BOSS HAS BEEN DEFEATED, DISABLE THIS GAMEOBJECT
+    //  IF THE BOSS HAS NOT BEEN DEFEATED, ALLOW THIS OBJECT TO CONTINUE TO BE ACTIVE
+
     protected override void Awake()
     {
         base.Awake();
@@ -50,16 +56,15 @@ public class AIBossCharacterManager : AICharacterManager
             currentState = sleepState;
         }
 
-
         if (IsServer)
         {
-            // IF OUR SAVE DATA DOES NOT CONTAIN INFORMATION ON THIS BOSS, ADD IT NOW
+            //  IF OUR SAVE DATA DOES NOT CONTAIN INFORMATION ON THIS BOSS, ADD IT NOW
             if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
             {
                 WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID, false);
                 WorldSaveGameManager.instance.currentCharacterData.bossesDefeated.Add(bossID, false);
             }
-            // OTHERWISE, LOAD THE DATA THAT ALREADY EXISTS ON THIS BOSS
+            //  OTHERWISE, LOAD THE DATA THAT ALREADY EXISTS ON THIS BOSS
             else
             {
                 hasBeenDefeated.Value = WorldSaveGameManager.instance.currentCharacterData.bossesDefeated[bossID];
@@ -75,16 +80,17 @@ public class AIBossCharacterManager : AICharacterManager
                 if (hasBeenAwakended.Value)
                 {
 
+                    aiCharacterNetworkManager.isActive.Value = false;
                 }
             }
         }
 
-        if (!hasBeenAwakended.Value)
-        {
+            if (!hasBeenAwakended.Value)
+            {
             characterAnimatorManager.PlayerTargetActionAnimation(sleepAnimation, true);
+            }
         }
-    }
-
+    
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();
@@ -97,29 +103,31 @@ public class AIBossCharacterManager : AICharacterManager
         PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp("GREAT FOE FELLED");
         if (IsOwner)
         {
-            //characterNetworkManager.currentHealth.Value = 0;
+            characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
-            characterLocomotionManager.canMove = false;
-            characterLocomotionManager.canRotate = false;
-
             bossFightIsActive.Value = false;
 
             // Reset any flags here that need to be reset
+
+            //  RESET ANY FLAGS HERE THAT NEED TO BE RESET
+            //  NOTHING YET
+
+            //  IF WE ARE NOT GROUNDED, PLAY AN AERIAL DEATH ANIMATION
 
             if (!manuallySelectDeathAnimation)
             {
                 characterAnimatorManager.PlayerTargetActionAnimation("Dead_01", true);
             }
 
-            // SAVING DATA FOR IF THE BOSS IS DEFEATED
             hasBeenDefeated.Value = true;
 
+            //  IF OUR SAVE DATA DOES NOT CONTAIN INFORMATION ON THIS BOSS, ADD IT NOW
             if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
             {
                 WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID, true);
                 WorldSaveGameManager.instance.currentCharacterData.bossesDefeated.Add(bossID, true);
             }
-            // OTHERWISE, LOAD THE DATA THAT ALREADY EXISTS ON THIS BOSS
+            //  OTHERWISE, LOAD THE DATA THAT ALREADY EXISTS ON THIS BOSS
             else
             {
                 WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Remove(bossID);
@@ -130,7 +138,6 @@ public class AIBossCharacterManager : AICharacterManager
 
             WorldSaveGameManager.instance.SaveGame();
         }
-        // Play death SFX
 
         yield return new WaitForSeconds(4);
 
@@ -142,7 +149,6 @@ public class AIBossCharacterManager : AICharacterManager
 
     public void WakeBoss()
     {
-
         if (IsOwner)
         {
 
@@ -167,7 +173,6 @@ public class AIBossCharacterManager : AICharacterManager
 
 
         }
-
     }
 
 
@@ -190,7 +195,6 @@ public class AIBossCharacterManager : AICharacterManager
         {
             WorldSoundFXManager.instance.StopBossMusic();
         }
-
     }
 
     public void PhaseShift()
@@ -199,6 +203,4 @@ public class AIBossCharacterManager : AICharacterManager
         combatStance = Instantiate(phase02CombatStanceState);
         currentState = combatStance;
     }
-
-
 }

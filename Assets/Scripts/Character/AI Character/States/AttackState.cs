@@ -28,13 +28,12 @@ public class AttackState : AIState
 
         aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0, 0);
 
-        // SET MVOEMENT VALUES TO 0
-
+        //  PERFORM A COMBO
         if (willPerformCombo && !hasPerformedCombo)
         {
             if (currentAttack.comboAttack != null)
             {
-                // IF CAN COMBO
+                //  IF CAN COMBO
                 //hasPerformedCombo = true;
                 //currentAttack.comboAttack.AttemptToPerformAction(aiCharacter);
             }
@@ -45,12 +44,13 @@ public class AttackState : AIState
 
         if (!hasPerformedAttack)
         {
+            //  IF WE ARE STILL RECOVERING FROM AN ACTION, WAIT BEFORE PERFORMING ANOTHER
             if (aiCharacter.aICharacterCombatManager.actionRecoveryTimer > 0)
                 return this;
 
             PerformAttack(aiCharacter);
 
-            // RETURN TO THE TOP, SO IF WE HAVE A COMBO WE PROCESS THAT WHEN WE ARE ABLE
+            //  RETURN TO THE TOP, SO IF WE HAVE A COMBO WE PROCESS THAT WHEN WE ARE ABLE
             return this;
         }
 
@@ -70,6 +70,7 @@ public class AttackState : AIState
     protected override void ResetStateFlags(AICharacterManager aiCharacter)
     {
         base.ResetStateFlags(aiCharacter);
+
         hasPerformedAttack = false;
         hasPerformedCombo = false;
     }
