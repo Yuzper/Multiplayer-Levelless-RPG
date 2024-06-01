@@ -169,7 +169,7 @@ public class AICharacterCombatManager : CharacterCombatManager
         }
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
-        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.deltaTime);
+        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.fixedDeltaTime);
 
     }
 

@@ -25,7 +25,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [Header("Dodge")]
     private Vector3 rollDirection;
-
+    [SerializeField] float dodgeStaminaCost = 25;
     public float smoothTime = 0.2f; // Adjust this value for the desired smoothness
     private Vector3 velocity = Vector3.zero;
 
@@ -205,7 +205,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     public void AttemptToPerformDodge()
     {
         if (player.isPerformingAction) return;
-        if (player.isDead.Value) return;
+        //if (player.isDead.Value) return; // is this needed?
+
+        if (player.playerNetworkManager.currentStamina.Value <= 0)
+            return;
 
         // IF WE ARE MOVING WHEN WE ATTEMPT TO DODGE, WE PERFORM A ROLL
         if (PlayerInputManager.instance.moveAmount > 0)
@@ -230,6 +233,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             // PERFORM A BACKSTEP ANIMATION
             player.playerAnimatorManager.PlayerTargetActionAnimation("Backstep", true, true);
         }
+        player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
 
     }
 

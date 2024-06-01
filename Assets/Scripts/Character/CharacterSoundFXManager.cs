@@ -36,6 +36,7 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public void PlaySoundFX(AudioClip soundFX, float volume = 1, bool randomizePitch = true, float pitchRandom = 0.1f)
     {
+        if (soundFX == null) return;
         audioSource.PlayOneShot(soundFX, volume);
         // RESETS PITCH
         audioSource.pitch = 1;

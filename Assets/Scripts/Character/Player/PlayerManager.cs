@@ -84,6 +84,18 @@ public class PlayerManager : CharacterManager
         // STATS
         // Moved to CharacterManager
         //playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+        // Set Health based on Constitution
+        if (IsOwner)
+        {
+            characterNetworkManager.maxHealth.Value = characterStatsManager.CalculateHealthBasedOnConstitution(characterNetworkManager.constitution.Value);
+            characterNetworkManager.currentHealth.Value = characterNetworkManager.maxHealth.Value;
+            // Set Mana based on Intelligence
+            characterNetworkManager.maxMana.Value = characterStatsManager.CalculateManaBasedOnIntelligence(characterNetworkManager.intelligence.Value);
+            characterNetworkManager.currentMana.Value = characterNetworkManager.maxMana.Value;
+            // Set Stamina based on Endurance
+            characterNetworkManager.maxMana.Value = characterStatsManager.CalculateStaminaBasedOnEndurance(characterNetworkManager.endurance.Value);
+            characterNetworkManager.currentStamina.Value = characterNetworkManager.maxStamina.Value;
+        }
 
         // LOCK ON
         playerNetworkManager.isLockedOn.OnValueChanged += playerNetworkManager.OnIsLockedOnChanged;
