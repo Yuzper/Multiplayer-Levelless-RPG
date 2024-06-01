@@ -66,7 +66,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         return finalList[randomValue];
     }
 
-    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement)
+    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
         float snappedHorizontal = horizontalMovement;
         float snappedVertical = verticalMovement;
@@ -115,7 +115,11 @@ public class CharacterAnimatorManager : MonoBehaviour
         {
             snappedVertical = 0;
         }
-        
+        if (isSprinting)
+        {
+            snappedVertical = 2;
+        }
+
         character.animator.SetFloat("Horizontal", snappedHorizontal, 0.1f, Time.deltaTime);
         character.animator.SetFloat("Vertical", snappedVertical, 0.1f, Time.deltaTime);
     }

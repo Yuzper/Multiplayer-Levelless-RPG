@@ -26,7 +26,7 @@ public class AttackState : AIState
 
         aiCharacter.aICharacterCombatManager.RotateTowardsTargetWhilstAttacking(aiCharacter);
 
-        aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0, 0);
+        aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0, 0, false);
 
         //  PERFORM A COMBO
         if (willPerformCombo && !hasPerformedCombo)

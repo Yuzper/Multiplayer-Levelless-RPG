@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,7 +71,7 @@ public class PlayerUIHudManager : MonoBehaviour
     // Stamina
     public void SetNewStaminaValue(float oldValue, float newValue)
     {
-        staminaBar.SetStat(newValue);
+        staminaBar.SetStat((int) newValue);
     }
 
     public void SetMaxStaminaValue(int maxStamina)

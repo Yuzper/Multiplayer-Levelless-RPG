@@ -29,6 +29,7 @@ public class PlayerInputManager : MonoBehaviour
     [Header("PLAYER ACTION INPUT")]
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool jumpInput = false;
+    [SerializeField] bool sprint_Input = false;
 
     [SerializeField] bool danceInput = false;
     [SerializeField] bool revivalInput = false;
@@ -122,6 +123,11 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.SeekRightLockOnTarget.performed += i => lockOnRightInput = true;
             playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOnLeftInput = true;
 
+            //  HOLDING THE INPUT, SETS THE BOOL TO TRUE
+            playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
+            //  RELEASING THE INPUT, SETS THE BOOL TO FALSE
+            playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false;
+
             // Other Actions
             playerControls.PlayerActions.Dance.performed += i => danceInput = true;
             playerControls.PlayerActions.Revival.performed += i => revivalInput = true;
@@ -183,6 +189,7 @@ public class PlayerInputManager : MonoBehaviour
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
         HandleDodgeInput();
+        HandleSprintInput();
         HandleJumpInput();
         // Actions
         HandleDanceInput();
@@ -312,17 +319,17 @@ public class PlayerInputManager : MonoBehaviour
 
         // IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
 
-        if (!player.playerNetworkManager.isLockedOn.Value || player.playerLocomotionManager.isRolling)
+        if (!player.playerNetworkManager.isLockedOn.Value || player.playerLocomotionManager.isRolling || player.playerNetworkManager.isSprinting.Value)
         {
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
         }
         else
         {
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value);
         }
 
 
-        player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+        //player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
     }
 
     private void HandleCameraMovementInput()
@@ -338,6 +345,18 @@ public class PlayerInputManager : MonoBehaviour
         {
             dodgeInput = false;
             player.playerLocomotionManager.AttemptToPerformDodge();
+        }
+    }
+
+    private void HandleSprintInput()
+    {
+        if (sprint_Input)
+        {
+            player.playerLocomotionManager.HandleSprinting();
+        }
+        else
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
         }
     }
 

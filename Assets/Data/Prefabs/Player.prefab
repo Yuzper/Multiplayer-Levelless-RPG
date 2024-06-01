@@ -2055,7 +2055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 116302440
+  GlobalObjectIdHash: 3713777260
   InScenePlacedSourceGlobalObjectIdHash: 3713777260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2155,15 +2155,19 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isGrounded: 1
+  useMouseForRotation: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
   walkingSpeed: 2
   runningSpeed: 5
   rotationSpeed: 15
+  sprintingSpeed: 7
+  sprintingStaminaCost: 10
   jumpHeight: 2
   jumpForwardSpeed: 4
   freeFallSpeed: 2
+  dodgeStaminaCost: 25
   smoothTime: 0.2
 --- !u!114 &3362887032212460857
 MonoBehaviour:
@@ -2241,6 +2245,8 @@ MonoBehaviour:
   currentTargetNetworkObjectID:
     m_InternalValue: 0
   isJumping:
+    m_InternalValue: 0
+  isSprinting:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0

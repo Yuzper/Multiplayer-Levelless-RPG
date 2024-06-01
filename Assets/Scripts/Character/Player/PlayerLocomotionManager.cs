@@ -16,6 +16,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [SerializeField] float walkingSpeed = 2f;
     [SerializeField] float runningSpeed = 5f;
     [SerializeField] float rotationSpeed = 15f;
+    [SerializeField] float sprintingSpeed = 6.5f;
+    [SerializeField] int sprintingStaminaCost = 2;
 
     [Header("Jump")]
     [SerializeField] float jumpHeight = 3;
@@ -59,14 +61,14 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             moveAmount = player.characterNetworkManager.moveAmount.Value;
 
             // IF NOT LOCKED ON, PASS MOVE AMOUNT
-            if (!player.playerNetworkManager.isLockedOn.Value || player.playerLocomotionManager.isRolling)
+            if (!player.playerNetworkManager.isLockedOn.Value || player.playerLocomotionManager.isRolling || player.playerNetworkManager.isSprinting.Value)
             {
-                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
             }
             // IF LOCKED ON, PASS HORIZONTAL AND VERTICAL
             else
             {
-                player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalMovement, verticalMovement);
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalMovement, verticalMovement, player.playerNetworkManager.isSprinting.Value);
             }
         }
     }
@@ -99,14 +101,20 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         moveDirection = moveDirection + PlayerCamera.instance.transform.right * horizontalMovement;
         moveDirection.Normalize();
         moveDirection.y = 0;
-
-        if (PlayerInputManager.instance.moveAmount > 0.5f)
+        if (player.playerNetworkManager.isSprinting.Value)
         {
-            player.characterController.Move(moveDirection * runningSpeed * Time.deltaTime);
+            player.characterController.Move(moveDirection * sprintingSpeed * Time.deltaTime);
         }
-        else if (PlayerInputManager.instance.moveAmount <= 0.5f)
+        else
         {
-            player.characterController.Move(moveDirection * walkingSpeed * Time.deltaTime);
+            if (PlayerInputManager.instance.moveAmount > 0.5f)
+            {
+                player.characterController.Move(moveDirection * runningSpeed * Time.deltaTime);
+            }
+            else if (PlayerInputManager.instance.moveAmount <= 0.5f)
+            {
+                player.characterController.Move(moveDirection * walkingSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -152,7 +160,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
         if (player.playerNetworkManager.isLockedOn.Value)
         {
-            if (player.playerLocomotionManager.isRolling)
+            if (player.playerNetworkManager.isSprinting.Value || player.playerLocomotionManager.isRolling)
             {
                 Vector3 targetDirection = Vector3.zero;
                 targetDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
@@ -199,6 +207,38 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             Quaternion newRotation = Quaternion.LookRotation(targetRotationDirection);
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotation;
+        }
+    }
+
+    public void HandleSprinting()
+    {
+        if (player.isPerformingAction)
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
+        }
+
+        if (player.playerNetworkManager.currentStamina.Value <= 0)
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
+            return;
+        }
+
+        Debug.Log(moveAmount);
+        //  IF WE ARE MOVING, SPRINTING IS TRUE
+        if (moveAmount >= 0.5)
+        {
+            Debug.Log("SPRINTING");
+            player.playerNetworkManager.isSprinting.Value = true;
+        }
+        //  IF WE ARE STATIONARY/MOVING SLOWLY SPRINTING IS FALSE
+        else
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
+        }
+
+        if (player.playerNetworkManager.isSprinting.Value)
+        {
+            player.playerNetworkManager.currentStamina.Value -= sprintingStaminaCost * Time.deltaTime;
         }
     }
 
