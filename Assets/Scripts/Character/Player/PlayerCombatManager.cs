@@ -54,9 +54,19 @@ public class PlayerCombatManager : CharacterCombatManager
                 return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
 
             case AttackType.ChargedAttack01:
-                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttackStaminaCostMultiplier;
             case AttackType.ChargedAttack02:
-                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttackStaminaCostMultiplier;
+
+            case AttackType.RunningAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.runningAttackStaminaCostMultiplier;
+
+            case AttackType.RollingAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.rollingAttackStaminaCostMultiplier;
+
+            case AttackType.BackstepAttack01:
+                return currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.backstepAttackStaminaCostMultiplier;
+
 
             default:
                 return 100000f; // Random hard coded value that should not be possible to reach
@@ -68,41 +78,47 @@ public class PlayerCombatManager : CharacterCombatManager
         if (!player.IsOwner) return;
         if (currentWeaponBeingUsed == null) return;
 
-        float staminaDeducted = 0;
+        float staminaDeducted = CalculateStaminaForAttack(currentAttackType);
 
-        switch (currentAttackType)
-        {
-            case AttackType.UnarmedMeleeAttack:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
+        //switch (currentAttackType)
+        //{
+        //    case AttackType.UnarmedMeleeAttack:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
 
-            case AttackType.LightAttack01:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
-            case AttackType.LightAttack02:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
-            case AttackType.LightAttack03:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
+        //    case AttackType.LightAttack01:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
+        //    case AttackType.LightAttack02:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
+        //    case AttackType.LightAttack03:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
 
-            case AttackType.HeavyAttack01:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
-            case AttackType.HeavyAttack02:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
+        //    case AttackType.HeavyAttack01:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
+        //    case AttackType.HeavyAttack02:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
 
-            case AttackType.ChargedAttack01:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
-            case AttackType.ChargedAttack02:
-                staminaDeducted = CalculateStaminaForAttack(currentAttackType);
-                break;
-            
-            default:
-                break;
-        }
+        //    case AttackType.ChargedAttack01:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
+        //    case AttackType.RunningAttack01:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
+        //    case AttackType.RollingAttack01:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
+        //    case AttackType.BackstepAttack01:
+        //        staminaDeducted = CalculateStaminaForAttack(currentAttackType);
+        //        break;
+
+        //    default:
+        //        break;
+        //}
 
         //if (player.playerNetworkManager.currentStamina < staminaDeducted) return;
         player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
@@ -116,6 +132,25 @@ public class PlayerCombatManager : CharacterCombatManager
         {
             PlayerCamera.instance.SetLockCameraHeight();
         }
+    }
+
+    // ANIMATION EVENT CALLS
+    // Called in animation, DisableCanDoCombo is called when we return to Empty state, can be called later in animation after EnableCanDoCombo, if we want to limit the window combos can be done.
+    public override void EnableCanDoCombo()
+    {
+        if (player.playerNetworkManager.isUsingMainHand.Value)
+        {
+            player.playerCombatManager.canComboWithWeapon = true;
+        }
+        else
+        {
+
+        }
+    }
+
+    public override void DisableCanDoCombo()
+    {
+        player.playerCombatManager.canComboWithWeapon = false;
     }
 
 

@@ -9,7 +9,12 @@ public class EventTriggerBossFight : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        WorldAIManager.instance.GetBossCharacterByID(bossID)?.WakeBoss();
+        AIBossCharacterManager boss = WorldAIManager.instance.GetBossCharacterByID(bossID);
+
+        if (boss != null)
+        {
+            boss.WakeBoss();
+        }
     }
 
 }

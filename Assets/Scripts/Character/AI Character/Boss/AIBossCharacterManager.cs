@@ -85,11 +85,11 @@ public class AIBossCharacterManager : AICharacterManager
             }
         }
 
-            if (!hasBeenAwakended.Value)
-            {
+        if (!hasBeenAwakended.Value)
+        {
             characterAnimatorManager.PlayerTargetActionAnimation(sleepAnimation, true);
-            }
         }
+    }
     
     public override void OnNetworkDespawn()
     {

@@ -92,9 +92,15 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleGroundMovement()
     {
-        if (!player.characterLocomotionManager.canMove) return;
+        if (player.characterLocomotionManager.canMove || player.playerLocomotionManager.canRotate) {
 
-        GetMovementValues();
+            GetMovementValues();
+        }
+
+        if (!player.characterLocomotionManager.canMove)
+        {
+            return;
+        }
 
         // OUR MOVE DIRECTION IS BASED ON OUR CAMERA FACING PERSPECTIVE & OUR MOVEMENT INPUTS
         moveDirection = PlayerCamera.instance.transform.forward * verticalMovement;
@@ -145,7 +151,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         if (player.isDead.Value) return;
 
-        if (player.characterLocomotionManager.useMouseForRotation)
+        if (player.characterLocomotionManager.useMouseForRotation && player.characterLocomotionManager.canRotate)
         {
             var cameraForward = PlayerCamera.instance.cameraObject.transform.forward;
             cameraForward.y = 0;
@@ -215,6 +221,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (player.isPerformingAction)
         {
             player.playerNetworkManager.isSprinting.Value = false;
+            return;
         }
 
         if (player.playerNetworkManager.currentStamina.Value <= 0)

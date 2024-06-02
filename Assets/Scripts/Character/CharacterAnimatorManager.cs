@@ -150,9 +150,9 @@ public class CharacterAnimatorManager : MonoBehaviour
         AttackType attackType,
         string targetAnimation,
         bool isPerformingAction,
-        bool applyRootMotion = false,
+        bool applyRootMotion = true,
         bool canRotate = false,
-        bool canMove = true)
+        bool canMove = false)
     {
         // KEEP TRACK OF LAST ATTACK PERFORMED (FOR COMBOS)
         // KEEP TRACK OF CURRENT ATTACK TYPE (LIGHT, HEAVY, ETC)
@@ -167,17 +167,6 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         // TELL SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
         character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
-
-    }
-
-
-    public virtual void EnableCanDoCombo()
-    {
-        
-    }
-
-    public virtual void DisableCanDoCombo()
-    {
 
     }
 }

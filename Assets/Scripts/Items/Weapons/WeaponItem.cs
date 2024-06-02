@@ -34,12 +34,19 @@ public class WeaponItems : Item
     public float heavy_Attack_02_Modifier = 2.5f;
     public float charge_Attack_01_Modifier = 3.0f;
     public float charge_Attack_02_Modifier = 3.5f;
+    public float running_Attack_01_Modifier = 1.1f;
+    public float rolling_Attack_01_Modifier = 1.1f;
+    public float backstep_Attack_01_Modifier = 1.1f;
 
     [Header("Stamina Costs")]
     public int baseStaminaCost = 20;
     public float UnarmedMeleeAttackStaminaCostMultiplier = 1f; // Adjusts the cost to perform this attack from the base cost
     public float lightAttackStaminaCostMultiplier = 1.0f; // Adjusts the cost to perform this attack from the base cost
     public float heavyAttackStaminaCostMultiplier = 1.5f; // Adjusts the cost to perform this attack from the base cost
+    public float chargedAttackStaminaCostMultiplier = 1.5f;
+    public float runningAttackStaminaCostMultiplier = 1.1f;
+    public float rollingAttackStaminaCostMultiplier = 1.1f;
+    public float backstepAttackStaminaCostMultiplier = 1.1f;
 
     [Header("Actions")]
     public WeaponItemAction oneHandMainHandMouseAttack;
