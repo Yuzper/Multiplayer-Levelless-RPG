@@ -133,9 +133,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Que MainHandAttack",
+                    "type": "Button",
+                    "id": "ad83e943-11c7-4232-ac91-07748e360082",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MainHandHeavyAttack",
                     "type": "Button",
                     "id": "089e8665-7d89-4121-b2dd-783acc7d1c2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Que MainHandHeavyAttack",
+                    "type": "Button",
+                    "id": "a6cc6a18-ebe8-4aa9-94fc-ca9eb99731b8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -515,6 +533,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a8818f4-5ac9-40f3-b929-d9866f319178",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que MainHandAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e27ddfaf-9911-4a98-a970-441b13868b51",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que MainHandHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

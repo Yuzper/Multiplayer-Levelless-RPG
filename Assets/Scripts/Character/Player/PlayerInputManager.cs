@@ -49,6 +49,13 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool mainHandHeavyAttackInput = false;
     [SerializeField] bool mainHandChargeAttackInput = false;
 
+    [Header("QUED INPUTS")]
+    [SerializeField] private bool input_Que_Is_Active = false;
+    [SerializeField] float default_Que_Input_Time = 0.35f;
+    [SerializeField] float que_Input_Timer = 0;
+    [SerializeField] bool que_RB_Input = false;
+    [SerializeField] bool que_RT_Input = false;
+
     [Header("UI")]
     [SerializeField] bool escapeMenuInput = false;
     public EscapeMenuManager escapeMenu;
@@ -147,6 +154,10 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.MainHandChargeAttack.performed += i => mainHandChargeAttackInput = true;
             playerControls.PlayerActions.MainHandChargeAttack.canceled += i => mainHandChargeAttackInput = false;
 
+            // QUED Inputs
+            playerControls.PlayerActions.QueMainHandAttack.performed += i => QueInput(ref que_RB_Input);
+            playerControls.PlayerActions.QueMainHandHeavyAttack.performed += i => QueInput(ref que_RT_Input);
+
             // UI
             playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
         }
@@ -199,6 +210,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleMouseAttackInput();
         HandleMouseHeavyAttackInput();
         HandleMouseChargeAttackInput();
+        HandleQuedInputs();
     }
 
     // LOCK ON
@@ -560,6 +572,58 @@ public class PlayerInputManager : MonoBehaviour
             if (player.playerNetworkManager.isUsingMainHand.Value)
             {
                 player.playerNetworkManager.isChargingMainHandAttack.Value = mainHandChargeAttackInput;
+            }
+        }
+    }
+
+    private void QueInput(ref bool quedInput)   //  PASSING A REFERENCE MEANS WE PASS A SPECIFIC BOOL, AND NOT THE VALUE OF THAT BOOL (TRUE OR FALSE)
+    {
+        //  RESET ALL QUED INPUTS SO ONLY ONE CAN QUE AT A TIME
+        que_RB_Input = false;
+        que_RT_Input = false;
+        //que_LB_Input = false;
+        //que_LT_Input = false;
+
+        //  CHECK FOR UI WINDOW BEING OPEN, IF ITS OPEN RETURN
+
+        if (player.isPerformingAction || player.playerNetworkManager.isJumping.Value)
+        {
+            quedInput = true;
+            que_Input_Timer = default_Que_Input_Time;
+            input_Que_Is_Active = true;
+        }
+    }
+
+    private void ProcessQuedInput()
+    {
+        if (player.isDead.Value)
+            return;
+
+        if (que_RB_Input)
+            mainHandAttackInput = true;
+
+        if (que_RT_Input)
+            mainHandHeavyAttackInput = true;
+    }
+
+    private void HandleQuedInputs()
+    {
+        if (input_Que_Is_Active)
+        {
+            //  WHILE THE TIMER IS ABOVE 0, KEEP ATTEMPTING TO PRESS THE INPUT
+            if (que_Input_Timer > 0)
+            {
+                que_Input_Timer -= Time.deltaTime;
+                ProcessQuedInput();
+            }
+            else
+            {
+                //  RESET ALL QUED INPUTS
+                que_RB_Input = false;
+                que_RT_Input = false;
+
+                input_Que_Is_Active = false;
+                que_Input_Timer = 0;
             }
         }
     }

@@ -7317,6 +7317,11 @@ PrefabInstance:
       propertyPath: escapeMenu
       value: 
       objectReference: {fileID: 1870662874}
+    - target: {fileID: 3926753796587148208, guid: 5f2feceb51a428e448ad90106eeb9111,
+        type: 3}
+      propertyPath: default_Que_Input_Time
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3926753796587148209, guid: 5f2feceb51a428e448ad90106eeb9111,
         type: 3}
       propertyPath: m_Name
