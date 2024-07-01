@@ -45,12 +45,12 @@ public class WorldSoundFXManager : MonoBehaviour
 
     public void PlayBossTrack(AudioClip introTrack, AudioClip loopTrack)
     {
-        bossIntroPlayer.volume = 1;
+        bossIntroPlayer.volume = 0.5f;
         bossIntroPlayer.clip = introTrack;
         bossIntroPlayer.loop = false;
         bossIntroPlayer.Play();
 
-        bossLoopPlayer.volume = 1;
+        bossLoopPlayer.volume = 0.5f;
         bossLoopPlayer.clip = loopTrack;
         bossLoopPlayer.loop = true;
         bossLoopPlayer.PlayDelayed(bossIntroPlayer.clip.length);
@@ -59,6 +59,7 @@ public class WorldSoundFXManager : MonoBehaviour
 
     public AudioClip ChooseRandomSFXFromArray(AudioClip[] array)
     {
+        if (array.Length == 0) return null;
         int index = Random.Range(0, array.Length);
         return array[index];
     }

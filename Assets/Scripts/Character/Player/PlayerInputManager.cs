@@ -31,6 +31,7 @@ public class PlayerInputManager : MonoBehaviour
     [Header("PLAYER ACTION INPUT")]
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool jumpInput = false;
+    [SerializeField] bool sprint_Input = false;
 
     [SerializeField] bool danceInput = false;
     [SerializeField] bool revivalInput = false;
@@ -49,6 +50,13 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool mainHandAttackInput = false;
     [SerializeField] bool mainHandHeavyAttackInput = false;
     [SerializeField] bool mainHandChargeAttackInput = false;
+
+    [Header("QUED INPUTS")]
+    [SerializeField] private bool input_Que_Is_Active = false;
+    [SerializeField] float default_Que_Input_Time = 0.35f;
+    [SerializeField] float que_Input_Timer = 0;
+    [SerializeField] bool que_RB_Input = false;
+    [SerializeField] bool que_RT_Input = false;
 
     [Header("UI")]
     [SerializeField] bool escapeMenuInput = false;
@@ -124,6 +132,11 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.SeekRightLockOnTarget.performed += i => lockOnRightInput = true;
             playerControls.PlayerActions.SeekLeftLockOnTarget.performed += i => lockOnLeftInput = true;
 
+            //  HOLDING THE INPUT, SETS THE BOOL TO TRUE
+            playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
+            //  RELEASING THE INPUT, SETS THE BOOL TO FALSE
+            playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false;
+
             // Other Actions
             playerControls.PlayerActions.Dance.performed += i => danceInput = true;
             playerControls.PlayerActions.Revival.performed += i => revivalInput = true;
@@ -142,6 +155,10 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.MainHandHeavyAttack.performed += i => mainHandHeavyAttackInput = true;
             playerControls.PlayerActions.MainHandChargeAttack.performed += i => mainHandChargeAttackInput = true;
             playerControls.PlayerActions.MainHandChargeAttack.canceled += i => mainHandChargeAttackInput = false;
+
+            // QUED Inputs
+            playerControls.PlayerActions.QueMainHandAttack.performed += i => QueInput(ref que_RB_Input);
+            playerControls.PlayerActions.QueMainHandHeavyAttack.performed += i => QueInput(ref que_RT_Input);
 
             // UI
             playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
@@ -192,6 +209,7 @@ public class PlayerInputManager : MonoBehaviour
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
         HandleDodgeInput();
+        HandleSprintInput();
         HandleJumpInput();
         // Actions
         HandleDanceInput();
@@ -211,6 +229,7 @@ public class PlayerInputManager : MonoBehaviour
             HandleMouseAttackInput();
             HandleMouseHeavyAttackInput();
             HandleMouseChargeAttackInput();
+            HandleQuedInputs();
         }
 
     }
@@ -355,17 +374,17 @@ public class PlayerInputManager : MonoBehaviour
 
         // IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
 
-        if (!player.playerNetworkManager.isLockedOn.Value || player.playerLocomotionManager.isRolling)
+        if (!player.playerNetworkManager.isLockedOn.Value || player.playerLocomotionManager.isRolling || player.playerNetworkManager.isSprinting.Value)
         {
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
         }
         else
         {
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value);
         }
 
 
-        player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+        //player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
     }
 
     private void HandleCameraMovementInput()
@@ -390,6 +409,18 @@ public class PlayerInputManager : MonoBehaviour
         {
             dodgeInput = false;
             player.playerLocomotionManager.AttemptToPerformDodge();
+        }
+    }
+
+    private void HandleSprintInput()
+    {
+        if (sprint_Input)
+        {
+            player.playerLocomotionManager.HandleSprinting();
+        }
+        else
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
         }
     }
 
@@ -593,6 +624,58 @@ public class PlayerInputManager : MonoBehaviour
             if (player.playerNetworkManager.isUsingMainHand.Value)
             {
                 player.playerNetworkManager.isChargingMainHandAttack.Value = mainHandChargeAttackInput;
+            }
+        }
+    }
+
+    private void QueInput(ref bool quedInput)   //  PASSING A REFERENCE MEANS WE PASS A SPECIFIC BOOL, AND NOT THE VALUE OF THAT BOOL (TRUE OR FALSE)
+    {
+        //  RESET ALL QUED INPUTS SO ONLY ONE CAN QUE AT A TIME
+        que_RB_Input = false;
+        que_RT_Input = false;
+        //que_LB_Input = false;
+        //que_LT_Input = false;
+
+        //  CHECK FOR UI WINDOW BEING OPEN, IF ITS OPEN RETURN
+
+        if (player.isPerformingAction || player.playerNetworkManager.isJumping.Value)
+        {
+            quedInput = true;
+            que_Input_Timer = default_Que_Input_Time;
+            input_Que_Is_Active = true;
+        }
+    }
+
+    private void ProcessQuedInput()
+    {
+        if (player.isDead.Value)
+            return;
+
+        if (que_RB_Input)
+            mainHandAttackInput = true;
+
+        if (que_RT_Input)
+            mainHandHeavyAttackInput = true;
+    }
+
+    private void HandleQuedInputs()
+    {
+        if (input_Que_Is_Active)
+        {
+            //  WHILE THE TIMER IS ABOVE 0, KEEP ATTEMPTING TO PRESS THE INPUT
+            if (que_Input_Timer > 0)
+            {
+                que_Input_Timer -= Time.deltaTime;
+                ProcessQuedInput();
+            }
+            else
+            {
+                //  RESET ALL QUED INPUTS
+                que_RB_Input = false;
+                que_RT_Input = false;
+
+                input_Que_Is_Active = false;
+                que_Input_Timer = 0;
             }
         }
     }

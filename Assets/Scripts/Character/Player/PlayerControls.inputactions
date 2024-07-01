@@ -133,9 +133,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Que MainHandAttack",
+                    "type": "Button",
+                    "id": "ad83e943-11c7-4232-ac91-07748e360082",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MainHandHeavyAttack",
                     "type": "Button",
                     "id": "089e8665-7d89-4121-b2dd-783acc7d1c2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Que MainHandHeavyAttack",
+                    "type": "Button",
+                    "id": "a6cc6a18-ebe8-4aa9-94fc-ca9eb99731b8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -274,6 +292,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "PassThrough",
+                    "id": "0a028209-5e9f-4ab1-8d91-314eb0944878",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -484,6 +511,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "MainHandHeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1148f675-e6cc-41c0-a37a-480d2078d927",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16aeec2e-f289-418f-867e-1460de1119a4",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a8818f4-5ac9-40f3-b929-d9866f319178",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que MainHandAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e27ddfaf-9911-4a98-a970-441b13868b51",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que MainHandHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

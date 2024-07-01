@@ -7343,6 +7343,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5311825382826407042, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151079155043864648, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64d0ec940444adb47bda10a8f66700f8, type: 3}
 --- !u!1001 &3926753795289024395
@@ -7357,6 +7367,11 @@ PrefabInstance:
       propertyPath: escapeMenu
       value: 
       objectReference: {fileID: 1870662874}
+    - target: {fileID: 3926753796587148208, guid: 5f2feceb51a428e448ad90106eeb9111,
+        type: 3}
+      propertyPath: default_Que_Input_Time
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3926753796587148209, guid: 5f2feceb51a428e448ad90106eeb9111,
         type: 3}
       propertyPath: m_Name

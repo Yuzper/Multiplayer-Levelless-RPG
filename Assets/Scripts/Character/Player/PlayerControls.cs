@@ -155,9 +155,27 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Que MainHandAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad83e943-11c7-4232-ac91-07748e360082"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""MainHandHeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""089e8665-7d89-4121-b2dd-783acc7d1c2f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Que MainHandHeavyAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""a6cc6a18-ebe8-4aa9-94fc-ca9eb99731b8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -296,6 +314,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0a028209-5e9f-4ab1-8d91-314eb0944878"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -508,6 +535,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""MainHandHeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1148f675-e6cc-41c0-a37a-480d2078d927"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16aeec2e-f289-418f-867e-1460de1119a4"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a8818f4-5ac9-40f3-b929-d9866f319178"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que MainHandAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e27ddfaf-9911-4a98-a970-441b13868b51"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que MainHandHeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -641,7 +712,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_MainHandAttack = m_PlayerActions.FindAction("MainHandAttack", throwIfNotFound: true);
+        m_PlayerActions_QueMainHandAttack = m_PlayerActions.FindAction("Que MainHandAttack", throwIfNotFound: true);
         m_PlayerActions_MainHandHeavyAttack = m_PlayerActions.FindAction("MainHandHeavyAttack", throwIfNotFound: true);
+        m_PlayerActions_QueMainHandHeavyAttack = m_PlayerActions.FindAction("Que MainHandHeavyAttack", throwIfNotFound: true);
         m_PlayerActions_MainHandChargeAttack = m_PlayerActions.FindAction("MainHandChargeAttack", throwIfNotFound: true);
         m_PlayerActions_Dance = m_PlayerActions.FindAction("Dance", throwIfNotFound: true);
         m_PlayerActions_Revival = m_PlayerActions.FindAction("Revival", throwIfNotFound: true);
@@ -657,6 +730,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("Lock On", throwIfNotFound: true);
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget = m_PlayerActions.FindAction("Seek Right Lock On Target", throwIfNotFound: true);
+        m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -794,7 +868,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_MainHandAttack;
+    private readonly InputAction m_PlayerActions_QueMainHandAttack;
     private readonly InputAction m_PlayerActions_MainHandHeavyAttack;
+    private readonly InputAction m_PlayerActions_QueMainHandHeavyAttack;
     private readonly InputAction m_PlayerActions_MainHandChargeAttack;
     private readonly InputAction m_PlayerActions_Dance;
     private readonly InputAction m_PlayerActions_Revival;
@@ -810,6 +886,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget;
+    private readonly InputAction m_PlayerActions_Sprint;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -817,7 +894,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @MainHandAttack => m_Wrapper.m_PlayerActions_MainHandAttack;
+        public InputAction @QueMainHandAttack => m_Wrapper.m_PlayerActions_QueMainHandAttack;
         public InputAction @MainHandHeavyAttack => m_Wrapper.m_PlayerActions_MainHandHeavyAttack;
+        public InputAction @QueMainHandHeavyAttack => m_Wrapper.m_PlayerActions_QueMainHandHeavyAttack;
         public InputAction @MainHandChargeAttack => m_Wrapper.m_PlayerActions_MainHandChargeAttack;
         public InputAction @Dance => m_Wrapper.m_PlayerActions_Dance;
         public InputAction @Revival => m_Wrapper.m_PlayerActions_Revival;
@@ -833,6 +912,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @SeekLeftLockOnTarget => m_Wrapper.m_PlayerActions_SeekLeftLockOnTarget;
         public InputAction @SeekRightLockOnTarget => m_Wrapper.m_PlayerActions_SeekRightLockOnTarget;
+        public InputAction @Sprint => m_Wrapper.m_PlayerActions_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -851,9 +931,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MainHandAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
                 @MainHandAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
                 @MainHandAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
+                @QueMainHandAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandAttack;
+                @QueMainHandAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandAttack;
+                @QueMainHandAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandAttack;
                 @MainHandHeavyAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
                 @MainHandHeavyAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
                 @MainHandHeavyAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandHeavyAttack;
+                @QueMainHandHeavyAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandHeavyAttack;
+                @QueMainHandHeavyAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandHeavyAttack;
+                @QueMainHandHeavyAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandHeavyAttack;
                 @MainHandChargeAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
                 @MainHandChargeAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
                 @MainHandChargeAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandChargeAttack;
@@ -899,6 +985,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SeekRightLockOnTarget.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekRightLockOnTarget;
                 @SeekRightLockOnTarget.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekRightLockOnTarget;
                 @SeekRightLockOnTarget.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSeekRightLockOnTarget;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -912,9 +1001,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MainHandAttack.started += instance.OnMainHandAttack;
                 @MainHandAttack.performed += instance.OnMainHandAttack;
                 @MainHandAttack.canceled += instance.OnMainHandAttack;
+                @QueMainHandAttack.started += instance.OnQueMainHandAttack;
+                @QueMainHandAttack.performed += instance.OnQueMainHandAttack;
+                @QueMainHandAttack.canceled += instance.OnQueMainHandAttack;
                 @MainHandHeavyAttack.started += instance.OnMainHandHeavyAttack;
                 @MainHandHeavyAttack.performed += instance.OnMainHandHeavyAttack;
                 @MainHandHeavyAttack.canceled += instance.OnMainHandHeavyAttack;
+                @QueMainHandHeavyAttack.started += instance.OnQueMainHandHeavyAttack;
+                @QueMainHandHeavyAttack.performed += instance.OnQueMainHandHeavyAttack;
+                @QueMainHandHeavyAttack.canceled += instance.OnQueMainHandHeavyAttack;
                 @MainHandChargeAttack.started += instance.OnMainHandChargeAttack;
                 @MainHandChargeAttack.performed += instance.OnMainHandChargeAttack;
                 @MainHandChargeAttack.canceled += instance.OnMainHandChargeAttack;
@@ -960,6 +1055,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SeekRightLockOnTarget.started += instance.OnSeekRightLockOnTarget;
                 @SeekRightLockOnTarget.performed += instance.OnSeekRightLockOnTarget;
                 @SeekRightLockOnTarget.canceled += instance.OnSeekRightLockOnTarget;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -1067,7 +1165,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMainHandAttack(InputAction.CallbackContext context);
+        void OnQueMainHandAttack(InputAction.CallbackContext context);
         void OnMainHandHeavyAttack(InputAction.CallbackContext context);
+        void OnQueMainHandHeavyAttack(InputAction.CallbackContext context);
         void OnMainHandChargeAttack(InputAction.CallbackContext context);
         void OnDance(InputAction.CallbackContext context);
         void OnRevival(InputAction.CallbackContext context);
@@ -1083,6 +1183,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLockOn(InputAction.CallbackContext context);
         void OnSeekLeftLockOnTarget(InputAction.CallbackContext context);
         void OnSeekRightLockOnTarget(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
