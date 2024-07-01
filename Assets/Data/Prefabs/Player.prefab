@@ -2116,6 +2116,8 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 7758093794049506867}
+  canPerformRollingAttack: 0
+  canPerformBackstepAttack: 0
   currentWeaponBeingUsed: {fileID: 11400000, guid: b087c5bb879565e45be548bb927ebfef,
     type: 2}
   canComboWithWeapon: 0
@@ -2582,7 +2584,7 @@ MonoBehaviour:
   midPoint: {fileID: 5220046225504492078}
   rightHandVFX: {fileID: 0}
   leftHandVFX: {fileID: 0}
-  equippedSpell: {fileID: 11400000, guid: 22dbd342ea535c247b11f35c1ce10a3e, type: 2}
+  equippedSpell: {fileID: 11400000, guid: e73eb5023c5163e46902f83f7a02e573, type: 2}
   inSpellMode: 0
   castSpell: 0
   castSpellHold: 0

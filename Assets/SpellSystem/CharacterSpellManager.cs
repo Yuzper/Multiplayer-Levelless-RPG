@@ -49,7 +49,15 @@ public class CharacterSpellManager : NetworkBehaviour
     {
         if(equippedSpell != null)
         {
-            equippedSpell.SpawnSpell(this, rightHand, character.gameObject.transform.forward);
+            var target = PlayerCamera.instance.player.playerCombatManager?.currentTarget?.characterCombatManager?.lockOnTransform;
+            if (target)
+            {
+                Vector3 directionToWorldPointX = (PlayerCamera.instance.player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position - rightHand.position).normalized;
+                equippedSpell.SpawnSpell(this, rightHand, directionToWorldPointX);
+            } else
+            {
+                equippedSpell.SpawnSpell(this, rightHand, character.gameObject.transform.forward);
+            }
         }
     }
 
