@@ -7,6 +7,7 @@ using UnityEngine;
 public class TestingDrawing : MonoBehaviour
 {
     public RuneDrawer drawer;
+    public OnnxInferenceBarracuda onnxModel;
 
     private float canvasWidth = 700;
     private float canvasHeight = 700;
@@ -29,6 +30,20 @@ public class TestingDrawing : MonoBehaviour
         var drawing = drawer.drawingCoordinates;
         CreateMatrix(drawing);
         DrawMatrix();
+
+        // Example input data (should match the expected input shape and size)
+        float[] inputData = new float[matrix.GetLength(0) * matrix.GetLength(1)];
+        for (int i = 0; i < gridWidth; i++)
+        {
+            for (int j = 0; j < gridHeight; j++)
+            {
+                int index = i * gridWidth + j;
+                inputData[index] = matrix[i, j];
+            }
+        }
+
+        // Call the inference (prediction) method
+        onnxModel.RunInference(inputData);
         drawer.ClearDrawing();
     }
 
@@ -39,16 +54,16 @@ public class TestingDrawing : MonoBehaviour
         return TranslateCoordinates(coord);
     }
 
-    public (int,int) TranslateCoordinates(Vector2 point)
+    public (int, int) TranslateCoordinates(Vector2 point)
     {
 
-            float xRatio = gridWidth / (float)canvasWidth;
-            float yRatio = gridHeight / (float)canvasHeight;
+        float xRatio = gridWidth / (float)canvasWidth;
+        float yRatio = gridHeight / (float)canvasHeight;
 
-            int cellX = Mathf.FloorToInt(point.x * xRatio);
-            int cellY = Mathf.FloorToInt(point.y * yRatio);
+        int cellX = Mathf.FloorToInt(point.x * xRatio);
+        int cellY = Mathf.FloorToInt(point.y * yRatio);
 
-            return (cellX, cellY);
+        return (cellX, cellY);
     }
 
     void DrawMatrix()
@@ -66,7 +81,7 @@ public class TestingDrawing : MonoBehaviour
         }
 
         File.WriteAllText(path, arrayContents);
-        Debug.Log($"Matrix written to {path}");
+        //    Debug.Log($"Matrix written to {path}");
     }
 
 
@@ -77,8 +92,8 @@ public class TestingDrawing : MonoBehaviour
         for (int i = 0; i < drawing.Count; i++)
         {
             var (coordx, coordy) = ToOurMap(new Vector2(drawing[i].x, drawing[i].y));
-            Debug.Log(drawing[i].x + " " + drawing[i].y);
-            Debug.Log(coordx + " " + coordy);
+            //Debug.Log(drawing[i].x + " " + drawing[i].y);
+            //Debug.Log(coordx + " " + coordy);
             matrix[coordx, coordy] = 1;
 
         }
