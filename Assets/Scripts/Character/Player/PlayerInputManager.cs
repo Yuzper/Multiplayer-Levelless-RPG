@@ -62,6 +62,9 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool escapeMenuInput = false;
     public EscapeMenuManager escapeMenu;
 
+    [Header("Draw Spell Canvas")]
+    public SpellDrawingManager spellDrawingCanvas;
+
     private void Awake()
     {
         if (instance == null)
@@ -88,6 +91,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.Disable();
         }
         escapeMenu = EscapeMenuManager.instance;
+        spellDrawingCanvas = SpellDrawingManager.instance;
     }
     
     private void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
@@ -218,6 +222,7 @@ public class PlayerInputManager : MonoBehaviour
 
         if(player.characterSpellManager.inSpellMode)
         {
+            spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
             mainHandChargeAttackInput = false;
             mainHandHeavyAttackInput = false;
             mainHandAttackInput = false;
@@ -225,6 +230,7 @@ public class PlayerInputManager : MonoBehaviour
         } 
         else
         {
+            spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
             // Attack Inputs
             HandleMouseAttackInput();
             HandleMouseHeavyAttackInput();
@@ -255,7 +261,7 @@ public class PlayerInputManager : MonoBehaviour
             player.playerNetworkManager.isHoldingDownSpell.Value = false;
         }
     }
-
+    
     // LOCK ON
     private void HandleLockOnInput()
     {

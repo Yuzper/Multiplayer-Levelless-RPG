@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using System.Linq;
 
 public class TestingDrawing : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class TestingDrawing : MonoBehaviour
 
 
     public int[,] matrix;
+    private float[] predictedList;
+
+    public static PlayerInputManager instance;
 
     private void Awake()
     {
@@ -23,6 +27,7 @@ public class TestingDrawing : MonoBehaviour
         canvasWidth = drawer.rectTransform.rect.width;
         canvasHeight = drawer.rectTransform.rect.height;
     }
+
 
 
     public void DoneDrawing()
@@ -43,7 +48,20 @@ public class TestingDrawing : MonoBehaviour
         }
 
         // Call the inference (prediction) method
-        onnxModel.RunInference(inputData);
+        predictedList = onnxModel.RunInference(inputData);
+        int maxIndex = 0;
+        float maxValue = predictedList[0];
+
+        for (int i = 1; i < predictedList.Length; i++)
+        {
+            if (predictedList[i] > maxValue)
+            {
+                maxValue = predictedList[i];
+                maxIndex = i;
+            }
+        }
+
+        PlayerInputManager.instance.player.playerSpellManager.CastMostLikelySpell(maxIndex);
         drawer.ClearDrawing();
     }
 

@@ -2055,7 +2055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3713777260
+  GlobalObjectIdHash: 116302440
   InScenePlacedSourceGlobalObjectIdHash: 3713777260
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2585,6 +2585,7 @@ MonoBehaviour:
   rightHandVFX: {fileID: 0}
   leftHandVFX: {fileID: 0}
   equippedSpell: {fileID: 11400000, guid: e73eb5023c5163e46902f83f7a02e573, type: 2}
+  equippedSpell2: {fileID: 11400000, guid: 1c63d8e8a522e3842976302c5b290d1b, type: 2}
   inSpellMode: 0
   castSpell: 0
   castSpellHold: 0
