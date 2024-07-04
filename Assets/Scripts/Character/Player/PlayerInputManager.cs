@@ -64,6 +64,7 @@ public class PlayerInputManager : MonoBehaviour
 
     [Header("Draw Spell Canvas")]
     public SpellDrawingManager spellDrawingCanvas;
+    public UILineRenderer UI_LineRenderer;
 
     private void Awake()
     {
@@ -231,6 +232,8 @@ public class PlayerInputManager : MonoBehaviour
         else
         {
             spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
+            // Might be too expensive to have in update method //
+            UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
             // Attack Inputs
             HandleMouseAttackInput();
             HandleMouseHeavyAttackInput();

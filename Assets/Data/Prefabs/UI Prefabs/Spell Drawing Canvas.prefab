@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawingCoordinates: []
   rectTransform: {fileID: 3475114082159548319}
+  testingDrawing: {fileID: 3475114084042725413}
 --- !u!1 &3475114082345949821
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3475114082609703228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -784,6 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawer: {fileID: 3475114082159548291}
+  UI_LineRenderer: {fileID: 3475114082159548316}
   onnxModel: {fileID: 3475114084042725418}
   gridWidth: 100
   gridHeight: 100

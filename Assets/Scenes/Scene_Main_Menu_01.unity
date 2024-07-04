@@ -3463,6 +3463,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909714775}
   m_CullTransparentMesh: 1
+--- !u!114 &930327686 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3475114082159548316, guid: 6cc483e46174fd7439422c5f07f3d647,
+    type: 3}
+  m_PrefabInstance: {fileID: 1669932627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f06d1c9b68220b43970e503ad5780ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &977911713
 GameObject:
   m_ObjectHideFlags: 0
@@ -7538,6 +7550,11 @@ PrefabInstance:
       propertyPath: escapeMenu
       value: 
       objectReference: {fileID: 1870662874}
+    - target: {fileID: 3926753796587148208, guid: 5f2feceb51a428e448ad90106eeb9111,
+        type: 3}
+      propertyPath: UI_LineRenderer
+      value: 
+      objectReference: {fileID: 930327686}
     - target: {fileID: 3926753796587148208, guid: 5f2feceb51a428e448ad90106eeb9111,
         type: 3}
       propertyPath: spellDrawingCanvas

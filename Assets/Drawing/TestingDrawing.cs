@@ -8,6 +8,7 @@ using System.Linq;
 public class TestingDrawing : MonoBehaviour
 {
     public RuneDrawer drawer;
+    public UILineRenderer UI_LineRenderer;
     public OnnxInferenceBarracuda onnxModel;
 
     private float canvasWidth = 700;
@@ -28,13 +29,11 @@ public class TestingDrawing : MonoBehaviour
         canvasHeight = drawer.rectTransform.rect.height;
     }
 
-
-
     public void DoneDrawing()
     {
         var drawing = drawer.drawingCoordinates;
         CreateMatrix(drawing);
-        DrawMatrix();
+        //DrawMatrix();
 
         // Example input data (should match the expected input shape and size)
         float[] inputData = new float[matrix.GetLength(0) * matrix.GetLength(1)];
@@ -61,7 +60,8 @@ public class TestingDrawing : MonoBehaviour
             }
         }
 
-        PlayerInputManager.instance.player.playerSpellManager.CastMostLikelySpell(maxIndex);
+        PlayerInputManager.instance.player.playerSpellManager.EquipMostLikelySpell(maxIndex);
+        UI_LineRenderer.ResetDrawing();
         drawer.ClearDrawing();
     }
 
@@ -110,10 +110,18 @@ public class TestingDrawing : MonoBehaviour
         for (int i = 0; i < drawing.Count; i++)
         {
             var (coordx, coordy) = ToOurMap(new Vector2(drawing[i].x, drawing[i].y));
-            //Debug.Log(drawing[i].x + " " + drawing[i].y);
-            //Debug.Log(coordx + " " + coordy);
-            matrix[coordx, coordy] = 1;
 
+            // Check if the coordinates are within the bounds of the matrix
+            if (coordx >= 0 && coordx < gridWidth && coordy >= 0 && coordy < gridHeight)
+            {
+                matrix[coordx, coordy] = 1;
+            }
+            else
+            {
+                // Optionally log or handle out-of-bounds points
+                Debug.LogWarning($"Coordinate ({coordx}, {coordy}) is out of bounds.");
+            }
         }
     }
+
 }

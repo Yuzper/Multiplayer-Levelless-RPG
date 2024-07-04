@@ -7,6 +7,7 @@ public class RuneDrawer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 {
     public List<Vector2> drawingCoordinates;
     public RectTransform rectTransform;
+    public TestingDrawing testingDrawing;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class RuneDrawer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public void OnPointerUp(PointerEventData eventData)
     {
         // Optionally, you can process the completed drawing here or reset the coordinates
+        testingDrawing.DoneDrawing();
     }
 
     private void AddDrawingPoint(PointerEventData eventData)
