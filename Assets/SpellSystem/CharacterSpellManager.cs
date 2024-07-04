@@ -55,6 +55,7 @@ public class CharacterSpellManager : NetworkBehaviour
         if (index >= 0 && index < spell_List.Count)
         {
             equippedSpell = spell_List[index];
+            Debug.Log("EQUIPTED SPELL" + equippedSpell);
             SpawnSpellRightHand();
         }
         else

@@ -247,7 +247,6 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (player.characterSpellManager.inSpellMode)
         {
-
             //player.animator.SetBool("isHoldingDownSpell", player.characterSpellManager.castSpellHold); // TODO Make network variable? like charge attack
             player.playerNetworkManager.isHoldingDownSpell.Value = player.characterSpellManager.castSpellHold;
 
