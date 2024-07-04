@@ -56,12 +56,13 @@ public class CharacterSpellManager : NetworkBehaviour
         {
             equippedSpell = spell_List[index];
             Debug.Log("EQUIPTED SPELL" + equippedSpell);
-            SpawnSpellRightHand();
+            equippedSpell.UseSpell(character);
         }
         else
         {
             Debug.LogError("Invalid index: " + index);
         }
+
 
     }
 

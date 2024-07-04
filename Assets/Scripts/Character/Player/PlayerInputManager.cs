@@ -169,7 +169,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
 
             // Spell casting
-            playerControls.PlayerSpellcasting.SpellMode.performed += i => player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
+            playerControls.PlayerSpellcasting.SpellMode.performed += i => ToggleSpellMode();
             //playerControls.PlayerSpellcasting.SpellMode.canceled += i => inSpellMode = false;
             playerControls.PlayerSpellcasting.UseSpell.performed += i => player.characterSpellManager.castSpell = true;
             playerControls.PlayerSpellcasting.UseSpellHold.started += i => player.characterSpellManager.castSpellHold = true;
@@ -223,7 +223,6 @@ public class PlayerInputManager : MonoBehaviour
 
         if(player.characterSpellManager.inSpellMode)
         {
-            spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
             mainHandChargeAttackInput = false;
             mainHandHeavyAttackInput = false;
             mainHandAttackInput = false;
@@ -231,9 +230,6 @@ public class PlayerInputManager : MonoBehaviour
         } 
         else
         {
-            spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
-            // Might be too expensive to have in update method //
-            UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
             // Attack Inputs
             HandleMouseAttackInput();
             HandleMouseHeavyAttackInput();
@@ -241,6 +237,21 @@ public class PlayerInputManager : MonoBehaviour
             HandleQuedInputs();
         }
 
+    }
+
+    private void ToggleSpellMode()
+    {
+        UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
+        player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
+        if (player.characterSpellManager.inSpellMode)
+        {
+            spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
+        }
+        else
+        {
+            spellDrawingCanvas.CloseSpellDrawingMenu(); // Opens the spell drawing menu
+
+        }
     }
 
     private void HandleSpellAttackInput()
