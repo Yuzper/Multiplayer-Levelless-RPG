@@ -106,6 +106,7 @@ public class TestingDrawing : MonoBehaviour
 
     private void CreateMatrix(List<Vector2> drawing)
     {
+        matrix = new int[gridWidth, gridHeight];
         // for each pixel
         for (int i = 0; i < drawing.Count; i++)
         {
