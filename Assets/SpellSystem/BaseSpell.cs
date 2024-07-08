@@ -30,6 +30,7 @@ public class BaseSpell : ScriptableObject
         if (character.isPerformingAction || character.characterNetworkManager.currentMana.Value < character.characterSpellManager.equippedSpell.manaCost) return;
         character.characterNetworkManager.currentMana.Value -= character.characterSpellManager.equippedSpell.manaCost;
         character.characterAnimatorManager.PlayerTargetActionAnimation(animationName, true, false, true, canMove);
+        character.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.FireBallSFX));
     }
 
     public virtual void SpawnHandVFX(CharacterSpellManager spellManager)

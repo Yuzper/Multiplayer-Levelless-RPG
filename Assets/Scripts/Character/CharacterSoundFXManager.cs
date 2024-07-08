@@ -26,7 +26,7 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public void PlayBackgroundMusic()
     {
-        audioSource.PlayOneShot(WorldSoundFXManager.instance.BackgroundMusic);
+        audioSource.PlayOneShot(WorldSoundFXManager.instance.BackgroundMusic[0]);
     }
 
     public void PlayRollSoundFX()
@@ -59,6 +59,11 @@ public class CharacterSoundFXManager : MonoBehaviour
     {
         AudioClip drawSwordSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.DrawSwordSFX);
         PlaySoundFX(drawSwordSFX);
+    }
+    public void PlayDrawStaffSFX()
+    {
+        AudioClip drawStaffSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.DrawStaffSFX);
+        PlaySoundFX(drawStaffSFX);
     }
 
     public void PlaySheathSwordSFX()

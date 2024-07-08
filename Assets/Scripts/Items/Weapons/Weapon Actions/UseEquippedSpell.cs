@@ -13,9 +13,8 @@ public class UseEquippedSpell : WeaponItemAction
         if (!playerPerformingAction.IsOwner) return;
         if (playerPerformingAction.isDancing) return;
         if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;
-        // MAKES SURE ACTION CAN'T BE PERFORMED IF MANA IS LOWER THAN WHAT'S REQUIRED FOR THAT ACTION
-        //if (playerPerformingAction.playerNetworkManager.currentMana.Value < playerPerformingAction.playerCombatManager.CalculateStaminaForAttack(playerPerformingAction.playerCombatManager.currentAttackType))
-        if (playerPerformingAction.playerNetworkManager.currentMana.Value < 20) // TEMP CODE
+        // MAKES SURE ACTION CAN'T BE PERFORMED IF MANA IS LOWER THAN WHAT'S REQUIRED FOR THAT SPELL
+        if (playerPerformingAction.playerNetworkManager.currentMana.Value < playerPerformingAction.characterSpellManager.equippedSpell.manaCost)
         {
             PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Not Enough Mana!", false, true, false);
             return;

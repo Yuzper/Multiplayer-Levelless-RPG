@@ -19,11 +19,20 @@ public class WorldSoundFXManager : MonoBehaviour
 
     [Header("Weapon Sounds")]
     public AudioClip[] DrawSwordSFX;
+    public AudioClip[] DrawStaffSFX;
     public AudioClip[] SheathSwordSFX;
     public AudioClip[] SwordSwipeSFX;
 
+    [Header("Spell Sounds")]
+    [Header("Fireball Sounds")]
+    public AudioClip[] FireBallSFX;
+    
+    [Header("Frostball Sounds")]
+    public AudioClip[] FrostBallSFX;
+
+
     [Header("Background Sounds")]
-    public AudioClip BackgroundMusic;
+    public AudioClip[] BackgroundMusic;
 
     
     private void Awake()

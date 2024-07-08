@@ -258,8 +258,11 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (player.isPerformingAction) return;
         //if (player.isDead.Value) return; // is this needed?
 
-        if (player.playerNetworkManager.currentStamina.Value <= 0)
+        if (player.playerNetworkManager.currentStamina.Value <= dodgeStaminaCost)
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Not Enough Stamina!", false, false, true);
             return;
+        }
 
         // IF WE ARE MOVING WHEN WE ATTEMPT TO DODGE, WE PERFORM A ROLL
         if (PlayerInputManager.instance.moveAmount > 0)

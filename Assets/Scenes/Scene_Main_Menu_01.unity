@@ -7576,6 +7576,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: World Sound FX Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2099786763070414037, guid: 64d0ec940444adb47bda10a8f66700f8,
+        type: 3}
+      propertyPath: DrawStaffSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b729e25dfd6e8d42aec548e87e47fd7, type: 3}
     - target: {fileID: 2099786763070414042, guid: 64d0ec940444adb47bda10a8f66700f8,
         type: 3}
       propertyPath: m_RootOrder
@@ -7630,16 +7635,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5311825382826407042, guid: 64d0ec940444adb47bda10a8f66700f8,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8151079155043864648, guid: 64d0ec940444adb47bda10a8f66700f8,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64d0ec940444adb47bda10a8f66700f8, type: 3}
