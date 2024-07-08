@@ -21,7 +21,7 @@ MonoBehaviour:
   spawnRightHandVFX: 1
   spawnLeftHandVFX: 1
   additionalEffects: []
-  manaCost: 25
-  speed: 550
-  damage: 10
+  manaCost: 40
+  speed: 700
+  damage: 150
   lifeTime: 5

@@ -23,5 +23,5 @@ MonoBehaviour:
   additionalEffects: []
   manaCost: 25
   speed: 400
-  damage: 10
+  damage: 200
   lifeTime: 5
