@@ -329,6 +329,10 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             {
                 player.playerSoundFXManager.PlayDrawSwordSFX();
             }
+            else if (selectedWeapon.weaponType == WeaponType.Staff || selectedWeapon.weaponType == WeaponType.Wand)
+            {
+                player.playerSoundFXManager.PlayDrawStaffSFX();
+            }
             else if (selectedWeapon.weaponType == WeaponType.Unarmed)
             {
                 player.playerSoundFXManager.PlaySheathSwordSFX();

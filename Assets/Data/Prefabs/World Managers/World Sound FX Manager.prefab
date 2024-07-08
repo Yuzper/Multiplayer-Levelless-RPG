@@ -57,11 +57,21 @@ MonoBehaviour:
   deathSFX: {fileID: 8300000, guid: 942c7aa7e91dc2042913b84d53f8df0a, type: 3}
   DrawSwordSFX:
   - {fileID: 8300000, guid: 5106aa09b9d5a374e86d3c643beb374c, type: 3}
+  DrawStaffSFX:
+  - {fileID: 8300000, guid: 7bb01e0addbc7b342984016fe79dd154, type: 3}
   SheathSwordSFX:
   - {fileID: 8300000, guid: 09f89d6f9c83c0e4588d9111a0a56ffc, type: 3}
   SwordSwipeSFX:
   - {fileID: 8300000, guid: 8b70a0fb40c237241a538f9ea21485cf, type: 3}
-  BackgroundMusic: {fileID: 8300000, guid: 0643908ea2a90c341a1f488fb302af76, type: 3}
+  FireBallSFX:
+  - {fileID: 8300000, guid: c19a80fcf5dddfa438b4efefabc4b1cc, type: 3}
+  - {fileID: 8300000, guid: dbae479cbb7c9b641b34fb2dc162cd27, type: 3}
+  FrostBallSFX:
+  - {fileID: 8300000, guid: c19a80fcf5dddfa438b4efefabc4b1cc, type: 3}
+  - {fileID: 8300000, guid: dbae479cbb7c9b641b34fb2dc162cd27, type: 3}
+  BackgroundMusic:
+  - {fileID: 8300000, guid: 0643908ea2a90c341a1f488fb302af76, type: 3}
+  - {fileID: 8300000, guid: a72be6dbb33ae1d48b44895f4943bee6, type: 3}
 --- !u!82 &8151079155043864648
 AudioSource:
   m_ObjectHideFlags: 0
@@ -74,7 +84,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -170,7 +180,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
