@@ -33,7 +33,9 @@ public class PlayerUIHudManager : MonoBehaviour
     public Transform bossHealthBarParent;
     public GameObject bossHealthBarObject;
 
-    
+    [Header("Header")]
+    public GameObject crosshair;
+
     public void RefreshHUI()
     {
         healthBar.gameObject.SetActive(false); // Resets the UI elements size
@@ -79,4 +81,14 @@ public class PlayerUIHudManager : MonoBehaviour
         staminaBar.SetMaxStat(maxStamina);
     }
 
+
+    // Crosshair
+    public void ToggleCrosshairOn()
+    {
+        crosshair.SetActive(true);
+    }
+    public void ToggleCrosshairOff()
+    {
+        crosshair.SetActive(false);
+    }
 }

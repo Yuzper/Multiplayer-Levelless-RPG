@@ -23,7 +23,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
-
+        
         if (!playerPerformingAction.IsOwner) return;
         if (playerPerformingAction.isDancing) return;
         if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;

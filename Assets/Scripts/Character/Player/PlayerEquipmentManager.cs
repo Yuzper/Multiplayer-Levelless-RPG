@@ -182,6 +182,15 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         player.playerNetworkManager.currentMainHandWeaponID.Value = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex].itemID;
         DecideDrawWeaponSound(selectedWeapon);
         PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.name, selectedWeapon.itemDescription);
+        if (selectedWeapon.weaponType == WeaponType.Staff || selectedWeapon.weaponType == WeaponType.Wand) // Toggles crosshair on/off
+        {
+            PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOn();
+        }
+        else
+        {
+            PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff();
+        }
+
         return;
     }
 

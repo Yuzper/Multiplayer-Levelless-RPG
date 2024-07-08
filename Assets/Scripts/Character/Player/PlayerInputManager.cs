@@ -241,16 +241,19 @@ public class PlayerInputManager : MonoBehaviour
 
     private void ToggleSpellMode()
     {
-        UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
-        player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
-        if (player.characterSpellManager.inSpellMode)
+        if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
         {
-            spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
-        }
-        else
-        {
-            spellDrawingCanvas.CloseSpellDrawingMenu(); // Opens the spell drawing menu
+            UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
+            player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
+            if (player.characterSpellManager.inSpellMode)
+            {
+                spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
+            }
+            else
+            {
+                spellDrawingCanvas.CloseSpellDrawingMenu(); // Opens the spell drawing menu
 
+            }
         }
     }
 

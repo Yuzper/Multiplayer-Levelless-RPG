@@ -56,7 +56,7 @@ public class CharacterSpellManager : NetworkBehaviour
         {
             equippedSpell = spell_List[index];
             Debug.Log("EQUIPTED SPELL" + equippedSpell);
-            equippedSpell.UseSpell(character);
+        //    equippedSpell.UseSpell(character); ///////////////
         }
         else
         {
@@ -69,19 +69,36 @@ public class CharacterSpellManager : NetworkBehaviour
 
     public virtual void SpawnSpellRightHand()
     {
-        if(equippedSpell != null)
+        if (equippedSpell != null)
         {
             var target = PlayerCamera.instance.player.playerCombatManager?.currentTarget?.characterCombatManager?.lockOnTransform;
             if (target)
             {
-                Vector3 directionToWorldPointX = (PlayerCamera.instance.player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position - rightHand.position).normalized;
+                PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff(); // Turn off Crosshair
+                Vector3 directionToWorldPointX = (target.position - rightHand.position).normalized;
                 equippedSpell.SpawnSpell(this, rightHand, directionToWorldPointX);
-            } else
+            }
+            else
             {
-                equippedSpell.SpawnSpell(this, rightHand, character.gameObject.transform.forward);
+                PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOn(); // Turn on Crosshair
+
+                Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;
+                // Get the direction the camera is currently looking
+                Camera mainCamera = PlayerCamera.instance.GetComponentInChildren<Camera>();
+                Vector3 crosshairViewportPosition = mainCamera.ScreenToViewportPoint(crosshairScreenPosition);
+
+                Ray ray = mainCamera.ViewportPointToRay(crosshairViewportPosition); // Points to the position of the UI crosshair element
+                Vector3 cameraDirection = ray.direction;
+
+                equippedSpell.SpawnSpell(this, rightHand, cameraDirection);
+                //Vector3 cameraForward = PlayerCamera.instance.transform.forward;
+                //equippedSpell.SpawnSpell(this, rightHand, cameraForward);
             }
         }
     }
+
+
+
 
     public virtual void SpawnSpellLeftHand()
     {
