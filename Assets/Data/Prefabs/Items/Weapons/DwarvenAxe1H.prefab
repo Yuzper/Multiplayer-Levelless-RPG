@@ -73,6 +73,9 @@ MonoBehaviour:
   heavy_Attack_02_Modifier: 0
   charge_Attack_01_Modifier: 0
   charge_Attack_02_Modifier: 0
+  running_Attack_01_Modifier: 0
+  rolling_Attack_01_Modifier: 0
+  backstep_Attack_01_Modifier: 0
 --- !u!1 &2182914544792422139
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,12 +229,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7904508357756463769}
-  m_LocalRotation: {x: 0.055324618, y: -0.24275434, z: 0.64284515, w: 0.724403}
-  m_LocalPosition: {x: 0.02, y: 0.088, z: 0.052}
+  m_LocalRotation: {x: 0.13157049, y: -0.09853248, z: -0.49084625, w: 0.8555995}
+  m_LocalPosition: {x: 0.0258, y: 0.1078, z: -0.0321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1513373963920776257}
   m_Father: {fileID: 6789314113515872147}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 23.095, y: -17.759, z: 79.516}
+  m_LocalEulerAnglesHint: {x: 7.378, y: -17.473, z: -60.82}

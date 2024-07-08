@@ -107,15 +107,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199724408639227819}
-  m_LocalRotation: {x: 0.0107832225, y: -0.26901725, z: 0.6555042, w: 0.70556897}
-  m_LocalPosition: {x: -0.014, y: 0.085, z: 0.0322}
+  m_LocalRotation: {x: 0.13157049, y: -0.09853248, z: -0.49084625, w: 0.8555995}
+  m_LocalPosition: {x: 0.0258, y: 0.1078, z: -0.0321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 738099410603646937}
   m_Father: {fileID: 3553226878534578849}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 21.586, y: -23.144, z: 81.316}
+  m_LocalEulerAnglesHint: {x: 7.378, y: -17.473, z: -60.82}
 --- !u!1 &4180547347389622299
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,3 +235,6 @@ MonoBehaviour:
   heavy_Attack_02_Modifier: 0
   charge_Attack_01_Modifier: 0
   charge_Attack_02_Modifier: 0
+  running_Attack_01_Modifier: 0
+  rolling_Attack_01_Modifier: 0
+  backstep_Attack_01_Modifier: 0
