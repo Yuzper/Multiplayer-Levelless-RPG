@@ -17,6 +17,8 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     // A quick fix for preventing the draw weapon sound of unarmed weapon to play when character spawns.
     private int playSoundCheck = 0;
 
+    public SpellDrawingManager spellDrawingCanvas;
+
     protected override void Awake()
     {
         base.Awake();
@@ -27,6 +29,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     protected override void Start()
     {
         base.Start();
+        spellDrawingCanvas = SpellDrawingManager.instance;
         LoadWeaponOnBothHands();
     }
 
@@ -181,6 +184,8 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         selectedWeapon = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex];
         player.playerNetworkManager.currentMainHandWeaponID.Value = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex].itemID;
         DecideDrawWeaponSound(selectedWeapon);
+
+        // UI
         PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.name, selectedWeapon.itemDescription);
         if (selectedWeapon.weaponType == WeaponType.Staff || selectedWeapon.weaponType == WeaponType.Wand) // Toggles crosshair on/off
         {
@@ -188,6 +193,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         }
         else
         {
+            //spellDrawingCanvas.CloseSpellDrawingMenu();
             PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff();
         }
 

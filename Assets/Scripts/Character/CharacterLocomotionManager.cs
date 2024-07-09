@@ -78,7 +78,6 @@ public class CharacterLocomotionManager : MonoBehaviour
     // Animation Events
     public void EnableCanRotate()
     {
-        Debug.Log("HEJ");
         canRotate = true;
     }
 

@@ -239,20 +239,23 @@ public class PlayerInputManager : MonoBehaviour
 
     }
 
-    private void ToggleSpellMode()
+    public void ToggleSpellMode()
     {
         if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
         {
-            UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
+            //UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
             player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
             if (player.characterSpellManager.inSpellMode)
             {
                 spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
+                Debug.Log("SpellMode" + player.characterSpellManager.inSpellMode);
+                Debug.Log("Opening Spells");
             }
             else
             {
-                spellDrawingCanvas.CloseSpellDrawingMenu(); // Opens the spell drawing menu
-
+                spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
+                Debug.Log("SpellMode" + player.characterSpellManager.inSpellMode);
+                Debug.Log("Closing Spells");
             }
         }
     }
@@ -404,8 +407,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value);
         }
-
-
         //player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
     }
 

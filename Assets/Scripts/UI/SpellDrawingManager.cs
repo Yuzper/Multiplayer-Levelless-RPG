@@ -8,6 +8,8 @@ public class SpellDrawingManager : MonoBehaviour
 
     [Header("Menus")]
     [SerializeField] public GameObject spellDrawMenu;
+    public RuneDrawer runeDrawer;
+    public TestingDrawing testingDrawing;
 
     private void Awake()
     {
@@ -21,7 +23,6 @@ public class SpellDrawingManager : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -30,10 +31,13 @@ public class SpellDrawingManager : MonoBehaviour
     public void OpenSpellDrawingMenu()
     {
         spellDrawMenu.SetActive(true);
+        runeDrawer.ClearDrawing();
+        testingDrawing.UI_LineRenderer.ResetDrawing();
     }
 
     public void CloseSpellDrawingMenu()
     {
         spellDrawMenu.SetActive(false);
+        PlayerUIManager.instance.player.characterSpellManager.inSpellMode = false;
     }
 }

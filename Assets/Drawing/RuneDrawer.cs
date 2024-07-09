@@ -17,18 +17,28 @@ public class RuneDrawer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        AddDrawingPoint(eventData);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            AddDrawingPoint(eventData);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        AddDrawingPoint(eventData); // todo check if mouse get outside of rect
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            AddDrawingPoint(eventData); // todo check if mouse get outside of rect
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        // Optionally, you can process the completed drawing here or reset the coordinates
-        testingDrawing.DoneDrawing();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            // Optionally, you can process the completed drawing here or reset the coordinates
+            testingDrawing.DoneDrawing();
+            Debug.Log("UUUUUP");
+        }
     }
 
     private void AddDrawingPoint(PointerEventData eventData)

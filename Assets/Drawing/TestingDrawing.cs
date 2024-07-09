@@ -63,6 +63,7 @@ public class TestingDrawing : MonoBehaviour
         PlayerInputManager.instance.player.playerSpellManager.EquipMostLikelySpell(maxIndex);
         UI_LineRenderer.ResetDrawing();
         drawer.ClearDrawing();
+        SpellDrawingManager.instance.CloseSpellDrawingMenu();
     }
 
 

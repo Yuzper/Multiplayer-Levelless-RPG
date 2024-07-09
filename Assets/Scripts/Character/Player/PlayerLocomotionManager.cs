@@ -92,12 +92,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleGroundMovement()
     {
-        if (player.characterLocomotionManager.canMove || player.playerLocomotionManager.canRotate) {
-
-            if (player.isPerformingAction)
-            {
-                var test = "Hej";
-            }
+        if (player.characterLocomotionManager.canMove || player.playerLocomotionManager.canRotate)
+        {
             GetMovementValues();
         }
 
@@ -228,7 +224,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             return;
         }
 
-        if (player.playerNetworkManager.currentStamina.Value <= 0)
+        if (player.playerNetworkManager.currentStamina.Value <= sprintingStaminaCost)
         {
             player.playerNetworkManager.isSprinting.Value = false;
             return;

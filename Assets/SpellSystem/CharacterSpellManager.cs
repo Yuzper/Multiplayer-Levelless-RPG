@@ -62,8 +62,6 @@ public class CharacterSpellManager : NetworkBehaviour
         {
             Debug.LogError("Invalid index: " + index);
         }
-
-
     }
 
 
@@ -83,7 +81,6 @@ public class CharacterSpellManager : NetworkBehaviour
                 PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOn(); // Turn on Crosshair
 
                 Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;
-                // Get the direction the camera is currently looking
                 Camera mainCamera = PlayerCamera.instance.GetComponentInChildren<Camera>();
                 Vector3 crosshairViewportPosition = mainCamera.ScreenToViewportPoint(crosshairScreenPosition);
 
