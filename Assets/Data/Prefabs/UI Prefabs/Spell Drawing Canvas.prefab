@@ -323,6 +323,7 @@ MonoBehaviour:
   spellDrawMenu: {fileID: 26169551373828611}
   runeDrawer: {fileID: 3475114082159548291}
   testingDrawing: {fileID: 3475114084042725413}
+  UI_LineRenderer: {fileID: 3475114082159548316}
 --- !u!1 &3475114083885613072
 GameObject:
   m_ObjectHideFlags: 0

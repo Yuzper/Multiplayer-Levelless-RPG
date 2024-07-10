@@ -248,14 +248,10 @@ public class PlayerInputManager : MonoBehaviour
             if (player.characterSpellManager.inSpellMode)
             {
                 spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
-                Debug.Log("SpellMode" + player.characterSpellManager.inSpellMode);
-                Debug.Log("Opening Spells");
             }
             else
             {
                 spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
-                Debug.Log("SpellMode" + player.characterSpellManager.inSpellMode);
-                Debug.Log("Closing Spells");
             }
         }
     }

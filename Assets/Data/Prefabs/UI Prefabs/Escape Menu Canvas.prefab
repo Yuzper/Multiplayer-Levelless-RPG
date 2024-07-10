@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -455.46848}
+  m_AnchoredPosition: {x: 960, y: -389.2178}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8092725793810567572
@@ -171,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -218.87708}
+  m_AnchoredPosition: {x: 960, y: -152.6264}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3696660334217314690
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu (NOT DONE)
+  m_text: Main Menu (Doesn't disconnect correctly)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -440,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -573.76416}
+  m_AnchoredPosition: {x: 960, y: -507.51352}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4791074083073170366
@@ -574,7 +574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -100.58138}
+  m_AnchoredPosition: {x: 960, y: -34.33071}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4791074083078140117
@@ -972,7 +972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -337.1728}
+  m_AnchoredPosition: {x: 960, y: -270.92212}
   m_SizeDelta: {x: 408.9218, y: 68.2957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4791074084112780321
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save Game (NOT DONE)
+  m_text: Save Game (Doesn't save multiplayer)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -10,6 +10,7 @@ public class SpellDrawingManager : MonoBehaviour
     [SerializeField] public GameObject spellDrawMenu;
     public RuneDrawer runeDrawer;
     public TestingDrawing testingDrawing;
+    public UILineRenderer UI_LineRenderer;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class SpellDrawingManager : MonoBehaviour
     {
         spellDrawMenu.SetActive(true);
         runeDrawer.ClearDrawing();
-        testingDrawing.UI_LineRenderer.ResetDrawing();
+        UI_LineRenderer.ResetDrawing();
     }
 
     public void CloseSpellDrawingMenu()
