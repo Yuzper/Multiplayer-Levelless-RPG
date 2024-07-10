@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Frostbold
   animationName: MovingSpellCast
+  spellImage: {fileID: 21300000, guid: e83a8205f4d99364191dbd27917babe2, type: 3}
   spellPrefab: {fileID: 579393599800319720, guid: 091f015dc5f7dd1469233aeb65f1ef2d,
     type: 3}
   handVFX: {fileID: 1140579960723542, guid: 09849ac8c58dd6b4f9b9965478663b93, type: 3}

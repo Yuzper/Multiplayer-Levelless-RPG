@@ -1627,6 +1627,7 @@ MonoBehaviour:
   offHandWeaponManager: {fileID: 0}
   mainHandWeaponModel: {fileID: 0}
   offHandWeaponModel: {fileID: 0}
+  spellDrawingCanvas: {fileID: 0}
 --- !u!114 &-4850607042919652327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,11 +2008,13 @@ MonoBehaviour:
   midPoint: {fileID: 6398111378827904185}
   rightHandVFX: {fileID: 0}
   leftHandVFX: {fileID: 0}
-  equippedSpell: {fileID: 11400000, guid: e73eb5023c5163e46902f83f7a02e573, type: 2}
+  equippedSpells: []
+  nullSpellImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   spell_List:
   - {fileID: 11400000, guid: 1c63d8e8a522e3842976302c5b290d1b, type: 2}
   - {fileID: 11400000, guid: e73eb5023c5163e46902f83f7a02e573, type: 2}
   - {fileID: 11400000, guid: e73eb5023c5163e46902f83f7a02e573, type: 2}
+  equippedSpell: {fileID: 0}
   inSpellMode: 0
   castSpell: 0
   castSpellHold: 0

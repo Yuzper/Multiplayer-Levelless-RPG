@@ -37,7 +37,6 @@ public class RuneDrawer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         {
             // Optionally, you can process the completed drawing here or reset the coordinates
             testingDrawing.DoneDrawing();
-            Debug.Log("UUUUUP");
         }
     }
 

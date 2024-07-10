@@ -13,10 +13,12 @@ public class CharacterSpellManager : NetworkBehaviour
     public GameObject rightHandVFX;
     public GameObject leftHandVFX;
 
-    [SerializeField] public BaseSpell equippedSpell;
+    public List<BaseSpell> equippedSpells;
+    [SerializeField] private Sprite nullSpellImage;
 
     // List to store functions
     [SerializeField] public List<BaseSpell> spell_List;
+    public BaseSpell equippedSpell;
 
     [Header("Spell casting")]
     public bool inSpellMode = false;
@@ -26,11 +28,16 @@ public class CharacterSpellManager : NetworkBehaviour
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
+        equippedSpells = new List<BaseSpell>();
+        equippedSpell = equippedSpells[0]; // The equipped spell is only the first in the list (queue)
     }
 
     public virtual void SpawnHandVFX()
     {
-        equippedSpell.SpawnHandVFX(this);
+        if (equippedSpells.Count > 0)
+        {
+            equippedSpell.SpawnHandVFX(this);
+        }
     }
 
     public virtual void RemoveHandVFX()
@@ -54,7 +61,9 @@ public class CharacterSpellManager : NetworkBehaviour
 
         if (index >= 0 && index < spell_List.Count)
         {
-            equippedSpell = spell_List[index];
+            equippedSpells.Add(spell_List[index]);
+            equippedSpell = equippedSpells[0];
+            PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(spell_List[index].spellImage, 0);
             Debug.Log("EQUIPTED SPELL" + equippedSpell);
         //    equippedSpell.UseSpell(character); ///////////////
         }
@@ -67,8 +76,10 @@ public class CharacterSpellManager : NetworkBehaviour
 
     public virtual void SpawnSpellRightHand()
     {
-        if (equippedSpell != null)
+        if (equippedSpells.Count > 0)
         {
+            equippedSpells.RemoveAt(0);
+            PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(nullSpellImage, 0);
             var target = PlayerCamera.instance.player.playerCombatManager?.currentTarget?.characterCombatManager?.lockOnTransform;
             if (target)
             {
@@ -92,9 +103,11 @@ public class CharacterSpellManager : NetworkBehaviour
                 //equippedSpell.SpawnSpell(this, rightHand, cameraForward);
             }
         }
+        else
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendMissingSpellErrorPopUp();
+        }
     }
-
-
 
 
     public virtual void SpawnSpellLeftHand()

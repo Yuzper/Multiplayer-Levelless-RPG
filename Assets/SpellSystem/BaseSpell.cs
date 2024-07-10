@@ -6,6 +6,7 @@ public class BaseSpell : ScriptableObject
 {
     public string spellName;
     public string animationName;
+    public Sprite spellImage;
     public GameObject spellPrefab;
     public GameObject handVFX;
 
