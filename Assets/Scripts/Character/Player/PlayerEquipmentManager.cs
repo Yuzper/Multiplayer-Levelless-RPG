@@ -187,13 +187,20 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         // UI
         PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.name, selectedWeapon.itemDescription);
-        if (selectedWeapon.weaponType == WeaponType.Staff || selectedWeapon.weaponType == WeaponType.Wand) // Toggles crosshair on/off
+        
+        if (selectedWeapon.weaponType == WeaponType.Unarmed)
         {
+            TutorialManager.instance.TurnTutorialOn("movement");
+        }
+        else if (selectedWeapon.weaponType == WeaponType.Staff || selectedWeapon.weaponType == WeaponType.Wand) // Toggles crosshair on/off
+        {
+            TutorialManager.instance.TurnTutorialOn("spell");
             PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOn();
         }
         else
         {
             //spellDrawingCanvas.CloseSpellDrawingMenu();
+            TutorialManager.instance.TurnTutorialOn("melee");
             PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff();
         }
 

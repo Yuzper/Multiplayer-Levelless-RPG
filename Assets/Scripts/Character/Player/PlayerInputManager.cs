@@ -243,7 +243,6 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
         {
-            //UI_LineRenderer.ResetDrawing(); // Makes sure the drawing is reset whenever you reopen the spell drawing menu.
             player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
             if (player.characterSpellManager.inSpellMode)
             {
@@ -283,6 +282,7 @@ public class PlayerInputManager : MonoBehaviour
         // CHECK FOR DEAD TARGET
         if (player.playerNetworkManager.isLockedOn.Value)
         {
+            TutorialManager.instance.TurnTutorialOn("lockOn");
             if (player.playerCombatManager.currentTarget.isDead.Value)
             {
                 // THIS ASSURES US THAT THE COROUTINE NEVER RUNS MULTIPLE TIMES OVERLAPPING ITSELF
@@ -308,7 +308,8 @@ public class PlayerInputManager : MonoBehaviour
             lockOnInput = false;
             player.playerCombatManager.SetTarget(null);
             PlayerCamera.instance.ClearLockOnTargets();
-            player.playerNetworkManager.isLockedOn.Value = false; 
+            player.playerNetworkManager.isLockedOn.Value = false;
+            TutorialManager.instance.TurnTutorialOn("melee");
             return;
         }
 

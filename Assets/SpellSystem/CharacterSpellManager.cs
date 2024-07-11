@@ -65,7 +65,6 @@ public class CharacterSpellManager : NetworkBehaviour
             equippedSpell = equippedSpells[0];
             PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(spell_List[index].spellImage, 0);
             Debug.Log("EQUIPTED SPELL" + equippedSpell);
-        //    equippedSpell.UseSpell(character); ///////////////
         }
         else
         {

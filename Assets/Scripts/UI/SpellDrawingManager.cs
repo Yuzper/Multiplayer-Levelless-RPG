@@ -34,11 +34,13 @@ public class SpellDrawingManager : MonoBehaviour
         spellDrawMenu.SetActive(true);
         runeDrawer.ClearDrawing();
         UI_LineRenderer.ResetDrawing();
+        TutorialManager.instance.TurnTutorialOn("drawing");
     }
 
     public void CloseSpellDrawingMenu()
     {
         spellDrawMenu.SetActive(false);
         PlayerUIManager.instance.player.characterSpellManager.inSpellMode = false;
+        TutorialManager.instance.TurnTutorialOn("spell");
     }
 }

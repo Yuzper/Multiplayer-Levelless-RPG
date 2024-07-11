@@ -33,5 +33,5 @@ public class UIDrawingInput : MonoBehaviour, IPointerDownHandler, IDragHandler
             }
         }
     }
-
 }
+
