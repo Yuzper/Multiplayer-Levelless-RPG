@@ -52,6 +52,7 @@ public class UILineRenderer : Graphic
 
     public void AddPoint(Vector2 newPoint)
     {
+
         if (points.Count > 1 && Vector2.Distance(newPoint, points[points.Count - 1]) < 0.1f)
         {
             // Ignore if the new point is too close to the last one

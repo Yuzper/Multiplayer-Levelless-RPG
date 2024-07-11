@@ -14,17 +14,24 @@ public class UIDrawingInput : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out localPoint);
-        lineRenderer.AddPoint(localPoint);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out localPoint);
+            lineRenderer.AddPoint(localPoint);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector2 localPoint;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out localPoint))
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            lineRenderer.AddPoint(localPoint);
+            Vector2 localPoint;
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out localPoint))
+            {
+                lineRenderer.AddPoint(localPoint);
+            }
         }
     }
+
 }
