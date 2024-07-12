@@ -278,8 +278,8 @@ MonoBehaviour:
   cameraObject: {fileID: 7041858683409778158}
   cameraPivotTransform: {fileID: 4361680107661065055}
   cameraSmoothSpeed: 1
-  leftAndRightRotationSpeed: 100
-  upAndDownRotationSpeed: 100
+  leftAndRightRotationSpeed: 40
+  upAndDownRotationSpeed: 40
   minimumPivot: -30
   maximumPivot: 70
   cameraCollisionRadius: 0.2
@@ -302,4 +302,3 @@ MonoBehaviour:
   zoomSpeed: 20
   minZoom: 20
   maxZoom: 100
-  zoomSmoothness: 10
