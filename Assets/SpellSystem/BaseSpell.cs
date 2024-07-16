@@ -12,10 +12,17 @@ public class BaseSpell : ScriptableObject
 
     [Header("Properties")]
     public bool canMove = true;
-    public bool spawnRightHandVFX = true;
-    public bool spawnLeftHandVFX = true;
+    public bool spawnRightHandVFX = false;
+    public bool spawnLeftHandVFX = false;
 
     public List<SpellEffect> additionalEffects;
+
+    [Header("Spawn location of spell")]
+    public bool spawnRightHand = false;
+    public bool spawnLeftHand = false;
+    public bool spawnMidpoint = false;
+    public bool spawnAtTarget = false;
+    public bool spawnAtSelf = false;
 
     [Header("Stats")]
     public float manaCost = 1;
@@ -49,7 +56,7 @@ public class BaseSpell : ScriptableObject
     /// <summary>
     /// This method method will spawn the actual spell prefab
     /// </summary>
-    public virtual void SpawnSpell(CharacterSpellManager spellManager, Transform startPos, Vector3 direction = new Vector3())
+    public virtual void SpawnSpell(CharacterSpellManager spellManager, Vector3 startPos, Vector3 direction = new Vector3())
     {
 
     }

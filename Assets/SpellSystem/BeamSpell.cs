@@ -16,9 +16,9 @@ public class BeamSpell : BaseSpell
         this.character = character;
     }
 
-    public override void SpawnSpell(CharacterSpellManager spellManager, Transform startPos, Vector3 direction)
+    public override void SpawnSpell(CharacterSpellManager spellManager, Vector3 startPos, Vector3 direction)
     {
-        spawnedSpellGameObject = Instantiate(spellPrefab, startPos);
+        spawnedSpellGameObject = Instantiate(spellPrefab, startPos, Quaternion.identity);
         spawnedSpellGameObject.GetComponent<BeamSpellWorld>().StartSpell(spellManager, this, direction);
     }
 

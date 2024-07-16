@@ -22,6 +22,11 @@ MonoBehaviour:
   spawnRightHandVFX: 1
   spawnLeftHandVFX: 1
   additionalEffects: []
+  spawnRightHand: 1
+  spawnLeftHand: 0
+  spawnMidpoint: 0
+  spawnAtTarget: 0
+  spawnAtSelf: 0
   manaCost: 1
   damage: 5
   intervalBetweenDamage: 1

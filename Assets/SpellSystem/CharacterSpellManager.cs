@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.Image;
 
 
 public class CharacterSpellManager : NetworkBehaviour
@@ -61,9 +63,8 @@ public class CharacterSpellManager : NetworkBehaviour
 
         if (index >= 0 && index < spell_List.Count)
         {
-            equippedSpells.Add(spell_List[index]);
-            equippedSpell = equippedSpells[0];
-            PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(spell_List[index].spellImage, 0);
+            equippedSpell = spell_List[index];
+            PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(equippedSpell.spellImage, 0);
             Debug.Log("EQUIPTED SPELL" + equippedSpell);
         }
         else
@@ -73,39 +74,98 @@ public class CharacterSpellManager : NetworkBehaviour
     }
 
 
+    protected void SpawnSpellTwordsTargetIfPossible()
+    {
+
+    }
+
+
     public virtual void SpawnSpellRightHand()
     {
-        if (equippedSpells.Count > 0)
+        Debug.Log("Hello");
+        if (equippedSpell == null) return;
+
+        Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;
+        Camera mainCamera = PlayerCamera.instance.GetComponentInChildren<Camera>();
+        Vector3 crosshairViewportPosition = mainCamera.ScreenToViewportPoint(crosshairScreenPosition);
+
+        Ray ray = mainCamera.ViewportPointToRay(crosshairViewportPosition); // Points to the position of the UI crosshair element
+        Vector3 cameraDirection = ray.direction;
+
+        var target = PlayerCamera.instance.player.playerCombatManager?.currentTarget?.characterCombatManager?.lockOnTransform;
+        if (target)
         {
-            equippedSpells.RemoveAt(0);
-            PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(nullSpellImage, 0);
-            var target = PlayerCamera.instance.player.playerCombatManager?.currentTarget?.characterCombatManager?.lockOnTransform;
+            PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff(); // Turn off Crosshair
+            cameraDirection = (target.position - rightHand.position).normalized;
+        }
+
+        if (equippedSpell.spawnAtSelf)
+        {
+            equippedSpell.SpawnSpell(this, midPoint.position, cameraDirection);
+        }
+        if (equippedSpell.spawnAtTarget)
+        {
+            RaycastHit hit;
             if (target)
             {
-                PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff(); // Turn off Crosshair
-                Vector3 directionToWorldPointX = (target.position - rightHand.position).normalized;
-                equippedSpell.SpawnSpell(this, rightHand, directionToWorldPointX);
-            }
-            else
+                if(Physics.Raycast(target.position, Vector3.down, out hit, 100f))
+                {
+                    equippedSpell.SpawnSpell(this, hit.point, cameraDirection);
+                }
+            } else
             {
-                PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOn(); // Turn on Crosshair
-
-                Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;
-                Camera mainCamera = PlayerCamera.instance.GetComponentInChildren<Camera>();
-                Vector3 crosshairViewportPosition = mainCamera.ScreenToViewportPoint(crosshairScreenPosition);
-
-                Ray ray = mainCamera.ViewportPointToRay(crosshairViewportPosition); // Points to the position of the UI crosshair element
-                Vector3 cameraDirection = ray.direction;
-
-                equippedSpell.SpawnSpell(this, rightHand, cameraDirection);
-                //Vector3 cameraForward = PlayerCamera.instance.transform.forward;
-                //equippedSpell.SpawnSpell(this, rightHand, cameraForward);
+                // Perform the raycast
+                if (Physics.Raycast(ray, out hit))
+                {
+                    equippedSpell.SpawnSpell(this, hit.point, cameraDirection);
+                }
             }
         }
-        else
+        if (equippedSpell.spawnRightHand)
         {
-            PlayerUIManager.instance.playerUIPopUpManager.SendMissingSpellErrorPopUp();
+            equippedSpell.SpawnSpell(this, rightHand.position, cameraDirection);
         }
+        if (equippedSpell.spawnLeftHand)
+        {
+            equippedSpell.SpawnSpell(this, leftHand.position, cameraDirection);
+        }
+        if (equippedSpell.spawnMidpoint)
+        {
+            equippedSpell.SpawnSpell(this, midPoint.position, cameraDirection);
+        }
+
+        equippedSpell = null;
+        //if (equippedSpells.Count > 0)
+        //{
+        //    equippedSpells.RemoveAt(0);
+        //    PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(nullSpellImage, 0);
+        //    var target = PlayerCamera.instance.player.playerCombatManager?.currentTarget?.characterCombatManager?.lockOnTransform;
+        //    if (target)
+        //    {
+        //        PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff(); // Turn off Crosshair
+        //        Vector3 directionToWorldPointX = (target.position - rightHand.position).normalized;
+        //        equippedSpell.SpawnSpell(this, rightHand, directionToWorldPointX);
+        //    }
+        //    else
+        //    {
+        //        PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOn(); // Turn on Crosshair
+
+        //        Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;
+        //        Camera mainCamera = PlayerCamera.instance.GetComponentInChildren<Camera>();
+        //        Vector3 crosshairViewportPosition = mainCamera.ScreenToViewportPoint(crosshairScreenPosition);
+
+        //        Ray ray = mainCamera.ViewportPointToRay(crosshairViewportPosition); // Points to the position of the UI crosshair element
+        //        Vector3 cameraDirection = ray.direction;
+
+        //        equippedSpell.SpawnSpell(this, rightHand, cameraDirection);
+        //        //Vector3 cameraForward = PlayerCamera.instance.transform.forward;
+        //        //equippedSpell.SpawnSpell(this, rightHand, cameraForward);
+        //    }
+        //}
+        //else
+        //{
+        //    PlayerUIManager.instance.playerUIPopUpManager.SendMissingSpellErrorPopUp();
+        //}
     }
 
 
@@ -113,7 +173,7 @@ public class CharacterSpellManager : NetworkBehaviour
     {
         if (equippedSpell != null)
         {
-            equippedSpell.SpawnSpell(this, leftHand, character.gameObject.transform.forward);
+            equippedSpell.SpawnSpell(this, leftHand.position, character.gameObject.transform.forward);
         }
     }
 
@@ -121,7 +181,7 @@ public class CharacterSpellManager : NetworkBehaviour
     {
         if (equippedSpell != null)
         {
-            equippedSpell.SpawnSpell(this, midPoint, character.gameObject.transform.forward);
+            equippedSpell.SpawnSpell(this, midPoint.position, character.gameObject.transform.forward);
         }
     }
 

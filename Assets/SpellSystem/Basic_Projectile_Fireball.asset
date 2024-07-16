@@ -22,7 +22,12 @@ MonoBehaviour:
   spawnRightHandVFX: 1
   spawnLeftHandVFX: 1
   additionalEffects: []
+  spawnRightHand: 1
+  spawnLeftHand: 0
+  spawnMidpoint: 0
+  spawnAtTarget: 0
+  spawnAtSelf: 0
   manaCost: 40
-  speed: 700
+  speed: 1500
   damage: 150
   lifeTime: 5
