@@ -12,9 +12,9 @@ public class CombatStanceState : AIState
 
     [Header("Attacks")]
     public List<AICharacterAttackAction> aiCharacterAttacks; // A list of all possible attacks this character can do
-    protected List<AICharacterAttackAction> potentialAttacks; // All attacks possible in this situation (based on angle, distance etc)
-    private AICharacterAttackAction choosenAttack;
-    private AICharacterAttackAction previousAttack;
+    [SerializeField] protected List<AICharacterAttackAction> potentialAttacks; // All attacks possible in this situation (based on angle, distance etc)
+    [SerializeField] private AICharacterAttackAction choosenAttack;
+    [SerializeField] private AICharacterAttackAction previousAttack;
     protected bool hasAttack = false;
 
     [Header("Combo")]
@@ -33,10 +33,13 @@ public class CombatStanceState : AIState
         if (!aiCharacter.navmeshAgent.enabled)
             aiCharacter.navmeshAgent.enabled = true;
 
-        if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
+        if (aiCharacter.aICharacterCombatManager.enableTurnAnimations)
         {
-            if (aiCharacter.aICharacterCombatManager.viewableAngle < -30 || aiCharacter.aICharacterCombatManager.viewableAngle > -30)
-                aiCharacter.aICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
+            {
+                if (aiCharacter.aICharacterCombatManager.viewableAngle < -30 || aiCharacter.aICharacterCombatManager.viewableAngle > -30)
+                    aiCharacter.aICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            }
         }
 
         aiCharacter.aICharacterCombatManager.RotateTowardsAgent(aiCharacter);

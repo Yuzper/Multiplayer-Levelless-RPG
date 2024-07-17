@@ -12,6 +12,11 @@ public class CharacterSoundFXManager : MonoBehaviour
     [Header("Damage Grunts")]
     [SerializeField] protected AudioClip[] attackGrunts;
 
+    [Header("Footsteps")]
+    [SerializeField] public AudioClip[] footstepsDefault;
+    [SerializeField] public AudioClip[] footstepsDirt;
+    [SerializeField] public AudioClip[] footstepsStone;
+
 
     protected virtual void Awake()
     {
@@ -21,7 +26,7 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public void PlayBackgroundMusic()
     {
-        audioSource.PlayOneShot(WorldSoundFXManager.instance.BackgroundMusic);
+        audioSource.PlayOneShot(WorldSoundFXManager.instance.BackgroundMusic[0]);
     }
 
     public void PlayRollSoundFX()
@@ -31,6 +36,7 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public void PlaySoundFX(AudioClip soundFX, float volume = 1, bool randomizePitch = true, float pitchRandom = 0.1f)
     {
+        if (soundFX == null) return;
         audioSource.PlayOneShot(soundFX, volume);
         // RESETS PITCH
         audioSource.pitch = 1;
@@ -54,6 +60,11 @@ public class CharacterSoundFXManager : MonoBehaviour
         AudioClip drawSwordSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.DrawSwordSFX);
         PlaySoundFX(drawSwordSFX);
     }
+    public void PlayDrawStaffSFX()
+    {
+        AudioClip drawStaffSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.DrawStaffSFX);
+        PlaySoundFX(drawStaffSFX);
+    }
 
     public void PlaySheathSwordSFX()
     {
@@ -69,11 +80,22 @@ public class CharacterSoundFXManager : MonoBehaviour
     
     public virtual void PlayDamageGrunt()
     {
-        PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(damageGrunts));
+        if(damageGrunts.Length > 0)
+        {
+            PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(damageGrunts));
+        }
+        
     }
 
     public virtual void PlayAttackGrunt()
     {
-        PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
+        if (attackGrunts.Length > 0)
+            PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
+    }
+
+    public virtual void PlayFootstep()
+    {
+        if (footstepsDefault.Length > 0)
+            PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(footstepsDefault));
     }
 }

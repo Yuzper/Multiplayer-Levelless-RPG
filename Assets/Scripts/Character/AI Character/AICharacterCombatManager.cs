@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -92,7 +93,7 @@ public class AICharacterCombatManager : CharacterCombatManager
     }
 
 
-    public void PivotTowardsTarget(AICharacterManager aiCharacter)
+    public virtual void PivotTowardsTarget(AICharacterManager aiCharacter)
     {
         if (!enableTurnAnimations) return;
         // play pivot animation depending on viewable angle of target
@@ -168,7 +169,7 @@ public class AICharacterCombatManager : CharacterCombatManager
         }
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
-        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.deltaTime);
+        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.fixedDeltaTime);
 
     }
 

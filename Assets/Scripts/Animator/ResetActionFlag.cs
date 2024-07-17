@@ -22,7 +22,12 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterLocomotionManager.canMove = true;
         character.characterLocomotionManager.isRolling = false;
         character.characterLocomotionManager.isBackstepping = false;
-        character.characterAnimatorManager.DisableCanDoCombo();
+        character.characterLocomotionManager.useMouseForRotation = false;
+        character.characterCombatManager.DisableCanDoCombo();
+        character.characterCombatManager.DisableCanDoRollingAttack();
+        character.characterCombatManager.DisableCanDoBackstepAttack();
+        character.characterSpellManager?.StopSpell();
+        character.characterSpellManager?.RemoveHandVFX();
 
         // Reset damage colliders in player if they are interrupted in animation
         if (character.GetComponent<PlayerManager>() != null)
@@ -40,6 +45,7 @@ public class ResetActionFlag : StateMachineBehaviour
         if (character.IsOwner)
         {
             character.characterNetworkManager.isJumping.Value = false;
+            character.characterNetworkManager.isInvulnerable.Value = false;
         }
     }
 

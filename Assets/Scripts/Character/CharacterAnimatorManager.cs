@@ -66,7 +66,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         return finalList[randomValue];
     }
 
-    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement)
+    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
         float snappedHorizontal = horizontalMovement;
         float snappedVertical = verticalMovement;
@@ -115,7 +115,11 @@ public class CharacterAnimatorManager : MonoBehaviour
         {
             snappedVertical = 0;
         }
-        
+        if (isSprinting)
+        {
+            snappedVertical = 2;
+        }
+
         character.animator.SetFloat("Horizontal", snappedHorizontal, 0.1f, Time.deltaTime);
         character.animator.SetFloat("Vertical", snappedVertical, 0.1f, Time.deltaTime);
     }
@@ -146,9 +150,9 @@ public class CharacterAnimatorManager : MonoBehaviour
         AttackType attackType,
         string targetAnimation,
         bool isPerformingAction,
-        bool applyRootMotion = false,
-        bool canRotate = true,
-        bool canMove = true)
+        bool applyRootMotion = true,
+        bool canRotate = false,
+        bool canMove = false)
     {
         // KEEP TRACK OF LAST ATTACK PERFORMED (FOR COMBOS)
         // KEEP TRACK OF CURRENT ATTACK TYPE (LIGHT, HEAVY, ETC)
@@ -163,17 +167,6 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         // TELL SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
         character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
-
-    }
-
-
-    public virtual void EnableCanDoCombo()
-    {
-        
-    }
-
-    public virtual void DisableCanDoCombo()
-    {
 
     }
 }

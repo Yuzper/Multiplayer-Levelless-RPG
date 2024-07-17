@@ -19,6 +19,8 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
     [HideInInspector] public CharacterStatsManager characterStatsManager;
 
+    [HideInInspector] public CharacterSpellManager characterSpellManager;
+
 
     [Header("Character group")]
     public CharacterGroup characterGroup;
@@ -42,6 +44,7 @@ public class CharacterManager : NetworkBehaviour
         characterCombatManager = GetComponent<CharacterCombatManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
         characterStatsManager = GetComponent<CharacterStatsManager>();
+        characterSpellManager = GetComponent<CharacterSpellManager>();
     }
 
     protected virtual void Start()
@@ -89,11 +92,15 @@ public class CharacterManager : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         animator.SetBool("isMoving", characterNetworkManager.isMoving.Value);
+        characterNetworkManager.OnIsActiveChanged(false, characterNetworkManager.isActive.Value);
+
         characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
-        // STATS
+        characterNetworkManager.isActive.OnValueChanged += characterNetworkManager.OnIsActiveChanged;
+
+        //// STATS
         characterNetworkManager.currentHealth.OnValueChanged += characterNetworkManager.CheckHP;
-        characterNetworkManager.maxHealth.Value = characterStatsManager.CalculateHealthBasedOnConstitution(characterNetworkManager.constitution.Value);
-        characterNetworkManager.currentHealth.Value = characterNetworkManager.maxHealth.Value;
+
+
     }
 
     public override void OnNetworkDespawn()
@@ -101,6 +108,7 @@ public class CharacterManager : NetworkBehaviour
         base.OnNetworkDespawn();
 
         characterNetworkManager.isMoving.OnValueChanged -= characterNetworkManager.OnIsMovingChanged;
+        characterNetworkManager.isActive.OnValueChanged -= characterNetworkManager.OnIsActiveChanged;
         // STATS
         characterNetworkManager.currentHealth.OnValueChanged -= characterNetworkManager.CheckHP;
     }
@@ -109,7 +117,7 @@ public class CharacterManager : NetworkBehaviour
     {
         if (IsOwner)
         {
-            characterNetworkManager.currentHealth.Value = 0;
+            //characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
             characterLocomotionManager.canMove = false;
             characterLocomotionManager.canRotate = false;

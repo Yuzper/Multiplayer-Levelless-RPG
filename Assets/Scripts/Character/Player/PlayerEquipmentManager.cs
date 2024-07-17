@@ -17,6 +17,8 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     // A quick fix for preventing the draw weapon sound of unarmed weapon to play when character spawns.
     private int playSoundCheck = 0;
 
+    public SpellDrawingManager spellDrawingCanvas;
+
     protected override void Awake()
     {
         base.Awake();
@@ -27,6 +29,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     protected override void Start()
     {
         base.Start();
+        spellDrawingCanvas = SpellDrawingManager.instance;
         LoadWeaponOnBothHands();
     }
 
@@ -181,7 +184,26 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         selectedWeapon = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex];
         player.playerNetworkManager.currentMainHandWeaponID.Value = player.playerInventoryManager.weaponsInMainHandSlots[player.playerInventoryManager.mainHandWeaponIndex].itemID;
         DecideDrawWeaponSound(selectedWeapon);
+
+        // UI
         PlayerUIManager.instance.playerUIPopUpManager.SendWeaponDescriptionPopUp(selectedWeapon.name, selectedWeapon.itemDescription);
+        
+        if (selectedWeapon.weaponType == WeaponType.Unarmed)
+        {
+            TutorialManager.instance.TurnTutorialOn("movement");
+        }
+        else if (selectedWeapon.weaponType == WeaponType.Staff || selectedWeapon.weaponType == WeaponType.Wand) // Toggles crosshair on/off
+        {
+            TutorialManager.instance.TurnTutorialOn("spell");
+            PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOn();
+        }
+        else
+        {
+            //spellDrawingCanvas.CloseSpellDrawingMenu();
+            TutorialManager.instance.TurnTutorialOn("melee");
+            PlayerUIManager.instance.playerUIHudManager.ToggleCrosshairOff();
+        }
+
         return;
     }
 
@@ -319,6 +341,10 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
                 selectedWeapon.weaponType == WeaponType.TwoHandedMace)
             {
                 player.playerSoundFXManager.PlayDrawSwordSFX();
+            }
+            else if (selectedWeapon.weaponType == WeaponType.Staff || selectedWeapon.weaponType == WeaponType.Wand)
+            {
+                player.playerSoundFXManager.PlayDrawStaffSFX();
             }
             else if (selectedWeapon.weaponType == WeaponType.Unarmed)
             {

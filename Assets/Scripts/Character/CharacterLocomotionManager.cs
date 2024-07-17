@@ -22,6 +22,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     public bool canRotate = true;
     public bool canMove = true;
     public bool isGrounded = true;
+    public bool useMouseForRotation = false;
 
     protected virtual void Awake()
     {

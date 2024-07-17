@@ -14,7 +14,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
-    [HideInInspector] public PlayerSpellsManager playerSpellsManager;
+    [HideInInspector] public PlayerSpellManager playerSpellManager;
 
     protected override void Awake()
     {
@@ -29,6 +29,7 @@ public class PlayerManager : CharacterManager
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerSpellManager = GetComponent<PlayerSpellManager>();
     }
 
     protected override void Update()
@@ -84,6 +85,18 @@ public class PlayerManager : CharacterManager
         // STATS
         // Moved to CharacterManager
         //playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+        // Set Health based on Constitution
+        if (IsOwner)
+        {
+            characterNetworkManager.maxHealth.Value = characterStatsManager.CalculateHealthBasedOnConstitution(characterNetworkManager.constitution.Value);
+            characterNetworkManager.currentHealth.Value = characterNetworkManager.maxHealth.Value;
+            // Set Mana based on Intelligence
+            characterNetworkManager.maxMana.Value = characterStatsManager.CalculateManaBasedOnIntelligence(characterNetworkManager.intelligence.Value);
+            characterNetworkManager.currentMana.Value = characterNetworkManager.maxMana.Value;
+            // Set Stamina based on Endurance
+            characterNetworkManager.maxMana.Value = characterStatsManager.CalculateStaminaBasedOnEndurance(characterNetworkManager.endurance.Value);
+            characterNetworkManager.currentStamina.Value = characterNetworkManager.maxStamina.Value;
+        }
 
         // LOCK ON
         playerNetworkManager.isLockedOn.OnValueChanged += playerNetworkManager.OnIsLockedOnChanged;
@@ -96,6 +109,7 @@ public class PlayerManager : CharacterManager
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isHoldingDownSpell.OnValueChanged += playerNetworkManager.OnIsHoldingDownSpellChanged;
 
 
         // UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
@@ -141,7 +155,7 @@ public class PlayerManager : CharacterManager
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
-
+        playerNetworkManager.isHoldingDownSpell.OnValueChanged -= playerNetworkManager.OnIsHoldingDownSpellChanged;
     }
 
     private void OnClientConnectedCallback(ulong clientID)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] UI_StatBar healthBar;
     [SerializeField] UI_StatBar manaBar;
     [SerializeField] UI_StatBar staminaBar;
+    public EquippedSpellsUIBar equippedSpellsUIBar;
 
     public GameObject healthBarBorder;
     public GameObject manaBarBorder;
@@ -28,7 +30,13 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] public Button Button_Z;
     [SerializeField] public Button Button_R;
 
-    
+    [Header("Boss Health Bar")]
+    public Transform bossHealthBarParent;
+    public GameObject bossHealthBarObject;
+
+    [Header("Crosshair")]
+    public GameObject crosshair;
+
     public void RefreshHUI()
     {
         healthBar.gameObject.SetActive(false); // Resets the UI elements size
@@ -66,7 +74,7 @@ public class PlayerUIHudManager : MonoBehaviour
     // Stamina
     public void SetNewStaminaValue(float oldValue, float newValue)
     {
-        staminaBar.SetStat(newValue);
+        staminaBar.SetStat((int) newValue);
     }
 
     public void SetMaxStaminaValue(int maxStamina)
@@ -74,4 +82,14 @@ public class PlayerUIHudManager : MonoBehaviour
         staminaBar.SetMaxStat(maxStamina);
     }
 
+
+    // Crosshair
+    public void ToggleCrosshairOn()
+    {
+        crosshair.SetActive(true);
+    }
+    public void ToggleCrosshairOff()
+    {
+        crosshair.SetActive(false);
+    }
 }

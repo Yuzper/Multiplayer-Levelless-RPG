@@ -348,7 +348,6 @@ GameObject:
   - component: {fileID: 6614536817782390570}
   - component: {fileID: 6614536817782390573}
   - component: {fileID: 6614536817782390572}
-  - component: {fileID: 6614536817782390575}
   - component: {fileID: 6614536817782390568}
   - component: {fileID: 6614536817782390569}
   - component: {fileID: 6614536817782390550}
@@ -443,12 +442,14 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
   aiCharacterNetworkManager: {fileID: 0}
   aICharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
+  invulnerable: 0
   navmeshAgent: {fileID: 0}
   currentState: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
   idle: {fileID: 11400000, guid: 30fff38a7e5ee1a4f9335dcab7629480, type: 2}
@@ -467,6 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1049e32c8a692a4599ed16d7512dda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive:
+    m_InternalValue: 1
   networkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   networkRotation:
@@ -488,9 +491,9 @@ MonoBehaviour:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
-  isChargingLeftAttack:
+  isChargingMainHandAttack:
     m_InternalValue: 0
-  isChargingRightAttack:
+  isInvulnerable:
     m_InternalValue: 0
   constitution:
     m_InternalValue: 1
@@ -549,7 +552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96f3eab862c079438c042e850c49407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPerformingJumpAttack: 0
   lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
@@ -641,18 +643,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a705c8e0e06b7c489d622a42b280a75, type: 3}
   - {fileID: 8300000, guid: 62f0b40b5ce888a4392e239c777f1c42, type: 3}
   - {fileID: 8300000, guid: 3d2667c01afd9564caf9e9acff7f6b4d, type: 3}
---- !u!114 &6614536817782390575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 459492819286163429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7722b855938f3a547becc64838fa091b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6614536817782390568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,7 +1242,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

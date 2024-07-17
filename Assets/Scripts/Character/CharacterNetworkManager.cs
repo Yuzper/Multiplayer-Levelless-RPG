@@ -7,6 +7,9 @@ public class CharacterNetworkManager : NetworkBehaviour
 {
     CharacterManager character;
 
+    [Header("Active")]
+    public NetworkVariable<bool> isActive = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [Header("Position")]
     public NetworkVariable<Vector3> networkPosition = new NetworkVariable<Vector3>(Vector3.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Quaternion> networkRotation = new NetworkVariable<Quaternion>(Quaternion.identity, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -25,9 +28,12 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     [Header("Flags")]
     public NetworkVariable<bool> isJumping = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    //public NetworkVariable<bool> isSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isLockedOn = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isChargingMainHandAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isInvulnerable = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    public NetworkVariable<bool> isHoldingDownSpell = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Stats")]
     // Constitution determines how much health a character has.
@@ -90,9 +96,19 @@ public class CharacterNetworkManager : NetworkBehaviour
         character.animator.SetBool("isMoving", isMoving.Value);
     }
 
+    public virtual void OnIsActiveChanged(bool oldStatus, bool newStatus)
+    {
+        gameObject.SetActive(isActive.Value);
+    }
+
     public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus)
     {
         character.animator.SetBool("isChargingRightAttack", isChargingMainHandAttack.Value);
+    }
+
+    public void OnIsHoldingDownSpellChanged(bool oldStatus, bool newStatus)
+    {
+        character.animator.SetBool("isHoldingDownSpell", isHoldingDownSpell.Value);
     }
 
     // A SERVER RPC IS A FUNCTION CALLED FROM A CLIENT, TO THE SERVER (IN OUR CASE HOST)

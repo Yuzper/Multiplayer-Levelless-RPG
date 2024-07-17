@@ -195,6 +195,7 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  unarmed_Melee_Attack_Modifier: 0
   light_Attack_01_Modifier: 0
   light_Attack_02_Modifier: 0
   light_Attack_03_Modifier: 0
@@ -202,8 +203,9 @@ MonoBehaviour:
   heavy_Attack_02_Modifier: 0
   charge_Attack_01_Modifier: 0
   charge_Attack_02_Modifier: 0
-  jump_Attack_Modifier: 0
-  unarmed_Melee_Attack_Modifier: 0
+  running_Attack_01_Modifier: 0
+  rolling_Attack_01_Modifier: 0
+  backstep_Attack_01_Modifier: 0
 --- !u!1 &5260893047292594106
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,12 +229,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5260893047292594106}
-  m_LocalRotation: {x: 0.16602746, y: -0.14104627, z: 0.67252165, w: 0.70728743}
-  m_LocalPosition: {x: 0.15, y: 0.087, z: 0.038}
+  m_LocalRotation: {x: 0.13157049, y: -0.09853248, z: -0.49084625, w: 0.8555995}
+  m_LocalPosition: {x: 0.0258, y: 0.1078, z: -0.0321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 362174439416701103}
   m_Father: {fileID: 5260893045848636320}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25.124, y: 1.506, z: 87.449}
+  m_LocalEulerAnglesHint: {x: 7.378, y: -17.473, z: -60.82}

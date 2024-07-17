@@ -1643,7 +1643,6 @@ GameObject:
   - component: {fileID: 7104238533779074863}
   - component: {fileID: 7104238533779074856}
   - component: {fileID: 7104238533779074857}
-  - component: {fileID: 7104238533779074858}
   - component: {fileID: 7104238533779074861}
   - component: {fileID: 7104238533779074860}
   - component: {fileID: 7104238533779074835}
@@ -1728,6 +1727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1049e32c8a692a4599ed16d7512dda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive:
+    m_InternalValue: 1
   networkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   networkRotation:
@@ -1749,9 +1750,9 @@ MonoBehaviour:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
-  isChargingLeftAttack:
+  isChargingMainHandAttack:
     m_InternalValue: 0
-  isChargingRightAttack:
+  isInvulnerable:
     m_InternalValue: 0
   constitution:
     m_InternalValue: 1
@@ -1827,11 +1828,16 @@ MonoBehaviour:
   enableTurn_90: 0
   enableTurn_135: 0
   enableTurn_180: 0
-  rightHandDamageCollider: {fileID: 7317570218245993895}
-  leftHandDamageCollider: {fileID: 2104113960153720097}
+  rightHandDamageCollider: {fileID: 0}
+  leftHandDamageCollider: {fileID: 0}
+  rightFootDamageCollider: {fileID: 0}
+  leftFootDamageCollider: {fileID: 0}
+  stompAttackAOERadious: 1.5
   baseDamage: 25
-  attack01DamageModifier: 1
-  attack02DamageModifier: 1.5
+  attack03DamageModifier: 1.4
+  attack04DamageModifier: 1.4
+  stompDamage: 25
+  stompImpactVFX: {fileID: 0}
 --- !u!114 &4032848166402318265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,6 +1860,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
@@ -1867,6 +1874,14 @@ MonoBehaviour:
   pursueTarget: {fileID: 11400000, guid: 39f99b34e9c83644f91b3e3503de42c4, type: 2}
   combatStance: {fileID: 11400000, guid: 778369fa24a7c7244aa11d0908bfd655, type: 2}
   attack: {fileID: 11400000, guid: 2eae52f23cd2fa04a8f34e126a05673c, type: 2}
+  bossID: 1
+  hasBeenDefeated:
+    m_InternalValue: 0
+  hasBeenAwakended:
+    m_InternalValue: 0
+  sleepAnimation: Empty
+  awakenAnimation: Empty
+  sleepState: {fileID: 11400000, guid: 13478fb4405d8264eb6ee9c4e0508a23, type: 2}
 --- !u!114 &7104238533779074862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1936,18 +1951,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a705c8e0e06b7c489d622a42b280a75, type: 3}
   - {fileID: 8300000, guid: 62f0b40b5ce888a4392e239c777f1c42, type: 3}
   - {fileID: 8300000, guid: 3d2667c01afd9564caf9e9acff7f6b4d, type: 3}
---- !u!114 &7104238533779074858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4556709571103993824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7722b855938f3a547becc64838fa091b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  footstepsDefault: []
+  footstepsDirt: []
+  footstepsStone: []
 --- !u!114 &7104238533779074861
 MonoBehaviour:
   m_ObjectHideFlags: 0

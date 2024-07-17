@@ -22,6 +22,12 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI abilityErrorPopUpText;
     [SerializeField] CanvasGroup abilityErrorPopUpCanvasGroup;
 
+    [Header("BOSS DEFEATED Pop Up")]
+    [SerializeField] GameObject bossDefeatedPopUpGameObject;
+    [SerializeField] TextMeshProUGUI bossDefeatedPopUpBackgroundText;
+    [SerializeField] TextMeshProUGUI bossDefeatedPopUpText;
+    [SerializeField] CanvasGroup bossDefeatedPopUpCanvasGroup;
+
     // Functions that calls the pop ups
     public void SendYouDiedPopUp()
     {
@@ -46,6 +52,23 @@ public class PlayerUIPopUpManager : MonoBehaviour
         weaponDescriptionPopUpText.characterSpacing = 0;
         StartCoroutine(FadeInPopUpOverTime(weaponDescriptionPopUpCanvasGroup, 0.5f));
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(weaponDescriptionPopUpCanvasGroup, 2, 4));
+    }
+
+    public void SendMissingSpellErrorPopUp()
+    {
+        if (abilityErrorPopUpGameObject.activeSelf)
+        {
+            // If it is, deactivate the current pop-up before showing the new one.
+            StopAllCoroutines(); // Stop all ongoing coroutines to reset the animation/effects.
+            abilityErrorPopUpCanvasGroup.alpha = 0; // Reset opacity in case it was faded in/out.
+        }
+
+        abilityErrorPopUpGameObject.SetActive(true);
+        abilityErrorPopUpText.text = "No equipped spells, draw a new rune!";
+
+        abilityErrorPopUpText.characterSpacing = 0;
+        StartCoroutine(FadeInPopUpOverTime(abilityErrorPopUpCanvasGroup, 2)); // Start fade-in slightly after color flash
+        StartCoroutine(WaitThenFadeOutPopUpOverTimer(abilityErrorPopUpCanvasGroup, 2, 0.5f)); // Adjust timing as needed
     }
 
     public void SendAbilityAndResourceErrorPopUp(string errorCode, bool flashingHealthBar = false, bool flashingManaBar = false, bool flashingStaminaBar = false)
@@ -81,6 +104,17 @@ public class PlayerUIPopUpManager : MonoBehaviour
         abilityErrorPopUpText.characterSpacing = 0;
         StartCoroutine(FadeInPopUpOverTime(abilityErrorPopUpCanvasGroup, 2)); // Start fade-in slightly after color flash
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(abilityErrorPopUpCanvasGroup, 2, 0.5f)); // Adjust timing as needed
+    }
+
+    public void SendBossDefeatedPopUp(string bossDefeatedMessage)
+    {
+        bossDefeatedPopUpText.text = bossDefeatedMessage;
+        bossDefeatedPopUpBackgroundText.text = bossDefeatedMessage;
+        bossDefeatedPopUpGameObject.SetActive(true);
+        bossDefeatedPopUpBackgroundText.characterSpacing = 0;
+        StartCoroutine(StretchPopUpTextOverTime(bossDefeatedPopUpBackgroundText, 8, 20f));
+        StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopUpCanvasGroup, 3));
+        StartCoroutine(WaitThenFadeOutPopUpOverTimer(bossDefeatedPopUpCanvasGroup, 2, 4));
     }
 
 
