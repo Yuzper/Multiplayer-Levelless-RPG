@@ -10,6 +10,7 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] UI_StatBar healthBar;
     [SerializeField] UI_StatBar manaBar;
     [SerializeField] UI_StatBar staminaBar;
+    public EquippedSpellsUIBar equippedSpellsUIBar;
 
     public GameObject healthBarBorder;
     public GameObject manaBarBorder;
@@ -33,7 +34,9 @@ public class PlayerUIHudManager : MonoBehaviour
     public Transform bossHealthBarParent;
     public GameObject bossHealthBarObject;
 
-    
+    [Header("Crosshair")]
+    public GameObject crosshair;
+
     public void RefreshHUI()
     {
         healthBar.gameObject.SetActive(false); // Resets the UI elements size
@@ -79,4 +82,14 @@ public class PlayerUIHudManager : MonoBehaviour
         staminaBar.SetMaxStat(maxStamina);
     }
 
+
+    // Crosshair
+    public void ToggleCrosshairOn()
+    {
+        crosshair.SetActive(true);
+    }
+    public void ToggleCrosshairOff()
+    {
+        crosshair.SetActive(false);
+    }
 }

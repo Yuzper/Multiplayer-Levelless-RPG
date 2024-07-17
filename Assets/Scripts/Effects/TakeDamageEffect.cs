@@ -68,7 +68,6 @@ public class TakeDamageEffect : InstantCharacterEffect
         }
 
         finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
-        Debug.Log("Damage: " + finalDamageDealt);
         if (finalDamageDealt <= 0)
         {
             finalDamageDealt = 1; // Always deal at least 1 damage, might change later
@@ -105,6 +104,15 @@ public class TakeDamageEffect : InstantCharacterEffect
         
         // TODO CALCULATE IF POISE IS BROKEN
         poiseIsBroken = true;
+        float randomValue = Random.Range(0f, 100f);
+        if (randomValue < 15)
+        {
+            poiseIsBroken = true;
+        }
+        else
+        {
+            poiseIsBroken = false;
+        }
 
         if (angleHitFrom >= 145 && angleHitFrom <= 180)
         {

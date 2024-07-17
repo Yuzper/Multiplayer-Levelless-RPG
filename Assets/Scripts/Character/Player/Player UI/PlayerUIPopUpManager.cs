@@ -54,6 +54,23 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(WaitThenFadeOutPopUpOverTimer(weaponDescriptionPopUpCanvasGroup, 2, 4));
     }
 
+    public void SendMissingSpellErrorPopUp()
+    {
+        if (abilityErrorPopUpGameObject.activeSelf)
+        {
+            // If it is, deactivate the current pop-up before showing the new one.
+            StopAllCoroutines(); // Stop all ongoing coroutines to reset the animation/effects.
+            abilityErrorPopUpCanvasGroup.alpha = 0; // Reset opacity in case it was faded in/out.
+        }
+
+        abilityErrorPopUpGameObject.SetActive(true);
+        abilityErrorPopUpText.text = "No equipped spells, draw a new rune!";
+
+        abilityErrorPopUpText.characterSpacing = 0;
+        StartCoroutine(FadeInPopUpOverTime(abilityErrorPopUpCanvasGroup, 2)); // Start fade-in slightly after color flash
+        StartCoroutine(WaitThenFadeOutPopUpOverTimer(abilityErrorPopUpCanvasGroup, 2, 0.5f)); // Adjust timing as needed
+    }
+
     public void SendAbilityAndResourceErrorPopUp(string errorCode, bool flashingHealthBar = false, bool flashingManaBar = false, bool flashingStaminaBar = false)
     {
         // Possible Ability/Resource Errors

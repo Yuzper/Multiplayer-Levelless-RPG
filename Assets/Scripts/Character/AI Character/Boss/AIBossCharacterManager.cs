@@ -106,6 +106,7 @@ public class AIBossCharacterManager : AICharacterManager
             characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
             bossFightIsActive.Value = false;
+            GetComponent<CharacterController>().enabled = false;
 
             // Reset any flags here that need to be reset
 
@@ -156,9 +157,10 @@ public class AIBossCharacterManager : AICharacterManager
             {
 
                 characterAnimatorManager.PlayerTargetActionAnimation(awakenAnimation, true);
+                bossFightIsActive.Value = true;
+                hasBeenAwakended.Value = true;
             }
-            bossFightIsActive.Value= true;
-            hasBeenAwakended.Value = true;
+
 
             currentState = idle;
 

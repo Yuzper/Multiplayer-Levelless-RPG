@@ -49,7 +49,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
             if (isRolling)
             {
-                player.characterController.Move(rollDirection * 1.5f * Time.deltaTime);
+                //player.characterController.Move(rollDirection * 1.5f * Time.deltaTime);
                 //Debug.Log(rollDirection);
             }
 
@@ -92,8 +92,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleGroundMovement()
     {
-        if (player.characterLocomotionManager.canMove || player.playerLocomotionManager.canRotate) {
-
+        if (player.characterLocomotionManager.canMove || player.playerLocomotionManager.canRotate)
+        {
             GetMovementValues();
         }
 
@@ -224,7 +224,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             return;
         }
 
-        if (player.playerNetworkManager.currentStamina.Value <= 0)
+        if (player.playerNetworkManager.currentStamina.Value <= sprintingStaminaCost)
         {
             player.playerNetworkManager.isSprinting.Value = false;
             return;
@@ -254,8 +254,11 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (player.isPerformingAction) return;
         //if (player.isDead.Value) return; // is this needed?
 
-        if (player.playerNetworkManager.currentStamina.Value <= 0)
+        if (player.playerNetworkManager.currentStamina.Value <= dodgeStaminaCost)
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Not Enough Stamina!", false, false, true);
             return;
+        }
 
         // IF WE ARE MOVING WHEN WE ATTEMPT TO DODGE, WE PERFORM A ROLL
         if (PlayerInputManager.instance.moveAmount > 0)

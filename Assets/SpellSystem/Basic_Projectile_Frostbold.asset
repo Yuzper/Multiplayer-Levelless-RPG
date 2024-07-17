@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffd86729f642bb4dab974323149764b, type: 3}
+  m_Name: Basic_Projectile_Frostbold
+  m_EditorClassIdentifier: 
+  spellName: Frostbold
+  animationName: MovingSpellCast
+  spellImage: {fileID: 21300000, guid: e83a8205f4d99364191dbd27917babe2, type: 3}
+  spellPrefab: {fileID: 579393599800319720, guid: 091f015dc5f7dd1469233aeb65f1ef2d,
+    type: 3}
+  handVFX: {fileID: 1140579960723542, guid: 09849ac8c58dd6b4f9b9965478663b93, type: 3}
+  canMove: 1
+  spawnRightHandVFX: 1
+  spawnLeftHandVFX: 1
+  additionalEffects: []
+  manaCost: 25
+  speed: 400
+  damage: 200
+  lifeTime: 5

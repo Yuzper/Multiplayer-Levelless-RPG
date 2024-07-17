@@ -33,6 +33,8 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<bool> isChargingMainHandAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isInvulnerable = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    public NetworkVariable<bool> isHoldingDownSpell = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [Header("Stats")]
     // Constitution determines how much health a character has.
     public NetworkVariable<int> constitution = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -102,6 +104,11 @@ public class CharacterNetworkManager : NetworkBehaviour
     public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus)
     {
         character.animator.SetBool("isChargingRightAttack", isChargingMainHandAttack.Value);
+    }
+
+    public void OnIsHoldingDownSpellChanged(bool oldStatus, bool newStatus)
+    {
+        character.animator.SetBool("isHoldingDownSpell", isHoldingDownSpell.Value);
     }
 
     // A SERVER RPC IS A FUNCTION CALLED FROM A CLIENT, TO THE SERVER (IN OUR CASE HOST)

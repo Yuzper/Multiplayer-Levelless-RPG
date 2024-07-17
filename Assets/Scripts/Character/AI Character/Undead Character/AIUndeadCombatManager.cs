@@ -40,7 +40,6 @@ public class AIUndeadCombatManager : AICharacterCombatManager
 
     public void OpenLeftHandDamageCollider()
     {
-        Debug.Log("HELLO");
         aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         leftHandDamageCollider.EnableDamageCollider();
     }

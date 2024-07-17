@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class PlayerInputManager : MonoBehaviour
 {
@@ -60,6 +62,10 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool escapeMenuInput = false;
     public EscapeMenuManager escapeMenu;
 
+    [Header("Draw Spell Canvas")]
+    public SpellDrawingManager spellDrawingCanvas;
+    public UILineRenderer UI_LineRenderer;
+
     private void Awake()
     {
         if (instance == null)
@@ -86,6 +92,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.Disable();
         }
         escapeMenu = EscapeMenuManager.instance;
+        spellDrawingCanvas = SpellDrawingManager.instance;
     }
     
     private void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
@@ -160,6 +167,13 @@ public class PlayerInputManager : MonoBehaviour
 
             // UI
             playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
+
+            // Spell casting
+            playerControls.PlayerSpellcasting.SpellMode.performed += i => ToggleSpellMode();
+            //playerControls.PlayerSpellcasting.SpellMode.canceled += i => inSpellMode = false;
+            playerControls.PlayerSpellcasting.UseSpell.performed += i => player.characterSpellManager.castSpell = true;
+            playerControls.PlayerSpellcasting.UseSpellHold.started += i => player.characterSpellManager.castSpellHold = true;
+            playerControls.PlayerSpellcasting.UseSpellHold.canceled += i => player.characterSpellManager.castSpellHold = false;
         }
 
         playerControls.Enable();
@@ -206,19 +220,69 @@ public class PlayerInputManager : MonoBehaviour
         HandleDanceInput();
         HandleRevivalInput();
         HandleActionInputs();
-        // Attack Inputs
-        HandleMouseAttackInput();
-        HandleMouseHeavyAttackInput();
-        HandleMouseChargeAttackInput();
-        HandleQuedInputs();
+
+        if(player.characterSpellManager.inSpellMode)
+        {
+            mainHandChargeAttackInput = false;
+            mainHandHeavyAttackInput = false;
+            mainHandAttackInput = false;
+            HandleSpellAttackInput();
+        } 
+        else
+        {
+            // Attack Inputs
+            HandleMouseAttackInput();
+            HandleMouseHeavyAttackInput();
+            HandleMouseChargeAttackInput();
+            HandleQuedInputs();
+        }
+
     }
 
+    public void ToggleSpellMode()
+    {
+        if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
+        {
+            player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
+            if (player.characterSpellManager.inSpellMode)
+            {
+                spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
+            }
+            else
+            {
+                spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
+            }
+        }
+    }
+
+    private void HandleSpellAttackInput()
+    {
+        if (player.characterSpellManager.inSpellMode)
+        {
+            //player.animator.SetBool("isHoldingDownSpell", player.characterSpellManager.castSpellHold); // TODO Make network variable? like charge attack
+            player.playerNetworkManager.isHoldingDownSpell.Value = player.characterSpellManager.castSpellHold;
+
+            if (player.characterSpellManager.castSpell)
+            {
+                player.characterSpellManager.castSpell = false;
+                player.playerSpellManager.equippedSpell.UseSpell(player);
+            }
+        }
+        else
+        {
+            player.characterSpellManager.castSpell = false;
+            //player.animator.SetBool("isHoldingDownSpell", false);
+            player.playerNetworkManager.isHoldingDownSpell.Value = false;
+        }
+    }
+    
     // LOCK ON
     private void HandleLockOnInput()
     {
         // CHECK FOR DEAD TARGET
         if (player.playerNetworkManager.isLockedOn.Value)
         {
+            TutorialManager.instance.TurnTutorialOn("lockOn");
             if (player.playerCombatManager.currentTarget.isDead.Value)
             {
                 // THIS ASSURES US THAT THE COROUTINE NEVER RUNS MULTIPLE TIMES OVERLAPPING ITSELF
@@ -244,7 +308,8 @@ public class PlayerInputManager : MonoBehaviour
             lockOnInput = false;
             player.playerCombatManager.SetTarget(null);
             PlayerCamera.instance.ClearLockOnTargets();
-            player.playerNetworkManager.isLockedOn.Value = false; 
+            player.playerNetworkManager.isLockedOn.Value = false;
+            TutorialManager.instance.TurnTutorialOn("melee");
             return;
         }
 
@@ -339,15 +404,22 @@ public class PlayerInputManager : MonoBehaviour
         {
             player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value);
         }
-
-
         //player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
     }
 
     private void HandleCameraMovementInput()
     {
-        cameraVerticalInput = cameraInput.y;
-        cameraHorizontalInput = cameraInput.x;
+        if (player.characterSpellManager.inSpellMode)
+        {
+            cameraVerticalInput = 0;
+            cameraHorizontalInput = 0;
+        }
+        else
+        {
+            cameraVerticalInput = cameraInput.y;
+            cameraHorizontalInput = cameraInput.x;
+        }
+
     }
 
     // ACTIONS SECTION

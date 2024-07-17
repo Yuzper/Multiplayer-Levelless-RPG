@@ -607,6 +607,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player Spellcasting",
+            "id": "f03c4dd9-ddba-4801-b285-635d2f601b53",
+            "actions": [
+                {
+                    "name": "SpellMode",
+                    "type": "Button",
+                    "id": "8042414f-7e59-4e8c-b186-bfe1790a3604",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseSpell",
+                    "type": "Button",
+                    "id": "be7a8766-8f7f-4d20-8290-dde08a63207b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseSpellHold",
+                    "type": "Button",
+                    "id": "0ed1009e-4f6d-4f84-96a7-84ac372a33eb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d103cf81-6a8f-4cce-813a-77cea06fda6e",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51ebd37b-d423-45a2-9600-a4056790ccd4",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseSpell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c3495cc-dccf-4157-aa67-141352cec1ba",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseSpellHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

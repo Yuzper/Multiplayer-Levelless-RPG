@@ -57,6 +57,7 @@ MonoBehaviour:
   moveAmount: 0
   dodgeInput: 0
   jumpInput: 0
+  sprint_Input: 0
   danceInput: 0
   revivalInput: 0
   actionNumber1Input: 0
@@ -68,7 +69,14 @@ MonoBehaviour:
   actionNumber7Input: 0
   actionNumber8Input: 0
   actionNumber9Input: 0
-  mainHandChargeAttackInput: 0
   mainHandAttackInput: 0
+  mainHandHeavyAttackInput: 0
+  mainHandChargeAttackInput: 0
+  input_Que_Is_Active: 0
+  default_Que_Input_Time: 0.35
+  que_Input_Timer: 0
+  que_RB_Input: 0
+  que_RT_Input: 0
   escapeMenuInput: 0
   escapeMenu: {fileID: 0}
+  spellDrawingCanvas: {fileID: 0}

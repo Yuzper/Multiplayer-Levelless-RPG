@@ -14,7 +14,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
-    [HideInInspector] public PlayerSpellsManager playerSpellsManager;
+    [HideInInspector] public PlayerSpellManager playerSpellManager;
 
     protected override void Awake()
     {
@@ -29,6 +29,7 @@ public class PlayerManager : CharacterManager
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerSpellManager = GetComponent<PlayerSpellManager>();
     }
 
     protected override void Update()
@@ -108,6 +109,7 @@ public class PlayerManager : CharacterManager
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+        playerNetworkManager.isHoldingDownSpell.OnValueChanged += playerNetworkManager.OnIsHoldingDownSpellChanged;
 
 
         // UPON CONNECTING, IF WE ARE THE OWNER OF THIS CHARACTER, BUT WE ARE NOT THE SERVER, RELOAD OUR CHRACTER DATA TO THIS NEWLY INSTANTIATED CHARACTER
@@ -153,7 +155,7 @@ public class PlayerManager : CharacterManager
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
-
+        playerNetworkManager.isHoldingDownSpell.OnValueChanged -= playerNetworkManager.OnIsHoldingDownSpellChanged;
     }
 
     private void OnClientConnectedCallback(ulong clientID)

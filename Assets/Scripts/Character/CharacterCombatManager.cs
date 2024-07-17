@@ -56,7 +56,7 @@ public class CharacterCombatManager : NetworkBehaviour
 
     public void DisableIsInvulnerable()
     {
-        Debug.Log("Hmm");
+    //    Debug.Log("Hmm");
         if (character.IsOwner)
         {
             character.characterNetworkManager.isInvulnerable.Value = false;
@@ -65,7 +65,7 @@ public class CharacterCombatManager : NetworkBehaviour
 
     public void EnableCanDoRollingAttack()
     {
-        Debug.Log("YES");
+    //    Debug.Log("YES");
         canPerformRollingAttack = true;
     }
 
