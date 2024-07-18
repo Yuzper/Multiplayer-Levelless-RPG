@@ -15,7 +15,7 @@ public class CharacterSpellManager : NetworkBehaviour
     public GameObject rightHandVFX;
     public GameObject leftHandVFX;
 
-    public List<BaseSpell> equippedSpells;
+
     [SerializeField] private Sprite nullSpellImage;
 
     // List to store functions
@@ -30,13 +30,16 @@ public class CharacterSpellManager : NetworkBehaviour
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
-        equippedSpells = new List<BaseSpell>();
-        equippedSpell = equippedSpells[0]; // The equipped spell is only the first in the list (queue)
+    }
+
+    protected virtual void Update()
+    {
+
     }
 
     public virtual void SpawnHandVFX()
     {
-        if (equippedSpells.Count > 0)
+        if (equippedSpell != null)
         {
             equippedSpell.SpawnHandVFX(this);
         }

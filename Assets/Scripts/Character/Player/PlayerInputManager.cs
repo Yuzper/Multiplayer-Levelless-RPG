@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
@@ -62,9 +63,14 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool escapeMenuInput = false;
     public EscapeMenuManager escapeMenu;
 
-    [Header("Draw Spell Canvas")]
-    public SpellDrawingManager spellDrawingCanvas;
-    public UILineRenderer UI_LineRenderer;
+    [Header("DRAWING SPELL")]
+
+    public bool isDrawing = false;
+    public bool doneDrawing = false;
+
+    public EffectFollowMouse uiDrawingObject;
+
+    public OnnxInferenceBarracuda onnxModel;
 
     private void Awake()
     {
@@ -86,13 +92,13 @@ public class PlayerInputManager : MonoBehaviour
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
         
         instance.enabled = false;
-        
+
+
         if (playerControls != null)
         {
             playerControls.Disable();
         }
         escapeMenu = EscapeMenuManager.instance;
-        spellDrawingCanvas = SpellDrawingManager.instance;
     }
     
     private void SceneManager_activeSceneChanged(Scene oldScene, Scene newScene)
@@ -169,11 +175,14 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.UI.EscapeMenu.performed += i => escapeMenuInput = true;
 
             // Spell casting
-            playerControls.PlayerSpellcasting.SpellMode.performed += i => ToggleSpellMode();
+            playerControls.PlayerSpellcasting.SpellDraw.performed += OnClickPerformed;
+            playerControls.PlayerSpellcasting.SpellDraw.canceled += OnClickCanceled;
+
+            //playerControls.PlayerSpellcasting.SpellMode.performed += i => ToggleSpellMode();
             //playerControls.PlayerSpellcasting.SpellMode.canceled += i => inSpellMode = false;
-            playerControls.PlayerSpellcasting.UseSpell.performed += i => player.characterSpellManager.castSpell = true;
-            playerControls.PlayerSpellcasting.UseSpellHold.started += i => player.characterSpellManager.castSpellHold = true;
-            playerControls.PlayerSpellcasting.UseSpellHold.canceled += i => player.characterSpellManager.castSpellHold = false;
+            //playerControls.PlayerSpellcasting.UseSpell.performed += i => player.characterSpellManager.castSpell = true;
+            //playerControls.PlayerSpellcasting.UseSpellHold.started += i => player.characterSpellManager.castSpellHold = true;
+            //playerControls.PlayerSpellcasting.UseSpellHold.canceled += i => player.characterSpellManager.castSpellHold = false;
         }
 
         playerControls.Enable();
@@ -203,6 +212,7 @@ public class PlayerInputManager : MonoBehaviour
     private void Update()
     {
         HandleAllInputs();
+
     }
 
 
@@ -232,48 +242,57 @@ public class PlayerInputManager : MonoBehaviour
         {
             // Attack Inputs
             HandleMouseAttackInput();
-            HandleMouseHeavyAttackInput();
-            HandleMouseChargeAttackInput();
+            
+            if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
+            {
+
+            } 
+            else
+            {
+                HandleMouseHeavyAttackInput();
+                HandleMouseChargeAttackInput();
+            }
+            
             HandleQuedInputs();
         }
 
     }
 
-    public void ToggleSpellMode()
-    {
-        if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
-        {
-            player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
-            if (player.characterSpellManager.inSpellMode)
-            {
-                spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
-            }
-            else
-            {
-                spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
-            }
-        }
-    }
+    //public void ToggleSpellMode()
+    //{
+    //    if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
+    //    {
+    //        player.characterSpellManager.inSpellMode = !player.characterSpellManager.inSpellMode;
+    //        if (player.characterSpellManager.inSpellMode)
+    //        {
+    //            spellDrawingCanvas.OpenSpellDrawingMenu(); // Opens the spell drawing menu
+    //        }
+    //        else
+    //        {
+    //            spellDrawingCanvas.CloseSpellDrawingMenu(); // Closes the spell drawing menu
+    //        }
+    //    }
+    //}
 
     private void HandleSpellAttackInput()
     {
-        if (player.characterSpellManager.inSpellMode)
-        {
-            //player.animator.SetBool("isHoldingDownSpell", player.characterSpellManager.castSpellHold); // TODO Make network variable? like charge attack
-            player.playerNetworkManager.isHoldingDownSpell.Value = player.characterSpellManager.castSpellHold;
+        //if (player.characterSpellManager.inSpellMode)
+        //{
+        //    //player.animator.SetBool("isHoldingDownSpell", player.characterSpellManager.castSpellHold); // TODO Make network variable? like charge attack
+        //    player.playerNetworkManager.isHoldingDownSpell.Value = player.characterSpellManager.castSpellHold;
 
-            if (player.characterSpellManager.castSpell)
-            {
-                player.characterSpellManager.castSpell = false;
-                player.playerSpellManager.equippedSpell.UseSpell(player);
-            }
-        }
-        else
-        {
-            player.characterSpellManager.castSpell = false;
-            //player.animator.SetBool("isHoldingDownSpell", false);
-            player.playerNetworkManager.isHoldingDownSpell.Value = false;
-        }
+        //    if (player.characterSpellManager.castSpell)
+        //    {
+        //        player.characterSpellManager.castSpell = false;
+        //        player.playerSpellManager.equippedSpell.UseSpell(player);
+        //    }
+        //}
+        //else
+        //{
+        //    player.characterSpellManager.castSpell = false;
+        //    //player.animator.SetBool("isHoldingDownSpell", false);
+        //    player.playerNetworkManager.isHoldingDownSpell.Value = false;
+        //}
     }
     
     // LOCK ON
@@ -699,5 +718,50 @@ public class PlayerInputManager : MonoBehaviour
             }
         }
     }
+
+
+    
+
+    private void OnClickPerformed(InputAction.CallbackContext context)
+    {
+        if (player.playerInventoryManager.currentMainHandWeapon.weaponType != WeaponType.Staff && player.playerInventoryManager.currentMainHandWeapon.weaponType != WeaponType.Wand)
+        {
+            return;
+        }
+        StartDrawing();
+        
+    }
+
+    private void OnClickCanceled(InputAction.CallbackContext context)
+    {
+        if (isDrawing)
+        {
+            StopDrawing();
+        }
+    }
+
+    private void StartDrawing()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        uiDrawingObject.shouldDraw = true;
+        player.characterSpellManager.inSpellMode = true;
+        isDrawing = true;
+        doneDrawing = false;
+    }
+
+    private void StopDrawing()
+    {
+
+        uiDrawingObject.shouldDraw = false;
+        uiDrawingObject.ClearDrawing();
+        player.characterSpellManager.inSpellMode = false;
+        isDrawing = false;
+        doneDrawing = true;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    
+
+
 
 }

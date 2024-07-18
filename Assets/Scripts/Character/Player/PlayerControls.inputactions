@@ -622,18 +622,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseSpell",
+                    "name": "SpellDraw",
                     "type": "Button",
                     "id": "be7a8766-8f7f-4d20-8290-dde08a63207b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UseSpellHold",
-                    "type": "Button",
-                    "id": "0ed1009e-4f6d-4f84-96a7-84ac372a33eb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -655,22 +646,11 @@
                 {
                     "name": "",
                     "id": "51ebd37b-d423-45a2-9600-a4056790ccd4",
-                    "path": "<Keyboard>/t",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseSpell",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0c3495cc-dccf-4157-aa67-141352cec1ba",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UseSpellHold",
+                    "action": "SpellDraw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

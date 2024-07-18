@@ -644,18 +644,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""UseSpell"",
+                    ""name"": ""SpellDraw"",
                     ""type"": ""Button"",
                     ""id"": ""be7a8766-8f7f-4d20-8290-dde08a63207b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UseSpellHold"",
-                    ""type"": ""Button"",
-                    ""id"": ""0ed1009e-4f6d-4f84-96a7-84ac372a33eb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -677,22 +668,11 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""51ebd37b-d423-45a2-9600-a4056790ccd4"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UseSpell"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0c3495cc-dccf-4157-aa67-141352cec1ba"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UseSpellHold"",
+                    ""action"": ""SpellDraw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -738,8 +718,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Player Spellcasting
         m_PlayerSpellcasting = asset.FindActionMap("Player Spellcasting", throwIfNotFound: true);
         m_PlayerSpellcasting_SpellMode = m_PlayerSpellcasting.FindAction("SpellMode", throwIfNotFound: true);
-        m_PlayerSpellcasting_UseSpell = m_PlayerSpellcasting.FindAction("UseSpell", throwIfNotFound: true);
-        m_PlayerSpellcasting_UseSpellHold = m_PlayerSpellcasting.FindAction("UseSpellHold", throwIfNotFound: true);
+        m_PlayerSpellcasting_SpellDraw = m_PlayerSpellcasting.FindAction("SpellDraw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1108,15 +1087,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerSpellcasting;
     private IPlayerSpellcastingActions m_PlayerSpellcastingActionsCallbackInterface;
     private readonly InputAction m_PlayerSpellcasting_SpellMode;
-    private readonly InputAction m_PlayerSpellcasting_UseSpell;
-    private readonly InputAction m_PlayerSpellcasting_UseSpellHold;
+    private readonly InputAction m_PlayerSpellcasting_SpellDraw;
     public struct PlayerSpellcastingActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerSpellcastingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @SpellMode => m_Wrapper.m_PlayerSpellcasting_SpellMode;
-        public InputAction @UseSpell => m_Wrapper.m_PlayerSpellcasting_UseSpell;
-        public InputAction @UseSpellHold => m_Wrapper.m_PlayerSpellcasting_UseSpellHold;
+        public InputAction @SpellDraw => m_Wrapper.m_PlayerSpellcasting_SpellDraw;
         public InputActionMap Get() { return m_Wrapper.m_PlayerSpellcasting; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1129,12 +1106,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SpellMode.started -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellMode;
                 @SpellMode.performed -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellMode;
                 @SpellMode.canceled -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellMode;
-                @UseSpell.started -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpell;
-                @UseSpell.performed -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpell;
-                @UseSpell.canceled -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpell;
-                @UseSpellHold.started -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpellHold;
-                @UseSpellHold.performed -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpellHold;
-                @UseSpellHold.canceled -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnUseSpellHold;
+                @SpellDraw.started -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellDraw;
+                @SpellDraw.performed -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellDraw;
+                @SpellDraw.canceled -= m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface.OnSpellDraw;
             }
             m_Wrapper.m_PlayerSpellcastingActionsCallbackInterface = instance;
             if (instance != null)
@@ -1142,12 +1116,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SpellMode.started += instance.OnSpellMode;
                 @SpellMode.performed += instance.OnSpellMode;
                 @SpellMode.canceled += instance.OnSpellMode;
-                @UseSpell.started += instance.OnUseSpell;
-                @UseSpell.performed += instance.OnUseSpell;
-                @UseSpell.canceled += instance.OnUseSpell;
-                @UseSpellHold.started += instance.OnUseSpellHold;
-                @UseSpellHold.performed += instance.OnUseSpellHold;
-                @UseSpellHold.canceled += instance.OnUseSpellHold;
+                @SpellDraw.started += instance.OnSpellDraw;
+                @SpellDraw.performed += instance.OnSpellDraw;
+                @SpellDraw.canceled += instance.OnSpellDraw;
             }
         }
     }
@@ -1193,7 +1164,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerSpellcastingActions
     {
         void OnSpellMode(InputAction.CallbackContext context);
-        void OnUseSpell(InputAction.CallbackContext context);
-        void OnUseSpellHold(InputAction.CallbackContext context);
+        void OnSpellDraw(InputAction.CallbackContext context);
     }
 }
