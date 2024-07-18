@@ -23,7 +23,7 @@ public class CharacterSpellManager : NetworkBehaviour
     public BaseSpell equippedSpell;
 
     [Header("Spell casting")]
-    public bool inSpellMode = false;
+    public bool inDrawingMode = false;
     public bool castSpell = false;
     public bool castSpellHold = false;
 
@@ -67,6 +67,7 @@ public class CharacterSpellManager : NetworkBehaviour
         if (index >= 0 && index < spell_List.Count)
         {
             equippedSpell = spell_List[index];
+            ((PlayerNetworkManager)character.characterNetworkManager).NotifyTheServerOfSpellEquipServerRpc(NetworkManager.Singleton.LocalClientId,index);
             PlayerUIManager.instance.playerUIHudManager.equippedSpellsUIBar.UpdateEquippedSpellsImage(equippedSpell.spellImage, 0);
             Debug.Log("EQUIPTED SPELL" + equippedSpell);
         }
@@ -85,7 +86,7 @@ public class CharacterSpellManager : NetworkBehaviour
 
     public virtual void SpawnSpellRightHand()
     {
-        Debug.Log("Hello");
+        if (!IsOwner) return;
         if (equippedSpell == null) return;
 
         Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;

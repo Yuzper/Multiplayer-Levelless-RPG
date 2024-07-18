@@ -40,7 +40,7 @@ public class SpellDrawingManager : MonoBehaviour
     public void CloseSpellDrawingMenu()
     {
         spellDrawMenu.SetActive(false);
-        PlayerUIManager.instance.player.characterSpellManager.inSpellMode = false;
+        PlayerUIManager.instance.player.characterSpellManager.inDrawingMode = false;
         TutorialManager.instance.TurnTutorialOn("spell");
     }
 }

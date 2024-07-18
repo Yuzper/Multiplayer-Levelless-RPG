@@ -231,7 +231,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleRevivalInput();
         HandleActionInputs();
 
-        if(player.characterSpellManager.inSpellMode)
+        if(player.characterSpellManager.inDrawingMode)
         {
             mainHandChargeAttackInput = false;
             mainHandHeavyAttackInput = false;
@@ -428,7 +428,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleCameraMovementInput()
     {
-        if (player.characterSpellManager.inSpellMode)
+        if (player.characterSpellManager.inDrawingMode)
         {
             cameraVerticalInput = 0;
             cameraHorizontalInput = 0;
@@ -744,7 +744,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         uiDrawingObject.shouldDraw = true;
-        player.characterSpellManager.inSpellMode = true;
+        player.characterSpellManager.inDrawingMode = true;
         isDrawing = true;
         doneDrawing = false;
     }
@@ -754,7 +754,7 @@ public class PlayerInputManager : MonoBehaviour
 
         uiDrawingObject.shouldDraw = false;
         uiDrawingObject.ClearDrawing();
-        player.characterSpellManager.inSpellMode = false;
+        player.characterSpellManager.inDrawingMode = false;
         isDrawing = false;
         doneDrawing = true;
         Cursor.lockState = CursorLockMode.Locked;

@@ -123,5 +123,26 @@ public void SetNewMaxHealthValue(int oldConstitution, int newConstitution)
             Debug.LogError("ACTION IS NULL, CANNOT BE PERFORMED");
         }
     }
+
+
+    [ServerRpc]
+    public void NotifyTheServerOfSpellEquipServerRpc(ulong clientID, int spellID)
+    {
+        if (IsServer)
+        {
+            NotifyTheServerOfSpellEquipClientRpc(clientID, spellID);
+        }
+    }
+
+    [ClientRpc]
+    public void NotifyTheServerOfSpellEquipClientRpc(ulong clientID, int spellID)
+    {
+        if (clientID != NetworkManager.Singleton.LocalClientId)
+        {
+            player.characterSpellManager.equippedSpell = player.characterSpellManager.spell_List[spellID];
+        }
+    }
+
+
 }
 
