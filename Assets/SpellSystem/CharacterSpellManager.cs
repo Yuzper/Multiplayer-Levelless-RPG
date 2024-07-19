@@ -86,15 +86,14 @@ public class CharacterSpellManager : NetworkBehaviour
 
     public virtual void SpawnSpellRightHand()
     {
-        if (!IsOwner) return;
         if (equippedSpell == null) return;
 
-        Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;
-        Camera mainCamera = PlayerCamera.instance.GetComponentInChildren<Camera>();
-        Vector3 crosshairViewportPosition = mainCamera.ScreenToViewportPoint(crosshairScreenPosition);
+        if (IsOwner)
+        {
 
-        Ray ray = mainCamera.ViewportPointToRay(crosshairViewportPosition); // Points to the position of the UI crosshair element
-        Vector3 cameraDirection = ray.direction;
+        }
+
+        Vector3 cameraDirection = character.characterNetworkManager.directionLooking.Value;
 
         var target = PlayerCamera.instance.player.playerCombatManager?.currentTarget?.characterCombatManager?.lockOnTransform;
         if (target)
@@ -119,7 +118,7 @@ public class CharacterSpellManager : NetworkBehaviour
             } else
             {
                 // Perform the raycast
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(rightHand.position,cameraDirection, out hit))
                 {
                     equippedSpell.SpawnSpell(this, hit.point, cameraDirection);
                 }

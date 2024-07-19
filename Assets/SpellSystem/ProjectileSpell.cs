@@ -10,8 +10,8 @@ public class ProjectileSpell : BaseSpell
     public float lifeTime = 5;
     public override void SpawnSpell(CharacterSpellManager spellManager, Vector3 startPos, Vector3 direction)
     {
-        var projectile = Instantiate(spellPrefab, startPos,Quaternion.identity).GetComponent<SpellProjectileWorld>();
+        var projectile = Instantiate(spellPrefab, startPos, Quaternion.identity).GetComponent<SpellProjectileWorld>();
         projectile.StartProjectile(spellManager, this, direction);
-        Destroy(projectile,lifeTime);
+        Destroy(projectile, lifeTime);
     }
 }

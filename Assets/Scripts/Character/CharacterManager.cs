@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.TextCore.Text;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -60,6 +61,12 @@ public class CharacterManager : NetworkBehaviour
         {
             characterNetworkManager.networkPosition.Value = transform.position;
             characterNetworkManager.networkRotation.Value = transform.rotation;
+            Vector3 crosshairScreenPosition = PlayerUIManager.instance.playerUIHudManager.crosshair.transform.position;
+            Camera mainCamera = PlayerCamera.instance.GetComponentInChildren<Camera>();
+            Vector3 crosshairViewportPosition = mainCamera.ScreenToViewportPoint(crosshairScreenPosition);
+
+            Ray ray = mainCamera.ViewportPointToRay(crosshairViewportPosition); // Points to the position of the UI crosshair element
+            characterNetworkManager.directionLooking.Value = ray.direction;
         }
         // IF THIS CHARACTER IS BEING CONTROLLED FROM ELSE WHERE, THEN ASSIGN ITS POSITION HERE LOCALLY BY THE POSITION OF ITS NETWORK TRANSFORM
         else
