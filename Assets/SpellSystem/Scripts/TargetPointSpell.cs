@@ -19,7 +19,7 @@ public class TargetPointSpell : BaseSpell
     public override void SpawnSpell(CharacterSpellManager spellManager, Vector3 startPos, Vector3 direction)
     {
         spawnedSpellGameObject = Instantiate(spellPrefab, startPos, Quaternion.identity);
-        spawnedSpellGameObject.GetComponent<DmgOverTimeSpellWorld>().StartSpell(spellManager, this, direction);
+        spawnedSpellGameObject.GetComponent<WorldSpell>().StartSpell(spellManager, this, direction);
     }
 
     public override void StopSpell()

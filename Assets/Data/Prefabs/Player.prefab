@@ -1671,6 +1671,8 @@ MonoBehaviour:
     m_InternalValue: 0
   isHoldingDownSpell:
     m_InternalValue: 0
+  directionLooking:
+    m_InternalValue: {x: 0, y: 0, z: 1}
   constitution:
     m_InternalValue: 1
   intelligence:
@@ -2008,15 +2010,13 @@ MonoBehaviour:
   midPoint: {fileID: 6398111378827904185}
   rightHandVFX: {fileID: 0}
   leftHandVFX: {fileID: 0}
-  equippedSpells:
-  - {fileID: 0}
   nullSpellImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   spell_List:
+  - {fileID: 11400000, guid: e030672ede885c549bec4a667779b628, type: 2}
   - {fileID: 11400000, guid: 1c63d8e8a522e3842976302c5b290d1b, type: 2}
-  - {fileID: 11400000, guid: 01ca561923d5c394e96ea95b0753abc7, type: 2}
-  - {fileID: 11400000, guid: 01ca561923d5c394e96ea95b0753abc7, type: 2}
+  - {fileID: 11400000, guid: 9d0e1e92182f4ad4994b1afb54e6780c, type: 2}
   equippedSpell: {fileID: 0}
-  inSpellMode: 0
+  inDrawingMode: 0
   castSpell: 0
   castSpellHold: 0
 --- !u!1 &4959774665665884278

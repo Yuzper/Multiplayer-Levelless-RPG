@@ -17,8 +17,9 @@ GameObject:
   - component: {fileID: -6794012885378580852}
   - component: {fileID: 967388204620296304}
   - component: {fileID: -4054859300381325267}
+  - component: {fileID: 228142397843507637}
   m_Layer: 0
-  m_Name: FireballSpell
+  m_Name: Throw-Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4852,6 +4853,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06318ded554eb3b40b811ea720aeddf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwProjectile: 1
+  throwForce: 10
+  upwardForce: 5
 --- !u!114 &-4054859300381325267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4871,3 +4875,18 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  explosionPrefab: {fileID: 4661170255132885885, guid: 8d58f57a639f0ec4f9bae01b1714b892,
+    type: 3}
+--- !u!114 &228142397843507637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579393599800319720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a9f944b10500242bbcc065c5008da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeUntilDestroyed: 4

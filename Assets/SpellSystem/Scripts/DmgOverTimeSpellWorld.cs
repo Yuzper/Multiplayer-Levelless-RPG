@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class DmgOverTimeSpellWorld : MonoBehaviour
+public class DmgOverTimeSpellWorld : WorldSpell
 {
-    public void StartSpell(CharacterSpellManager characterCausingDamage, TargetPointSpell spell, Vector3 direction)
+    public override void StartSpell(CharacterSpellManager characterCausingDamage, BaseSpell spell, Vector3 direction)
     {
+        TargetPointSpell targetPointSpell = spell as TargetPointSpell;
         var collider = GetComponentInChildren<DamageColliderOverTime>();
         collider.characterCausingDamage = characterCausingDamage.character;
-        collider.physicalDamage = spell.damage;
-        collider.damageInterval = spell.intervalBetweenDamage;
+        collider.physicalDamage = targetPointSpell.damage;
+        collider.damageInterval = targetPointSpell.intervalBetweenDamage;
         collider.EnableDamageCollider();
         Destroy(this.gameObject, GetComponent<VisualEffect>().GetFloat("duration"));
     }

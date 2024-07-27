@@ -15,11 +15,16 @@ public class ProjectileDamageCollider : DamageCollider
             // Check if we can damage this target based on friendly fire
             if (WorldUtilityManager.instance.CanIDamageThisTarget(characterCausingDamage.characterGroup, damageTarget.characterGroup))
             {
-                // Check if target is blocking
 
+                // Check if target is blocking
                 DamageTarget(damageTarget);
                 Destroy(this.gameObject);
+                
+
             }
+
+
+
         }
     }
 }
