@@ -1748,12 +1748,18 @@ MonoBehaviour:
     m_InternalValue: 0
   isJumping:
     m_InternalValue: 0
+  isSprinting:
+    m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
   isChargingMainHandAttack:
     m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
+  isHoldingDownSpell:
+    m_InternalValue: 0
+  directionLooking:
+    m_InternalValue: {x: 0, y: 0, z: 1}
   constitution:
     m_InternalValue: 1
   intelligence:
@@ -1789,7 +1795,7 @@ MonoBehaviour:
   gravityForce: -5.55
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   groundCheckSphereRadius: 0.25
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
@@ -1799,6 +1805,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isGrounded: 1
+  useMouseForRotation: 0
 --- !u!114 &1721570400833461235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1815,6 +1822,8 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 3762905591451736819}
+  canPerformRollingAttack: 0
+  canPerformBackstepAttack: 0
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 0
@@ -1861,9 +1870,11 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
+  characterSpellManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
+  characterName: 
   aiCharacterNetworkManager: {fileID: 0}
   aICharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -1875,12 +1886,19 @@ MonoBehaviour:
   combatStance: {fileID: 11400000, guid: 778369fa24a7c7244aa11d0908bfd655, type: 2}
   attack: {fileID: 11400000, guid: 2eae52f23cd2fa04a8f34e126a05673c, type: 2}
   bossID: 1
+  bossIntroClip: {fileID: 0}
+  bossBattleLoopClip: {fileID: 0}
+  bossFightIsActive:
+    m_InternalValue: 0
   hasBeenDefeated:
     m_InternalValue: 0
   hasBeenAwakended:
     m_InternalValue: 0
   sleepAnimation: Empty
   awakenAnimation: Empty
+  minimumHealthPercentageToShift: 50
+  phaseShiftAnimation: Phase_Change_01
+  phase02CombatStanceState: {fileID: 0}
   sleepState: {fileID: 11400000, guid: 13478fb4405d8264eb6ee9c4e0508a23, type: 2}
 --- !u!114 &7104238533779074862
 MonoBehaviour:

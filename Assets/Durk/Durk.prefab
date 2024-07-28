@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 254446381
+  GlobalObjectIdHash: 493239805
   InScenePlacedSourceGlobalObjectIdHash: 493239805
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -716,12 +716,18 @@ MonoBehaviour:
     m_InternalValue: 0
   isJumping:
     m_InternalValue: 0
+  isSprinting:
+    m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
   isChargingMainHandAttack:
     m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
+  isHoldingDownSpell:
+    m_InternalValue: 0
+  directionLooking:
+    m_InternalValue: {x: 0, y: 0, z: 1}
   constitution:
     m_InternalValue: 1
   intelligence:
@@ -765,6 +771,7 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
+  characterSpellManager: {fileID: 0}
   characterGroup: 1
   isPerformingAction: 0
   isDancing: 0
@@ -812,7 +819,7 @@ MonoBehaviour:
   gravityForce: -5.55
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   groundCheckSphereRadius: 0.25
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
@@ -839,6 +846,8 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 0}
+  canPerformRollingAttack: 0
+  canPerformBackstepAttack: 0
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 0

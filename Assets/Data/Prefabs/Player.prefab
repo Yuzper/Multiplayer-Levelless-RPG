@@ -1559,7 +1559,7 @@ MonoBehaviour:
   gravityForce: -40
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   groundCheckSphereRadius: 0.2
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -10
@@ -1838,8 +1838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e1efd56b51773438078fbe606479de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaRegenerationAmount: 1
-  manaRegenerationDelay: 1
+  manaRegenerationAmount: 2
+  manaRegenerationDelay: 0.5
   staminaRegenerationAmount: 3
   staminaRegenerationDelay: 0.5
 --- !u!114 &-1136134484293859745
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   nullSpellImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   spell_List:
   - {fileID: 11400000, guid: e030672ede885c549bec4a667779b628, type: 2}
-  - {fileID: 11400000, guid: 1c63d8e8a522e3842976302c5b290d1b, type: 2}
+  - {fileID: 11400000, guid: fde8856fc55a4424fb2e1f8bb3ab4416, type: 2}
   - {fileID: 11400000, guid: 9d0e1e92182f4ad4994b1afb54e6780c, type: 2}
   equippedSpell: {fileID: 0}
   inDrawingMode: 0

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffd86729f642bb4dab974323149764b, type: 3}
+  m_Name: GroundSlash
+  m_EditorClassIdentifier: 
+  spellName: GroundSlash
+  animationName: MovingSpellCast
+  spellImage: {fileID: 21300000, guid: 2d6f43c3195243d4480fcd7ba019c03a, type: 3}
+  spellPrefab: {fileID: 3466677636303002587, guid: f21e651f68cb5784db83af9a397f6e22,
+    type: 3}
+  handVFX: {fileID: 1140579960723542, guid: 09849ac8c58dd6b4f9b9965478663b93, type: 3}
+  canMove: 1
+  spawnRightHandVFX: 1
+  spawnLeftHandVFX: 1
+  additionalEffects: []
+  spawnRightHand: 1
+  spawnLeftHand: 0
+  spawnMidpoint: 0
+  spawnAtTarget: 0
+  spawnAtSelf: 0
+  manaCost: 40
+  speed: 14
+  damage: 150
+  lifeTime: 5
