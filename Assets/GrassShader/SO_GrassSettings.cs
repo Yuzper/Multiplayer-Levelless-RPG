@@ -51,6 +51,9 @@ public class SO_GrassSettings : ScriptableObject
 
     public int cullingTreeDepth = 1;
 
+    [Header("Particles")]
+    public GameObject cuttingParticles;
+
     [Header("Other")]
     public UnityEngine.Rendering.ShadowCastingMode castShadow;
 

@@ -5,13 +5,15 @@ public class CullingTreeNode
 {
     public Bounds m_bounds;
 
-    public List<CullingTreeNode> children = new List<CullingTreeNode>();
-    public List<int> grassIDHeld = new List<int>();
+    public CullingTreeNode m_parent;
 
+    public List<CullingTreeNode> m_children = new List<CullingTreeNode>();
+
+    public List<int> grassIDHeld = new List<int>();
 
     public CullingTreeNode(Bounds bounds, int depth)
     {
-        children.Clear();
+        m_children.Clear();
         m_bounds = bounds;
 
         if (depth > 0)
@@ -30,10 +32,10 @@ public class CullingTreeNode
                 Bounds topRightSingle = new Bounds(new Vector3(center.x - size.x, center.y, center.z + size.z), childSize);
                 Bounds bottomLeftSingle = new Bounds(new Vector3(center.x + size.x, center.y, center.z - size.z), childSize);
 
-                children.Add(new CullingTreeNode(topLeftSingle, depth - 1));
-                children.Add(new CullingTreeNode(bottomRightSingle, depth - 1));
-                children.Add(new CullingTreeNode(topRightSingle, depth - 1));
-                children.Add(new CullingTreeNode(bottomLeftSingle, depth - 1));
+                m_children.Add(new CullingTreeNode(topLeftSingle, depth - 1));
+                m_children.Add(new CullingTreeNode(bottomRightSingle, depth - 1));
+                m_children.Add(new CullingTreeNode(topRightSingle, depth - 1));
+                m_children.Add(new CullingTreeNode(bottomLeftSingle, depth - 1));
             }
             else
             {
@@ -49,24 +51,28 @@ public class CullingTreeNode
                 Bounds topRight2 = new Bounds(new Vector3(center.x - size.x, center.y + size.y, center.z + size.z), childSize);
                 Bounds bottomLeft2 = new Bounds(new Vector3(center.x + size.x, center.y + size.y, center.z - size.z), childSize);
 
-                children.Add(new CullingTreeNode(topLeft, depth - 1));
-                children.Add(new CullingTreeNode(bottomRight, depth - 1));
-                children.Add(new CullingTreeNode(topRight, depth - 1));
-                children.Add(new CullingTreeNode(bottomLeft, depth - 1));
+                m_children.Add(new CullingTreeNode(topLeft, depth - 1));
+                m_children.Add(new CullingTreeNode(bottomRight, depth - 1));
+                m_children.Add(new CullingTreeNode(topRight, depth - 1));
+                m_children.Add(new CullingTreeNode(bottomLeft, depth - 1));
 
-                children.Add(new CullingTreeNode(topLeft2, depth - 1));
-                children.Add(new CullingTreeNode(bottomRight2, depth - 1));
-                children.Add(new CullingTreeNode(topRight2, depth - 1));
-                children.Add(new CullingTreeNode(bottomLeft2, depth - 1));
+                m_children.Add(new CullingTreeNode(topLeft2, depth - 1));
+                m_children.Add(new CullingTreeNode(bottomRight2, depth - 1));
+                m_children.Add(new CullingTreeNode(topRight2, depth - 1));
+                m_children.Add(new CullingTreeNode(bottomLeft2, depth - 1));
             }
+
+
+
         }
     }
+
 
     public void RetrieveLeaves(Plane[] frustum, List<Bounds> list, List<int> visibleIDList)
     {
         if (GeometryUtility.TestPlanesAABB(frustum, m_bounds))
         {
-            if (children.Count == 0)
+            if (m_children.Count == 0)
             {
                 if (grassIDHeld.Count > 0)
                 {
@@ -76,7 +82,7 @@ public class CullingTreeNode
             }
             else
             {
-                foreach (CullingTreeNode child in children)
+                foreach (CullingTreeNode child in m_children)
                 {
                     child.RetrieveLeaves(frustum, list, visibleIDList);
                 }
@@ -90,9 +96,9 @@ public class CullingTreeNode
         bool FoundSpot = false;
         if (m_bounds.Contains(point))
         {
-            if (children.Count != 0)
+            if (m_children.Count != 0)
             {
-                foreach (CullingTreeNode child in children)
+                foreach (CullingTreeNode child in m_children)
                 {
                     if (child.FindLeaf(point, index))
                     {
@@ -111,13 +117,13 @@ public class CullingTreeNode
 
     public void RetrieveAllLeaves(List<CullingTreeNode> target)
     {
-        if (children.Count == 0)
+        if (m_children.Count == 0)
         {
             target.Add(this);
         }
         else
         {
-            foreach (CullingTreeNode child in children)
+            foreach (CullingTreeNode child in m_children)
             {
                 child.RetrieveAllLeaves(target);
             }
@@ -127,23 +133,51 @@ public class CullingTreeNode
     public bool ClearEmpty()
     {
         bool delete = false;
-        if (children.Count > 0)
+        if (m_children.Count > 0)
         {
             //  DownSize();
-            int i = children.Count - 1;
+            int i = m_children.Count - 1;
             while (i > 0)
             {
-                if (children[i].ClearEmpty())
+                if (m_children[i].ClearEmpty())
                 {
-                    children.RemoveAt(i);
+                    m_children.RemoveAt(i);
                 }
                 i--;
             }
         }
-        if (grassIDHeld.Count == 0 && children.Count == 0)
+        if (grassIDHeld.Count == 0 && m_children.Count == 0)
         {
             delete = true;
         }
         return delete;
+    }
+
+    // added for cutting
+    public void ReturnLeafList(Vector3 point, List<int> grassList, float radius)
+    {
+        Bounds expandedBounds = m_bounds;
+        expandedBounds.Expand(radius * 2);
+        if (!expandedBounds.Contains(point))
+        {
+            return; // hit point is outside the bounds
+        }
+
+        if (m_children.Count == 0)
+        {
+            grassList.AddRange(grassIDHeld);
+        }
+        else
+        {
+            foreach (CullingTreeNode child in m_children)
+            {
+                Bounds expandedBoundsChild = child.m_bounds;
+                expandedBoundsChild.Expand(radius * 2);
+                if (expandedBoundsChild.Contains(point))
+                {
+                    child.ReturnLeafList(point, grassList, radius);
+                }
+            }
+        }
     }
 }

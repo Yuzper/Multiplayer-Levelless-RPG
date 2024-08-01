@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEngine.Pool;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -51,10 +52,14 @@ public class GrassComputeScript : MonoBehaviour
 
     // The size of one entry in the various compute buffers, size comes from the float3/float2 entrees in the shader
     private const int SOURCE_VERT_STRIDE = sizeof(float) * (3 + 3 + 2 + 3);
-    private const int DRAW_STRIDE = sizeof(float) * (3 + 3 + ((3 + 2) * 3));
+    private const int DRAW_STRIDE = sizeof(float) * (3 + 3 + 4 + ((3 + 2) * 3));
 
     // bounds of the total grass 
     Bounds bounds;
+
+    // added for cutting
+    private ComputeBuffer m_CutBuffer;
+    float[] cutIDs;
 
 
     private uint[] argsBufferReset = new uint[5]
@@ -156,11 +161,10 @@ public class GrassComputeScript : MonoBehaviour
         SceneView.duringSceneGui += this.OnScene;
         if (!Application.isPlaying)
         {
-            if (view != null)
+            if (view != null && view.camera != null)
             {
                 m_MainCamera = view.camera;
             }
-
         }
 #endif
         if (Application.isPlaying)
@@ -179,6 +183,11 @@ public class GrassComputeScript : MonoBehaviour
         {
             Debug.LogWarning("Missing Compute Shader/Material in grass Settings", this);
             return;
+        }
+
+        if (currentPresets.cuttingParticles == null)
+        {
+            Debug.LogWarning("Missing Cut Particles in grass Settings", this);
         }
 
         // empty array to replace the visible grass with
@@ -209,6 +218,17 @@ public class GrassComputeScript : MonoBehaviour
 
         m_VisibleIDBuffer = new ComputeBuffer(grassData.Count, sizeof(int), ComputeBufferType.Structured); //uint only, per visible grass
 
+        // added for cutting
+        m_CutBuffer = new ComputeBuffer(grassData.Count, sizeof(float), ComputeBufferType.Structured); //uint only, per visible grass
+
+        // added for cutting
+        cutIDs = new float[grassData.Count];
+
+        for (int i = 0; i < cutIDs.Length; i++)
+        {
+            cutIDs[i] = -1;
+        }
+
         // Cache the kernel IDs we will be dispatching
         m_IdGrassKernel = m_InstantiatedComputeShader.FindKernel("Main");
 
@@ -218,6 +238,8 @@ public class GrassComputeScript : MonoBehaviour
         m_InstantiatedComputeShader.SetBuffer(m_IdGrassKernel, "_DrawTriangles", m_DrawBuffer);
         m_InstantiatedComputeShader.SetBuffer(m_IdGrassKernel, "_IndirectArgsBuffer", m_ArgsBuffer);
         m_InstantiatedComputeShader.SetBuffer(m_IdGrassKernel, "_VisibleIDBuffer", m_VisibleIDBuffer);
+        // added for cutting
+        m_InstantiatedComputeShader.SetBuffer(m_IdGrassKernel, "_CutBuffer", m_CutBuffer);
         m_InstantiatedMaterial.SetBuffer("_DrawTriangles", m_DrawBuffer);
         // Set vertex data
         m_InstantiatedComputeShader.SetInt("_NumSourceVertices", numSourceVertices);
@@ -234,9 +256,7 @@ public class GrassComputeScript : MonoBehaviour
 
         if (full)
         {
-
             UpdateBounds();
-
         }
         SetupQuadTree(full);
     }
@@ -258,9 +278,7 @@ public class GrassComputeScript : MonoBehaviour
     {
         if (full)
         {
-
             cullingTree = new CullingTreeNode(bounds, currentPresets.cullingTreeDepth);
-
             cullingTree.RetrieveAllLeaves(leaves);
             //add the id of each grass point into the right cullingtree
             for (int i = 0; i < grassData.Count; i++)
@@ -294,30 +312,33 @@ public class GrassComputeScript : MonoBehaviour
         {
             return;
         }
-        // if the camera didnt move, we dont need to change the culling;
+
+        // Check if the camera's position or rotation has changed
         if (m_cachedCamRot == m_MainCamera.transform.rotation && m_cachedCamPos == m_MainCamera.transform.position && Application.isPlaying)
         {
-            return;
+            return; // Camera hasn't moved, no need for frustum culling
         }
-        // get frustum data from the main camera
-        cameraOriginalFarPlane = m_MainCamera.farClipPlane;
-        m_MainCamera.farClipPlane = currentPresets.maxDrawDistance;//allow drawDistance control    
+
+        // Cache camera position and rotation for next frame
+        m_cachedCamPos = m_MainCamera.transform.position;
+        m_cachedCamRot = m_MainCamera.transform.rotation;
+
+        // Get frustum data from the main camera without modifying far clip plane
         GeometryUtility.CalculateFrustumPlanes(m_MainCamera, cameraFrustumPlanes);
-        m_MainCamera.farClipPlane = cameraOriginalFarPlane;//revert far plane edit
 
         if (!m_fastMode)
         {
+            // Perform full frustum culling
+            cameraOriginalFarPlane = m_MainCamera.farClipPlane;
+            m_MainCamera.farClipPlane = currentPresets.maxDrawDistance;
             BoundsListVis.Clear();
-            m_VisibleIDBuffer.SetData(empty);
             grassVisibleIDList.Clear();
             cullingTree.RetrieveLeaves(cameraFrustumPlanes, BoundsListVis, grassVisibleIDList);
             m_VisibleIDBuffer.SetData(grassVisibleIDList);
+            m_MainCamera.farClipPlane = cameraOriginalFarPlane;
         }
-
-        // cache camera position to skip culling when not moved
-        m_cachedCamPos = m_MainCamera.transform.position;
-        m_cachedCamRot = m_MainCamera.transform.rotation;
     }
+
 
     private void OnDisable()
     {
@@ -340,6 +361,8 @@ public class GrassComputeScript : MonoBehaviour
             m_DrawBuffer?.Release();
             m_ArgsBuffer?.Release();
             m_VisibleIDBuffer?.Release();
+            // added for cutting
+            m_CutBuffer?.Release();
         }
         m_Initialized = false;
     }
@@ -394,7 +417,6 @@ public class GrassComputeScript : MonoBehaviour
         m_InstantiatedComputeShader.SetFloat("_WindSpeed", currentPresets.windSpeed);
         m_InstantiatedComputeShader.SetFloat("_WindStrength", currentPresets.windStrength);
 
-
         if (full)
         {
             m_InstantiatedComputeShader.SetFloat("_MinFadeDist", currentPresets.minFadeDistance);
@@ -403,7 +425,7 @@ public class GrassComputeScript : MonoBehaviour
         }
         else
         {
-            // if theres a lot of grass, just cull earlier so we can still see what we're paiting, otherwise it will be invisible
+            // if theres a lot of grass, just cull earlier so we can still see what we're painting, otherwise it will be invisible
             if (grassData.Count > 200000)
             {
                 m_InstantiatedComputeShader.SetFloat("_MinFadeDist", 40f);
@@ -414,15 +436,12 @@ public class GrassComputeScript : MonoBehaviour
                 m_InstantiatedComputeShader.SetFloat("_MinFadeDist", currentPresets.minFadeDistance);
                 m_InstantiatedComputeShader.SetFloat("_MaxFadeDist", currentPresets.maxDrawDistance);
             }
-
         }
         m_InstantiatedComputeShader.SetFloat("_InteractorStrength", currentPresets.affectStrength);
         m_InstantiatedComputeShader.SetFloat("_BladeRadius", currentPresets.bladeRadius);
         m_InstantiatedComputeShader.SetFloat("_BladeForward", currentPresets.bladeForwardAmount);
         m_InstantiatedComputeShader.SetFloat("_BladeCurve", Mathf.Max(0, currentPresets.bladeCurveAmount));
         m_InstantiatedComputeShader.SetFloat("_BottomWidth", currentPresets.bottomWidth);
-
-
 
         m_InstantiatedComputeShader.SetInt("_MaxBladesPerVertex", currentPresets.allowedBladesPerVertex);
         m_InstantiatedComputeShader.SetInt("_MaxSegmentsPerBlade", currentPresets.allowedSegmentsPerBlade);
@@ -434,6 +453,7 @@ public class GrassComputeScript : MonoBehaviour
         m_InstantiatedComputeShader.SetFloat("_MaxWidth", currentPresets.MaxWidth);
         m_InstantiatedMaterial.SetColor("_TopTint", currentPresets.topTint);
         m_InstantiatedMaterial.SetColor("_BottomTint", currentPresets.bottomTint);
+        m_CutBuffer.SetData(cutIDs);
     }
 
     public void Reset()
@@ -449,11 +469,14 @@ public class GrassComputeScript : MonoBehaviour
         OnDisable();
         MainSetup(false);
     }
+
     private void SetGrassDataUpdate()
     {
-        // variables sent to the shader every frame
+        // Variables sent to the shader every frame
         m_InstantiatedComputeShader.SetFloat("_Time", Time.time);
         m_InstantiatedComputeShader.SetMatrix("_LocalToWorld", transform.localToWorldMatrix);
+
+        // Update interactors data if interactors exist
         if (interactors.Length > 0)
         {
             Vector4[] positions = new Vector4[interactors.Length];
@@ -462,24 +485,25 @@ public class GrassComputeScript : MonoBehaviour
             {
                 positions[i] = new Vector4(interactors[i].transform.position.x, interactors[i].transform.position.y, interactors[i].transform.position.z,
                 interactors[i].radius);
-
             }
             m_InstantiatedComputeShader.SetVectorArray(shaderID, positions);
             m_InstantiatedComputeShader.SetFloat("_InteractorsLength", interactors.Length);
         }
+
+        // Update camera position
         if (m_MainCamera != null)
         {
             m_InstantiatedComputeShader.SetVector("_CameraPositionWS", m_MainCamera.transform.position);
         }
+
 #if UNITY_EDITOR
-        // if we dont have a main camera (it gets added during gameplay), use the scene camera
-        else if (view != null)
+        else if (view != null && view.camera != null)
         {
             m_InstantiatedComputeShader.SetVector("_CameraPositionWS", view.camera.transform.position);
         }
+
 #endif
     }
-
 
     // draw the bounds gizmos
     void OnDrawGizmos()
@@ -498,6 +522,115 @@ public class GrassComputeScript : MonoBehaviour
             }
         }
 
+    }
+
+    // newly added for cutting
+    public void UpdateCutBuffer(Vector3 hitPoint, float radius)
+    {
+        // can't cut grass if there is no grass in the scene
+        if (grassData.Count > 0)
+        {
+            List<int> grasslist = new List<int>();
+            // Get the list of IDS that are near the hitpoint within the radius
+            cullingTree.ReturnLeafList(hitPoint, grasslist, radius);
+
+            Vector3 brushPosition = this.transform.position;
+
+            // Compute the squared radius to avoid square root calculations
+            float squaredRadius = radius * radius;
+
+            for (int i = 0; i < grasslist.Count; i++)
+            {
+                int currentIndex = grasslist[i];
+                Vector3 grassPosition = grassData[currentIndex].position + brushPosition;
+
+                // Calculate the squared distance
+                float squaredDistance = (hitPoint - grassPosition).sqrMagnitude;
+
+                // Check if the squared distance is within the squared radius
+                // Check if there is grass to cut, or of the grass is uncut(-1)
+                if (squaredDistance <= squaredRadius && (cutIDs[currentIndex] > hitPoint.y || cutIDs[currentIndex] == -1))
+                {
+                    // check if the current cut is lower than the existing cut (with a small margin)
+                    if (cutIDs[currentIndex] - 0.1f > hitPoint.y || cutIDs[currentIndex] == -1)
+                    {
+                        SpawnCuttingParticle(grassPosition, new Color(grassData[currentIndex].color.x, grassData[currentIndex].color.y, grassData[currentIndex].color.z));
+                    }
+                    // store cutting point
+                    cutIDs[currentIndex] = hitPoint.y;
+                }
+
+            }
+        }
+        m_CutBuffer.SetData(cutIDs);
+    }
+
+    void SpawnCuttingParticle(Vector3 position, Color col)
+    {
+
+        var ps = Pool.Get();
+        ps.transform.position = position;
+        var main = ps.GetComponent<ParticleSystem>().main;
+        main.startColor = new ParticleSystem.MinMaxGradient(col);
+
+    }
+
+    public enum PoolType
+    {
+        Stack,
+        LinkedList
+    }
+
+    public PoolType poolType;
+
+    // Collection checks will throw errors if we try to release an item that is already in the pool.
+    public bool collectionChecks = true;
+
+    public int maxPoolSize = 10;
+
+    IObjectPool<ParticleSystem> m_Pool;
+
+    public IObjectPool<ParticleSystem> Pool
+    {
+        get
+        {
+            if (m_Pool == null)
+            {
+                if (poolType == PoolType.Stack)
+                    m_Pool = new ObjectPool<ParticleSystem>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, 10, maxPoolSize);
+                else
+                    m_Pool = new LinkedPool<ParticleSystem>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize);
+            }
+            return m_Pool;
+        }
+    }
+
+    ParticleSystem CreatePooledItem()
+    {
+        var go = Instantiate(currentPresets.cuttingParticles);
+        var ps = go.GetComponent<ParticleSystem>();
+        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        go.GetComponent<ReturnToCutPool>().pool = Pool;
+        return ps;
+    }
+
+    // Called when an item is returned to the pool using Release
+    void OnReturnedToPool(ParticleSystem system)
+    {
+        system.gameObject.SetActive(false);
+    }
+
+    // Called when an item is taken from the pool using Get
+    void OnTakeFromPool(ParticleSystem system)
+    {
+        system.gameObject.SetActive(true);
+    }
+
+    // If the pool capacity is reached then any items returned will be destroyed.
+    // We can control what the destroy behavior does, here we destroy the GameObject.
+    void OnDestroyPoolObject(ParticleSystem system)
+    {
+        Destroy(system.gameObject);
     }
 }
 

@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
+    [SerializeField]
+    bool canCutGrass = false;
+
+    GrassComputeScript grassComputeScript;
+
+    [ConditionalHide("canCutGrass")]
+    [SerializeField]
+    float radius = 1f;
+
+    [ConditionalHide("canCutGrass")]
+    [SerializeField]
+    Transform centerPointForRadius = null;
+
+    private bool updateCuts;
+
+    Vector3 cachedPos;
+
+
     [Header("Collider")]
     [SerializeField] protected Collider damageCollider;
 
@@ -69,11 +87,30 @@ public class DamageCollider : MonoBehaviour
     public virtual void EnableDamageCollider()
     {
         damageCollider.enabled = true;
+        grassComputeScript = GameObject.FindGameObjectWithTag("GrassComputeHolder")?.GetComponent<GrassComputeScript>();
+        if (grassComputeScript != null)
+        {
+            updateCuts = true;
+        }
+        
     }
 
     public virtual void DisableDamageCollider()
     {
         damageCollider.enabled = false;
+        updateCuts = false;
         charactersDamaged.Clear(); // WE RESET THE CHARACTERS THAT HAVE BEEN HIT WHEN WE RESET THE COLLIDER, SO THEY MAY BE HIT AGAIN.
     }
+
+
+    void Update()
+    {
+        if (canCutGrass && updateCuts && transform.position != cachedPos)
+        {
+            grassComputeScript.UpdateCutBuffer(transform.position, radius);
+            cachedPos = transform.position;
+        }
+    }
+
+
 }

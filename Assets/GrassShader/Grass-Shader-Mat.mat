@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ShaderGraph GrassUnlitBasic
+  m_Name: Grass-Shader-Mat
   m_Shader: {fileID: -6465566751694194690, guid: 1d57be203355e284fbf3ab446c4d02fc,
     type: 3}
   m_ValidKeywords: []
@@ -37,12 +37,12 @@ Material:
     m_Floats:
     - _Blend: 1
     - _BlendMult: 0.7
-    - _BlendOff: -0.3
+    - _BlendOff: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &6885728107791675815
+--- !u!114 &514587516926048995
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
