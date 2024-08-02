@@ -56,6 +56,19 @@ public class PlayerManager : CharacterManager
         PlayerCamera.instance.HandleAllCameraActions();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+    }
+
     // WHEN ADDING TO NETWORK-SPAWN ALSO ADD TO ONNETWORK-DESPAWN
     public override void OnNetworkSpawn()
     {
@@ -82,6 +95,14 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
         }
+
+        // ONLY UPDATE FLOATING HP BAR IF THIS CHARACTER IS NOT YOUR LOCAL PLAYERS CHARACTER (YOU DONT WANNA SEE A HP BAR FLOATING ABOVE YOUR OWN HEAD)
+        if (!IsOwner)
+        {
+            characterNetworkManager.currentHealth.OnValueChanged += characterUIManger.OnHPChanged;
+        }
+
+
         // STATS
         // Moved to CharacterManager
         //playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
@@ -141,6 +162,13 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
             playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
         }
+
+        if (!IsOwner)
+        {
+            characterNetworkManager.currentHealth.OnValueChanged -= characterUIManger.OnHPChanged;
+        }
+
+
         // STATS
         //playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
 

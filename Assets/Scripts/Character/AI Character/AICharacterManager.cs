@@ -72,6 +72,26 @@ public class AICharacterManager : CharacterManager
         
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if(characterUIManger.hasFloatingHPBar) 
+        {
+            characterNetworkManager.currentHealth.OnValueChanged += characterUIManger.OnHPChanged;
+        }
+        
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        if (characterUIManger.hasFloatingHPBar)
+        {
+            characterNetworkManager.currentHealth.OnValueChanged -= characterUIManger.OnHPChanged;
+        }
+    }
+
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
     {
         if (IsOwner && invulnerable == false)

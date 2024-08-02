@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.TextCore.Text;
+using Unity.VisualScripting;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -21,6 +22,8 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterStatsManager characterStatsManager;
 
     [HideInInspector] public CharacterSpellManager characterSpellManager;
+
+    [HideInInspector] public CharacterUIManager characterUIManger;
 
 
     [Header("Character group")]
@@ -46,6 +49,7 @@ public class CharacterManager : NetworkBehaviour
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
         characterStatsManager = GetComponent<CharacterStatsManager>();
         characterSpellManager = GetComponent<CharacterSpellManager>();
+        characterUIManger = GetComponent<CharacterUIManager>();
     }
 
     protected virtual void Start()
@@ -91,6 +95,16 @@ public class CharacterManager : NetworkBehaviour
     }
 
     protected virtual void FixedUpdate()
+    {
+
+    }
+
+    protected virtual void OnEnable()
+    {
+
+    }
+
+    protected virtual void OnDisable()
     {
 
     }
