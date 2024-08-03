@@ -70,6 +70,8 @@ public class WorldAIManager : MonoBehaviour
 
             character.GetComponent<NetworkObject>().Despawn();
         }
+
+        spawnedCharacters.Clear();
     }
 
     //TODO 
@@ -78,6 +80,16 @@ public class WorldAIManager : MonoBehaviour
         foreach (var character in spawnedCharacters)
         {
             if (character == null) return;
+        }
+    }
+
+    public void ResetAllCharacters()
+    {
+        DespawnAllCharacters();
+
+        foreach (var spawner in aiCharacterSpawners)
+        {
+            spawner.AttemptToSpawnCharacter();
         }
     }
 }

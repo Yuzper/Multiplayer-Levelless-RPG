@@ -47,6 +47,8 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool actionNumber8Input = false;
     [SerializeField] bool actionNumber9Input = false;
 
+    [SerializeField] bool interactionInput = false;
+
     [Header("Mouse Attack Inputs")]
     [SerializeField] bool mainHandAttackInput = false;
     [SerializeField] bool mainHandHeavyAttackInput = false;
@@ -161,6 +163,8 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.ActionNumber8.performed += i => actionNumber8Input = true;
             playerControls.PlayerActions.ActionNumber9.performed += i => actionNumber9Input = true;
 
+            playerControls.PlayerActions.Interact.performed += i => interactionInput = true;
+
             // Mouse Attack Actions
             playerControls.PlayerActions.MainHandAttack.performed += i => mainHandAttackInput = true;
             playerControls.PlayerActions.MainHandHeavyAttack.performed += i => mainHandHeavyAttackInput = true;
@@ -230,6 +234,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleDanceInput();
         HandleRevivalInput();
         HandleActionInputs();
+        HandleInteractionInput();
 
         if(player.characterSpellManager.inDrawingMode)
         {
@@ -624,6 +629,16 @@ public class PlayerInputManager : MonoBehaviour
     {
         actionNumber9Input = true;
         HandleActionInputs();
+    }
+
+    public void HandleInteractionInput()
+    {
+        if (interactionInput)
+        {
+            interactionInput = false;
+
+            player.playerInteractionManager.Interact();
+        }
     }
 
     //// Attack Inputs ////

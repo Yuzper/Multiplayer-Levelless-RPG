@@ -15,6 +15,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
     [HideInInspector] public PlayerSpellManager playerSpellManager;
+    [HideInInspector] public PlayerInteractionManager playerInteractionManager;
 
     protected override void Awake()
     {
@@ -30,6 +31,7 @@ public class PlayerManager : CharacterManager
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
         playerSpellManager = GetComponent<PlayerSpellManager>();
+        playerInteractionManager = GetComponent<PlayerInteractionManager>();
     }
 
     protected override void Update()
