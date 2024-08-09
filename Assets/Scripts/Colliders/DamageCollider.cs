@@ -41,6 +41,9 @@ public class DamageCollider : MonoBehaviour
     [Header("Characters Damaged")]
     protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
 
+    [Header("Block")]
+    protected Vector3 directionFromAttackToDamageTarget;
+    protected float dotValueFromAttackToDamageTarget;
 
     protected virtual void Awake()
     {
@@ -59,10 +62,45 @@ public class DamageCollider : MonoBehaviour
             if (WorldUtilityManager.instance.CanIDamageThisTarget(characterCausingDamage.characterGroup, damageTarget.characterGroup))
             {
                 // Check if target is blocking
+                CheckForBlock(damageTarget);
 
                 DamageTarget(damageTarget);
             }
         }
+    }
+
+    protected virtual void CheckForBlock(CharacterManager damageTarget)
+    {
+        // if character already been damaged do nothing
+        if (charactersDamaged.Contains(damageTarget)) return;
+
+        GetBlockingDotValues(damageTarget);
+
+
+
+        // check if they are facing correct direction to block successfuly
+        if (damageTarget.characterNetworkManager.isBlocking.Value && dotValueFromAttackToDamageTarget > 0.3f)
+        {
+            // add to damaged list to ensure we are not dameging them...
+            charactersDamaged.Add(damageTarget);
+            TakeBlockedDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
+            damageEffect.physicalDamage = physicalDamage;
+            damageEffect.magicDamage = magicDamage;
+            damageEffect.fireDamage = fireDamage;
+            damageEffect.holyDamage = holyDamage;
+            damageEffect.contactPoint = contactPoint;
+
+            // apply blocked character damage to target
+            damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
+
+        }
+
+    }
+
+    protected virtual void GetBlockingDotValues(CharacterManager damageTarget)
+    {
+        directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
+        dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
     }
 
     protected virtual void DamageTarget(CharacterManager damageTarget)
@@ -107,7 +145,7 @@ public class DamageCollider : MonoBehaviour
     {
         if (canCutGrass && updateCuts && transform.position != cachedPos)
         {
-            grassComputeScript.UpdateCutBuffer(transform.position, radius);
+            grassComputeScript.UpdateCutBuffer(centerPointForRadius?.position ?? transform.position, radius);
             cachedPos = transform.position;
         }
     }

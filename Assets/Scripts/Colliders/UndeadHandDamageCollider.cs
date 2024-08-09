@@ -14,6 +14,14 @@ public class UndeadHandDamageCollider : DamageCollider
         aiUndeadCharacterCausingDamage = GetComponentInParent<AICharacterManager>();
     }
 
+
+    protected override void GetBlockingDotValues(CharacterManager damageTarget)
+    {
+        directionFromAttackToDamageTarget = aiUndeadCharacterCausingDamage.transform.position - damageTarget.transform.position;
+        dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
+    }
+
+
     protected override void DamageTarget(CharacterManager damageTarget)
     {
         // We don't want to damage the same target more than once in a single attack
