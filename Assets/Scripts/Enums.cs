@@ -43,9 +43,16 @@ public enum CharacterGroup
 public enum WeaponModelSlot
 {
     RightHand,
-    LeftHand,
+    LeftHandWeaponSlot,
+    LeftHandShieldSlot
     // Right Hips
     // Left Hips
+}
+
+public enum WeaponModelType
+{
+    Weapon,
+    Shield
 }
 
 public enum WeaponType

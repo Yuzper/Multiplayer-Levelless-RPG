@@ -7,6 +7,9 @@ public class WeaponItems : Item
     [Header("Animations")]
     public AnimatorOverrideController weaponAnimator;
 
+    [Header("Model Instatiation")]
+    public WeaponModelType weaponModelType;
+
     [Header("Weapon Model")]
     public GameObject weaponModel;
 
@@ -51,9 +54,18 @@ public class WeaponItems : Item
     public float rollingAttackStaminaCostMultiplier = 1.1f;
     public float backstepAttackStaminaCostMultiplier = 1.1f;
 
+    [Header("Weapon blocking absoption")]
+    public float physicalBaseDamageAbsoption = 50;
+    public float magicBaseDamageAbsoption = 50;
+    public float fireBaseDamageAbsoption = 50;
+    public float holyBaseDamageAbsoption = 50;
+    public float lightningBaseDamageAbsoption = 50;
+    public float stability = 70; // affacts how much stamina you loose when blocking a hit. High stability means you loose less stamina.
+
     [Header("Actions")]
     public WeaponItemAction oneHandMainHandMouseAttack;
     public WeaponItemAction oneHandHeavyMainHandMouseAttack;
+    public WeaponItemAction oneHandOffHandMouseAction;
 
     [Header("Whooshes")]
     public AudioClip[] whooshes;

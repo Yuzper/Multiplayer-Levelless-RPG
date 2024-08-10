@@ -129,6 +129,7 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentMainHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentMainHandWeaponIDChange;
         playerNetworkManager.currentOffHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentOffHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+        playerNetworkManager.isBlocking.OnValueChanged += playerNetworkManager.OnIsBlockingChanged;
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
@@ -182,10 +183,12 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentMainHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentMainHandWeaponIDChange;
         playerNetworkManager.currentOffHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentOffHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+        playerNetworkManager.isBlocking.OnValueChanged -= playerNetworkManager.OnIsBlockingChanged;
 
         // FLAGS
         playerNetworkManager.isChargingMainHandAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
         playerNetworkManager.isHoldingDownSpell.OnValueChanged -= playerNetworkManager.OnIsHoldingDownSpellChanged;
+        
     }
 
     private void OnClientConnectedCallback(ulong clientID)
@@ -296,6 +299,9 @@ public class PlayerManager : CharacterManager
         // SYNC WEAPONS
         playerNetworkManager.OnCurrentMainHandWeaponIDChange(0, playerNetworkManager.currentMainHandWeaponID.Value);
         playerNetworkManager.OnCurrentOffHandWeaponIDChange(0, playerNetworkManager.currentOffHandWeaponID.Value);
+
+        // sync block
+        playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);
 
         // ARMOR
 

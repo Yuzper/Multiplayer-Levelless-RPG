@@ -52,6 +52,8 @@ MonoBehaviour:
     type: 2}
   oneHandHeavyMainHandMouseAttack: {fileID: 11400000, guid: 32cce9310a0ef534c9dd43c54c8748b4,
     type: 2}
+  oneHandOffHandMouseAction: {fileID: 11400000, guid: 9dc5c7f2f79a64f4d832bd9b96100af7,
+    type: 2}
   whooshes:
   - {fileID: 8300000, guid: 0aadd833bb2d5c6459071cec3b57b6fc, type: 3}
   - {fileID: 8300000, guid: bab2beee4e54b6b4884ba37eee560014, type: 3}

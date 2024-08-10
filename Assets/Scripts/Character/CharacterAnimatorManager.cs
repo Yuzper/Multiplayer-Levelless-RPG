@@ -132,6 +132,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         bool canMove = false)
     {
         this.applyRootMotion = applyRootMotion;
+        Debug.Log(targetAnimation);
         character.animator.CrossFade(targetAnimation, 0.2f);
         // CAN BE USED TO STOP CHARACTER FROM ATTEMPTING NEW ACTIONS
         // FOR EXAMPLE, IF YOU GET DAMAGED, AND BEGIN PERFORMING A DAMAGE ANIMATION

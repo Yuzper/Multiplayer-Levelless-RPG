@@ -6,7 +6,8 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 {
     PlayerManager player;
     public WeaponModelInstantiationSlot mainHandSlot;
-    public WeaponModelInstantiationSlot offHandSlot;
+    public WeaponModelInstantiationSlot offHandWeaponSlot;
+    public WeaponModelInstantiationSlot offHandShieldSlot;
 
     [SerializeField] WeaponManager mainHandWeaponManager;
     [SerializeField] WeaponManager offHandWeaponManager;
@@ -56,9 +57,13 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             {
                 mainHandSlot = weaponSlot;
             }
-            else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHand)
+            else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHandWeaponSlot)
             {
-                offHandSlot = weaponSlot;
+                offHandWeaponSlot = weaponSlot;
+            }
+            else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHandShieldSlot)
+            {
+                offHandShieldSlot = weaponSlot;
             }
         }
     }
@@ -215,11 +220,30 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (player.playerInventoryManager.currentOffHandWeapon != null)
         {
             // REMOVE OLD WEAPON
-            offHandSlot.UnloadWeapon();
+            if(offHandWeaponSlot.currentWeaponModel != null)
+            {
+                offHandWeaponSlot.UnloadWeapon();
+            }
+            if (offHandShieldSlot.currentWeaponModel != null)
+            {
+                offHandShieldSlot.UnloadWeapon();
+            }
+
 
             // BRING IN NEW WEAPON
             offHandWeaponModel = Instantiate(player.playerInventoryManager.currentOffHandWeapon.weaponModel);
-            offHandSlot.LoadWeapon(offHandWeaponModel);
+
+            switch (player.playerInventoryManager.currentOffHandWeapon.weaponModelType)
+            {
+                case WeaponModelType.Weapon:
+                    offHandWeaponSlot.LoadWeapon(offHandWeaponModel);
+                    break;
+                case WeaponModelType.Shield:
+                    offHandShieldSlot.LoadWeapon(offHandWeaponModel);
+                    break;
+                default: break;
+            }
+
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
             offHandWeaponManager = offHandWeaponModel.GetComponent<WeaponManager>();
             offHandWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentOffHandWeapon);

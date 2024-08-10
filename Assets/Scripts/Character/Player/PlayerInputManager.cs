@@ -53,6 +53,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool mainHandAttackInput = false;
     [SerializeField] bool mainHandHeavyAttackInput = false;
     [SerializeField] bool mainHandChargeAttackInput = false;
+    [SerializeField] bool offHandActionInput = false;
 
     [Header("QUED INPUTS")]
     [SerializeField] private bool input_Que_Is_Active = false;
@@ -170,6 +171,8 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.MainHandHeavyAttack.performed += i => mainHandHeavyAttackInput = true;
             playerControls.PlayerActions.MainHandChargeAttack.performed += i => mainHandChargeAttackInput = true;
             playerControls.PlayerActions.MainHandChargeAttack.canceled += i => mainHandChargeAttackInput = false;
+            playerControls.PlayerActions.OffHandAction.performed += i => offHandActionInput = true;
+            playerControls.PlayerActions.OffHandAction.canceled += i => player.playerNetworkManager.isBlocking.Value = false;
 
             // QUED Inputs
             playerControls.PlayerActions.QueMainHandAttack.performed += i => QueInput(ref que_RB_Input);
@@ -247,6 +250,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             // Attack Inputs
             HandleMouseAttackInput();
+            HandleOffHandActionInput();
             
             if (player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Staff || player.playerInventoryManager.currentMainHandWeapon.weaponType == WeaponType.Wand)
             {
@@ -654,6 +658,22 @@ public class PlayerInputManager : MonoBehaviour
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentMainHandWeapon.oneHandMainHandMouseAttack, player.playerInventoryManager.currentMainHandWeapon);
+        }
+    }
+
+    private void HandleOffHandActionInput()
+    {
+        // LEFT MOUSE CLICK
+        if (offHandActionInput)
+        {
+            Debug.Log("BLOCKING");
+            offHandActionInput = false;
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.playerNetworkManager.SetCharacterActionHand(false);
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentOffHandWeapon.oneHandOffHandMouseAction, player.playerInventoryManager.currentOffHandWeapon);
         }
     }
 

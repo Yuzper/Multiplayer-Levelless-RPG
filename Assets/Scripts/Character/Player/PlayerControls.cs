@@ -155,6 +155,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""OffHandAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e797bd3-2a40-4efe-bc83-a3fa4315ccd2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Que MainHandAttack"",
                     ""type"": ""Button"",
                     ""id"": ""ad83e943-11c7-4232-ac91-07748e360082"",
@@ -599,6 +608,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""988ed1da-cc51-4f14-a5d1-77bb140ad8a5"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OffHandAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -712,6 +732,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_MainHandAttack = m_PlayerActions.FindAction("MainHandAttack", throwIfNotFound: true);
+        m_PlayerActions_OffHandAction = m_PlayerActions.FindAction("OffHandAction", throwIfNotFound: true);
         m_PlayerActions_QueMainHandAttack = m_PlayerActions.FindAction("Que MainHandAttack", throwIfNotFound: true);
         m_PlayerActions_MainHandHeavyAttack = m_PlayerActions.FindAction("MainHandHeavyAttack", throwIfNotFound: true);
         m_PlayerActions_QueMainHandHeavyAttack = m_PlayerActions.FindAction("Que MainHandHeavyAttack", throwIfNotFound: true);
@@ -868,6 +889,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_MainHandAttack;
+    private readonly InputAction m_PlayerActions_OffHandAction;
     private readonly InputAction m_PlayerActions_QueMainHandAttack;
     private readonly InputAction m_PlayerActions_MainHandHeavyAttack;
     private readonly InputAction m_PlayerActions_QueMainHandHeavyAttack;
@@ -895,6 +917,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @MainHandAttack => m_Wrapper.m_PlayerActions_MainHandAttack;
+        public InputAction @OffHandAction => m_Wrapper.m_PlayerActions_OffHandAction;
         public InputAction @QueMainHandAttack => m_Wrapper.m_PlayerActions_QueMainHandAttack;
         public InputAction @MainHandHeavyAttack => m_Wrapper.m_PlayerActions_MainHandHeavyAttack;
         public InputAction @QueMainHandHeavyAttack => m_Wrapper.m_PlayerActions_QueMainHandHeavyAttack;
@@ -933,6 +956,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MainHandAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
                 @MainHandAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
                 @MainHandAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMainHandAttack;
+                @OffHandAction.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOffHandAction;
+                @OffHandAction.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOffHandAction;
+                @OffHandAction.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOffHandAction;
                 @QueMainHandAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandAttack;
                 @QueMainHandAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandAttack;
                 @QueMainHandAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQueMainHandAttack;
@@ -1006,6 +1032,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MainHandAttack.started += instance.OnMainHandAttack;
                 @MainHandAttack.performed += instance.OnMainHandAttack;
                 @MainHandAttack.canceled += instance.OnMainHandAttack;
+                @OffHandAction.started += instance.OnOffHandAction;
+                @OffHandAction.performed += instance.OnOffHandAction;
+                @OffHandAction.canceled += instance.OnOffHandAction;
                 @QueMainHandAttack.started += instance.OnQueMainHandAttack;
                 @QueMainHandAttack.performed += instance.OnQueMainHandAttack;
                 @QueMainHandAttack.canceled += instance.OnQueMainHandAttack;
@@ -1165,6 +1194,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMainHandAttack(InputAction.CallbackContext context);
+        void OnOffHandAction(InputAction.CallbackContext context);
         void OnQueMainHandAttack(InputAction.CallbackContext context);
         void OnMainHandHeavyAttack(InputAction.CallbackContext context);
         void OnQueMainHandHeavyAttack(InputAction.CallbackContext context);

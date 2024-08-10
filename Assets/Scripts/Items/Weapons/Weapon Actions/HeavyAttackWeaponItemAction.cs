@@ -21,9 +21,17 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
             PlayerUIManager.instance.playerUIPopUpManager.SendAbilityAndResourceErrorPopUp("Not Enough Stamina!", false, false, true);
             return;
         }
+
+        if (playerPerformingAction.IsOwner)
+        {
+            playerPerformingAction.playerNetworkManager.isAttacking.Value = true;
+        }
+
         //if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
         PerformHeavyAttack(playerPerformingAction, weaponPerformingAction);
     }
+
+
 
     private void PerformHeavyAttack(PlayerManager playerPerformingAction, WeaponItems weaponPerformingAction)
     {

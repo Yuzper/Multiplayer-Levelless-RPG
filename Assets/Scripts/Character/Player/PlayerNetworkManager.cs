@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using Unity.Collections;
+using UnityEngine.TextCore.Text;
 
 public class PlayerNetworkManager : CharacterNetworkManager
 {
@@ -95,6 +96,19 @@ public void SetNewMaxHealthValue(int oldConstitution, int newConstitution)
         if(player.playerCombatManager.currentWeaponBeingUsed != null)
         {
             player.playerAnimatorManager.UpdateAnimatorController(player.playerCombatManager.currentWeaponBeingUsed.weaponAnimator);
+        }
+    }
+
+    public override void OnIsBlockingChanged(bool old, bool newvalue)
+    {
+        base.OnIsBlockingChanged(old, newvalue);
+        if (IsOwner)
+        {
+            player.playerStatsManager.blockingPhysicalAbsorption = player.playerCombatManager.currentWeaponBeingUsed.physicalBaseDamageAbsoption;
+            player.playerStatsManager.blockingMagicAbsorption = player.playerCombatManager.currentWeaponBeingUsed.magicBaseDamageAbsoption;
+            player.playerStatsManager.blockingFireAbsorption = player.playerCombatManager.currentWeaponBeingUsed.fireBaseDamageAbsoption;
+            player.playerStatsManager.blockingHolyAbsorption = player.playerCombatManager.currentWeaponBeingUsed.holyBaseDamageAbsoption;
+            player.playerStatsManager.blockingLightningAbsorption = player.playerCombatManager.currentWeaponBeingUsed.lightningBaseDamageAbsoption;
         }
     }
 
