@@ -83,6 +83,8 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             // ASSIGN WEAPONS DAMAGE, TO ITS COLLIDER
             mainHandWeaponManager = mainHandWeaponModel.GetComponent<WeaponManager>();
             mainHandWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentMainHandWeapon);
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentMainHandWeapon.weaponAnimator);
+
             // Play draw weapon sound
             DecideDrawWeaponSound(player.playerInventoryManager.currentMainHandWeapon);
         }

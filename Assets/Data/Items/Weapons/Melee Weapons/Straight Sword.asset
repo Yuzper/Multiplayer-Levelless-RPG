@@ -16,6 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: d4ee9721a1f9e6c42b5c4efd637e2a88, type: 3}
   itemDescription: A sword straighter than Sebastian.
   itemID: 1
+  weaponAnimator: {fileID: 22100000, guid: 291b1cfc9734dc540aa4dee17c021668, type: 2}
   weaponModel: {fileID: 5260893045848636323, guid: 019d0b79ba290364ea82b54d3c93807d,
     type: 3}
   weaponType: 2
@@ -36,10 +37,17 @@ MonoBehaviour:
   heavy_Attack_02_Modifier: 2.5
   charge_Attack_01_Modifier: 3
   charge_Attack_02_Modifier: 3.5
+  running_Attack_01_Modifier: 1.1
+  rolling_Attack_01_Modifier: 1.1
+  backstep_Attack_01_Modifier: 1.1
   baseStaminaCost: 20
   UnarmedMeleeAttackStaminaCostMultiplier: 1
   lightAttackStaminaCostMultiplier: 1
   heavyAttackStaminaCostMultiplier: 1.5
+  chargedAttackStaminaCostMultiplier: 1.5
+  runningAttackStaminaCostMultiplier: 1.1
+  rollingAttackStaminaCostMultiplier: 1.1
+  backstepAttackStaminaCostMultiplier: 1.1
   oneHandMainHandMouseAttack: {fileID: 11400000, guid: 71a263f0dd4081141a634d18936fc302,
     type: 2}
   oneHandHeavyMainHandMouseAttack: {fileID: 11400000, guid: 8c57bcc8f1977304c8c352380fc7428f,

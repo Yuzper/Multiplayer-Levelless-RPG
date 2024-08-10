@@ -34,18 +34,18 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
 
             if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == Heavy_Attack_01)
             {
-                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack02, Heavy_Attack_02, true, true, true, false);
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack02, Heavy_Attack_02, true, true, true, false);
             }
             else
             {
-                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true, true, true, false);
+                playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack01, Heavy_Attack_01, true, true, true, false);
             }
         }
         // OTHERWISE, IF WE ARE NOT ALREADY ATTACKING JUST PERFORM A REGULAR ATTACK
 
         else if (!playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(AttackType.HeavyAttack01, Heavy_Attack_01, true, true, true, false);
+            playerPerformingAction.playerAnimatorManager.PlayerTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack01, Heavy_Attack_01, true, true, true, false);
         }
     }
 }

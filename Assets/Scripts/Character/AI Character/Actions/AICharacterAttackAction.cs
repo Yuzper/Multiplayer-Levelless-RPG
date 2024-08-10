@@ -22,6 +22,10 @@ public class AICharacterAttackAction : ScriptableObject
 
     public void AttemptToPerformAction(AICharacterManager aiCharacter)
     {
-        aiCharacter.characterAnimatorManager.PlayerTargetAttackActionAnimation(attackType, attackAnimation, true);
+        // DOES YOUR AI ACT LIKE A PLAYER CHARACTER (LIKE AN INVAIDER) IF SO USE
+        // aiCharacter.characterAnimatorManager.PlayerTargetAttackActionAnimation(attackType, attackAnimation, true);
+
+        // DOES YOUR AI USE SIMPLE ATTACKS THAT ARE PURELY ANIMATION BASED (NOT EQUIPMENT / ITEM BASED) USE THIS
+        aiCharacter.characterAnimatorManager.PlayerTargetActionAnimation(attackAnimation, true);
     }
 }

@@ -16,6 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: bbce517a1a74f9b4091f5fae67ad2913, type: 3}
   itemDescription: An old ass staff...It may hide some secrets from its age...
   itemID: 6
+  weaponAnimator: {fileID: 22100000, guid: ef6023977a66b464f9440ed52443bdca, type: 2}
   weaponModel: {fileID: 776593370043782888, guid: 5439d90164720a841be833dd71ece3b2,
     type: 3}
   weaponType: 13

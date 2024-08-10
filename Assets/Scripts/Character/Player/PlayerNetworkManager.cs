@@ -88,6 +88,14 @@ public void SetNewMaxHealthValue(int oldConstitution, int newConstitution)
     {
         WeaponItems newWeapon = Instantiate(WorldItemDatabase.instance.GetWeaponByID(newID));
         player.playerCombatManager.currentWeaponBeingUsed = newWeapon;
+
+        // we dont need to run this code if we are the owner because is this done already locally
+        if (!player.IsOwner) return;
+
+        if(player.playerCombatManager.currentWeaponBeingUsed != null)
+        {
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerCombatManager.currentWeaponBeingUsed.weaponAnimator);
+        }
     }
 
     // ITEM ACTIONS
