@@ -25,7 +25,8 @@ public class AIBossCharacterNetworkManager : AICharacterNetworkManager
             float healthNeededForShift = maxHealth.Value * aiBossCharacter.minimumHealthPercentageToShift/100;
             if (currentHealth.Value <= healthNeededForShift)
             {
-                aiBossCharacter.PhaseShift();
+                Debug.Log("PHASE SHIFT DISABLED DUE TO BUG");
+               // aiBossCharacter.PhaseShift();
             }
         }
 
