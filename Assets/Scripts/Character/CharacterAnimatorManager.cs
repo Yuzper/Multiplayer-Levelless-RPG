@@ -12,6 +12,22 @@ public class CharacterAnimatorManager : MonoBehaviour
 
     [Header("Damage Animations")]
     public string lastAnimationPlayed;
+
+
+    //PING HIT REACTIONS
+    [SerializeField] string hit_Forward_Animation_Ping_01 = "hit_Forward_Animation_Ping_01";
+    [SerializeField] string hit_Forward_Animation_Ping_02 = "hit_Forward_Animation_Ping_02";
+
+    [SerializeField] string hit_Right_Animation_Ping_01 = "hit_Right_Animation_Ping_01";
+    [SerializeField] string hit_Right_Animation_Ping_02 = "hit_Right_Animation_Ping_02";
+
+    [SerializeField] string hit_Left_Animation_Ping_01 = "hit_Left_Animation_Ping_01";
+    [SerializeField] string hit_Left_Animation_Ping_02 = "hit_Left_Animation_Ping_02";
+    public List<string> forward_Ping_Damage = new List<string>();
+    public List<string> right_Ping_Damage = new List<string>();
+    public List<string> left_Ping_Damage = new List<string>();
+
+    // MEDIUM HIT REACTIONS
     [SerializeField] string hit_Forward_Animation_Medium_01 = "hit_Forward_Animation_Medium_01";
     [SerializeField] string hit_Forward_Animation_Medium_02 = "hit_Forward_Animation_Medium_02";
     
@@ -24,6 +40,7 @@ public class CharacterAnimatorManager : MonoBehaviour
     public List<string> forward_Medium_Damage = new List<string>();
     public List<string> right_Medium_Damage = new List<string>();
     public List<string> left_Medium_Damage = new List<string>();
+
 
 
     protected virtual void Awake()
@@ -41,6 +58,16 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         right_Medium_Damage.Add(hit_Right_Animation_Medium_01);
         right_Medium_Damage.Add(hit_Right_Animation_Medium_02);
+
+        // PING
+        forward_Ping_Damage.Add(hit_Forward_Animation_Ping_01);
+        forward_Ping_Damage.Add(hit_Forward_Animation_Ping_02);
+
+        left_Ping_Damage.Add(hit_Left_Animation_Ping_01);
+        left_Ping_Damage.Add(hit_Left_Animation_Ping_02);
+
+        right_Ping_Damage.Add(hit_Right_Animation_Ping_01);
+        right_Ping_Damage.Add(hit_Right_Animation_Ping_02);
     }
 
     public string GetRandomAnimationFromList(List<string> animationList)
