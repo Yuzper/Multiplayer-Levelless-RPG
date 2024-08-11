@@ -14,7 +14,7 @@ public class PursueTargetState : AIState
         if (aiCharacter.isPerformingAction) return this;
 
         // check if target is null, if yes go back to Idle State
-        if (aiCharacter.aICharacterCombatManager.currentTarget == null) return SwitchState(aiCharacter, aiCharacter.idle);
+        if (aiCharacter.aICharacterCombatManager.currentTarget == null) return SwitchState(aiCharacter, aiCharacter.wandering);
 
         // make sure navmesh agent is active, if not -> enable it
         if (!aiCharacter.navmeshAgent.enabled)

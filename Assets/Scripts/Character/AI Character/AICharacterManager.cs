@@ -26,6 +26,7 @@ public class AICharacterManager : CharacterManager
     public PursueTargetState pursueTarget;
     public CombatStanceState combatStance;
     public AttackState attack;
+    public WanderingState wandering;
 
     protected override void Awake()
     {
@@ -50,7 +51,8 @@ public class AICharacterManager : CharacterManager
             pursueTarget = Instantiate(pursueTarget);
             combatStance = Instantiate(combatStance);
             attack = Instantiate(attack);
-            currentState = idle;
+            wandering = Instantiate(wandering);
+            currentState = wandering;
         }
     }
 

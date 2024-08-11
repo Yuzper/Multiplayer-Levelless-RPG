@@ -19,10 +19,10 @@ public class AttackState : AIState
     public override AIState Tick(AICharacterManager aiCharacter)
     {
         if (aiCharacter.aICharacterCombatManager.currentTarget == null)
-            return SwitchState(aiCharacter, aiCharacter.idle);
+            return SwitchState(aiCharacter, aiCharacter.wandering);
 
         if (aiCharacter.aICharacterCombatManager.currentTarget.isDead.Value)
-            return SwitchState(aiCharacter, aiCharacter.idle);
+            return SwitchState(aiCharacter, aiCharacter.wandering);
 
         aiCharacter.aICharacterCombatManager.RotateTowardsTargetWhilstAttacking(aiCharacter);
 

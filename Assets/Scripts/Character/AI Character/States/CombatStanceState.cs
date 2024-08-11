@@ -45,7 +45,7 @@ public class CombatStanceState : AIState
         aiCharacter.aICharacterCombatManager.RotateTowardsAgent(aiCharacter);
 
         if (aiCharacter.aICharacterCombatManager.currentTarget == null)
-            return SwitchState(aiCharacter, aiCharacter.idle);
+            return SwitchState(aiCharacter, aiCharacter.wandering);
 
         // IF WE DO NOT HAVE AN ATTACK, GET ONE
         if (!hasAttack)
