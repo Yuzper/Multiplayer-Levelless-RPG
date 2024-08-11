@@ -27,6 +27,10 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
     public float poiseDamage = 0;
     public bool poiseIsBroken = false; // If a character's poise is broken, they will be "Stunned" and play a damage animation
 
+    [Header("Stamina")]
+    public float staminaDamage = 0;
+    public float finalStaminaDamage = 0;
+
     [Header("Animation")]
     public bool playDamageAnimation = true;
     public bool manuallySelectDamageAnimation = false;
@@ -53,11 +57,14 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
 
         // Check for "Invulnerability"
         CalculateDamage(character);
+        CalculateStaminaDamage(character);
         PlayIntensityBasedBlockingDamageAnimation(character);
         // Check for build ups (poison, bleeds)
         PlayDamageVFX(character);
         PlayDamageSFX(character);
         // IF character is AI check for new target if character causing damage is present
+
+        CheckForGuardBreak(character);
     }
 
     private void CalculateDamage(CharacterManager character)
@@ -85,6 +92,31 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
         character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
     }
 
+    private void CalculateStaminaDamage(CharacterManager character)
+    {
+        if (!character.IsOwner) return;
+        finalStaminaDamage = staminaDamage;
+
+        float staminaDamageAbsoption = finalStaminaDamage * (character.characterStatsManager.blockingStability / 100);
+        float staminaDamageAfterAbsorption = finalStaminaDamage - staminaDamageAbsoption;
+
+        character.characterNetworkManager.currentStamina.Value -= staminaDamageAfterAbsorption;
+    }
+
+    private void CheckForGuardBreak(CharacterManager character)
+    {
+        // if(character.characterNetworkManager.currentStamina.Value <= 0)
+                // PLAY SFX
+        if (!character.IsOwner) return;
+
+        if(character.characterNetworkManager.currentStamina.Value <= 0)
+        {
+            character.characterAnimatorManager.PlayerTargetActionAnimation("Guard_Break_01", true);
+            character.characterNetworkManager.isBlocking.Value = false;
+
+        }
+    }
+
     private void PlayDamageVFX(CharacterManager character)
     {
         // get vfx based on blocking weapon
@@ -99,6 +131,7 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
     private void PlayDamageSFX(CharacterManager character)
     {
         // get sfx based on blocking weapon
+        character.characterSoundFXManager.PlayBlockSFX();
     }
 
     private void PlayIntensityBasedBlockingDamageAnimation(CharacterManager character)

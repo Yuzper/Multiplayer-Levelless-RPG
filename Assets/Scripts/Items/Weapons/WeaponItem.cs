@@ -67,8 +67,9 @@ public class WeaponItems : Item
     public WeaponItemAction oneHandHeavyMainHandMouseAttack;
     public WeaponItemAction oneHandOffHandMouseAction;
 
-    [Header("Whooshes")]
+    [Header("SFX")]
     public AudioClip[] whooshes;
+    public AudioClip[] blocking;
 
 
 }

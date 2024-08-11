@@ -33,6 +33,7 @@ public class GolemBossMeleeDamageCollider : DamageCollider
         damageEffect.magicDamage = magicDamage;
         damageEffect.fireDamage = fireDamage;
         damageEffect.holyDamage = holyDamage;
+        damageEffect.poiseDamage = poiseDamage;
         damageEffect.contactPoint = contactPoint;
         damageEffect.angleHitFrom = Vector3.SignedAngle(bossCharacterManager.transform.forward, damageTarget.transform.forward, Vector3.up);
 

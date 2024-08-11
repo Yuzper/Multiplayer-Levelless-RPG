@@ -22,6 +22,7 @@ public class AIGolemBossCombatManager : AICharacterCombatManager
 
     [Header("Damage")]
     [SerializeField] int baseDamage = 25;
+    [SerializeField] int basePoiseDamage = 25;
     [SerializeField] float attack03DamageModifier = 1.4f;
     [SerializeField] float attack04DamageModifier = 1.4f;
 
@@ -40,6 +41,7 @@ public class AIGolemBossCombatManager : AICharacterCombatManager
     {
         aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         rightHandDamageCollider.physicalDamage = baseDamage * attack03DamageModifier;
+        rightHandDamageCollider.poiseDamage = basePoiseDamage * attack03DamageModifier;
     }
 
     //left hand
@@ -47,6 +49,7 @@ public class AIGolemBossCombatManager : AICharacterCombatManager
     {
         aiCharacter.characterSoundFXManager.PlayAttackGrunt();
         leftHandDamageCollider.physicalDamage = baseDamage * attack04DamageModifier;
+        leftHandDamageCollider.poiseDamage = basePoiseDamage * attack04DamageModifier;
     }
 
     // These functions are called in animation events

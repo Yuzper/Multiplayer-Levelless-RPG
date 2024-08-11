@@ -109,6 +109,7 @@ public void SetNewMaxHealthValue(int oldConstitution, int newConstitution)
             player.playerStatsManager.blockingFireAbsorption = player.playerCombatManager.currentWeaponBeingUsed.fireBaseDamageAbsoption;
             player.playerStatsManager.blockingHolyAbsorption = player.playerCombatManager.currentWeaponBeingUsed.holyBaseDamageAbsoption;
             player.playerStatsManager.blockingLightningAbsorption = player.playerCombatManager.currentWeaponBeingUsed.lightningBaseDamageAbsoption;
+            player.playerStatsManager.blockingStability = player.playerCombatManager.currentWeaponBeingUsed.stability;
         }
     }
 

@@ -35,6 +35,9 @@ public class DamageCollider : MonoBehaviour
     public float lightningDamage = 0;
     public float holyDamage = 0;
 
+    [Header("Poise")]
+    public float poiseDamage = 0;
+
     [Header("Contact Point")]
     protected Vector3 contactPoint;
 
@@ -88,7 +91,10 @@ public class DamageCollider : MonoBehaviour
             damageEffect.magicDamage = magicDamage;
             damageEffect.fireDamage = fireDamage;
             damageEffect.holyDamage = holyDamage;
+            damageEffect.poiseDamage = poiseDamage;
+            damageEffect.staminaDamage = poiseDamage;
             damageEffect.contactPoint = contactPoint;
+            
 
             // apply blocked character damage to target
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
@@ -116,6 +122,7 @@ public class DamageCollider : MonoBehaviour
         damageEffect.magicDamage = magicDamage;
         damageEffect.fireDamage = fireDamage;
         damageEffect.holyDamage = holyDamage;
+        damageEffect.poiseDamage = poiseDamage;
         damageEffect.contactPoint = contactPoint;
 
         damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
